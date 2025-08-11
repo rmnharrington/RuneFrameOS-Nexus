@@ -59,8 +59,8 @@ export default function AppLayout({
         </div>
       )}
 
-             {/* Main Content Area - Below header with proper spacing */}
-       <div className="flex flex-1 relative">
+      {/* Main Content Area - Below header with proper spacing */}
+      <div className="flex flex-1 relative">
         {/* Left Sidebar - Always visible, fixed width */}
         {showSidebar && (
           <div className="w-48 lg:w-56 flex-shrink-0">
