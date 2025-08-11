@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useImperativeHandle, forwardRef } from 'react'
 import HeaderBar from './HeaderBar'
 import LeftSidebar from './LeftSidebar'
 import SystemStats from './SystemStats'
@@ -24,7 +24,11 @@ interface AppLayoutProps {
   onAddModule?: (module: any) => void
 }
 
-export default function AppLayout({
+export interface AppLayoutRef {
+  handleViewChange: (view: string) => void
+}
+
+const AppLayout = forwardRef<AppLayoutRef, AppLayoutProps>(({
   children,
   appName = "RuneFrameOS Nexus",
   userName = "Traveler",
@@ -35,20 +39,31 @@ export default function AppLayout({
   onLogout,
   onNavigate,
   onAddModule
-}: AppLayoutProps) {
+}, ref) => {
   const [showStatsPanel, setShowStatsPanel] = useState(false)
   const [currentView, setCurrentView] = useState<'nexus' | 'distillara' | 'feastwell' | 'hoardwell' | 'tavern'>('nexus')
   const [isModuleModalOpen, setIsModuleModalOpen] = useState(false)
 
-  const handleViewChange = (view: typeof currentView) => {
+  const handleViewChange = (view: string) => {
     console.log(`🔄 AppLayout: Changing view to ${view}`)
-    setCurrentView(view)
     
-    // Also call the onNavigate prop if provided (for external navigation)
-    if (onNavigate) {
-      onNavigate(view)
+    // Type guard to ensure view is valid
+    if (view === 'nexus' || view === 'distillara' || view === 'feastwell' || view === 'hoardwell' || view === 'tavern') {
+      setCurrentView(view)
+      
+      // Also call the onNavigate prop if provided (for external navigation)
+      if (onNavigate) {
+        onNavigate(view)
+      }
+    } else {
+      console.warn(`Invalid view: ${view}`)
     }
   }
+
+  // Expose handleViewChange to parent components
+  useImperativeHandle(ref, () => ({
+    handleViewChange
+  }))
 
   const handleAddModules = () => {
     console.log('🔍 handleAddModules called')
@@ -177,4 +192,6 @@ export default function AppLayout({
       />
     </div>
   )
-}
+})
+
+export default AppLayout

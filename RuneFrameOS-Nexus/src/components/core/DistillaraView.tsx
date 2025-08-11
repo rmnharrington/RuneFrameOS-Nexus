@@ -76,8 +76,7 @@ export default function DistillaraView({ onReturnToNexus }: DistillaraViewProps)
     <div className="w-full h-full">
       {/* Distillara Header */}
       <div className="mb-6 p-4 bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg border border-amber-300">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center">
               <span className="text-2xl">🧪</span>
             </div>
@@ -86,14 +85,6 @@ export default function DistillaraView({ onReturnToNexus }: DistillaraViewProps)
               <p className="text-amber-600">Advanced Alchemy & Crafting System</p>
             </div>
           </div>
-          <button
-            onClick={onReturnToNexus}
-            className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center space-x-2"
-          >
-            <span>←</span>
-            <span>Return to Nexus</span>
-          </button>
-        </div>
       </div>
 
       {/* Main Distillara Content */}
@@ -230,13 +221,7 @@ DistillaraView.Sidebar = function DistillaraSidebar({ onReturnToNexus }: { onRet
           </button>
         </div>
 
-        {/* Return Button */}
-        <button
-          onClick={onReturnToNexus}
-          className="w-full px-4 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
-        >
-          ← Return to Nexus
-        </button>
+
       </div>
     </div>
   )

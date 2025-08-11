@@ -9,20 +9,12 @@ interface FeastwellViewProps {
 export default function FeastwellView({ onReturnToNexus }: FeastwellViewProps) {
   return (
     <div className="w-full h-full bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 border-amber-200 p-6">
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center space-x-3">
-          <div className="text-4xl">🍽️</div>
-          <div>
-            <h1 className="text-2xl font-bold text-amber-800">Feastwell</h1>
-            <p className="text-amber-600">Cooking and recipe management system</p>
-          </div>
+      <div className="flex items-center space-x-3 mb-6">
+        <div className="text-4xl">🍽️</div>
+        <div>
+          <h1 className="text-2xl font-bold text-amber-800">Feastwell</h1>
+          <p className="text-amber-600">Cooking and recipe management system</p>
         </div>
-        <button
-          onClick={onReturnToNexus}
-          className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white rounded-lg transition-all duration-200 hover:scale-105"
-        >
-          ← Back to Nexus
-        </button>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -90,13 +82,7 @@ FeastwellView.Sidebar = function FeastwellSidebar({ onReturnToNexus }: { onRetur
           </button>
         </div>
 
-        {/* Return Button */}
-        <button
-          onClick={onReturnToNexus}
-          className="w-full px-4 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
-        >
-          ← Return to Nexus
-        </button>
+
       </div>
     </div>
   )

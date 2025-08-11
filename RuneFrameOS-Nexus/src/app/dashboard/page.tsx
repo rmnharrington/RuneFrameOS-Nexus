@@ -1,11 +1,12 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import Dashboard from '@/components/core/Dashboard'
-import AppLayout from '@/components/core/AppLayout'
+import AppLayout, { AppLayoutRef } from '@/components/core/AppLayout'
 
 export default function DashboardPage() {
   const [modules, setModules] = useState<any[]>([])
+  const appLayoutRef = useRef<AppLayoutRef>(null)
 
   const handleAddModule = (module: any) => {
     // Convert AvailableModule to Module format
@@ -33,13 +34,17 @@ export default function DashboardPage() {
     console.log(`✅ Added module: ${newModule.name}`)
   }
 
-  const handleNavigate = (destination: string) => {
-    console.log(`🔄 Navigating to: ${destination}`)
-    // This will be handled by AppLayout's currentView state
-  }
+  const handleNavigate = useCallback((destination: string) => {
+    console.log(`🔄 Dashboard navigating to: ${destination}`)
+    // Call the AppLayout's navigation function directly
+    if (appLayoutRef.current) {
+      appLayoutRef.current.handleViewChange(destination)
+    }
+  }, [])
 
   return (
     <AppLayout 
+      ref={appLayoutRef}
       appName="RuneFrameOS Nexus"
       userName="Traveler"
       showSidebar={true}
