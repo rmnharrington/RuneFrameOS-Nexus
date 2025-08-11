@@ -77,8 +77,12 @@ export default function DistillaraView({ onReturnToNexus }: DistillaraViewProps)
       {/* Distillara Header */}
       <div className="mb-6 p-4 bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg border border-amber-300">
                   <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center">
-              <span className="text-2xl">🧪</span>
+            <div className="w-12 h-12 flex items-center justify-center">
+              <img 
+                src="http://localhost:3001/distillara_logo_IconOnly.png" 
+                alt="Distillara Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-amber-800">Distillara</h1>
@@ -186,7 +190,14 @@ DistillaraView.Sidebar = function DistillaraSidebar({ onReturnToNexus }: { onRet
   return (
     <div className="h-full bg-gradient-to-b from-amber-50 to-orange-50 border-l-2 border-amber-300/30 p-6">
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-amber-800 mb-4">Distillara Tools</h3>
+        <div className="flex items-center space-x-2 mb-4">
+          <img 
+            src="http://localhost:3001/distillara_logo_IconOnly.png" 
+            alt="Distillara Logo" 
+            className="w-6 h-6 object-contain"
+          />
+          <h3 className="text-lg font-semibold text-amber-800">Distillara Tools</h3>
+        </div>
         
         {/* Quick Actions */}
         <div className="space-y-3 mb-6">
