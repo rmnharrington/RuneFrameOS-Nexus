@@ -70,13 +70,13 @@ export default function DistillaraPage() {
         {/* Welcome Section */}
         <section className="text-center py-8">
           <div className="flex items-center justify-center space-x-4 mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-amber-200 to-orange-200 rounded-full flex items-center justify-center shadow-lg">
-                             <img 
-                 src="/Distillara_Logos_IconOnly.png" 
-                 alt="Distillara Logo" 
-                 className="w-10 h-10 object-contain"
-               />
-            </div>
+                         <div className="w-16 h-16 bg-gradient-to-r from-amber-900 via-orange-800 to-red-900 rounded-full flex items-center justify-center shadow-lg">
+                              <img 
+                  src="/Distillara_Logos_IconOnly.png" 
+                  alt="Distillara Logo" 
+                  className="w-12 h-12 object-contain"
+                />
+             </div>
             <h1 className="text-4xl font-fantasy font-bold text-amber-800">Welcome to Distillara</h1>
           </div>
           <p className="text-xl text-amber-700 max-w-3xl mx-auto">
