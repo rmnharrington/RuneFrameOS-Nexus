@@ -70,37 +70,37 @@ export default function SystemStats({ className = "" }: SystemStatsProps) {
   }
 
   return (
-    <aside className={`w-full lg:w-80 bg-gradient-to-b from-orange-50 to-red-50 border-l-2 border-orange-300/30 shadow-lg ${className}`}>
-      <div className="p-4 lg:p-6">
+    <aside className={`w-full lg:w-64 bg-gradient-to-b from-orange-50 to-red-50 border-l-2 border-orange-300/30 shadow-lg ${className}`}>
+      <div className="p-3 lg:p-4">
         {/* Header */}
-        <div className="mb-4 lg:mb-6 text-center">
-          <div className="w-10 h-10 lg:w-12 lg:h-12 mx-auto bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-lg mb-3">
-            <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="mb-3 lg:mb-4 text-center">
+          <div className="w-8 h-8 lg:w-10 lg:h-10 mx-auto bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-lg mb-2">
+            <svg className="w-4 h-4 lg:w-5 lg:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
-          <h3 className="text-base lg:text-lg font-fantasy font-semibold text-orange-800">
+          <h3 className="text-sm lg:text-base font-fantasy font-semibold text-orange-800">
             System Monitor
           </h3>
-          <p className="text-xs lg:text-sm text-orange-600/70">
+          <p className="text-xs text-orange-600/70">
             Real-time status
           </p>
         </div>
 
         {/* Stats Sections */}
-        <div className="space-y-4 lg:space-y-6">
+        <div className="space-y-3 lg:space-y-4">
           {stats.map((section, sectionIndex) => (
-            <div key={sectionIndex} className="bg-white/60 rounded-lg border border-orange-200/50 p-3 lg:p-4">
-              <h4 className="text-xs lg:text-sm font-semibold text-orange-800 mb-2 lg:mb-3 border-b border-orange-200/30 pb-2">
+            <div key={sectionIndex} className="bg-white/60 rounded-lg border border-orange-200/50 p-2 lg:p-3">
+              <h4 className="text-xs font-semibold text-orange-800 mb-2 border-b border-orange-200/30 pb-1">
                 {section.category}
               </h4>
-              <div className="space-y-2 lg:space-y-3">
+              <div className="space-y-1 lg:space-y-2">
                 {section.items.map((item, itemIndex) => (
                   <div key={itemIndex} className="flex items-center justify-between">
-                    <span className="text-xs lg:text-sm text-orange-700 font-medium">
+                    <span className="text-xs text-orange-700 font-medium">
                       {item.label}
                     </span>
-                    <span className={`text-xs px-2 py-1 rounded-full border font-medium ${getStatusColor(item.status)}`}>
+                    <span className={`text-xs px-1 py-0.5 rounded-full border font-medium ${getStatusColor(item.status)}`}>
                       {item.value}
                     </span>
                   </div>
@@ -111,17 +111,17 @@ export default function SystemStats({ className = "" }: SystemStatsProps) {
         </div>
 
         {/* Quick Actions */}
-        <div className="mt-4 lg:mt-6 pt-3 lg:pt-4 border-t border-orange-300/30">
-          <h4 className="text-xs lg:text-sm font-medium text-orange-700 mb-2 lg:mb-3">Quick Actions</h4>
-          <div className="space-y-2">
-            <button className="w-full p-2 lg:p-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 hover:scale-105 shadow-md text-xs lg:text-sm touch-manipulation">
-              <span className="flex items-center justify-center space-x-2">
+        <div className="mt-3 lg:mt-4 pt-2 lg:pt-3 border-t border-orange-300/30">
+          <h4 className="text-xs font-medium text-orange-700 mb-2">Quick Actions</h4>
+          <div className="space-y-1">
+            <button className="w-full p-1.5 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 hover:scale-105 shadow-md text-xs touch-manipulation">
+              <span className="flex items-center justify-center space-x-1">
                 <span>📊</span>
                 <span>Detailed Report</span>
               </span>
             </button>
-            <button className="w-full p-2 lg:p-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 hover:scale-105 shadow-md text-xs lg:text-sm touch-manipulation">
-              <span className="flex items-center justify-center space-x-2">
+            <button className="w-full p-1.5 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 hover:scale-105 shadow-md text-xs touch-manipulation">
+              <span className="flex items-center justify-center space-x-1">
                 <span>⚙️</span>
                 <span>System Settings</span>
               </span>
@@ -130,10 +130,10 @@ export default function SystemStats({ className = "" }: SystemStatsProps) {
         </div>
 
         {/* Status Indicator */}
-        <div className="mt-4 lg:mt-6 p-3 bg-gradient-to-r from-green-100 to-emerald-100 rounded-lg border border-green-300/50">
-          <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 lg:w-3 lg:h-3 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-xs lg:text-sm font-medium text-green-800">
+        <div className="mt-3 lg:mt-4 p-2 bg-gradient-to-r from-green-100 to-emerald-100 rounded-lg border border-green-300/50">
+          <div className="flex items-center space-x-1">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-xs font-medium text-green-800">
               All systems operational
             </span>
           </div>

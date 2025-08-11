@@ -27,15 +27,18 @@ export default function LeftSidebar() {
   ]
 
   return (
-    <aside className="fixed left-0 top-20 w-70 h-[calc(100vh-5rem)] gradient-left-sidebar border-r-2 border-amber-300/30 overflow-y-auto">
-      <div className="p-6">
-        {/* RuneFrameOS Logo */}
-        <div className="flex items-center space-x-3 mb-8">
-          <div className="text-4xl">🏺</div>
-          <div>
-            <h2 className="text-xl font-bold text-amber-900 fantasy-font">RuneFrameOS</h2>
-            <p className="text-amber-700 text-sm">Navigation</p>
+    <aside className="fixed left-0 top-20 w-48 lg:w-56 h-[calc(100vh-5rem)] gradient-left-sidebar border-r-2 border-amber-300/30 overflow-y-auto">
+      <div className="p-3 lg:p-4">
+        {/* Header */}
+        <div className="mb-4 lg:mb-6 text-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-amber-200 to-orange-200 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
+            <img
+              src="/runeframeos_logo2.png"
+              alt="RuneFrameOS"
+              className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
+            />
           </div>
+          <h2 className="text-sm lg:text-base font-fantasy font-bold text-amber-800">Navigation</h2>
         </div>
 
         {/* Navigation Items */}

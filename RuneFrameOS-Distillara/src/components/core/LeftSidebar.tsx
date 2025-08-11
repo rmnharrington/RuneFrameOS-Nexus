@@ -35,23 +35,23 @@ export default function LeftSidebar({
   ]
 
   return (
-    <aside className="hidden lg:block w-[280px] h-screen bg-gradient-to-b from-amber-50 to-orange-50 border-r-2 border-amber-300/30 fixed left-0 top-20 z-40 overflow-y-auto">
-      <div className="p-6">
+    <aside className="hidden lg:block w-48 lg:w-56 h-screen bg-gradient-to-b from-amber-50 to-orange-50 border-r-2 border-amber-300/30 fixed left-0 top-20 z-40 overflow-y-auto">
+      <div className="p-3 lg:p-4">
         {/* Header */}
-        <div className="mb-8 text-center">
-          <div className="w-16 h-16 bg-gradient-to-br from-amber-200 to-orange-200 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+        <div className="mb-4 lg:mb-6 text-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-amber-200 to-orange-200 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
             <img
               src="/runeframeos_logo2.png"
               alt="RuneFrameOS"
-              className="w-12 h-12 object-contain"
+              className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
             />
           </div>
-          <h2 className="text-lg font-fantasy font-bold text-amber-800">Navigation</h2>
+          <h2 className="text-sm lg:text-base font-fantasy font-bold text-amber-800">Navigation</h2>
         </div>
 
         {/* Navigation Items */}
-        <nav className="mb-8">
-          <ul className="space-y-2">
+        <nav className="mb-4 lg:mb-6">
+          <ul className="space-y-1 lg:space-y-2">
             {navigationItems.map((item) => {
               const Icon = item.icon
               const isActive = currentApp === item.name
@@ -59,15 +59,15 @@ export default function LeftSidebar({
                 <li key={item.name}>
                   <button
                     onClick={() => onNavigate?.(item.name.toLowerCase())}
-                    className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 hover:scale-105 ${
+                    className={`w-full flex items-center space-x-2 lg:space-x-3 p-2 lg:p-3 rounded-lg transition-all duration-200 hover:scale-105 ${
                       isActive
                         ? 'bg-gradient-to-r from-amber-200 to-orange-200 shadow-md border border-amber-300/50'
                         : 'hover:bg-amber-100/50 hover:border border-amber-200/30'
                     }`}
                   >
-                    <Icon className={`w-5 h-5 ${isActive ? 'text-amber-800' : 'text-amber-600'}`} />
+                    <Icon className={`w-4 h-4 lg:w-5 lg:h-5 ${isActive ? 'text-amber-800' : 'text-amber-600'}`} />
                     <div className="text-left">
-                      <span className={`font-medium ${isActive ? 'text-amber-800' : 'text-amber-700'}`}>
+                      <span className={`font-medium text-xs lg:text-sm ${isActive ? 'text-amber-800' : 'text-amber-700'}`}>
                         {item.name}
                       </span>
                       <p className={`text-xs ${isActive ? 'text-amber-700' : 'text-amber-600/70'}`}>
@@ -83,18 +83,18 @@ export default function LeftSidebar({
 
         {/* Quick Actions */}
         <div>
-          <h3 className="text-sm font-semibold text-amber-700 mb-3">Quick Actions</h3>
-          <div className="space-y-2">
+          <h3 className="text-xs lg:text-sm font-semibold text-amber-700 mb-2 lg:mb-3">Quick Actions</h3>
+          <div className="space-y-1 lg:space-y-2">
             {quickActions.map((action) => {
               const Icon = action.icon
               return (
                 <button
                   key={action.name}
                   onClick={action.action}
-                  className="w-full flex items-center space-x-3 p-3 bg-gradient-to-r from-orange-100 to-amber-100 hover:from-orange-200 hover:to-amber-200 rounded-lg transition-all duration-200 hover:scale-105 border border-orange-200/30 hover:border-orange-300/50 shadow-sm"
+                  className="w-full flex items-center space-x-2 lg:space-x-3 p-2 lg:p-3 bg-gradient-to-r from-orange-100 to-amber-100 hover:from-orange-200 hover:to-amber-200 rounded-lg transition-all duration-200 hover:scale-105 border border-orange-200/30 hover:border-orange-300/50 shadow-sm"
                 >
-                  <Icon className="w-5 h-5 text-orange-600" />
-                  <span className="font-medium text-orange-700">{action.name}</span>
+                  <Icon className="w-4 h-4 lg:w-5 lg:h-5 text-orange-600" />
+                  <span className="font-medium text-xs lg:text-sm text-orange-700">{action.name}</span>
                 </button>
               )
             })}

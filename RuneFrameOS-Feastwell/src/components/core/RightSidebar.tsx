@@ -38,12 +38,18 @@ export default function RightSidebar({ appType = "Feastwell" }: RightSidebarProp
   ]
 
   return (
-    <aside className="fixed right-0 top-20 h-screen w-[320px] bg-gradient-to-b from-orange-900 via-red-900 to-red-950 border-l-2 border-orange-500/30 shadow-lg hidden lg:block">
-      <div className="p-6">
-        {/* App Type Header */}
-        <div className="mb-8">
-          <h2 className="text-xl font-bold text-white font-fantasy mb-2">{appType}</h2>
-          <p className="text-orange-200 text-sm">Kitchen Operations Center</p>
+    <aside className="fixed right-0 top-20 h-screen w-64 bg-gradient-to-b from-orange-900 via-red-900 to-red-950 border-l-2 border-orange-500/30 shadow-lg hidden lg:block">
+      <div className="p-3 lg:p-4">
+        {/* Header */}
+        <div className="mb-4 lg:mb-6 text-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-orange-200 to-red-200 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
+            <img
+              src="/runeframeos_logo2.png"
+              alt="RuneFrameOS"
+              className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
+            />
+          </div>
+          <h2 className="text-sm lg:text-base font-fantasy font-bold text-orange-200">Quick Actions</h2>
         </div>
 
         {/* Active Recipes Section */}

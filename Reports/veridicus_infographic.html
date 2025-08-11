@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifiable Digital Trust: A Strategic Framework for RuneFrameOS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #001219;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #94d2bd, #ee9b00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .flowchart-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #94d2bd;
+            line-height: 1;
+            margin: 0 1rem;
+        }
+        .flowchart-arrow-down::after {
+            content: '↓';
+            font-size: 2rem;
+            color: #94d2bd;
+            line-height: 1;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <header class="bg-[#003f5c]/50 backdrop-blur-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <ul class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base">
+                <li><a href="#introduction" class="hover:text-[#94d2bd] transition-colors">Introduction</a></li>
+                <li><a href="#pillars" class="hover:text-[#94d2bd] transition-colors">Pillars of Trust</a></li>
+                <li><a href="#supply-chain" class="hover:text-[#94d2bd] transition-colors">Supply Chain</a></li>
+                <li><a href="#zero-trust" class="hover:text-[#94d2bd] transition-colors">Zero Trust</a></li>
+                <li><a href="#roadmap" class="hover:text-[#94d2bd] transition-colors">Roadmap</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="introduction" class="text-center mb-24">
+            <h1 class="text-4xl md:text-6xl font-black mb-4"><span class="gradient-text">Verifiable Digital Trust</span></h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-gray-300 mb-6">A New Security Framework for the Modern Gaming Ecosystem</h2>
+            <p class="max-w-3xl mx-auto text-gray-400">
+                Traditional security models fail in dynamic, collaborative environments like RuneFrameOS. A new paradigm is needed—one built on a foundation of verifiable trust, where security is a core feature, not a background function. This requires a shift to a data-centric model grounded in Data Provenance and Data Attestation.
+            </p>
+        </section>
+
+        <section id="pillars" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">The Two Pillars of Verifiable Trust</h2>
+                <p class="max-w-2xl mx-auto text-gray-400">Data Provenance and Data Attestation are the foundational concepts that enable a system to prove its own integrity and the history of its data.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-[#94d2bd]">Data Provenance: The Pedigree of Data</h3>
+                    <p class="text-gray-400 mb-6">
+                        Provenance provides a complete, historical record of a data asset's lifecycle, answering *who, what, when, where,* and *why*. It's distinct from Data Lineage, which only tracks the data's path. Provenance establishes authenticity and trustworthiness, which is critical for managing user-generated IP.
+                    </p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-gray-600">
+                                    <th class="p-2 font-semibold text-[#e9d8a6]">Feature</th>
+                                    <th class="p-2 font-semibold text-white">Data Lineage</th>
+                                    <th class="p-2 font-semibold text-white">Data Provenance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-700">
+                                    <td class="p-2 font-semibold text-[#e9d8a6]">Question</td>
+                                    <td class="p-2">How did it get here?</td>
+                                    <td class="p-2">Where did it come from?</td>
+                                </tr>
+                                <tr class="border-b border-gray-700">
+                                    <td class="p-2 font-semibold text-[#e9d8a6]">Focus</td>
+                                    <td class="p-2">Path & Transformation</td>
+                                    <td class="p-2">Origin & Authenticity</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-semibold text-[#e9d8a6]">Analogy</td>
+                                    <td class="p-2">Package Shipping Tracker</td>
+                                    <td class="p-2">Artifact's Chain of Custody</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-[#94d2bd]">Data Attestation: The Act of Verification</h3>
+                    <p class="text-gray-400 mb-6">
+                        Attestation is the active process of proving integrity and identity in real-time. It functions like a digital notary, using cryptographic evidence to allow a system to verify the trustworthiness of a client or another service before granting access. This is the key to privacy-preserving anti-cheat systems.
+                    </p>
+                     <div class="text-center">
+                        <h4 class="font-bold text-lg mb-4 text-[#e9d8a6]">Attestation Models</h4>
+                        <div class="flex flex-col md:flex-row justify-around items-center gap-4">
+                            <div class="flex flex-col items-center">
+                                <span class="font-semibold mb-2">Passport Model</span>
+                                <div class="flex items-center">
+                                    <div class="bg-[#0a9396] p-3 rounded-lg">Attester</div>
+                                    <div class="flowchart-arrow"></div>
+                                    <div class="bg-[#0a9396] p-3 rounded-lg">Verifier</div>
+                                </div>
+                                <div class="flex justify-center my-2 flowchart-arrow-down"></div>
+                                <div class="bg-[#ee9b00] p-3 rounded-lg">Relying Party</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <span class="font-semibold mb-2">Background Check Model</span>
+                                <div class="flex items-center">
+                                    <div class="bg-[#0a9396] p-3 rounded-lg">Attester</div>
+                                    <div class="flowchart-arrow"></div>
+                                    <div class="bg-[#ee9b00] p-3 rounded-lg">Relying Party</div>
+                                    <div class="flowchart-arrow"></div>
+                                    <div class="bg-[#0a9396] p-3 rounded-lg">Verifier</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="supply-chain" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">Securing the Software Supply Chain</h2>
+                <p class="max-w-2xl mx-auto text-gray-400">A Software Bill of Materials (SBOM) provides provenance for the code itself, creating a transparent inventory of all components and dependencies.</p>
+            </div>
+            <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6 md:p-8">
+                <p class="text-gray-400 mb-6 text-center">Driven by federal mandates like EO 14028, SBOMs are becoming the industry standard for software transparency. They are not the "recipe" of your IP, but the "ingredient list," essential for vulnerability management and license compliance. For RuneFrameOS, embracing radical transparency by publishing an SBOM is a competitive advantage.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b-2 border-gray-600">
+                                <th class="p-3 font-semibold text-lg text-[#e9d8a6]">Format</th>
+                                <th class="p-3 font-semibold text-lg text-white">Maintainer</th>
+                                <th class="p-3 font-semibold text-lg text-white">Primary Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-700">
+                                <td class="p-3 font-bold text-[#94d2bd]">SPDX</td>
+                                <td class="p-3">The Linux Foundation</td>
+                                <td class="p-3">Broad-spectrum transparency, license compliance, and vulnerability management.</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="p-3 font-bold text-[#94d2bd]">CycloneDX</td>
+                                <td class="p-3">OWASP</td>
+                                <td class="p-3">Lightweight and security-focused, designed for identifying risk in the supply chain.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-[#94d2bd]">SWID Tags</td>
+                                <td class="p-3">ISO/IEC</td>
+                                <td class="p-3">Software asset management and tracking installed software on endpoints.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24 items-center">
+             <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6 text-center">
+                <span class="text-7xl md:text-8xl font-black text-[#ae2012]">84.7%</span>
+                <p class="text-xl font-semibold text-gray-300 mt-4">of enterprises experienced data loss in 2023.</p>
+                <p class="text-gray-400 mt-2">Traditional Data Loss Prevention (DLP) fails because the perimeter is gone. Security must be attached to the data itself.</p>
+            </div>
+            <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6">
+                <h3 class="text-2xl font-bold mb-4 text-center text-[#94d2bd]">Data Classification: The Prerequisite for Protection</h3>
+                <p class="text-gray-400 mb-6">
+                    Before data can be protected, it must be understood. Using the NIST FIPS 199 framework, we classify data based on the potential impact of a breach on its Confidentiality, Integrity, and Availability. This allows for a nuanced, risk-based approach to security.
+                </p>
+                <div class="chart-container">
+                    <canvas id="classificationChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="zero-trust" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">The Unifying Framework: Data-Centric Zero Trust</h2>
+                <p class="max-w-3xl mx-auto text-gray-400">Zero Trust isn't just about networks; it's a philosophy that must be applied directly to data. Every access request is treated as hostile until proven otherwise, using provenance and attestation as evidence.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6 text-center border-t-4 border-[#94d2bd]">
+                    <div class="text-5xl mb-4">🛡️</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#94d2bd]">Verify Explicitly</h3>
+                    <p class="text-gray-400">Never trust, always verify. Authenticate and authorize every single access request based on all available signals—identity, device health, data classification, and more.</p>
+                </div>
+                <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6 text-center border-t-4 border-[#ee9b00]">
+                    <div class="text-5xl mb-4">🔑</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#ee9b00]">Use Least Privilege</h3>
+                    <p class="text-gray-400">Grant users and systems only the minimum access required to perform their function, using just-in-time and just-enough-access policies to shrink the attack surface.</p>
+                </div>
+                <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6 text-center border-t-4 border-[#ae2012]">
+                    <div class="text-5xl mb-4">💥</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#ae2012]">Assume Breach</h3>
+                    <p class="text-gray-400">Design the system assuming a breach will happen. Minimize the blast radius with micro-segmentation, end-to-end encryption, and continuous monitoring.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="mb-12">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">A Phased Implementation Roadmap for RuneFrameOS</h2>
+                <p class="max-w-2xl mx-auto text-gray-400">A full transition to Data-Centric Zero Trust is a journey. This phased approach builds value incrementally.</p>
+            </div>
+
+            <div class="relative">
+                <div class="border-l-4 border-[#005f73] absolute h-full top-0 left-1/2 -ml-0.5"></div>
+                
+                <div class="mb-12 flex justify-center items-center w-full">
+                    <div class="w-1/2 flex justify-end">
+                        <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6 w-full max-w-md mr-8">
+                            <h3 class="font-bold text-xl mb-2 text-[#94d2bd]">Phase 1: Foundational (0-6 Months)</h3>
+                            <p class="text-gray-400">Conduct comprehensive Data Classification using NIST framework. Integrate automated SBOM generation into the CI/CD pipeline and mandate it from suppliers.</p>
+                        </div>
+                    </div>
+                    <div class="w-1/2"></div>
+                </div>
+
+                <div class="mb-12 flex justify-center items-center w-full">
+                    <div class="w-1/2"></div>
+                    <div class="w-1/2 flex justify-start">
+                        <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6 w-full max-w-md ml-8">
+                            <h3 class="font-bold text-xl mb-2 text-[#e9d8a6]">Phase 2: Provenance & Attestation (6-18 Months)</h3>
+                            <p class="text-gray-400">Build a UGC provenance system to protect creator IP. Implement client attestation for "trusted" lobbies and server attestation for critical backend services in TEEs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12 flex justify-center items-center w-full">
+                    <div class="w-1/2 flex justify-end">
+                        <div class="bg-[#002a3a] rounded-lg shadow-2xl p-6 w-full max-w-md mr-8">
+                            <h3 class="font-bold text-xl mb-2 text-[#ca6702]">Phase 3: Data-Centric Zero Trust (18+ Months)</h3>
+                            <p class="text-gray-400">Deploy a central Policy-as-Code engine. Refactor critical data access to require real-time policy checks. Log all decisions for continuous monitoring and refinement.</p>
+                        </div>
+                    </div>
+                    <div class="w-1/2"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#001f2b] text-center p-6 mt-12">
+        <p class="text-gray-500">Infographic based on the research paper: "Verifiable Digital Trust: A Strategic Framework for Data Provenance, Attestation, and Security in the Modern Gaming Ecosystem."</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const wrapLabel = (label) => {
+                if (label.length <= 16) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).length > 16 && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = currentLine ? currentLine + ' ' + word : word;
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const classificationData = {
+                labels: [
+                    'Player PII', 
+                    'User-Generated Content', 
+                    'Proprietary RuneFrameOS IP',
+                    'Live Game State Data', 
+                    'Public Forum Posts'
+                ].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Confidentiality Impact',
+                        data: [3, 1, 3, 1, 1], 
+                        backgroundColor: '#0a9396',
+                    },
+                    {
+                        label: 'Integrity Impact',
+                        data: [1, 3, 3, 3, 1],
+                        backgroundColor: '#ee9b00',
+                    },
+                    {
+                        label: 'Availability Impact',
+                        data: [2, 2, 2, 3, 1],
+                        backgroundColor: '#bb3e03',
+                    }
+                ]
+            };
+
+            const ctx = document.getElementById('classificationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: classificationData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: false,
+                        },
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#e9d8a6',
+                                boxWidth: 12,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    const value = context.parsed.y;
+                                    const impactLevels = ['Low', 'Moderate', 'High'];
+                                    if (value !== null) {
+                                        label += impactLevels[value - 1];
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: { color: '#94d2bd' },
+                            grid: { color: 'rgba(148, 210, 189, 0.1)' }
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                color: '#94d2bd',
+                                stepSize: 1,
+                                callback: function(value, index, values) {
+                                    const impactLevels = {0: '', 1: 'Low', 2: 'Moderate', 3: 'High'};
+                                    return impactLevels[value] || '';
+                                }
+                            },
+                            grid: { color: 'rgba(148, 210, 189, 0.2)' },
+                            max: 3,
+                            min: 0
+                        }
+                    }
+                }
+            });
+
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('main section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('text-[#94d2bd]', 'font-bold');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('text-[#94d2bd]', 'font-bold');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

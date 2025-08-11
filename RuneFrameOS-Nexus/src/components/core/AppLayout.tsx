@@ -1,14 +1,18 @@
 "use client"
 
-import React, { ReactNode, useState } from 'react'
+import React, { useState } from 'react'
 import HeaderBar from './HeaderBar'
 import LeftSidebar from './LeftSidebar'
 import SystemStats from './SystemStats'
 import AppFooter from './AppFooter'
 import DistillaraView from './DistillaraView'
+import FeastwellView from './FeastwellView'
+import HoardwellView from './HoardwellView'
+import TavernView from './TavernView'
+import ModuleSubscriptionModal from './ModuleSubscriptionModal'
 
 interface AppLayoutProps {
-  children: ReactNode
+  children: React.ReactNode
   appName?: string
   userName?: string
   appIcon?: string
@@ -17,10 +21,11 @@ interface AppLayoutProps {
   onSettings?: () => void
   onLogout?: () => void
   onNavigate?: (destination: string) => void
+  onAddModule?: (module: any) => void
 }
 
-export default function AppLayout({ 
-  children, 
+export default function AppLayout({
+  children,
   appName = "RuneFrameOS Nexus",
   userName = "Traveler",
   appIcon = "/RuneFrameOS_NoText.png",
@@ -28,19 +33,50 @@ export default function AppLayout({
   showStats = true,
   onSettings,
   onLogout,
-  onNavigate
+  onNavigate,
+  onAddModule
 }: AppLayoutProps) {
   const [showStatsPanel, setShowStatsPanel] = useState(false)
   const [currentView, setCurrentView] = useState<'nexus' | 'distillara' | 'feastwell' | 'hoardwell' | 'tavern'>('nexus')
+  const [isModuleModalOpen, setIsModuleModalOpen] = useState(false)
 
   const handleViewChange = (view: typeof currentView) => {
+    console.log(`🔄 AppLayout: Changing view to ${view}`)
     setCurrentView(view)
+    
+    // Also call the onNavigate prop if provided (for external navigation)
+    if (onNavigate) {
+      onNavigate(view)
+    }
+  }
+
+  const handleAddModules = () => {
+    console.log('🔍 handleAddModules called')
+    console.log('🔍 Current isModuleModalOpen:', isModuleModalOpen)
+    setIsModuleModalOpen(true)
+    console.log('🔍 Set isModuleModalOpen to true')
+  }
+
+  const handleModuleSubscribe = (modules: any[]) => {
+    if (onAddModule) {
+      // Handle multiple modules
+      modules.forEach(module => {
+        onAddModule(module)
+      })
+    }
+    setIsModuleModalOpen(false)
   }
 
   const renderCenterContent = () => {
     switch (currentView) {
       case 'distillara':
         return <DistillaraView onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'feastwell':
+        return <FeastwellView onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'hoardwell':
+        return <HoardwellView onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'tavern':
+        return <TavernView onReturnToNexus={() => handleViewChange('nexus')} />
       case 'nexus':
       default:
         return (
@@ -55,6 +91,12 @@ export default function AppLayout({
     switch (currentView) {
       case 'distillara':
         return <DistillaraView.Sidebar onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'feastwell':
+        return <FeastwellView.Sidebar onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'hoardwell':
+        return <HoardwellView.Sidebar onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'tavern':
+        return <TavernView.Sidebar onReturnToNexus={() => handleViewChange('nexus')} />
       case 'nexus':
       default:
         return <SystemStats />
@@ -64,7 +106,7 @@ export default function AppLayout({
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 flex flex-col">
       {/* Header Bar */}
-      <HeaderBar 
+      <HeaderBar
         appName={appName}
         userName={userName}
         appIcon={appIcon}
@@ -79,9 +121,10 @@ export default function AppLayout({
         {/* Left Sidebar - Collapsible for iPad */}
         {showSidebar && (
           <div className="relative">
-            <LeftSidebar 
+            <LeftSidebar
               currentApp={currentView === 'nexus' ? 'Nexus' : currentView}
               onNavigate={handleViewChange}
+              onAddModules={handleAddModules}
             />
           </div>
         )}
@@ -93,7 +136,7 @@ export default function AppLayout({
 
         {/* Desktop Stats Panel - Floating right sidebar */}
         {showStats && (
-          <div className="hidden lg:block w-80 flex-shrink-0">
+          <div className="hidden lg:block w-64 flex-shrink-0">
             {renderRightContent()}
           </div>
         )}
@@ -105,13 +148,13 @@ export default function AppLayout({
       {/* Floating Stats Panel - Mobile/Tablet Overlay */}
       {showStats && showStatsPanel && (
         <div className="fixed inset-0 bg-black/20 z-40 md:hidden">
-          <div className="absolute right-0 top-0 h-full w-80 bg-gradient-to-b from-orange-50 to-red-50 border-l-2 border-orange-300/30 shadow-2xl transform transition-transform duration-300 ease-in-out">
+          <div className="absolute right-0 top-0 h-full w-64 bg-gradient-to-b from-orange-50 to-red-50 border-l-2 border-orange-300/30 shadow-2xl transform transition-transform duration-300 ease-in-out">
             <div className="p-4">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-fantasy font-semibold text-orange-800">
                   System Monitor
                 </h3>
-                <button 
+                <button
                   onClick={() => setShowStatsPanel(false)}
                   className="p-2 hover:bg-orange-200/50 rounded-full transition-colors"
                 >
@@ -125,6 +168,13 @@ export default function AppLayout({
           </div>
         </div>
       )}
+
+      {/* Module Subscription Modal */}
+      <ModuleSubscriptionModal
+        isOpen={isModuleModalOpen}
+        onClose={() => setIsModuleModalOpen(false)}
+        onSubscribe={handleModuleSubscribe}
+      />
     </div>
   )
 }
