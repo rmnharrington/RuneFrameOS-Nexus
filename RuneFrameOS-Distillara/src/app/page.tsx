@@ -58,7 +58,7 @@ export default function DistillaraPage() {
     <AppLayout
       appName="Distillara"
       userName="Master Alchemist"
-      appIcon="/distillara_logo2.png"
+      appIcon="/distillara_logo_IconOnly.png"
       appType="Distillara"
       onSettings={handleSettings}
       onLogout={handleLogout}

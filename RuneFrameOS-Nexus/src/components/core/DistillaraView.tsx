@@ -79,7 +79,7 @@ export default function DistillaraView({ onReturnToNexus }: DistillaraViewProps)
                   <div className="flex items-center space-x-3">
             <div className="w-12 h-12 flex items-center justify-center">
               <img 
-                src="http://localhost:3001/distillara_logo_IconOnly.png" 
+                src="/distillara_logo_IconOnly.png" 
                 alt="Distillara Logo" 
                 className="w-full h-full object-contain"
               />
@@ -192,7 +192,7 @@ DistillaraView.Sidebar = function DistillaraSidebar({ onReturnToNexus }: { onRet
       <div className="mb-6">
         <div className="flex items-center space-x-2 mb-4">
           <img 
-            src="http://localhost:3001/distillara_logo_IconOnly.png" 
+            src="/distillara_logo_IconOnly.png" 
             alt="Distillara Logo" 
             className="w-6 h-6 object-contain"
           />
