@@ -111,7 +111,7 @@ export default function AppLayout({
         } ${
           showStats ? 'mr-0 lg:mr-[320px]' : 'mr-0'
         } ${showMobileMenu ? 'pt-32' : 'pt-0'}`}>
-          <div className="max-w-6xl mx-auto">
+          <div className="w-full max-w-none mx-auto">
             {children}
           </div>
         </main>
