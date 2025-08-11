@@ -96,31 +96,29 @@ export default function AppLayout({
       )}
 
       {/* Main Content Area - Below header */}
-      <div className="flex flex-1 pt-20">
-        {/* Left Sidebar - Fixed left */}
+      <div className="flex flex-1 pt-20 relative">
+        {/* Left Sidebar - Always visible, fixed width */}
         {showSidebar && (
-          <LeftSidebar
-            currentApp={appName}
-            onNavigate={onNavigate}
-          />
+          <div className="w-48 lg:w-56 flex-shrink-0">
+            <LeftSidebar
+              currentApp={appName}
+              onNavigate={onNavigate}
+            />
+          </div>
         )}
 
-        {/* Center Content - Flexible width with proper spacing */}
-        <main className={`flex-1 p-6 pb-24 overflow-auto transition-all duration-300 ${
-          showSidebar ? 'ml-0 lg:ml-[280px]' : 'ml-0'
-        } ${
-          showStats ? 'mr-0 lg:mr-[320px]' : 'mr-0'
-        } ${showMobileMenu ? 'pt-32' : 'pt-0'}`}>
-          <div className="w-full max-w-none mx-auto">
-            {children}
-          </div>
+        {/* Center Content - Takes remaining width with proper spacing */}
+        <main className="flex-1 p-4 md:p-6 overflow-auto">
+          {children}
         </main>
 
-        {/* Right Sidebar - Fixed right */}
+        {/* Desktop Stats Panel - Floating right sidebar */}
         {showStats && (
-          <RightSidebar
-            appType={appType}
-          />
+          <div className="hidden lg:block w-64 flex-shrink-0">
+            <RightSidebar
+              appType={appType}
+            />
+          </div>
         )}
       </div>
 

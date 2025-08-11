@@ -35,7 +35,7 @@ export default function LeftSidebar({
   ]
 
   return (
-    <aside className="hidden lg:block w-48 lg:w-56 h-screen bg-gradient-to-b from-amber-50 to-orange-50 border-r-2 border-amber-300/30 fixed left-0 top-20 z-40 overflow-y-auto">
+    <aside className="w-full h-full bg-gradient-to-b from-amber-50 to-orange-50 border-r-2 border-amber-300/30 overflow-y-auto">
       <div className="p-3 lg:p-4">
         {/* Header */}
         <div className="mb-4 lg:mb-6 text-center">

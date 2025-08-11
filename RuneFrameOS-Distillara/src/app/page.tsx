@@ -86,7 +86,7 @@ export default function DistillaraPage() {
         </section>
 
         {/* Quick Actions */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           <button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-4">
             <img 
               src="/Distillara_Logos_IconOnly.png" 
@@ -138,7 +138,7 @@ export default function DistillaraPage() {
             Discover the mystical ingredients that power the art of alchemy. Each component holds unique properties 
             that can be combined to create powerful potions and elixirs.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
             {mockIngredients.slice(0, 6).map((ingredient) => (
               <div key={ingredient.id} className="border border-amber-200/30 rounded-lg p-4 hover:shadow-md transition-all duration-200 bg-white/80">
                 <div className="flex items-center justify-between mb-2">
@@ -178,7 +178,7 @@ export default function DistillaraPage() {
             Master the ancient techniques of combining ingredients to create powerful potions. 
             Each recipe has been tested and refined by master alchemists.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
             {mockRecipes.slice(0, 6).map((recipe) => (
               <div key={recipe.id} className="border border-amber-200/30 rounded-lg p-4 hover:shadow-md transition-all duration-200 bg-white/80">
                 <div className="flex items-center justify-between mb-2">
@@ -213,7 +213,7 @@ export default function DistillaraPage() {
             />
             <h2 className="text-2xl font-bold text-amber-800">Distillara Statistics</h2>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
             <div className="text-center">
               <div className="text-3xl font-bold text-amber-800">{stats.totalPotions.toLocaleString()}</div>
               <div className="text-sm text-amber-600">Potions Crafted</div>
