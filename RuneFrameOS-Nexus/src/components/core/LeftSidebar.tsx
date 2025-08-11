@@ -17,6 +17,34 @@ export default function LeftSidebar({ currentApp = "Nexus", onNavigate }: LeftSi
       active: currentApp === 'Nexus'
     },
     {
+      id: 'distillara',
+      name: 'Distillara',
+      icon: '🧪',
+      description: 'Gaming & alchemy system',
+      active: false
+    },
+    {
+      id: 'core',
+      name: 'Core Admin',
+      icon: '⚙️',
+      description: 'System administration',
+      active: false
+    },
+    {
+      id: 'feastwell',
+      name: 'Feastwell',
+      icon: '🍽️',
+      description: 'Food & recipe management',
+      active: false
+    },
+    {
+      id: 'hoardwell',
+      name: 'Hoardwell',
+      icon: '💎',
+      description: 'Inventory & characters',
+      active: false
+    },
+    {
       id: 'broke-unicorn-tavern',
       name: 'BrokeUnicorn Tavern',
       icon: '🏰',
@@ -24,49 +52,38 @@ export default function LeftSidebar({ currentApp = "Nexus", onNavigate }: LeftSi
       active: false
     },
     {
-      id: 'characters',
-      name: 'Characters',
-      icon: '⚔️',
-      description: 'Manage your Travelers',
-      active: false
-    },
-    {
-      id: 'campaigns',
-      name: 'Campaigns',
-      icon: '🗺️',
-      description: 'Active adventures',
-      active: false
-    },
-    {
-      id: 'library',
-      name: 'Library',
-      icon: '📚',
-      description: 'Rules and lore',
-      active: false
-    },
-    {
-      id: 'tools',
-      name: 'Tools',
-      icon: '🛠️',
-      description: 'Crafting & utilities',
-      active: false
-    },
-    {
-      id: 'social',
-      name: 'Social',
-      icon: '👥',
-      description: 'Connect with players',
+      id: 'shared-services',
+      name: 'Shared Services',
+      icon: '🔗',
+      description: 'Authentication & APIs',
       active: false
     }
   ]
 
   const handleNavigation = (destination: string) => {
-    if (destination === 'broke-unicorn-tavern') {
-      // Open BrokeUnicorn Tavern in a new tab
-      window.open('http://localhost:3002', '_blank')
-    } else {
-      // Handle other navigation
-      onNavigate?.(destination)
+    switch (destination) {
+      case 'distillara':
+        window.open('http://localhost:3001', '_blank')
+        break
+      case 'core':
+        window.open('http://localhost:3002', '_blank')
+        break
+      case 'feastwell':
+        window.open('http://localhost:3003', '_blank')
+        break
+      case 'hoardwell':
+        window.open('http://localhost:3004', '_blank')
+        break
+      case 'broke-unicorn-tavern':
+        window.open('http://localhost:3005', '_blank')
+        break
+      case 'shared-services':
+        // Open a services overview page or the auth service
+        window.open('http://localhost:4001', '_blank')
+        break
+      default:
+        // Handle other navigation
+        onNavigate?.(destination)
     }
   }
 

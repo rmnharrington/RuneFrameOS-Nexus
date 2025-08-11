@@ -1,0 +1,153 @@
+version: '3.8'
+
+services:
+  # Main Nexus Hub - Central access point
+  nexus:
+    build: ./RuneFrameOS-Nexus
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - ./RuneFrameOS-Nexus:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+  # Distillara - Gaming Application
+  distillara:
+    build: ./RuneFrameOS-Distillara
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+    volumes:
+      - ./RuneFrameOS-Distillara:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+  # Core - Admin Dashboard
+  core:
+    build: ./RuneFrameOS-Core
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+      - PORT=3002
+    volumes:
+      - ./RuneFrameOS-Core:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+  # Feastwell - Food Management
+  feastwell:
+    build: ./RuneFrameOS-Feastwell
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development
+      - PORT=3003
+    volumes:
+      - ./RuneFrameOS-Feastwell:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+  # Hoardwell - Inventory Management
+  hoardwell:
+    build: ./RuneFrameOS-Hoardwell
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=development
+      - PORT=3004
+    volumes:
+      - ./RuneFrameOS-Hoardwell:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+  # BrokeUnicornTavern - Tavern Interface
+  tavern:
+    build: ./RuneFrameOS-BrokeUnicornTavern
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=development
+      - PORT=3005
+    volumes:
+      - ./RuneFrameOS-BrokeUnicornTavern:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+  # Shared Services - Authentication
+  auth-service:
+    build: ./RuneFrameOS-SharedServices/auth-service
+    ports:
+      - "4001:4001"
+    environment:
+      - NODE_ENV=development
+      - PORT=4001
+    volumes:
+      - ./RuneFrameOS-SharedServices/auth-service:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+  # Shared Services - Core Service
+  core-service:
+    build: ./RuneFrameOS-SharedServices/core-service
+    ports:
+      - "4002:4002"
+    environment:
+      - NODE_ENV=development
+      - PORT=4002
+    volumes:
+      - ./RuneFrameOS-SharedServices/core-service:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+  # Shared Services - User Service
+  user-service:
+    build: ./RuneFrameOS-SharedServices/user-service
+    ports:
+      - "4003:4003"
+    environment:
+      - NODE_ENV=development
+      - PORT=4003
+    volumes:
+      - ./RuneFrameOS-SharedServices/user-service:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
+networks:
+  runeframeos-network:
+    driver: bridge
+
+volumes:
+  node_modules:

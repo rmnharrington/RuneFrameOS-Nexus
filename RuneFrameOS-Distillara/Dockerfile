@@ -1,4 +1,3 @@
-# Simple Next.js Dockerfile for Kubernetes deployment
 FROM node:18-alpine
 
 WORKDIR /app
@@ -13,7 +12,7 @@ RUN npm ci --only=production
 COPY . .
 
 # Expose port
-EXPOSE 3000
+EXPOSE 3001
 
 # Start the application
 CMD ["npm", "run", "dev"]
