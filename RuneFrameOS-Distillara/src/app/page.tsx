@@ -59,7 +59,7 @@ export default function DistillaraPage() {
     <AppLayout
       appName="Distillara"
       userName="Master Alchemist"
-      appIcon="/distillara_logo_IconOnly.png"
+      appIcon="/Distillara_Logos_IconOnly.png"
       appType="Distillara"
       onSettings={handleSettings}
       onLogout={handleLogout}
@@ -71,11 +71,11 @@ export default function DistillaraPage() {
         <section className="text-center py-8">
           <div className="flex items-center justify-center space-x-4 mb-6">
             <div className="w-16 h-16 bg-gradient-to-br from-amber-200 to-orange-200 rounded-full flex items-center justify-center shadow-lg">
-              <img 
-                src="/distillara_logo_IconOnly.png" 
-                alt="Distillara Logo" 
-                className="w-10 h-10 object-contain"
-              />
+                             <img 
+                 src="/Distillara_Logos_IconOnly.png" 
+                 alt="Distillara Logo" 
+                 className="w-10 h-10 object-contain"
+               />
             </div>
             <h1 className="text-4xl font-fantasy font-bold text-amber-800">Welcome to Distillara</h1>
           </div>
@@ -89,7 +89,7 @@ export default function DistillaraPage() {
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
           <button className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-4">
             <img 
-              src="/distillara_logo_IconOnly.png" 
+              src="/Distillara_Logos_IconOnly.png" 
               alt="Distillara Logo" 
               className="w-8 h-8 object-contain"
             />
@@ -101,7 +101,7 @@ export default function DistillaraPage() {
           
           <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-4">
             <img 
-              src="/distillara_logo_IconOnly.png" 
+              src="/Distillara_Logos_IconOnly.png" 
               alt="Distillara Logo" 
               className="w-8 h-8 object-contain"
             />
@@ -113,7 +113,7 @@ export default function DistillaraPage() {
           
           <button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white p-6 rounded-lg shadow-lg hover:scale-105 transition-all duration-200 flex items-center space-x-4">
             <img 
-              src="/distillara_logo_IconOnly.png" 
+              src="/Distillara_Logos_IconOnly.png" 
               alt="Distillara Logo" 
               className="w-8 h-8 object-contain"
             />
@@ -128,7 +128,7 @@ export default function DistillaraPage() {
         <section className="bg-white/60 rounded-lg shadow-lg p-6 border border-amber-200/30">
           <div className="flex items-center space-x-3 mb-6">
             <img 
-              src="/distillara_logo_IconOnly.png" 
+              src="/Distillara_Logos_IconOnly.png" 
               alt="Distillara Logo" 
               className="w-6 h-6 object-contain"
             />
@@ -168,7 +168,7 @@ export default function DistillaraPage() {
         <section className="bg-white/60 rounded-lg shadow-lg p-6 border border-amber-200/30">
           <div className="flex items-center space-x-3 mb-6">
             <img 
-              src="/distillara_logo_IconOnly.png" 
+              src="/Distillara_Logos_IconOnly.png" 
               alt="Distillara Logo" 
               className="w-6 h-6 object-contain"
             />
@@ -207,7 +207,7 @@ export default function DistillaraPage() {
         <section className="bg-gradient-to-r from-amber-100 to-orange-100 rounded-lg shadow-lg p-6 border border-amber-300/50">
           <div className="flex items-center space-x-3 mb-6">
             <img 
-              src="/distillara_logo_IconOnly.png" 
+              src="/Distillara_Logos_IconOnly.png" 
               alt="Distillara Logo" 
               className="w-6 h-6 object-contain"
             />

@@ -15,7 +15,7 @@ interface HeaderBarProps {
 export default function HeaderBar({
   appName = "Distillara",
   userName = "Alchemist",
-  appIcon = "/distillara_logo_IconOnly.png",
+  appIcon = "/Distillara_Logos_IconOnly.png",
   onSettings,
   onLogout,
   onToggleMobileMenu

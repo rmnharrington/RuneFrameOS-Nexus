@@ -23,7 +23,7 @@ export default function AppLayout({
   children,
   appName = "Distillara",
   userName = "Alchemist",
-  appIcon = "/distillara_logo_IconOnly.png",
+  appIcon = "/Distillara_Logos_IconOnly.png",
   showSidebar = true,
   showStats = true,
   appType = "Distillara",

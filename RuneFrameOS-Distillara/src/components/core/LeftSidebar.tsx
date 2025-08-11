@@ -41,7 +41,7 @@ export default function LeftSidebar({
         <div className="mb-4 lg:mb-6 text-center">
           <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-amber-900 via-orange-800 to-red-900 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
             <img
-              src="/distillara_logo_IconOnly.png"
+              src="/Distillara_Logos_IconOnly.png"
               alt="Distillara"
               className="w-7 h-7 lg:w-9 lg:h-9 object-contain"
             />
