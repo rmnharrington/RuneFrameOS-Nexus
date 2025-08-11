@@ -51,10 +51,8 @@ const AppLayout = forwardRef<AppLayoutRef, AppLayoutProps>(({
     if (view === 'nexus' || view === 'distillara' || view === 'feastwell' || view === 'hoardwell' || view === 'tavern') {
       setCurrentView(view)
       
-      // Also call the onNavigate prop if provided (for external navigation)
-      if (onNavigate) {
-        onNavigate(view)
-      }
+      // Don't call onNavigate here to prevent infinite recursion
+      // The onNavigate is only for external navigation, not internal view changes
     } else {
       console.warn(`Invalid view: ${view}`)
     }
