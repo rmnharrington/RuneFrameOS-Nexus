@@ -1,0 +1,379 @@
+# Sherlock Kubernetes Cluster Access Instructions for Cursor IDE
+# Target User: Cursor IDE with Remote-SSH Extension
+# Cluster: sherlock.pedantictheory.com (RuneFrameOS Infrastructure)
+
+metadata:
+  title: "Sherlock Cluster Access Instructions"
+  version: "1.0.0"
+  created: "2025-01-27"
+  purpose: "Enable Cursor IDE access to Sherlock Kubernetes cluster"
+  target_user: "Frontend Developer using Cursor IDE"
+  security_level: "MEDIUM (Security Exception #001 approved)"
+
+# Prerequisites
+prerequisites:
+  required_software:
+    - "Cursor IDE (Ultra subscription recommended)"
+    - "Remote-SSH extension for Cursor"
+    - "SSH client (built into Cursor)"
+  
+  system_requirements:
+    - "Windows 10/11, macOS, or Linux"
+    - "Internet access to sherlock.pedantictheory.com"
+    - "SSH key management capabilities"
+
+# SSH Key Configuration
+ssh_setup:
+  key_location: "C:\\Users\\Wee\\.ssh\\"
+  required_files:
+    private_key: "jonar_key"
+    public_key: "jonar_key.pub"
+    config: "config"
+  
+  key_creation_instructions:
+    step_1: "Navigate to C:\\Users\\Wee\\.ssh\\"
+    step_2: "Create private key file 'jonar_key' with content from instructions"
+    step_3: "Create public key file 'jonar_key.pub' with content from instructions"
+    step_4: "Set proper file permissions"
+  
+  private_key_content: |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    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
+    APam9uYXJAcnVuZWZyYW1lAQIDBA==
+    -----END OPENSSH PRIVATE KEY-----
+  
+  public_key_content: |
+    ssh-rsa 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 jonar@runeframe
+
+# SSH Configuration
+ssh_config:
+  config_file: "C:\\Users\\Wee\\.ssh\\config"
+  config_content: |
+    # Jonar Infrastructure - Primary Control Plane
+    Host jonar-sherlock
+        HostName sherlock.pedantictheory.com
+        User jonar
+        IdentityFile C:\\Users\\Wee\\.ssh\\jonar_key
+        PubkeyAuthentication yes
+        PreferredAuthentications publickey
+        ServerAliveInterval 60
+        ServerAliveCountMax 3
+
+    # Jonar Infrastructure - GPU Worker Node 1
+    Host jonar-watson
+        HostName watson.pedantictheory.com
+        User jonar
+        IdentityFile C:\\Users\\Wee\\.ssh\\jonar_key
+        PubkeyAuthentication yes
+        PreferredAuthentications publickey
+        ServerAliveInterval 60
+        ServerAliveCountMax 3
+
+    # Jonar Infrastructure - GPU Worker Node 2
+    Host jonar-adler
+        HostName adler.pedantictheory.com
+        User jonar
+        IdentityFile C:\\Users\\Wee\\.ssh\\jonar_key
+        PubkeyAuthentication yes
+        PreferredAuthentications publickey
+        ServerAliveInterval 60
+        ServerAliveCountMax 3
+
+    # Jonar Infrastructure - All nodes (for bulk operations)
+    Host jonar-*
+        User jonar
+        IdentityFile C:\\Users\\Wee\\.ssh\\jonar_key
+        PubkeyAuthentication yes
+        PreferredAuthentications publickey
+        ServerAliveInterval 60
+        ServerAliveCountMax 3
+
+# Cluster Information
+cluster_details:
+  name: "Sherlock Kubernetes Cluster"
+  control_plane: "sherlock.pedantictheory.com"
+  ip_address: "172.18.254.35"
+  worker_nodes:
+    - "watson.pedantictheory.com (172.18.254.36)"
+    - "adler.pedantictheory.com (172.18.254.37)"
+  target_domain: "paul.pedantictheory.com (172.18.254.40)"
+  
+  namespaces:
+    runeframeos: "Main application namespace"
+    observability: "Monitoring and logging"
+    postgresql: "Database infrastructure"
+    cert_manager: "SSL certificate management"
+    distilera: "Alchemy simulation platform"
+    kube_system: "Kubernetes system components"
+
+# Setup Instructions
+setup_steps:
+  step_1_install_extension:
+    title: "Install Remote-SSH Extension"
+    instructions:
+      - "Open Cursor IDE"
+      - "Go to Extensions (Ctrl+Shift+X)"
+      - "Search for 'Remote - SSH'"
+      - "Install the extension by Microsoft"
+      - "Restart Cursor if prompted"
+  
+  step_2_create_ssh_directory:
+    title: "Create SSH Directory"
+    instructions:
+      - "Open File Explorer"
+      - "Navigate to C:\\Users\\Wee\\"
+      - "Create folder named '.ssh' (if it doesn't exist)"
+      - "Note: The dot prefix makes it a hidden folder"
+  
+  step_3_create_ssh_keys:
+    title: "Create SSH Key Files"
+    instructions:
+      - "In C:\\Users\\Wee\\.ssh\\ create file 'jonar_key'"
+      - "Copy private key content from this YAML file"
+      - "Create file 'jonar_key.pub'"
+      - "Copy public key content from this YAML file"
+      - "Set file permissions (see permission_instructions below)"
+  
+  step_4_create_ssh_config:
+    title: "Create SSH Configuration"
+    instructions:
+      - "In C:\\Users\\Wee\\.ssh\\ create file 'config'"
+      - "Copy SSH config content from this YAML file"
+      - "Ensure proper file permissions"
+  
+  step_5_test_connection:
+    title: "Test SSH Connection"
+    instructions:
+      - "Open Command Prompt or PowerShell"
+      - "Test connection: ssh jonar-sherlock"
+      - "Verify kubectl access: kubectl get nodes"
+      - "Expected output shows 3 nodes: sherlock, watson, adler"
+  
+  step_6_cursor_connection:
+    title: "Connect via Cursor Remote-SSH"
+    instructions:
+      - "Press Ctrl+Shift+P in Cursor"
+      - "Type 'Remote-SSH: Connect to Host'"
+      - "Select 'jonar-sherlock'"
+      - "Choose platform (Linux)"
+      - "Wait for connection to establish"
+
+# File Permissions
+permission_instructions:
+  windows_powershell:
+    command: "icacls C:\\Users\\Wee\\.ssh\\jonar_key /inheritance:r /grant:r '%USERNAME%:F'"
+    description: "Set private key permissions to owner only"
+  
+  windows_explorer:
+    steps:
+      - "Right-click on jonar_key file"
+      - "Select Properties"
+      - "Click Security tab"
+      - "Click Advanced"
+      - "Remove all inherited permissions"
+      - "Add only current user with Full Control"
+  
+  general_guidelines:
+    - "Private key (jonar_key): Owner read/write only"
+    - "Public key (jonar_key.pub): Owner read/write, others read"
+    - "Config file: Owner read/write only"
+
+# Verification Commands
+verification_commands:
+  ssh_test:
+    command: "ssh jonar-sherlock 'echo Connection successful'"
+    expected_output: "Connection successful"
+  
+  kubectl_test:
+    command: "ssh jonar-sherlock 'kubectl get nodes'"
+    expected_output: |
+      NAME       STATUS   ROLES           AGE     VERSION
+      adler      Ready    <none>          4d15h   v1.33.3
+      sherlock   Ready    control-plane   4d15h   v1.33.3
+      watson     Ready    <none>          4d15h   v1.33.3
+  
+  cluster_info:
+    command: "ssh jonar-sherlock 'kubectl cluster-info'"
+    description: "Display cluster information and endpoints"
+  
+  namespace_check:
+    command: "ssh jonar-sherlock 'kubectl get namespaces'"
+    description: "List all available namespaces"
+
+# Common Kubernetes Commands
+kubernetes_commands:
+  cluster_status:
+    - "kubectl get nodes - View cluster nodes"
+    - "kubectl get pods --all-namespaces - View all pods"
+    - "kubectl cluster-info - Cluster information"
+  
+  namespace_operations:
+    - "kubectl get pods -n runeframeos - View runeframeos pods"
+    - "kubectl get pods -n observability - View monitoring pods"
+    - "kubectl get pods -n postgresql - View database pods"
+  
+  debugging_commands:
+    - "kubectl logs -n <namespace> <pod-name> - View pod logs"
+    - "kubectl describe pod <pod-name> -n <namespace> - Pod details"
+    - "kubectl exec -n <namespace> <pod-name> -- <command> - Execute command in pod"
+  
+  port_forwarding:
+    - "kubectl port-forward -n runeframeos svc/<service-name> 8080:80 - Local port forwarding"
+    - "kubectl port-forward -n observability svc/elasticsearch 9200:9200 - Elasticsearch access"
+
+# Development Environment
+development_environment:
+  repository_location: "/home/jonar/RuneFrameOS"
+  available_components:
+    - "distilera-new/ - Alchemy simulation platform"
+    - "ecosystem/ - Ecosystem component documentation"
+    - "infrastructure/ - Infrastructure configurations"
+    - "instructions/ - Operational procedures"
+    - "documentation/ - Technical documentation"
+  
+  documentation_package:
+    location: "/home/jonar/RuneFrameOS/runeframeos_documentation_package.zip"
+    size: "~820 KB"
+    contents: "Complete RuneFrameOS documentation suite"
+
+# Security Information
+security_details:
+  exception_number: "Security Exception #001"
+  risk_level: "MEDIUM (mitigated)"
+  review_cycle: "30-day review schedule"
+  compliance_frameworks:
+    - "NIST SSDF (Software supply chain security)"
+    - "SOC 2 (Security and availability controls)"
+    - "CISA Secure by Design (Security-first development)"
+  
+  access_limitations:
+    - "Development namespaces only"
+    - "Read/write access to application components"
+    - "Monitoring access to all namespaces"
+    - "All actions logged and audited"
+  
+  security_best_practices:
+    - "Never share SSH keys"
+    - "Use secure connections only"
+    - "Follow file naming standards"
+    - "Document all changes"
+    - "Report security incidents immediately"
+
+# Troubleshooting
+troubleshooting:
+  common_issues:
+    ssh_connection_failed:
+      problem: "SSH connection fails"
+      solution: "Check key permissions and SSH config file"
+      commands:
+        - "ssh -v jonar-sherlock - Verbose SSH output"
+        - "ls -la C:\\Users\\Wee\\.ssh\\ - Check file permissions"
+    
+    kubectl_access_denied:
+      problem: "kubectl commands fail"
+      solution: "Verify cluster access and namespace permissions"
+      commands:
+        - "ssh jonar-sherlock 'kubectl auth can-i get pods'"
+        - "ssh jonar-sherlock 'kubectl config view'"
+    
+    cursor_remote_ssh_issues:
+      problem: "Cursor Remote-SSH extension problems"
+      solution: "Restart Cursor and reinstall extension"
+      steps:
+        - "Restart Cursor IDE"
+        - "Reinstall Remote-SSH extension"
+        - "Clear SSH known_hosts if needed"
+  
+  support_contacts:
+    infrastructure_issues: "System Administrator"
+    security_concerns: "Security Team"
+    development_questions: "Lead Developer"
+
+# Success Metrics
+success_metrics:
+  setup_completion:
+    - "SSH key files created with correct permissions"
+    - "SSH config file properly configured"
+    - "SSH connection to sherlock cluster successful"
+    - "kubectl access verified"
+    - "Cursor Remote-SSH connection established"
+  
+  cluster_access:
+    - "Can view cluster nodes"
+    - "Can list namespaces"
+    - "Can access development namespaces"
+    - "Can view pod status and logs"
+    - "Can perform port forwarding"
+
+# Next Steps
+next_steps:
+  immediate:
+    - "Complete SSH key and config setup"
+    - "Test SSH connection to cluster"
+    - "Verify kubectl access"
+    - "Connect via Cursor Remote-SSH"
+  
+  development:
+    - "Download documentation package from cluster"
+    - "Review available namespaces and components"
+    - "Begin front-end development work"
+    - "Follow security and compliance guidelines"
+  
+  ongoing:
+    - "Maintain security best practices"
+    - "Document all changes and modifications"
+    - "Participate in 30-day security reviews"
+    - "Stay updated on cluster changes and policies"
+
+# Notes
+notes:
+  - "This setup is part of Security Exception #001 and must be reviewed every 30 days"
+  - "All access is logged and monitored for security compliance"
+  - "Follow NIST SSDF, SOC 2, and CISA Secure by Design principles"
+  - "Maintain audit trails for all development activities"
+  - "Report any security concerns immediately to the security team"

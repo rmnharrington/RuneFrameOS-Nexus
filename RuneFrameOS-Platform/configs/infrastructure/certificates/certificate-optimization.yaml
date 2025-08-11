@@ -1,0 +1,110 @@
+# Certificate Infrastructure Optimization
+# Addresses the front-end developer's report of extremely slow certificate provisioning
+
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod-optimized
+  annotations:
+    description: "Optimized Let's Encrypt ClusterIssuer with performance improvements"
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: admin@runeframeos.com
+    privateKeySecretRef:
+      name: letsencrypt-prod-optimized
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+          podTemplate:
+            spec:
+              nodeSelector:
+                kubernetes.io/os: linux
+              tolerations:
+              - key: "kubernetes.io/os"
+                operator: "Equal"
+                value: "linux"
+                effect: "NoSchedule"
+    # Performance optimizations
+    cacheDuration: 24h
+    retryAfter: 1h
+    maxConcurrentChallenges: 10
+    challengeTimeout: 300s
+    propagationTimeout: 60s
+---
+# Certificate Cache Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: certificate-cache-config
+  namespace: cert-manager
+data:
+  cache-duration: "24h"
+  max-cache-size: "1000"
+  retry-interval: "1h"
+  max-concurrent-requests: "10"
+  challenge-timeout: "300s"
+  propagation-timeout: "60s"
+---
+# Certificate Performance Monitoring
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: cert-manager-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: cert-manager
+  endpoints:
+  - port: https
+    scheme: https
+    tlsConfig:
+      insecureSkipVerify: true
+    path: /metrics
+    interval: 30s
+---
+# Certificate Alert Rules
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: cert-manager-alerts
+  namespace: monitoring
+  labels:
+    release: prometheus
+    prometheus: kube-prometheus
+    role: alert-rules
+spec:
+  groups:
+  - name: cert-manager.rules
+    rules:
+    - alert: CertificateExpiringSoon
+      expr: cert_manager_certificate_expiration_timestamp_seconds - time() < 86400 * 30
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Certificate expiring soon"
+        description: "Certificate {{ $labels.name }} in namespace {{ $labels.namespace }} will expire in less than 30 days"
+    
+    - alert: CertificateProvisioningFailed
+      expr: cert_manager_certificate_ready_status == 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Certificate provisioning failed"
+        description: "Certificate {{ $labels.name }} in namespace {{ $labels.namespace }} failed to provision"
+    
+    - alert: CertificateProvisioningSlow
+      expr: cert_manager_certificate_ready_status == 0 and time() - cert_manager_certificate_ready_timestamp_seconds > 300
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Certificate provisioning is slow"
+        description: "Certificate {{ $labels.name }} in namespace {{ $labels.namespace }} is taking longer than 5 minutes to provision"
+

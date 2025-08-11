@@ -1,0 +1,68 @@
+# Nexus App Storage Configuration
+# Using the new RuneFrameOS storage integration system
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nexus-config-pvc
+  namespace: nexus
+  labels:
+    app: runeframeos-nexus
+    storage-type: config
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: storage-standard
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nexus-data-pvc
+  namespace: nexus
+  labels:
+    app: runeframeos-nexus
+    storage-type: data
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi
+  storageClassName: storage-standard
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nexus-cache-pvc
+  namespace: nexus
+  labels:
+    app: runeframeos-nexus
+    storage-type: cache
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: storage-standard
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nexus-logs-pvc
+  namespace: nexus
+  labels:
+    app: runeframeos-nexus
+    storage-type: logs
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: storage-logs
+

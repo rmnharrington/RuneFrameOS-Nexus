@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables for Fonts */
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-cinzel: 'Cinzel', serif;
+}
+
+/* Base Styles */
+body {
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* iPad-optimized scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Touch-friendly focus states */
+*:focus {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+/* Touch-friendly selection */
+::selection {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* Custom component styles */
+.distillara-card {
+  @apply bg-white rounded-3xl p-6 shadow-lg border border-amber-200;
+}
+
+.distillara-accent-button {
+  @apply bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-200 active:scale-95;
+}
+
+/* Touch-friendly button states */
+button:active {
+  transform: scale(0.98);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* iPad-specific optimizations */
+@media (pointer: coarse) {
+  /* Larger touch targets for touch devices */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better spacing for touch interactions */
+  .touch-target {
+    padding: 12px 16px;
+  }
+  
+  /* Prevent text selection on touch devices */
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Allow text selection in specific areas */
+  .selectable-text {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (orientation: landscape) and (max-height: 768px) {
+  .landscape-compact {
+    padding: 1rem;
+  }
+  
+  .landscape-compact h1 {
+    font-size: 1.5rem;
+  }
+  
+  .landscape-compact h2 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Portrait orientation optimizations */
+@media (orientation: portrait) {
+  .portrait-optimized {
+    padding: 1.5rem;
+  }
+  
+  .portrait-optimized h1 {
+    font-size: 2rem;
+  }
+  
+  .portrait-optimized h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}

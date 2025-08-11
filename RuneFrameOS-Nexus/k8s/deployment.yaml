@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: runeframeos-nexus
+  namespace: nexus
+  labels:
+    app: runeframeos-nexus
+    version: "0.1.0"
+    managed-by: runeframeos
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: runeframeos-nexus
+  template:
+    metadata:
+      labels:
+        app: runeframeos-nexus
+        version: "0.1.0"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3001"
+        prometheus.io/path: "/api/metrics"
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+      - name: nexus-app
+        image: runeframeos/nexus:0.1.0
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 3001
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: nexus-config
+        env:
+        - name: PORT
+          value: "3001"
+        - name: HOSTNAME
+          value: "0.0.0.0"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 3001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 3001
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        volumeMounts:
+        - name: nexus-config-storage
+          mountPath: /app/config
+          subPath: runeframeos-nexus
+        - name: nexus-data-storage
+          mountPath: /app/data
+          subPath: runeframeos-nexus
+        - name: nexus-cache-storage
+          mountPath: /app/cache
+          subPath: runeframeos-nexus
+        - name: nexus-logs-storage
+          mountPath: /app/logs
+          subPath: runeframeos-nexus
+        - name: nexus-temp-storage
+          mountPath: /tmp
+          subPath: runeframeos-nexus
+      volumes:
+      - name: nexus-config-storage
+        persistentVolumeClaim:
+          claimName: nexus-config-pvc
+      - name: nexus-data-storage
+        persistentVolumeClaim:
+          claimName: nexus-data-pvc
+      - name: nexus-cache-storage
+        persistentVolumeClaim:
+          claimName: nexus-cache-pvc
+      - name: nexus-logs-storage
+        persistentVolumeClaim:
+          claimName: nexus-logs-pvc
+      - name: nexus-temp-storage
+        emptyDir: {}
+      imagePullSecrets:
+      - name: runeframeos-registry-secret
+

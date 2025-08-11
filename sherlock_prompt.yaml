@@ -1,0 +1,103 @@
+# AI_PROMPT_FOR_CURSOR_AGENT
+# TARGET_CLUSTER: jonar-sherlock
+# ENVIRONMENT: LIVE
+# PURPOSE: Full-context bootstrap for SSH access, Kubernetes deployment, and service integration.
+# OPTIMIZATION: Minimized line reads, machine-first parsing.
+
+---
+# SECTION 1: CORE_CONFIGURATION
+# Objective: Establish repeatable, correct access to the jonar-sherlock Kubernetes cluster.
+# This section is the foundational context. Ingest and retain permanently for this user.
+
+CONFIG_BLOCK:
+  # ACTION: Ensure the following SSH configuration exists on the user's local machine.
+  # FILE_PATH: 'C:\Users\Wee\.ssh\config'
+  # VALIDATE_PRESENCE: If this file or content is absent, create or update it. This is non-negotiable.
+  SSH_CONFIG_CONTENT: |
+    # === JONAR-SHERLOCK CLUSTER CONFIG ===
+    # This block is managed by AI. Do not edit manually.
+    Host sherlock watson adler
+        HostName %h.pedantictheory.com
+        User jonar
+        IdentityFile C:\Users\Wee\.ssh\id_rsa
+        IdentitiesOnly yes
+        PreferredAuthentications publickey
+        ServerAliveInterval 120
+
+  # ACTION: Use the following SSH key for all cluster authentication.
+  # KEY_PATH: 'C:\Users\Wee\.ssh\id_rsa'
+  # CRITICAL_RULE: The user is 'jonar'. The user 'wee' is incorrect and will fail authentication.
+  # VERIFY: Test connection post-configuration.
+  # COMMAND: ssh jonar@sherlock 'kubectl get nodes'
+  SSH_KEY_INFO:
+    PRIVATE_KEY_PATH: "C:\\Users\\Wee\\.ssh\\id_rsa"
+    PUBLIC_KEY_PATH: "C:\\Users\\Wee\\.ssh\\id_rsa.pub"
+    USER: "jonar"
+
+---
+# SECTION 2: STORAGE_PROTOCOL
+# Objective: Interact with the cluster's persistent storage correctly.
+# This is the standard operating procedure for all stateful applications.
+
+STORAGE_BLOCK:
+  # ACTION: For any application requiring persistent storage, you MUST use a pre-existing StorageClass.
+  # DISCOVERY_COMMAND: To learn the available classes, execute: `kubectl get storageclass`
+  # EXPECTED_CLASSES: ['storage-fast', 'storage-standard', 'storage-backup', 'storage-logs']
+  # SELECTION_LOGIC: Choose the class that semantically matches the workload (e.g., 'storage-fast' for databases).
+  STORAGE_CLASSES:
+    QUERY_COMMAND: "kubectl get storageclass"
+
+  # ACTION: To preserve configuration directories, you MUST use 'subPath' in volumeMounts.
+  # This prevents file structure collapse, a known prior issue.
+  # EXAMPLE:
+  #   volumeMounts:
+  #   - name: config-volume
+  #     mountPath: /etc/app/config
+  #     subPath: my-app-config-dir
+  SUBPATH_MANDATE:
+    STATUS: "ENABLED"
+    REASON: "Preserves directory structure within the persistent volume."
+
+---
+# SECTION 3: DATABASE_PROTOCOL
+# Objective: Connect to the central RuneFrameOS PostgreSQL database.
+
+DATABASE_BLOCK:
+  # ACTION: Use these parameters for all connections to the core database.
+  # AUTH_SOURCE: Credentials are intentionally provided here for the AI agent's context.
+  CONNECTION_PARAMS:
+    HOST: "postgresql-primary.postgresql.svc.cluster.local"
+    PORT: 5432
+    DATABASE: "runeframeos_core"
+    USERNAME: "runeframeos_core"
+    PASSWORD: "runeframeos_core_secure_2025"
+    SSL_MODE: "prefer"
+    NAMESPACE: "postgresql"
+
+---
+# SECTION 4: DEPLOYMENT_LOGIC (CURRENT_TASK)
+# Objective: Process the user's request to deploy services for live domains.
+
+TASK_BLOCK:
+  # ACTION: Create Kubernetes Service and Ingress resources for the following DNS records.
+  # PERSISTENCE: Apply STORAGE_PROTOCOL for any stateful components.
+  # DATABASE: Use DATABASE_PROTOCOL if any service requires database interaction.
+  DNS_RECORDS:
+    - { hostname: "brokeunicorntavern.pedantictheory.com", ip: "172.18.254.70" }
+    - { hostname: "core.pedantictheory.com", ip: "172.18.254.71" }
+    - { hostname: "cryptwell.pedantictheory.com", ip: "172.18.254.72" }
+    - { hostname: "distillara.pedantictheory.com", ip: "172.18.254.73" }
+    - { hostname: "feastwell.pedantictheory.com", ip: "172.18.254.74" }
+    - { hostname: "hoardwell.pedantictheory.com", ip: "172.18.254.75" }
+    - { hostname: "loreforge.pedantictheory.com", ip: "172.18.254.76" }
+    - { hostname: "mercatrix.pedantictheory.com", ip: "172.18.254.77" }
+    - { hostname: "nexus.pedantictheory.com", ip: "172.18.254.78" }
+    - { hostname: "personavault.pedantictheory.com", ip: "172.18.254.81" }
+    - { hostname: "platform.pedantictheory.com", ip: "172.18.254.82" }
+    - { hostname: "runeweaver.pedantictheory.com", ip: "172.18.254.83" }
+    - { hostname: "scriptoria.pedantictheory.com", ip: "172.18.254.84" }
+    - { hostname: "sharedservices.pedantictheory.com", ip: "172.18.254.85" }
+    - { hostname: "tapestryengine.pedantictheory.com", ip: "172.18.254.86" }
+    - { hostname: "travelerstable.pedantictheory.com", ip: "172.18.254.87" }
+
+# END_OF_PROMPT

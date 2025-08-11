@@ -1,0 +1,51 @@
+# cert-manager Helm Values Configuration
+# Security Level: SECURE
+# Compliance: NIST CSF, SOC 2
+
+installCRDs: true
+
+global:
+  leaderElection:
+    namespace: cert-manager
+  podSecurityPolicy:
+    enabled: true
+  rbac:
+    create: true
+    pspEnabled: true
+
+# Security Configuration
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+# Resource Limits
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# Pod Security Standards
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+# Network Policy
+networkPolicy:
+  enabled: true
+
+# Monitoring
+prometheus:
+  enabled: true
+  servicemonitor:
+    enabled: true
+    interval: 30s
+
+# Logging
+logLevel: 2
+
+

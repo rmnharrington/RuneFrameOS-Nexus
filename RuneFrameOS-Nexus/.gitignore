@@ -1,0 +1,17 @@
+﻿# Dependencies
+node_modules/
+.next/
+
+# Environment variables
+.env*
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

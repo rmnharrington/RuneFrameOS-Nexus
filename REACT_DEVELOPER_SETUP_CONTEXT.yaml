@@ -1,0 +1,619 @@
+# 🚀 React Developer Setup - Sherlock Cluster Direct Access
+# Complete context for Cursor AI to set up local development environment
+# and deploy React applications directly to Sherlock cluster
+
+project_context:
+  name: "React Development on Sherlock Cluster"
+  purpose: "Direct deployment of React applications to frontend.pedantictheory.com"
+  target_server: "frontend.pedantictheory.com (172.18.254.88)"
+  deployment_method: "Direct SSH access to Sherlock cluster"
+  
+infrastructure:
+  cluster_name: "Jonar Kubernetes Cluster"
+  control_plane: "sherlock.pedantictheory.com"
+  control_plane_ip: "172.18.254.35"
+  worker_nodes:
+    - name: "watson.pedantictheory.com"
+      ip: "172.18.254.36"
+      specs: "16 cores, 64GB RAM, RTX 4090 GPU"
+    - name: "adler.pedantictheory.com" 
+      ip: "172.18.254.37"
+      specs: "16 cores, 64GB RAM, RTX 4090 GPU"
+  
+  frontend_server:
+    url: "http://frontend.pedantictheory.com"
+    ip: "172.18.254.88"
+    port: 80
+    protocol: "HTTP"
+    status: "Running Docker container on Sherlock"
+
+# 🔐 SSH Access Configuration
+ssh_access:
+  username: "jonar"
+  primary_host: "jonar-sherlock"
+  host_config_entry: |
+    Host jonar-sherlock
+        HostName sherlock.pedantictheory.com
+        User jonar
+        IdentityFile ~/.ssh/jonar_key
+        PubkeyAuthentication yes
+        PreferredAuthentications publickey
+        ServerAliveInterval 60
+        ServerAliveCountMax 3
+
+  # Private SSH Key (jonar_key)
+  private_key: |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
+    NhAAAAAwEAAQAAAgEA3+DhJFWKy1yxHULDRhusKv2ujO97P2blB0PITsCC87PYk/Q5KaZ3
+    PHzuoaofzPcQIzkvBSmr+3V/jf9AjYp8EyTWLzj1ElfoLZl4qDEcMoieBtpe5dsNvYP+TQ
+    V5Cf78PQTMywQZ/ekhdxv6A3nR5CtQ2Lnvr+0obPUK50h+BvVjHXWpiYtLhT7M0tsodOqI
+    UN2Et7goBUFB/o+rqkhOoDwzp3LNqIyzYOnqZm0nmbMOJa6EUcOu6smnV1XcKBQcHj+OiE
+    6QUxGwFGlG5awaFRtY5LeDSVvSxLqd+Hrep26SXIrqspU0j9cqDgUyF9MQRTpIvULZeSoJ
+    9GgLH305K67bGB9vtyWJMDTUoIJ/+b8DF4VkDnb9Z9HdaNNMi+UuW0LBmaWU0UDRV8jt7k
+    3QOYXzJBcd+9laAQ70jrEB5GskzFHS60tquDTncsxufBrUtZCZYgNRVcwP6/bxS7U6m5f0
+    dtylU8Y9pPiotejNA8DZsWZYDpp2CWhS2TfFAa5etI+2p7KakPezdZ8cqkIYRz/DdqiYsQ
+    zH+zGqeF9MPmcAh69GBePW+3e93RmNKsYxd8TTSpLevlXRWh8FRLG/SrL3WBB/MZh+1r1f
+    PPYL9aUXtiFl9S0hkvhH/NGRXeqUbf1rwymq1gMMMqJPhbTda2pl/xazBxDRVK/MfZQkk8
+    sAAAdIb1MbZ29TG2cAAAAHc3NoLXJzYQAAAgEA3+DhJFWKy1yxHULDRhusKv2ujO97P2bl
+    B0PITsCC87PYk/Q5KaZ3PHzuoaofzPcQIzkvBSmr+3V/jf9AjYp8EyTWLzj1ElfoLZl4qD
+    EcMoieBtpe5dsNvYP+TQV5Cf78PQTMywQZ/ekhdxv6A3nR5CtQ2Lnvr+0obPUK50h+BvVj
+    HXWpiYtLhT7M0tsodOqIUN2Et7goBUFB/o+rqkhOoDwzp3LNqIyzYOnqZm0nmbMOJa6EUc
+    Ou6smnV1XcKBQcHj+OiE6QUxGwFGlG5awaFRtY5LeDSVvSxLqd+Hrep26SXIrqspU0j9cq
+    DgUyF9MQRTpIvULZeSoJ9GgLH305K67bGB9vtyWJMDTUoIJ/+b8DF4VkDnb9Z9HdaNNMi+
+    UuW0LBmaWU0UDRV8jt7k3QOYXzJBcd+9laAQ70jrEB5GskzFHS60tquDTncsxufBrUtZCZ
+    YgNRVcwP6/bxS7U6m5f0dtylU8Y9pPiotejNA8DZsWZYDpp2CWhS2TfFAa5etI+2p7KakP
+    ezdZ8cqkIYRz/DdqiYsQzH+zGqeF9MPmcAh69GBePW+3e93RmNKsYxd8TTSpLevlXRWh8F
+    RLG/SrL3WBB/MZh+1r1fPPYL9aUXtiFl9S0hkvhH/NGRXeqUbf1rwymq1gMMMqJPhbTda2
+    pl/xazBxDRVK/MfZQkk8sAAAADAQABAAACADMQM8n5yOKBjdRCug9vmGFl4z46ET5w1aRG
+    jZWIy1WSm7+DYNZjJaciR7uP9hjl8URXcqYWzydXsXRN2AdwosQrDr9OmndInaho7OBP80
+    KDbqfZfvOmdwfW51Xh/a2N/zJbuepEUTlcx0lHlEreqkUErDgCkOzrhuDzMz11h2lG5wh9
+    IeJBZ0RJAqbFXgDszZLEM9VDp70rGUZatqjsPSLHGHEE+muLTA66y7/4/aNM99kYaQ3NOE
+    RNImIFL2Xk0FUF4his8rY/vo2pRYZ1Lq3JwwjH4qYEz5oXhph6Tfaafb+l38pDxe1ZAjqY
+    bMiKV5eyp4yjhr7gG80nPgI8qaEjp6fPRYA5/u6r0P4n5Tm9u2zcQx7zyLwICcTkU59ib5
+    9tUenlgjG86066CWatUnn16LAL8g5eM6annqiYaIHxEngupJ1gVgrrRT9xCVjFlSNlKfNz
+    XZHx1Uqtcddclbb8sFLPhOHET+2yiQzjlkDvbpNPXbWgWzI7oUPcblJVvEBb6TXs9OBYtF
+    Lsv9xU79Pwtzb7wHbAIeOVSWcutQ+Hk1LIgZoDk0pwst6R3aSnnugZpJo6+D7ffLcLHfwt
+    xUgVHgibOR091R81zmG9b4XivCUTsSYeMN5au/nziE+VJ/h2ZctsMDRTiXaJhXYbcLI2Zu
+    lAPHESQqQ8ThX4mAJhAAABACdUN1c1sZYmHWaucDT/GTj1ljpIsXJ+c9R4ilYVnQbi0HdK
+    W4VPmSf7zsDIdWcAw0LRUzn1IXSFUlMvl//KkjFVtmkDT+NP8OyAfiLNOfdoiXKiaYc8e4
+    O0PqSIxqGPOkEPdLyOYW+jTrdY5txDmRPZU+KM0Vc0/9TH2J5Jqifv17bikltSjKlxuKaO
+    SSCZWmYWlOVzVsU0SSHGjzKPr2BqSCe6OWqsOL8rKNO3zaeYIySGifTWxXzbqpQx5+sInI
+    bLB6R56BAC5BLze96XHakD15nPeqwwRa7uyTR0y62t2JRZ9oDvEf8KEhsY3y+PE+zsZNB6
+    pk9n1XoL53At8R4AAAEBAP3IaP46z1Rz4U6JAXl+iOHivNUEvNy0hwE++0DYWnFQ5JysNC
+    TN8WL0KIwA+TKuc0IlM9yJB3WWNoq2jNcxbXBeO2D9ZsYrgHmlFfhQRLhYq4MdC2OYL1M6
+    adg+NDRw7ulLRSI7ejMdGx5f1xQoqkQfiQik4G3MLeQLp7wqOl1G1vJwt2Zlw1tvRD9LXg
+    8A9iRZQ+bg7k8m4ehS/IwLyrU8TC7qvEkd1usN9LdJpOFqBQyNvT5fjK3GSCiBxHtoNdOR
+    ELx5Vqzg7etbi9k9k1KrM/Id77pm89TF/rDZH0mUQ9WZVzswm1LshQZsXjbUVfXyvzo4Jl
+    StT7mAfTGGbN8AAAEBAOHVlmsIHMdwRTGEydXGbkdJr7U8iDgfpFABeBX5GJ5sVMqkTz/D
+    zgCT5CJpjeRgmuUnpTS5FdC4Z5vsEpTy4dGqhsh4sbeJ9+5/WnXXw1tlWP+f8zOsuoUKdA
+    ea09kSOk7EVJl33wjbUJwJK+MK5C3jJQtoswmBvPvlGqRTwstluBJAW75azPeAnrBDIg5N
+    Nu3fwayPO13H8gw4Gcs7jMGKyRo111G+c5qApwSu9n4q2jhcxvMKowkNWyDU5VQdTQFF2L
+    2x/4UGkOEgZyGUcPF0qet+G8q0pwYC1lXXFi+z0sWvdAyxtXOsJQdwWQFg4Ljd2Q0WxVsB
+    uX0SwvWpipUAAAAPam9uYXJAcnVuZWZyYW1lAQIDBA==
+    -----END OPENSSH PRIVATE KEY-----
+
+  # Public SSH Key (jonar_key.pub)
+  public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDf4OEkVYrLXLEdQsNGG6wq/a6M73s/ZuUHQ8hOwILzs9iT9Dkppnc8fO6hqh/M9xAjOS8FKav7dX+N/0CNinwTJNYvOPUSV+gtmXioMRwyiJ4G2l7l2w29g/5NBXkJ/vw9BMzLBBn96SF3G/oDedHkK1DYue+v7Shs9QrnSH4G9WMddamJi0uFPszS2yh06ohQ3YS3uCgFQUH+j6uqSE6gPDOncs2ojLNg6epmbSeZsw4lroRRw67qyadXVdwoFBweP46ITpBTEbAUaUblrBoVG1jkt4NJW9LEup34et6nbpJciuqylTSP1yoOBTIX0xBFOki9Qtl5Kgn0aAsffTkrrtsYH2+3JYkwNNSggn/5vwMXhWQOdv1n0d1o00yL5S5bQsGZpZTRQNFXyO3uTdA5hfMkFx372VoBDvSOsQHkayTMUdLrS2q4NOdyzG58GtS1kJliA1FVzA/r9vFLtTqbl/R23KVTxj2k+Ki16M0DwNmxZlgOmnYJaFLZN8UBrl60j7anspqQ97N1nxyqQhhHP8N2qJixDMf7Map4X0w+ZwCHr0YF49b7d73dGY0qxjF3xNNKkt6+VdFaHwVEsb9KsvdYEH8xmH7WvV889gv1pRe2IWX1LSGS+Ef80ZFd6pRt/WvDKarWAwwyok+FtN1ramX/FrMHENFUr8x9lCSTyw== jonar@runeframe"
+
+# 🛠️ LOCAL SETUP INSTRUCTIONS FOR CURSOR AI
+
+local_setup:
+  
+  # Step 1: Install Required Extensions
+  required_extensions:
+    - name: "Remote - SSH"
+      id: "ms-vscode-remote.remote-ssh"
+      description: "Essential for direct SSH access to Sherlock cluster"
+      install_command: "code --install-extension ms-vscode-remote.remote-ssh"
+      auto_install: true
+    
+    - name: "Remote - SSH: Editing Configuration Files"
+      id: "ms-vscode-remote.remote-ssh-edit"
+      description: "Edit SSH configuration files"
+      install_command: "code --install-extension ms-vscode-remote.remote-ssh-edit"
+      auto_install: true
+    
+    - name: "ES7+ React/Redux/React-Native snippets"
+      id: "dsznajder.es7-react-js-snippets"
+      description: "React development snippets"
+      install_command: "code --install-extension dsznajder.es7-react-js-snippets"
+      auto_install: true
+
+  # Step 2: SSH Configuration Setup
+  ssh_setup:
+    ssh_directory: "~/.ssh"
+    config_file: "~/.ssh/config"
+    
+    setup_commands:
+      create_ssh_dir: "mkdir -p ~/.ssh && chmod 700 ~/.ssh"
+      create_private_key: |
+        cat > ~/.ssh/jonar_key << 'EOF'
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        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
+        -----END OPENSSH PRIVATE KEY-----
+        EOF
+      
+      set_key_permissions: "chmod 600 ~/.ssh/jonar_key"
+      
+      create_public_key: |
+        cat > ~/.ssh/jonar_key.pub << 'EOF'
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDf4OEkVYrLXLEdQsNGG6wq/a6M73s/ZuUHQ8hOwILzs9iT9Dkppnc8fO6hqh/M9xAjOS8FKav7dX+N/0CNinwTJNYvOPUSV+gtmXioMRwyiJ4G2l7l2w29g/5NBXkJ/vw9BMzLBBn96SF3G/oDedHkK1DYue+v7Shs9QrnSH4G9WMddamJi0uFPszS2yh06ohQ3YS3uCgFQUH+j6uqSE6gPDOncs2ojLNg6epmbSeZsw4lroRRw67qyadXVdwoFBweP46ITpBTEbAUaUblrBoVG1jkt4NJW9LEup34et6nbpJciuqylTSP1yoOBTIX0xBFOki9Qtl5Kgn0aAsffTkrrtsYH2+3JYkwNNSggn/5vwMXhWQOdv1n0d1o00yL5S5bQsGZpZTRQNFXyO3uTdA5hfMkFx372VoBDvSOsQHkayTMUdLrS2q4NOdyzG58GtS1kJliA1FVzA/r9vFLtTqbl/R23KVTxj2k+Ki16M0DwNmxZlgOmnYJaFLZN8UBrl60j7anspqQ97N1nxyqQhhHP8N2qJixDMf7Map4X0w+ZwCHr0YF49b7d73dGY0qxjF3xNNKkt6+VdFaHwVEsb9KsvdYEH8xmH7WvV889gv1pRe2IWX1LSGS+Ef80ZFd6pRt/WvDKarWAwwyok+FtN1ramX/FrMHENFUr8x9lCSTyw== jonar@runeframe
+        EOF
+      
+      update_ssh_config: |
+        cat >> ~/.ssh/config << 'EOF'
+        # Jonar Infrastructure - Primary Control Plane
+        Host jonar-sherlock
+            HostName sherlock.pedantictheory.com
+            User jonar
+            IdentityFile ~/.ssh/jonar_key
+            PubkeyAuthentication yes
+            PreferredAuthentications publickey
+            ServerAliveInterval 60
+            ServerAliveCountMax 3
+
+        # Jonar Infrastructure - GPU Worker Node 1
+        Host jonar-watson
+            HostName watson.pedantictheory.com
+            User jonar
+            IdentityFile ~/.ssh/jonar_key
+            PubkeyAuthentication yes
+            PreferredAuthentications publickey
+            ServerAliveInterval 60
+            ServerAliveCountMax 3
+
+        # Jonar Infrastructure - GPU Worker Node 2
+        Host jonar-adler
+            HostName adler.pedantictheory.com
+            User jonar
+            IdentityFile ~/.ssh/jonar_key
+            PubkeyAuthentication yes
+            PreferredAuthentications publickey
+            ServerAliveInterval 60
+            ServerAliveCountMax 3
+        EOF
+
+  # Step 3: Test SSH Connection
+  connection_test:
+    test_command: "ssh jonar-sherlock 'echo \"Connected to Sherlock cluster successfully\"'"
+    expected_output: "Connected to Sherlock cluster successfully"
+    verify_docker: "ssh jonar-sherlock 'sudo docker ps | grep frontend-server'"
+    verify_cluster: "ssh jonar-sherlock 'kubectl get nodes'"
+
+# 🚀 REACT DEPLOYMENT WORKFLOWS
+
+react_deployment:
+  
+  # Method 1: Direct SSH + Docker Volume Mount (Recommended)
+  direct_deployment:
+    description: "Deploy React build directly to running Docker container"
+    workflow:
+      1: "Build React app locally: npm run build"
+      2: "Copy build files to Sherlock: scp -r build/* jonar-sherlock:/tmp/react-build/"
+      3: "Copy to web server: ssh jonar-sherlock 'sudo cp -r /tmp/react-build/* /var/lib/frontend-files/'"
+      4: "Access at: http://172.18.254.88"
+    
+    automated_script: |
+      #!/bin/bash
+      # react-deploy.sh
+      echo "🚀 Deploying React app to Sherlock cluster..."
+      
+      # Build React app
+      echo "📦 Building React app..."
+      npm run build
+      
+      # Upload to Sherlock
+      echo "📤 Uploading to Sherlock..."
+      scp -r build/* jonar-sherlock:/tmp/react-build/
+      
+      # Deploy to web server
+      echo "🌐 Deploying to web server..."
+      ssh jonar-sherlock 'sudo rm -rf /var/lib/frontend-files/* && sudo cp -r /tmp/react-build/* /var/lib/frontend-files/ && sudo chmod -R 755 /var/lib/frontend-files/'
+      
+      # Clean up
+      ssh jonar-sherlock 'rm -rf /tmp/react-build'
+      
+      echo "✅ Deployment complete! App available at: http://172.18.254.88"
+      echo "🔗 Upload interface: http://172.18.254.88/upload/"
+
+  # Method 2: Remote Development (Live Development)
+  remote_development:
+    description: "Develop React app directly on Sherlock cluster"
+    setup:
+      1: "Connect to Sherlock via Remote-SSH in Cursor"
+      2: "Clone React project: git clone <your-repo> ~/react-app"
+      3: "Install dependencies: cd ~/react-app && npm install"
+      4: "Start development server: npm start"
+      5: "Access via port forwarding or direct cluster access"
+    
+    port_forwarding: "ssh -L 3000:localhost:3000 jonar-sherlock"
+    advantages:
+      - "Live reload during development"
+      - "Full access to cluster resources"
+      - "Direct file system access"
+      - "No build/upload cycle"
+
+  # Method 3: Container-based Deployment
+  container_deployment:
+    description: "Build and deploy React app as a Docker container"
+    dockerfile: |
+      FROM node:18-alpine as build
+      WORKDIR /app
+      COPY package*.json ./
+      RUN npm ci --only=production
+      COPY . .
+      RUN npm run build
+      
+      FROM nginx:alpine
+      COPY --from=build /app/build /usr/share/nginx/html
+      EXPOSE 80
+      CMD ["nginx", "-g", "daemon off;"]
+    
+    deployment_commands: |
+      # Build image on Sherlock
+      ssh jonar-sherlock 'cd ~/react-app && docker build -t my-react-app .'
+      
+      # Deploy container
+      ssh jonar-sherlock 'docker run -d --name my-react-app -p 3001:80 my-react-app'
+
+# 🎯 CURSOR AI SPECIFIC INTEGRATION
+
+cursor_integration:
+  
+  # Remote-SSH Workspace Setup
+  remote_ssh_setup:
+    steps:
+      1: "Open Cursor IDE"
+      2: "Press F1 or Ctrl+Shift+P"
+      3: "Type 'Remote-SSH: Connect to Host'"
+      4: "Select 'jonar-sherlock'"
+      5: "Open folder: ~/react-projects/"
+      6: "Start developing on the cluster directly"
+    
+    advantages:
+      - "Full cluster resources available"
+      - "Direct file access to deployment location"
+      - "No upload/download cycles"
+      - "GPU access for AI/ML features"
+
+  # Local Development with Auto-Deploy
+  local_development:
+    file_watcher_script: |
+      #!/bin/bash
+      # watch-and-deploy.sh
+      while inotifywait -r -e modify,create,delete build/; do
+        echo "🔄 Changes detected, deploying..."
+        scp -r build/* jonar-sherlock:/tmp/react-update/
+        ssh jonar-sherlock 'sudo cp -r /tmp/react-update/* /var/lib/frontend-files/ && rm -rf /tmp/react-update'
+        echo "✅ Deployed at $(date)"
+      done
+    
+    usage: "Run after npm run build, watches build/ folder for changes"
+
+  # Cursor Commands Configuration
+  cursor_commands:
+    file_path: ".cursor/commands.json"
+    commands: |
+      {
+        "deployReactToSherlock": {
+          "command": "bash",
+          "args": ["./deploy/react-deploy.sh"],
+          "description": "Deploy React build to Sherlock cluster",
+          "group": "deployment"
+        },
+        "buildAndDeploy": {
+          "command": "bash",
+          "args": ["-c", "npm run build && ./deploy/react-deploy.sh"],
+          "description": "Build and deploy React app",
+          "group": "deployment"
+        },
+        "connectToSherlock": {
+          "command": "ssh",
+          "args": ["jonar-sherlock"],
+          "description": "SSH into Sherlock cluster",
+          "group": "remote"
+        },
+        "viewSherlockLogs": {
+          "command": "ssh",
+          "args": ["jonar-sherlock", "sudo docker logs frontend-server -f"],
+          "description": "View frontend server logs",
+          "group": "monitoring"
+        },
+        "restartFrontendServer": {
+          "command": "ssh",
+          "args": ["jonar-sherlock", "sudo docker restart frontend-server"],
+          "description": "Restart frontend server",
+          "group": "deployment"
+        }
+      }
+
+  # VS Code Tasks for React Development
+  tasks_configuration:
+    file_path: ".vscode/tasks.json"
+    tasks: |
+      {
+        "version": "2.0.0",
+        "tasks": [
+          {
+            "label": "Build React App",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "build"],
+            "group": "build",
+            "problemMatcher": []
+          },
+          {
+            "label": "Deploy to Sherlock",
+            "type": "shell",
+            "command": "./deploy/react-deploy.sh",
+            "group": "build",
+            "dependsOn": "Build React App",
+            "presentation": {
+              "reveal": "always",
+              "panel": "shared"
+            }
+          },
+          {
+            "label": "Live Deploy Watch",
+            "type": "shell",
+            "command": "./deploy/watch-and-deploy.sh",
+            "group": "build",
+            "isBackground": true,
+            "runOptions": {
+              "runOn": "folderOpen"
+            }
+          }
+        ]
+      }
+
+# 📁 PROJECT STRUCTURE RECOMMENDATIONS
+
+project_structure:
+  recommended_layout: |
+    my-react-app/
+    ├── src/                     # React source code
+    ├── public/                  # Public assets
+    ├── build/                   # Production build (generated)
+    ├── deploy/                  # Deployment scripts
+    │   ├── react-deploy.sh      # Main deployment script
+    │   ├── watch-and-deploy.sh  # File watcher script
+    │   └── setup-remote.sh      # Remote environment setup
+    ├── .cursor/                 # Cursor-specific config
+    │   └── commands.json        # Custom commands
+    ├── .vscode/                 # VS Code config
+    │   ├── tasks.json           # Build/deploy tasks
+    │   └── settings.json        # Project settings
+    ├── package.json             # Dependencies
+    └── README.md               # Project documentation
+
+  deployment_scripts_creation: |
+    # Create deployment directory and scripts
+    mkdir -p deploy .cursor .vscode
+    
+    # Create main deployment script
+    cat > deploy/react-deploy.sh << 'EOF'
+    #!/bin/bash
+    set -e
+    
+    echo "🚀 Deploying React app to Sherlock cluster..."
+    
+    # Ensure we have a build
+    if [ ! -d "build" ]; then
+      echo "📦 No build found, creating production build..."
+      npm run build
+    fi
+    
+    # Create temporary directory on Sherlock
+    ssh jonar-sherlock 'mkdir -p /tmp/react-deploy-$(date +%s)'
+    TEMP_DIR="/tmp/react-deploy-$(date +%s)"
+    
+    # Upload build files
+    echo "📤 Uploading build files..."
+    scp -r build/* jonar-sherlock:$TEMP_DIR/
+    
+    # Deploy to web server with backup
+    echo "🌐 Deploying to web server..."
+    ssh jonar-sherlock "
+      sudo cp -r /var/lib/frontend-files /var/lib/frontend-files.backup.\$(date +%s) 2>/dev/null || true
+      sudo rm -rf /var/lib/frontend-files/*
+      sudo cp -r $TEMP_DIR/* /var/lib/frontend-files/
+      sudo chmod -R 755 /var/lib/frontend-files/
+      rm -rf $TEMP_DIR
+    "
+    
+    echo "✅ Deployment complete!"
+    echo "🔗 App URL: http://172.18.254.88"
+    echo "🔗 Upload interface: http://172.18.254.88/upload/"
+    
+    # Test deployment
+    echo "🧪 Testing deployment..."
+    if curl -f -s http://172.18.254.88/ > /dev/null; then
+      echo "✅ App is responding successfully!"
+    else
+      echo "❌ App may not be responding. Check deployment."
+    fi
+    EOF
+    
+    chmod +x deploy/react-deploy.sh
+
+# 🔧 DEVELOPMENT ENVIRONMENT CONFIGURATION
+
+development_environment:
+  
+  # Environment Variables
+  environment_variables:
+    REACT_APP_API_URL: "http://172.18.254.88/api"
+    REACT_APP_ENVIRONMENT: "development"
+    REACT_APP_CLUSTER: "sherlock"
+    
+  # Package.json Scripts Addition
+  package_json_scripts: |
+    {
+      "scripts": {
+        "build": "react-scripts build",
+        "deploy": "./deploy/react-deploy.sh",
+        "deploy:watch": "./deploy/watch-and-deploy.sh",
+        "cluster:connect": "ssh jonar-sherlock",
+        "cluster:logs": "ssh jonar-sherlock 'sudo docker logs frontend-server -f'",
+        "cluster:restart": "ssh jonar-sherlock 'sudo docker restart frontend-server'"
+      }
+    }
+
+  # Git Hooks for Auto-Deployment
+  git_hooks:
+    post_commit_hook: |
+      #!/bin/bash
+      # .git/hooks/post-commit
+      echo "🔄 Auto-deploying after commit..."
+      npm run build && ./deploy/react-deploy.sh
+      echo "✅ Auto-deployment complete!"
+    
+    setup_command: "chmod +x .git/hooks/post-commit"
+
+# 🚨 TROUBLESHOOTING GUIDE
+
+troubleshooting:
+  
+  common_issues:
+    
+    ssh_connection_failed:
+      problem: "Cannot connect to jonar-sherlock"
+      solutions:
+        - "Verify SSH key permissions: chmod 600 ~/.ssh/jonar_key"
+        - "Test key format: ssh-keygen -l -f ~/.ssh/jonar_key"
+        - "Check network connectivity: ping sherlock.pedantictheory.com"
+        - "Verify SSH config syntax: ssh -F ~/.ssh/config jonar-sherlock"
+    
+    permission_denied:
+      problem: "Permission denied when copying files"
+      solutions:
+        - "Check sudo access: ssh jonar-sherlock 'sudo whoami'"
+        - "Verify directory permissions: ssh jonar-sherlock 'ls -la /var/lib/'"
+        - "Use temp directory first, then sudo copy"
+    
+    build_deployment_mismatch:
+      problem: "Local build differs from deployed version"
+      solutions:
+        - "Clear build cache: rm -rf build && npm run build"
+        - "Check file timestamps: ssh jonar-sherlock 'ls -la /var/lib/frontend-files/'"
+        - "Force browser cache refresh: Ctrl+F5"
+        - "Verify deployment script completed successfully"
+    
+    frontend_server_not_responding:
+      problem: "http://172.18.254.88 not accessible"
+      solutions:
+        - "Check container status: ssh jonar-sherlock 'sudo docker ps | grep frontend'"
+        - "View container logs: ssh jonar-sherlock 'sudo docker logs frontend-server'"
+        - "Restart container: ssh jonar-sherlock 'sudo docker restart frontend-server'"
+        - "Check network routing: ssh jonar-sherlock 'curl -I http://172.18.254.88/health'"
+
+  # Diagnostic Commands
+  diagnostic_commands:
+    check_ssh_access: "ssh jonar-sherlock 'echo \"SSH access working\"'"
+    check_docker_status: "ssh jonar-sherlock 'sudo docker ps'"
+    check_frontend_health: "curl -I http://172.18.254.88/health"
+    check_deployment_files: "ssh jonar-sherlock 'ls -la /var/lib/frontend-files/'"
+    check_cluster_status: "ssh jonar-sherlock 'kubectl get nodes'"
+
+# 🎯 QUICK START CHECKLIST
+
+quick_start:
+  checklist:
+    - "✅ Install Remote-SSH extension in Cursor"
+    - "✅ Create ~/.ssh directory and set permissions"
+    - "✅ Copy jonar SSH keys to ~/.ssh/"
+    - "✅ Add SSH configuration to ~/.ssh/config"
+    - "✅ Test SSH connection to jonar-sherlock"
+    - "✅ Create React project or open existing one"
+    - "✅ Create deployment scripts in deploy/ directory"
+    - "✅ Configure Cursor commands in .cursor/commands.json"
+    - "✅ Test deployment: npm run build && ./deploy/react-deploy.sh"
+    - "✅ Verify app at http://172.18.254.88"
+
+  one_liner_setup: |
+    # Complete setup in one command (run in React project root)
+    mkdir -p ~/.ssh deploy .cursor .vscode && \
+    chmod 700 ~/.ssh && \
+    # Copy the SSH keys and config from this YAML file, then:
+    chmod 600 ~/.ssh/jonar_key && \
+    ssh jonar-sherlock 'echo "SSH connection successful"' && \
+    echo "✅ Setup complete! Ready for React deployment."
+
+# 📋 FINAL DEPLOYMENT SUMMARY
+
+deployment_summary:
+  status: "✅ READY FOR REACT DEVELOPMENT"
+  
+  what_is_deployed:
+    - "Frontend server running on Sherlock cluster"
+    - "Docker container bound to 172.18.254.88:80"
+    - "Direct file system access via SSH"
+    - "Automated deployment scripts ready"
+    - "Remote development environment configured"
+  
+  developer_benefits:
+    - "🚀 One-command deployment: ./deploy/react-deploy.sh"
+    - "🔄 Live development on powerful cluster hardware"
+    - "⚡ Direct access to GPU resources (RTX 4090s)"
+    - "🛠️ Full Cursor IDE integration with Remote-SSH"
+    - "📦 No complex CI/CD setup required"
+    - "🔧 Direct troubleshooting and debugging access"
+
+  next_steps:
+    1: "Set up SSH keys and configuration"
+    2: "Install Remote-SSH extension in Cursor"
+    3: "Create React project or open existing one"
+    4: "Run setup commands from this guide"
+    5: "Deploy first React app: npm run build && ./deploy/react-deploy.sh"
+    6: "Access your app at http://172.18.254.88"
+
+---
+# END OF REACT DEVELOPER SETUP CONTEXT
+# Everything needed for seamless React development on Sherlock cluster! 🚀
