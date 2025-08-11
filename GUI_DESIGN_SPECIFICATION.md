@@ -4,6 +4,12 @@
 ### Overview
 This document defines the consistent GUI layout system that will be used across all RuneFrameOS applications. The layout consists of five main sections that maintain visual consistency while allowing for app-specific content in designated areas.
 
+**Recent Updates (v0.1.1):**
+- ✅ Fixed hydration errors in SystemStats component
+- ✅ Improved responsive breakpoints for better mobile/tablet experience
+- ✅ Optimized right sidebar positioning as floating column
+- ✅ Enhanced Docker deployment with production builds
+
 ---
 
 ## 1. HEADER BAR (Fixed Across All Apps)
@@ -82,13 +88,18 @@ Quick Actions
 - **Height**: 100vh - header height
 - **Position**: Between left sidebar and right sidebar
 - **Padding**: 24px on all sides
+- **Max Width**: Removed constraint for better responsive behavior
 
 ### Content by App
 
 #### Nexus (Hub Application)
 - **Content**: Grid of application cards
-- **Layout**: Responsive grid (3-4 columns on desktop)
+- **Layout**: Responsive grid with improved breakpoints:
+  - **Mobile (< 640px)**: 1 column
+  - **Small (640px - 768px)**: 2 columns
+  - **Medium+ (768px+)**: 3 columns
 - **Cards**: Each app with icon, name, description, status, and connect button
+- **Responsive Behavior**: Switches to 2 columns much sooner for better tablet experience
 
 #### Distillara (Crafting System)
 - **Content**: Crafting interface, recipes, materials
@@ -105,20 +116,22 @@ Quick Actions
 ## 4. RIGHT SIDEBAR (Dynamic Based on Active App)
 
 ### Layout
-- **Width**: 320px
+- **Width**: 320px (w-80)
 - **Height**: 100vh - header height
-- **Position**: Fixed right, below header
+- **Position**: Floating right column within main flex container
+- **Display**: Hidden on mobile/tablet, visible on desktop (lg+)
 
 ### Content by App
 
 #### Nexus (Hub Application)
-- **Content**: System Statistics
+- **Content**: System Statistics (Floating Right Sidebar)
 - **Sections**:
   - System Status (Core Services, Database, API Gateway, Cache)
   - Performance (Response Time, Uptime, Active Users, Memory)
   - Gaming Stats (Active Campaigns, Characters, Dice Rolls, Session Time)
 - **Quick Actions**: Detailed Report, System Settings
-- **Status Indicator**: "All systems operational" with timestamp
+- **Status Indicator**: "All systems operational" with real-time timestamp
+- **Real-time Updates**: Timestamp updates every second after client-side hydration
 
 #### Distillara (Crafting System)
 - **Content**: Crafting Menu & Controls
@@ -139,6 +152,12 @@ Quick Actions
 - **Border**: 2px orange-300/30 at left
 - **Sections**: White/60 background with orange borders
 - **Status Colors**: Green (online), Yellow (syncing), Red (error)
+- **Positioning**: `w-80 flex-shrink-0` for proper floating behavior
+
+### Mobile/Tablet Adaptation
+- **Overlay Mode**: Full-screen overlay with close button
+- **Trigger**: Toggle button in header bar
+- **Animation**: Smooth slide-in from right with backdrop
 
 ---
 
@@ -164,7 +183,7 @@ Warranty disclaimers Privacy Policy
 Use at own risk      Data protection info
 
 Copyright & Version Info
-© 2024 Bad Guy Gas | RuneFrameOS™ | Version 0.1.0
+© 2024 Bad Guy Gas | RuneFrameOS™ | Version 0.1.1
 ```
 
 ### Components
@@ -184,16 +203,24 @@ Copyright & Version Info
 
 ## 6. RESPONSIVE DESIGN REQUIREMENTS
 
-### Breakpoints
-- **Desktop**: 1200px+ (Full layout with all sidebars)
-- **Tablet**: 768px - 1199px (Collapsible sidebars)
-- **Mobile**: <768px (Stacked layout, hamburger menu)
+### Breakpoints (Updated)
+- **Mobile**: < 640px (Single column layout)
+- **Small**: 640px - 768px (Two column layout) ⭐ **NEW: Switches to 2 columns sooner**
+- **Medium**: 768px+ (Three column layout)
+- **Large**: 1024px+ (Full layout with floating right sidebar)
 
 ### Mobile Adaptations
 - **Header**: Reduced height, smaller text
-- **Sidebars**: Collapsible with overlay
+- **Sidebars**: 
+  - Left: Collapsible with overlay
+  - Right: Full-screen overlay with close button
 - **Content**: Full width, adjusted padding
 - **Footer**: Stacked columns
+
+### Tablet Optimizations
+- **Center Content**: Switches to 2 columns at 640px for better space utilization
+- **Sidebar Management**: Toggle-based visibility for both sidebars
+- **Touch-Friendly**: Larger touch targets and spacing
 
 ---
 
@@ -290,19 +317,33 @@ Copyright & Version Info
 
 ## 12. IMPLEMENTATION GUIDELINES
 
-### Component Structure
+### Component Structure (Updated)
 ```typescript
-// Base layout component
+// Base layout component with floating right sidebar
 <AppLayout>
   <HeaderBar />
-  <div className="flex">
+  <div className="flex flex-1 relative">
     <LeftSidebar />
-    <main className="flex-1">
-      {appSpecificContent}
+    <main className="flex-1 p-4 md:p-6 overflow-auto">
+      <div className="w-full"> {/* Removed max-width constraint */}
+        {appSpecificContent}
+      </div>
     </main>
-    <RightSidebar appType={currentApp} />
+    {/* Desktop Stats Panel - Floating right sidebar */}
+    {showStats && (
+      <div className="hidden lg:block w-80 flex-shrink-0">
+        <SystemStats />
+      </div>
+    )}
   </div>
   <AppFooter />
+  
+  {/* Mobile/Tablet Stats Panel - Overlay */}
+  {showStats && showStatsPanel && (
+    <div className="fixed inset-0 bg-black/20 z-40 md:hidden">
+      {/* Overlay content */}
+    </div>
+  )}
 </AppLayout>
 ```
 
@@ -325,6 +366,7 @@ interface AppLayoutProps {
 - **User Info**: Username, preferences, permissions
 - **Navigation State**: Active routes, breadcrumbs
 - **App-Specific State**: Managed by individual applications
+- **Stats Panel**: Toggle state for mobile/tablet overlay
 
 ---
 
@@ -348,6 +390,12 @@ interface AppLayoutProps {
 - **Server State**: API responses, cached data
 - **Real-time**: Live updates, notifications
 
+### Hydration & SSR
+- **Server-Side Rendering**: Consistent initial render
+- **Client-Side Hydration**: No mismatches between server and client
+- **Dynamic Content**: Real-time updates after mounting
+- **Performance**: Optimized for Core Web Vitals
+
 ---
 
 ## 14. TESTING REQUIREMENTS
@@ -363,6 +411,12 @@ interface AppLayoutProps {
 - **State Management**: Data flow and updates
 - **Error Handling**: Graceful degradation
 - **Integration**: API calls and responses
+- **Hydration**: Server/client render consistency
+
+### Responsive Testing
+- **Breakpoint Transitions**: Smooth column changes at 640px and 768px
+- **Sidebar Behavior**: Proper overlay and floating behavior
+- **Touch Interactions**: Mobile-friendly interactions
 
 ---
 
@@ -374,12 +428,45 @@ interface AppLayoutProps {
 - **Environment**: Development, staging, production
 - **Monitoring**: Error tracking, performance metrics
 
+### Docker Deployment
+- **Production Builds**: `npm run build` in Dockerfile
+- **Multi-stage**: Optimized for production
+- **Port Configuration**: Consistent port mapping (3000)
+- **Health Checks**: Application readiness verification
+
 ### Performance Targets
 - **First Contentful Paint**: <1.5s
 - **Largest Contentful Paint**: <2.5s
 - **Cumulative Layout Shift**: <0.1
 - **Time to Interactive**: <3.5s
+- **Hydration Success**: 100% server/client consistency
+
+---
+
+## 16. RECENT IMPROVEMENTS (v0.1.1)
+
+### Hydration Error Resolution
+- **Problem**: Server/client render mismatch in SystemStats timestamp
+- **Solution**: Client-side state management with useEffect
+- **Result**: No more hydration errors, consistent rendering
+
+### Responsive Layout Optimization
+- **Problem**: Cards stayed single column too long on resize
+- **Solution**: Updated breakpoints from `md:grid-cols-2` to `sm:grid-cols-2`
+- **Result**: Better tablet experience, switches to 2 columns at 640px
+
+### Right Sidebar Positioning
+- **Problem**: SystemStats appeared below footer instead of floating
+- **Solution**: Moved sidebar inside main flex container with proper constraints
+- **Result**: Floating right sidebar that stays in position
+
+### Docker Production Builds
+- **Problem**: Development mode in production containers
+- **Solution**: Updated Dockerfile with build step and production start
+- **Result**: Optimized production deployments
 
 ---
 
 This specification ensures that all RuneFrameOS applications will have a consistent, professional appearance while maintaining the flexibility needed for app-specific functionality. The right sidebar's dynamic content will allow each app to provide contextually relevant controls and information while keeping the overall navigation structure familiar to users.
+
+**Current Status**: ✅ All major layout issues resolved, responsive design optimized, production deployment ready.

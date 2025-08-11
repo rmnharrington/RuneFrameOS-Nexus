@@ -8,8 +8,6 @@ export default function Home() {
     <AppLayout
       appName="BrokeUnicorn Tavern"
       userName="Adventurer"
-      appIcon="/tavern-logo.png"
-      appType="Tavern"
     >
       <TavernWelcome />
     </AppLayout>

@@ -19,7 +19,7 @@ const modules: Module[] = [
     description: 'Social hub & in-game gathering place for Travelers.',
     status: 'offline',
     version: 'v0.1.0',
-    url: 'http://localhost:3002'
+    url: 'http://localhost:3005'
   },
   {
     id: 'cryptwell',
@@ -33,21 +33,24 @@ const modules: Module[] = [
     name: 'Distillara',
     description: 'Advanced alchemy crafting system with rarity tiers, economy, and failure mechanics.',
     status: 'offline',
-    version: 'v0.1.0'
+    version: 'v0.1.0',
+    url: 'http://localhost:3001'
   },
   {
     id: 'feastwell',
     name: 'Feastwell',
     description: 'Cooking and recipe management system with immersive flavor text and game mechanics.',
     status: 'offline',
-    version: 'v0.1.0'
+    version: 'v0.1.0',
+    url: 'http://localhost:3003'
   },
   {
     id: 'hoardwell',
     name: 'Hoardwell',
     description: 'Intelligent, immersive inventory management.',
     status: 'offline',
-    version: 'v0.1.0'
+    version: 'v0.1.0',
+    url: 'http://localhost:3004'
   },
   {
     id: 'loreforge',
@@ -103,15 +106,15 @@ const modules: Module[] = [
 const getStatusColor = (status: Module['status']) => {
   switch (status) {
     case 'online':
-      return 'text-green-600 bg-green-100/80 border-green-300/50'
+      return 'bg-green-100 text-green-700 border-green-300'
     case 'offline':
-      return 'text-red-600 bg-red-100/80 border-red-300/50'
+      return 'bg-red-100 text-red-700 border-red-300'
     case 'connecting':
-      return 'text-yellow-600 bg-yellow-100/80 border-yellow-300/50'
+      return 'bg-yellow-100 text-yellow-700 border-yellow-300'
     case 'maintenance':
-      return 'text-blue-600 bg-blue-100/80 border-blue-300/50'
+      return 'bg-blue-100 text-blue-700 border-blue-300'
     default:
-      return 'text-gray-600 bg-gray-100/80 border-gray-300/50'
+      return 'bg-gray-100 text-gray-700 border-gray-300'
   }
 }
 
@@ -131,66 +134,49 @@ const getStatusIcon = (status: Module['status']) => {
 }
 
 export default function Dashboard() {
-  const [moduleStatuses, setModuleStatuses] = useState<Record<string, Module['status']>>(() => {
-    const initial: Record<string, Module['status']> = {}
-    modules.forEach(module => {
-      initial[module.id] = module.status
-    })
-    return initial
-  })
+  const [moduleStatuses, setModuleStatuses] = useState<Record<string, Module['status']>>({})
+  const [moduleData, setModuleData] = useState<Record<string, any>>({})
+  const [showModuleData, setShowModuleData] = useState<Record<string, boolean>>({})
 
   const handleConnect = async (moduleId: string) => {
-    const module = modules.find(m => m.id === moduleId)
-    if (!module) return
-
-    // Set status to connecting
-    setModuleStatuses(prev => ({ ...prev, [moduleId]: 'connecting' }))
-
-    try {
-      if (moduleId === 'broke-unicorn-tavern') {
-        // Special handling for BrokeUnicorn Tavern
-        if (module.url) {
-          // Check if the service is running
-          const response = await fetch(`${module.url}/api/health`, { 
-            method: 'GET',
-            mode: 'cors'
-          })
-          
-          if (response.ok) {
-            setModuleStatuses(prev => ({ ...prev, [moduleId]: 'online' }))
-            console.log(`✅ Successfully connected to ${module.name}`)
-          } else {
-            throw new Error(`Service responded with status: ${response.status}`)
-          }
-        } else {
-          throw new Error('No URL configured for this module')
-        }
-      } else {
-        // Generic connection logic for other modules
-        console.log(`Connecting to ${module.name}...`)
-        // Simulate connection delay
-        await new Promise(resolve => setTimeout(resolve, 2000))
-        setModuleStatuses(prev => ({ ...prev, [moduleId]: 'online' }))
-        console.log(`✅ Successfully connected to ${module.name}`)
-      }
-    } catch (error) {
-      console.error(`❌ Failed to connect to ${module.name}:`, error)
-      setModuleStatuses(prev => ({ ...prev, [moduleId]: 'offline' }))
-    }
-  }
-
-  const handleOpenModule = (moduleId: string) => {
     const module = modules.find(m => m.id === moduleId)
     if (!module || !module.url) {
       console.log(`No URL configured for ${module?.name}`)
       return
     }
 
-    if (moduleStatuses[moduleId] === 'online') {
-      window.open(module.url, '_blank')
-    } else {
-      console.log(`Cannot open ${module.name} - not connected`)
+    console.log(`🔌 Attempting to connect to ${module.name} at ${module.url}`)
+    setModuleStatuses(prev => ({ ...prev, [moduleId]: 'connecting' }))
+
+    try {
+      // Test the connection by calling the module's API
+      const response = await fetch(`${module.url}/api/module-info`)
+      console.log(`📡 Response from ${module.name}:`, response.status, response.statusText)
+      
+      if (response.ok) {
+        const data = await response.json()
+        console.log(`✅ Successfully connected to ${module.name}:`, data)
+        setModuleStatuses(prev => ({ ...prev, [moduleId]: 'online' }))
+        setModuleData(prev => ({ ...prev, [moduleId]: data }))
+      } else {
+        console.log(`❌ ${module.name} responded with status: ${response.status}`)
+        setModuleStatuses(prev => ({ ...prev, [moduleId]: 'offline' }))
+      }
+    } catch (error) {
+      console.error(`❌ Failed to connect to ${module.name}:`, error)
+      if (error instanceof Error) {
+        console.error(`❌ Error message: ${error.message}`)
+        console.error(`❌ Error name: ${error.name}`)
+        console.error(`❌ Error stack: ${error.stack}`)
+      } else {
+        console.error(`❌ Unknown error type:`, typeof error, error)
+      }
+      setModuleStatuses(prev => ({ ...prev, [moduleId]: 'offline' }))
     }
+  }
+
+  const toggleModuleData = (moduleId: string) => {
+    setShowModuleData(prev => ({ ...prev, [moduleId]: !prev[moduleId] }))
   }
 
   const handleRefresh = () => {
@@ -230,7 +216,7 @@ export default function Dashboard() {
       </div>
 
       {/* Module Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {modules.map((module) => {
           const currentStatus = moduleStatuses[module.id]
           return (
@@ -267,35 +253,76 @@ export default function Dashboard() {
                   )}
                 </div>
 
-                {/* Actions */}
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => handleConnect(module.id)}
-                    disabled={currentStatus === 'online' || currentStatus === 'connecting'}
-                    className={`flex-1 px-3 py-2 text-sm rounded-lg border transition-colors ${
-                      currentStatus === 'online'
-                        ? 'bg-green-100 text-green-700 border-green-300 cursor-not-allowed'
-                        : currentStatus === 'connecting'
-                        ? 'bg-yellow-100 text-yellow-700 border-yellow-300 cursor-not-allowed'
-                        : 'btn-primary hover:bg-amber-600'
-                    }`}
-                  >
-                    {currentStatus === 'online' ? '✅ Connected' : 
-                     currentStatus === 'connecting' ? '🔄 Connecting...' : '🔌 Connect'}
-                  </button>
-                  {currentStatus === 'online' && module.url && (
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {currentStatus === 'offline' && module.url && (
                     <button
-                      onClick={() => handleOpenModule(module.id)}
-                      className="px-3 py-2 text-sm bg-green-100 text-green-700 rounded-lg border border-green-300 hover:bg-green-200 transition-colors"
-                      title="Open in new tab"
+                      onClick={() => handleConnect(module.id)}
+                      className="px-3 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg border border-blue-300 hover:bg-blue-200 transition-colors"
+                      title="Connect to module"
                     >
-                      🌐
+                      🔌 Connect
                     </button>
                   )}
-                  <button className="px-3 py-2 text-sm bg-secondary-100 text-secondary-700 rounded-lg border border-secondary-300 hover:bg-secondary-200 transition-colors">
+                  {currentStatus === 'online' && module.url && (
+                    <button
+                      className="px-3 py-2 text-sm bg-green-100 text-green-700 rounded-lg border border-green-300 hover:bg-green-200 transition-colors"
+                      title="Module is connected"
+                    >
+                      ✅ Connected
+                    </button>
+                  )}
+                  {currentStatus === 'connecting' && (
+                    <button
+                      disabled
+                      className="px-3 py-2 text-sm bg-yellow-100 text-yellow-700 rounded-lg border border-yellow-300 cursor-not-allowed"
+                      title="Connecting to module"
+                    >
+                      🔄 Connecting...
+                    </button>
+                  )}
+                  <button
+                    onClick={() => toggleModuleData(module.id)}
+                    className="px-3 py-2 text-sm bg-secondary-100 text-secondary-700 rounded-lg border border-secondary-300 hover:bg-secondary-200 transition-colors"
+                    title="Module data"
+                  >
                     ⚙️
                   </button>
                 </div>
+
+                {/* Module Data Display - Now shown when settings gear is clicked */}
+                {currentStatus === 'online' && moduleData[module.id] && showModuleData[module.id] && (
+                  <div className="mt-4 p-3 bg-white/10 rounded-lg border border-amber-300/30">
+                    <h4 className="font-medium text-amber-800 mb-2 flex items-center">
+                      <span className="mr-2">📊</span>
+                      Live Data
+                    </h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center text-amber-700">
+                        <span className="mr-2">🟢</span>
+                        Status: {moduleData[module.id].status || 'Unknown'}
+                      </div>
+                      {moduleData[module.id].version && (
+                        <div className="flex items-center text-amber-700">
+                          <span className="mr-2">📦</span>
+                          Version: {moduleData[module.id].version}
+                        </div>
+                      )}
+                      {moduleData[module.id].lastSeen && (
+                        <div className="flex items-center text-amber-700">
+                          <span className="mr-2">🕐</span>
+                          Last Updated: {new Date(moduleData[module.id].lastSeen).toLocaleString()}
+                        </div>
+                      )}
+                      {moduleData[module.id].service && (
+                        <div className="flex items-center text-amber-700">
+                          <span className="mr-2">🔗</span>
+                          <span className="ml-2">{moduleData[module.id].service}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )
@@ -304,7 +331,7 @@ export default function Dashboard() {
 
       {/* Footer Stats */}
       <div className="mt-8 pt-6 border-t-2 border-amber-300/30">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
           <div>
             <div className="text-2xl font-bold text-amber-600">
               {Object.values(moduleStatuses).filter(status => status === 'online').length}

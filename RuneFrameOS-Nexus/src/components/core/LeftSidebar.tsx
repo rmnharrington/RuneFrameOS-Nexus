@@ -4,86 +4,51 @@ import React from 'react'
 
 interface LeftSidebarProps {
   currentApp?: string
-  onNavigate?: (destination: string) => void
+  onNavigate?: (destination: 'nexus' | 'distillara' | 'feastwell' | 'hoardwell' | 'tavern') => void
 }
 
 export default function LeftSidebar({ currentApp = "Nexus", onNavigate }: LeftSidebarProps) {
   const navigationItems = [
     {
-      id: 'dashboard',
+      id: 'nexus',
       name: 'Dashboard',
       icon: '🏠',
       description: 'Main control center',
-      active: currentApp === 'Nexus'
+      active: currentApp === 'Nexus' || currentApp === 'nexus'
     },
     {
       id: 'distillara',
       name: 'Distillara',
       icon: '🧪',
       description: 'Gaming & alchemy system',
-      active: false
-    },
-    {
-      id: 'core',
-      name: 'Core Admin',
-      icon: '⚙️',
-      description: 'System administration',
-      active: false
+      active: currentApp === 'distillara'
     },
     {
       id: 'feastwell',
       name: 'Feastwell',
       icon: '🍽️',
       description: 'Food & recipe management',
-      active: false
+      active: currentApp === 'feastwell'
     },
     {
       id: 'hoardwell',
       name: 'Hoardwell',
       icon: '💎',
       description: 'Inventory & characters',
-      active: false
+      active: currentApp === 'hoardwell'
     },
     {
-      id: 'broke-unicorn-tavern',
+      id: 'tavern',
       name: 'BrokeUnicorn Tavern',
       icon: '🏰',
       description: 'Social hub & gathering place',
-      active: false
-    },
-    {
-      id: 'shared-services',
-      name: 'Shared Services',
-      icon: '🔗',
-      description: 'Authentication & APIs',
-      active: false
+      active: currentApp === 'tavern'
     }
   ]
 
   const handleNavigation = (destination: string) => {
-    switch (destination) {
-      case 'distillara':
-        window.open('http://localhost:3001', '_blank')
-        break
-      case 'core':
-        window.open('http://localhost:3002', '_blank')
-        break
-      case 'feastwell':
-        window.open('http://localhost:3003', '_blank')
-        break
-      case 'hoardwell':
-        window.open('http://localhost:3004', '_blank')
-        break
-      case 'broke-unicorn-tavern':
-        window.open('http://localhost:3005', '_blank')
-        break
-      case 'shared-services':
-        // Open a services overview page or the auth service
-        window.open('http://localhost:4001', '_blank')
-        break
-      default:
-        // Handle other navigation
-        onNavigate?.(destination)
+    if (onNavigate) {
+      onNavigate(destination as any)
     }
   }
 

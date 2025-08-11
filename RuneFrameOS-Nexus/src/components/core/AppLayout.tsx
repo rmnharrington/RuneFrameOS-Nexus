@@ -5,6 +5,7 @@ import HeaderBar from './HeaderBar'
 import LeftSidebar from './LeftSidebar'
 import SystemStats from './SystemStats'
 import AppFooter from './AppFooter'
+import DistillaraView from './DistillaraView'
 
 interface AppLayoutProps {
   children: ReactNode
@@ -30,6 +31,35 @@ export default function AppLayout({
   onNavigate
 }: AppLayoutProps) {
   const [showStatsPanel, setShowStatsPanel] = useState(false)
+  const [currentView, setCurrentView] = useState<'nexus' | 'distillara' | 'feastwell' | 'hoardwell' | 'tavern'>('nexus')
+
+  const handleViewChange = (view: typeof currentView) => {
+    setCurrentView(view)
+  }
+
+  const renderCenterContent = () => {
+    switch (currentView) {
+      case 'distillara':
+        return <DistillaraView onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'nexus':
+      default:
+        return (
+          <div className="w-full">
+            {children}
+          </div>
+        )
+    }
+  }
+
+  const renderRightContent = () => {
+    switch (currentView) {
+      case 'distillara':
+        return <DistillaraView.Sidebar onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'nexus':
+      default:
+        return <SystemStats />
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 flex flex-col">
@@ -50,24 +80,29 @@ export default function AppLayout({
         {showSidebar && (
           <div className="relative">
             <LeftSidebar 
-              currentApp={appName}
-              onNavigate={onNavigate}
+              currentApp={currentView === 'nexus' ? 'Nexus' : currentView}
+              onNavigate={handleViewChange}
             />
           </div>
         )}
 
         {/* Center Content - Full width on iPad */}
         <main className="flex-1 p-4 md:p-6 overflow-auto">
-          <div className="max-w-4xl mx-auto">
-            {children}
-          </div>
+          {renderCenterContent()}
         </main>
+
+        {/* Desktop Stats Panel - Floating right sidebar */}
+        {showStats && (
+          <div className="hidden lg:block w-80 flex-shrink-0">
+            {renderRightContent()}
+          </div>
+        )}
       </div>
 
       {/* Footer */}
       <AppFooter />
 
-      {/* Floating Stats Panel - iPad Friendly */}
+      {/* Floating Stats Panel - Mobile/Tablet Overlay */}
       {showStats && showStatsPanel && (
         <div className="fixed inset-0 bg-black/20 z-40 md:hidden">
           <div className="absolute right-0 top-0 h-full w-80 bg-gradient-to-b from-orange-50 to-red-50 border-l-2 border-orange-300/30 shadow-2xl transform transition-transform duration-300 ease-in-out">
@@ -85,16 +120,9 @@ export default function AppLayout({
                   </svg>
                 </button>
               </div>
-              <SystemStats />
+              {currentView === 'nexus' ? <SystemStats /> : renderRightContent()}
             </div>
           </div>
-        </div>
-      )}
-
-      {/* Desktop Stats Panel - Hidden on mobile/tablet */}
-      {showStats && (
-        <div className="hidden lg:block">
-          <SystemStats />
         </div>
       )}
     </div>

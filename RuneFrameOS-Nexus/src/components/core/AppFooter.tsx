@@ -1,12 +1,19 @@
 "use client"
 
-import React from 'react'
+"use client"
+
+import React, { useState, useEffect } from 'react'
 
 interface AppFooterProps {
   className?: string
 }
 
 export default function AppFooter({ className = "" }: AppFooterProps) {
+  const [lastUpdated, setLastUpdated] = useState<string>('')
+
+  useEffect(() => {
+    setLastUpdated(new Date().toLocaleDateString())
+  }, [])
   return (
     <footer className={`bg-gradient-to-r from-amber-900 via-orange-800 to-red-900 text-white border-t-2 border-amber-400/30 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
@@ -103,7 +110,7 @@ export default function AppFooter({ className = "" }: AppFooterProps) {
               Built with ❤️ for the gaming community
             </p>
             <p className="mt-1">
-              Version 0.1.0 | Last updated: {new Date().toLocaleDateString()}
+              Version 0.1.0 | Last updated: {lastUpdated || 'Loading...'}
             </p>
           </div>
         </div>

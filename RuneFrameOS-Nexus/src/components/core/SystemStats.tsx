@@ -1,12 +1,28 @@
 "use client"
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 interface SystemStatsProps {
   className?: string
 }
 
 export default function SystemStats({ className = "" }: SystemStatsProps) {
+  const [currentTime, setCurrentTime] = useState<string>('')
+
+  useEffect(() => {
+    // Update time on client side after mounting
+    const updateTime = () => {
+      setCurrentTime(new Date().toLocaleTimeString())
+    }
+    
+    updateTime() // Set initial time
+    
+    // Update time every second
+    const interval = setInterval(updateTime, 1000)
+    
+    return () => clearInterval(interval)
+  }, [])
+
   const stats = [
     {
       category: 'System Status',
@@ -122,7 +138,7 @@ export default function SystemStats({ className = "" }: SystemStatsProps) {
             </span>
           </div>
           <p className="text-xs text-green-700/70 mt-1">
-            Last updated: {new Date().toLocaleTimeString()}
+            Last updated: {currentTime || 'Loading...'}
           </p>
         </div>
       </div>
