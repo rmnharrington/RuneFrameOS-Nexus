@@ -28,7 +28,7 @@ export default function AppLayout({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-red-950">
+    <div className="min-h-screen bg-gradient-to-br from-amber-950 via-orange-950 to-red-950 flex flex-col">
       {/* Header */}
       <HeaderBar 
         appName={appName}
@@ -59,8 +59,8 @@ export default function AppLayout({
         </div>
       )}
 
-      {/* Main Content Area - Below header with proper spacing */}
-      <div className="flex flex-1 pt-20 relative">
+             {/* Main Content Area - Below header with proper spacing */}
+       <div className="flex flex-1 relative">
         {/* Left Sidebar - Always visible, fixed width */}
         {showSidebar && (
           <div className="w-48 lg:w-56 flex-shrink-0">
