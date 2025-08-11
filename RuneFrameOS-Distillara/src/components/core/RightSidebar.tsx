@@ -59,11 +59,11 @@ export default function RightSidebar({
       <div className="p-3 lg:p-4">
         {/* Header */}
         <div className="mb-4 lg:mb-6 text-center">
-          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-orange-200 to-red-200 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-r from-amber-900 via-orange-800 to-red-900 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
             <img
-              src="/runeframeos_logo2.png"
-              alt="RuneFrameOS"
-              className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
+              src="/distillara_logo_IconOnly.png"
+              alt="Distillara"
+              className="w-7 h-7 lg:w-9 lg:h-9 object-contain"
             />
           </div>
           <h2 className="text-sm lg:text-base font-fantasy font-bold text-orange-800">Quick Actions</h2>

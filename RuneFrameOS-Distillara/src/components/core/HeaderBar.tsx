@@ -35,7 +35,7 @@ export default function HeaderBar({
               <Menu className="w-5 h-5" />
             </button>
             
-            <div className="w-8 h-8 bg-gradient-to-br from-amber-200 to-orange-200 rounded-full flex items-center justify-center shadow-lg">
+            <div className="w-8 h-8 bg-gradient-to-r from-amber-900 via-orange-800 to-red-900 rounded-full flex items-center justify-center shadow-lg">
               <img
                 src={appIcon}
                 alt={appName}
