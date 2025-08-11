@@ -37,11 +37,7 @@ export default function AppLayout({
         onToggleMobileMenu={handleToggleMobileMenu}
       />
 
-      {/* Left Sidebar */}
-      <LeftSidebar currentApp={appName} />
 
-      {/* Right Sidebar */}
-      <RightSidebar appType={appType} />
 
       {/* Mobile Menu Overlay */}
       {showMobileMenu && (
@@ -63,79 +59,90 @@ export default function AppLayout({
         </div>
       )}
 
-      {/* Main Content */}
-      <main className={`pt-20 pb-24 transition-all duration-300 ${
-        showSidebar ? 'ml-0 lg:ml-[280px]' : 'ml-0'
-      } ${
-        showStats ? 'mr-0 lg:mr-[320px]' : 'mr-0'
-      } ${showMobileMenu ? 'pt-32' : 'pt-20'}`}>
-        <div className="p-8">
+      {/* Main Content Area - Below header with proper spacing */}
+      <div className="flex flex-1 pt-20 relative">
+        {/* Left Sidebar - Always visible, fixed width */}
+        {showSidebar && (
+          <div className="w-48 lg:w-56 flex-shrink-0">
+            <LeftSidebar currentApp={appName} />
+          </div>
+        )}
+
+        {/* Center Content - Takes remaining width with proper spacing */}
+        <main className="flex-1 p-4 md:p-6 overflow-auto">
           {/* Welcome Section */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-white font-fantasy mb-4">
+          <div className="mb-4 lg:mb-6">
+            <h1 className="text-3xl lg:text-4xl font-bold text-white font-fantasy mb-2 lg:mb-4">
               Welcome to {appName}
             </h1>
-            <p className="text-xl text-amber-200 mb-6">
+            <p className="text-lg lg:text-xl text-amber-200 mb-4 lg:mb-6">
               Master the culinary arts and create legendary feasts
             </p>
           </div>
 
           {/* Quick Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-gradient-to-br from-amber-800/30 to-orange-800/30 rounded-lg p-6 border border-amber-500/30">
-              <h3 className="text-lg font-semibold text-white mb-2">Active Recipes</h3>
-              <p className="text-3xl font-bold text-amber-400">12</p>
-              <p className="text-amber-200 text-sm">Currently cooking</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 mb-4 lg:mb-6">
+            <div className="bg-gradient-to-br from-amber-800/30 to-orange-800/30 rounded-lg p-4 lg:p-6 border border-amber-500/30">
+              <h3 className="text-base lg:text-lg font-semibold text-white mb-2">Active Recipes</h3>
+              <p className="text-2xl lg:text-3xl font-bold text-amber-400">12</p>
+              <p className="text-amber-200 text-xs lg:text-sm">Currently cooking</p>
             </div>
-            <div className="bg-gradient-to-br from-orange-800/30 to-red-800/30 rounded-lg p-6 border border-orange-500/30">
-              <h3 className="text-lg font-semibold text-white mb-2">Recipe Library</h3>
-              <p className="text-3xl font-bold text-orange-400">247</p>
-              <p className="text-orange-200 text-sm">Available recipes</p>
+            <div className="bg-gradient-to-br from-orange-800/30 to-red-800/30 rounded-lg p-4 lg:p-6 border border-orange-500/30">
+              <h3 className="text-base lg:text-lg font-semibold text-white mb-2">Recipe Library</h3>
+              <p className="text-2xl lg:text-3xl font-bold text-orange-400">247</p>
+              <p className="text-orange-200 text-xs lg:text-sm">Available recipes</p>
             </div>
-            <div className="bg-gradient-to-br from-red-800/30 to-red-900/30 rounded-lg p-6 border border-red-500/30">
-              <h3 className="text-lg font-semibold text-white mb-2">Kitchen Status</h3>
-              <p className="text-3xl font-bold text-red-400">Ready</p>
-              <p className="text-red-200 text-sm">All systems operational</p>
+            <div className="bg-gradient-to-br from-red-800/30 to-red-900/30 rounded-lg p-4 lg:p-6 border border-red-500/30">
+              <h3 className="text-base lg:text-lg font-semibold text-white mb-2">Kitchen Status</h3>
+              <p className="text-2xl lg:text-3xl font-bold text-red-400">Ready</p>
+              <p className="text-red-200 text-xs lg:text-sm">All systems operational</p>
             </div>
-            <div className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 rounded-lg p-6 border border-amber-600/30">
-              <h3 className="text-lg font-semibold text-white mb-2">Chef Level</h3>
-              <p className="text-3xl font-bold text-amber-300">Master</p>
-              <p className="text-amber-200 text-sm">Expert culinary skills</p>
+            <div className="bg-gradient-to-br from-amber-900/30 to-orange-900/30 rounded-lg p-4 lg:p-6 border border-amber-600/30">
+              <h3 className="text-base lg:text-lg font-semibold text-white mb-2">Chef Level</h3>
+              <p className="text-2xl lg:text-3xl font-bold text-amber-300">Master</p>
+              <p className="text-amber-200 text-xs lg:text-sm">Expert culinary skills</p>
             </div>
           </div>
 
           {/* Featured Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-amber-800/20 to-orange-800/20 rounded-lg p-6 border border-amber-500/30">
-              <h3 className="text-xl font-semibold text-white mb-4 font-fantasy">Today's Special</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 bg-amber-700/30 rounded">
-                  <span className="text-white">Spiced Venison Stew</span>
-                  <span className="text-amber-300 text-sm">45 min</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+            <div className="bg-gradient-to-br from-amber-800/20 to-orange-800/20 rounded-lg p-4 lg:p-6 border border-amber-500/30">
+              <h3 className="text-lg lg:text-xl font-semibold text-white mb-3 lg:mb-4 font-fantasy">Today's Special</h3>
+              <div className="space-y-2 lg:space-y-3">
+                <div className="flex items-center justify-between p-2 lg:p-3 bg-amber-700/30 rounded">
+                  <span className="text-white text-sm lg:text-base">Spiced Venison Stew</span>
+                  <span className="text-amber-300 text-xs lg:text-sm">45 min</span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-orange-700/30 rounded">
-                  <span className="text-white">Golden Honey Bread</span>
-                  <span className="text-orange-300 text-sm">30 min</span>
+                <div className="flex items-center justify-between p-2 lg:p-3 bg-orange-700/30 rounded">
+                  <span className="text-white text-sm lg:text-base">Golden Honey Bread</span>
+                  <span className="text-orange-300 text-xs lg:text-sm">30 min</span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-red-700/30 rounded">
-                  <span className="text-white">Herb Roasted Potatoes</span>
-                  <span className="text-red-300 text-sm">25 min</span>
+                <div className="flex items-center justify-between p-2 lg:p-3 bg-red-700/30 rounded">
+                  <span className="text-white text-sm lg:text-base">Herb Roasted Potatoes</span>
+                  <span className="text-red-300 text-xs lg:text-sm">25 min</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-800/20 to-red-800/20 rounded-lg p-6 border border-orange-500/30">
-              <h3 className="text-xl font-semibold text-white mb-4 font-fantasy">Kitchen Tips</h3>
-              <div className="space-y-3 text-amber-200">
-                <p className="text-sm">• Always preheat your oven for consistent results</p>
-                <p className="text-sm">• Use fresh herbs for maximum flavor impact</p>
-                <p className="text-sm">• Let meat rest before slicing for juiciness</p>
-                <p className="text-sm">• Season in layers for depth of flavor</p>
+            <div className="bg-gradient-to-br from-orange-800/20 to-red-800/20 rounded-lg p-4 lg:p-6 border border-orange-500/30">
+              <h3 className="text-lg lg:text-xl font-semibold text-white mb-3 lg:mb-4 font-fantasy">Kitchen Tips</h3>
+              <div className="space-y-2 lg:space-y-3 text-amber-200">
+                <p className="text-xs lg:text-sm">• Always preheat your oven for consistent results</p>
+                <p className="text-xs lg:text-sm">• Use fresh herbs for maximum flavor impact</p>
+                <p className="text-xs lg:text-sm">• Let meat rest before slicing for juiciness</p>
+                <p className="text-xs lg:text-sm">• Season in layers for depth of flavor</p>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+
+        {/* Desktop Stats Panel - Floating right sidebar */}
+        {showStats && (
+          <div className="hidden lg:block w-64 flex-shrink-0">
+            <RightSidebar appType={appType} />
+          </div>
+        )}
+      </div>
 
       {/* Footer */}
       <AppFooter />
