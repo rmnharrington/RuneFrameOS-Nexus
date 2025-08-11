@@ -1,21 +1,21 @@
 # RuneFrameOS Local Development Startup Script
 # This script starts all RuneFrameOS applications on their respective ports
 
-Write-Host "🚀 Starting RuneFrameOS Ecosystem..." -ForegroundColor Green
+Write-Host "Starting RuneFrameOS Ecosystem..." -ForegroundColor Green
 Write-Host "=====================================" -ForegroundColor Green
 
 # Check if Docker Desktop is running
 try {
     docker version | Out-Null
-    Write-Host "✅ Docker Desktop is running" -ForegroundColor Green
+    Write-Host "Docker Desktop is running" -ForegroundColor Green
 } catch {
-    Write-Host "❌ Docker Desktop is not running. Please start Docker Desktop first." -ForegroundColor Red
+    Write-Host "Docker Desktop is not running. Please start Docker Desktop first." -ForegroundColor Red
     Write-Host "   You can also run the apps individually using the commands below." -ForegroundColor Yellow
     Write-Host ""
 }
 
 Write-Host ""
-Write-Host "🌐 Application Ports:" -ForegroundColor Cyan
+Write-Host "Application Ports:" -ForegroundColor Cyan
 Write-Host "   Nexus (Main Hub):     http://localhost:3000" -ForegroundColor White
 Write-Host "   Distillara:           http://localhost:3001" -ForegroundColor White
 Write-Host "   Core Admin:           http://localhost:3002" -ForegroundColor White
@@ -27,26 +27,26 @@ Write-Host "   Core Service:         http://localhost:4002" -ForegroundColor Whi
 Write-Host "   User Service:         http://localhost:4003" -ForegroundColor White
 
 Write-Host ""
-Write-Host "🔧 Starting Options:" -ForegroundColor Cyan
+Write-Host "Starting Options:" -ForegroundColor Cyan
 Write-Host "   1. Start with Docker Compose (recommended)" -ForegroundColor White
 Write-Host "   2. Start apps individually" -ForegroundColor White
 Write-Host "   3. Exit" -ForegroundColor White
 
-$choice = Read-Host "`nChoose an option (1-3)"
+$choice = Read-Host "Choose an option (1-3)"
 
 switch ($choice) {
     "1" {
-        Write-Host "🐳 Starting with Docker Compose..." -ForegroundColor Green
+        Write-Host "Starting with Docker Compose..." -ForegroundColor Green
         if (Test-Path "docker-compose.yml") {
             docker-compose up -d
-            Write-Host "✅ All services started with Docker Compose!" -ForegroundColor Green
+            Write-Host "All services started with Docker Compose!" -ForegroundColor Green
             Write-Host "   Check the ports above to access your applications." -ForegroundColor Cyan
         } else {
-            Write-Host "❌ docker-compose.yml not found. Please run this script from the root directory." -ForegroundColor Red
+            Write-Host "docker-compose.yml not found. Please run this script from the root directory." -ForegroundColor Red
         }
     }
     "2" {
-        Write-Host "📱 Starting apps individually..." -ForegroundColor Green
+        Write-Host "Starting apps individually..." -ForegroundColor Green
         Write-Host "   This will open multiple terminal windows." -ForegroundColor Yellow
         
         # Start Nexus
@@ -72,28 +72,28 @@ switch ($choice) {
         # Start BrokeUnicornTavern
         Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd 'RuneFrameOS-BrokeUnicornTavern'; npm run dev"
         
-        Write-Host "✅ All applications started individually!" -ForegroundColor Green
+        Write-Host "All applications started individually!" -ForegroundColor Green
         Write-Host "   Check the ports above to access your applications." -ForegroundColor Cyan
     }
     "3" {
-        Write-Host "👋 Exiting..." -ForegroundColor Yellow
+        Write-Host "Exiting..." -ForegroundColor Yellow
         exit
     }
     default {
-        Write-Host "❌ Invalid option. Please run the script again." -ForegroundColor Red
+        Write-Host "Invalid option. Please run the script again." -ForegroundColor Red
     }
 }
 
 Write-Host ""
-Write-Host "🎯 Next Steps:" -ForegroundColor Cyan
+Write-Host "Next Steps:" -ForegroundColor Cyan
 Write-Host "   1. Open http://localhost:3000 in your browser to access Nexus" -ForegroundColor White
 Write-Host "   2. Use the navigation menu to access other applications" -ForegroundColor White
 Write-Host "   3. Each app runs independently but can communicate through Nexus" -ForegroundColor White
 
 Write-Host ""
-Write-Host "💡 Tips:" -ForegroundColor Cyan
+Write-Host "Tips:" -ForegroundColor Cyan
 Write-Host "   - Keep this terminal open to see Docker logs (if using Docker)" -ForegroundColor White
 Write-Host "   - Use Ctrl+C to stop Docker services" -ForegroundColor White
 Write-Host "   - Individual terminals can be closed separately" -ForegroundColor White
 
-Read-Host "`nPress Enter to continue..."
+Read-Host "Press Enter to continue..."
