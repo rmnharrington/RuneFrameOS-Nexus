@@ -79,6 +79,22 @@ services:
     networks:
       - runeframeos-network
 
+  # Scriptoria - Gaming Systems Library
+  scriptoria:
+    build: ./RuneFrameOS-Scriptoria
+    ports:
+      - "3006:3006"
+    environment:
+      - NODE_ENV=development
+      - PORT=3006
+    volumes:
+      - ./RuneFrameOS-Scriptoria:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
   # BrokeUnicornTavern - Tavern Interface
   tavern:
     build: ./RuneFrameOS-BrokeUnicornTavern

@@ -2,20 +2,18 @@ import { NextResponse } from 'next/server'
 
 export async function GET() {
   try {
-    const moduleInfo = {
-      id: 'hoardwell',
-      name: 'Hoardwell',
-      description: 'Advanced inventory management system with character tracking, item categorization, and treasure management.',
+    const healthData = {
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
       version: 'v0.1.0',
-      status: 'operational',
-      category: 'Inventory Management',
-      features: ['Character Inventory', 'Item Categorization', 'Treasure Tracking', 'Weight Management'],
-      capabilities: ['Manage Characters', 'Track Items', 'Categorize Treasures', 'Calculate Encumbrance'],
-      lastUpdated: new Date().toISOString(),
+      uptime: process.uptime(),
+      service: 'Hoardwell',
+      description: 'Advanced inventory management system with character tracking, item categorization, and treasure management.',
+      features: ['Inventory Management', 'Character Tracking', 'Item Categorization', 'Treasure Management'],
       endpoints: ['/api/health', '/api/module-info', '/api/status']
     }
 
-    return NextResponse.json(moduleInfo, { 
+    return NextResponse.json(healthData, { 
       status: 200,
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -27,7 +25,7 @@ export async function GET() {
     return NextResponse.json(
       { 
         status: 'error', 
-        message: 'Failed to retrieve module info',
+        message: 'Health check failed',
         timestamp: new Date().toISOString()
       }, 
       { 

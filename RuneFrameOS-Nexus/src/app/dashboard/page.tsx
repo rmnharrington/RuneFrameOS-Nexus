@@ -20,7 +20,8 @@ export default function DashboardPage() {
       url: module.id === 'distillara' ? 'http://localhost:3001' :
            module.id === 'feastwell' ? 'http://localhost:3003' :
            module.id === 'hoardwell' ? 'http://localhost:3004' :
-           module.id === 'broke-unicorn-tavern' ? 'http://localhost:3005' : undefined
+           module.id === 'broke-unicorn-tavern' ? 'http://localhost:3005' :
+           module.id === 'scriptoria' ? 'http://localhost:3006' : undefined
     }
 
     // Check if module already exists

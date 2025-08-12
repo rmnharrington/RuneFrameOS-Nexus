@@ -43,7 +43,7 @@ export default function RightSidebar({ appType = "Feastwell" }: RightSidebarProp
         {/* Header */}
         <div className="mb-4 lg:mb-6 text-center">
           <img
-            src="/feastwell_logo2.png"
+            src="/Feastwell_Logos_IconOnly.png"
             alt="Feastwell"
             className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-2 lg:mb-4 object-contain"
           />

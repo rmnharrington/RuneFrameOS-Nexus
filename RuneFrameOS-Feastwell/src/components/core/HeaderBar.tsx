@@ -10,7 +10,7 @@ interface HeaderBarProps {
 export default function HeaderBar({
   appName = "Feastwell",
   userName = "Chef",
-  appIcon = "/feastwell_logo2.png",
+  appIcon = "/Feastwell_Logos_IconOnly.png",
   onToggleMobileMenu
 }: HeaderBarProps) {
   return (

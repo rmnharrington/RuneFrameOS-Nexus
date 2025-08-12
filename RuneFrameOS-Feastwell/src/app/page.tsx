@@ -5,7 +5,7 @@ export default function Home() {
     <AppLayout
       appName="Feastwell"
       userName="Chef"
-      appIcon="/feastwell_logo2.png"
+      appIcon="/Feastwell_Logos_IconOnly.png"
       appType="Feastwell"
     />
   )

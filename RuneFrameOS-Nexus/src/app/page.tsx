@@ -20,7 +20,7 @@ export default function Home() {
         <h2 className="text-xl font-bold text-blue-800 mb-4">🧪 App Testing & Development</h2>
         <p className="text-blue-600 mb-4 text-sm">Test each application individually for development and debugging</p>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
           {/* Nexus Card */}
           <div className="bg-white/80 rounded-lg border border-blue-200 p-4 text-center hover:shadow-md transition-all duration-200">
             <div className="text-3xl mb-2">🏛️</div>
@@ -90,6 +90,20 @@ export default function Home() {
               🏰 Open Tavern
             </button>
           </div>
+
+          {/* Scriptoria Card */}
+          <div className="bg-white/80 rounded-lg border border-blue-200 p-4 text-center hover:shadow-md transition-all duration-200">
+            <div className="text-3xl mb-2">📚</div>
+            <h3 className="font-semibold text-blue-800 text-sm mb-1">Scriptoria</h3>
+            <p className="text-xs text-blue-600 mb-3">Gaming Library</p>
+            <div className="text-xs text-green-600 font-medium mb-2">Port 3006</div>
+            <button 
+              onClick={() => window.open('http://localhost:3006', '_blank')}
+              className="w-full py-2 px-3 bg-gradient-to-r from-slate-500 to-gray-600 hover:from-slate-600 hover:to-gray-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 text-xs"
+            >
+              📚 Open Scriptoria
+            </button>
+          </div>
         </div>
       </div>
       
@@ -98,7 +112,7 @@ export default function Home() {
           "We're not saying we're better than the corporate tools. We're just saying we're not trying to nickel-and-dime you for basic functionality."
         </p>
         <p className="text-amber-500 text-xs mt-2">
-          — The Bad Guy Gas Team (Est. 1974, Grumpy Since Forever)
+          - Bad Guy Gas Development Team
         </p>
       </div>
     </AppLayout>

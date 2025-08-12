@@ -97,14 +97,15 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
         'distillara': 'distillara',
         'feastwell': 'feastwell',
         'hoardwell': 'hoardwell',
-        'broke-unicorn-tavern': 'tavern'
+        'broke-unicorn-tavern': 'tavern',
+        'scriptoria': 'scriptoria'
       }
       
       const viewName = moduleViewMap[module.id]
       if (viewName) {
         onNavigate(viewName)
       } else {
-        console.log(`No view mapping found for module: ${module.id}`)
+        console.warn(`No view mapping found for module: ${module.id}`)
       }
     }
   }

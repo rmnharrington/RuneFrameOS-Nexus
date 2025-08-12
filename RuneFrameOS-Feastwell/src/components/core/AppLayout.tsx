@@ -16,7 +16,7 @@ interface AppLayoutProps {
 export default function AppLayout({
   appName = "Feastwell",
   userName = "Chef",
-  appIcon = "/feastwell_logo2.png",
+  appIcon = "/Feastwell_Logos_IconOnly.png",
   appType = "Feastwell"
 }: AppLayoutProps) {
   const [showSidebar, setShowSidebar] = useState(true)
@@ -36,8 +36,6 @@ export default function AppLayout({
         appIcon={appIcon}
         onToggleMobileMenu={handleToggleMobileMenu}
       />
-
-
 
       {/* Mobile Menu Overlay */}
       {showMobileMenu && (
@@ -60,22 +58,29 @@ export default function AppLayout({
       )}
 
       {/* Main Content Area - Below header with proper spacing */}
-      <div className="flex flex-1 relative">
+      <div className="flex flex-1 pt-20 relative">
         {/* Left Sidebar - Always visible, fixed width */}
         {showSidebar && (
-          <div className="w-48 lg:w-56 flex-shrink-0">
+          <div className="w-48 lg:w-56 flex-shrink-0 pt-0 pb-24">
             <LeftSidebar currentApp={appName} />
           </div>
         )}
 
         {/* Center Content - Takes remaining width with proper spacing */}
-        <main className="flex-1 p-4 md:p-6 overflow-auto">
+        <main className="flex-1 p-4 md:p-6 pb-24 overflow-auto">
           {/* Welcome Section */}
           <div className="mb-4 lg:mb-6">
-            <h1 className="text-3xl lg:text-4xl font-bold text-white font-fantasy mb-2 lg:mb-4">
-              Welcome to {appName}
-            </h1>
-            <p className="text-lg lg:text-xl text-amber-200 mb-4 lg:mb-6">
+            <div className="flex items-center justify-center space-x-4 mb-2 lg:mb-4">
+              <img
+                src="/Feastwell_Logos_IconOnly.png"
+                alt="Feastwell"
+                className="w-16 h-16 lg:w-20 lg:h-20 object-contain"
+              />
+              <h1 className="text-3xl lg:text-4xl font-bold text-white font-fantasy">
+                Welcome to {appName}
+              </h1>
+            </div>
+            <p className="text-lg lg:text-xl text-amber-200 mb-4 lg:mb-6 text-center">
               Master the culinary arts and create legendary feasts
             </p>
           </div>
@@ -138,7 +143,7 @@ export default function AppLayout({
 
         {/* Desktop Stats Panel - Floating right sidebar */}
         {showStats && (
-          <div className="hidden lg:block w-64 flex-shrink-0">
+          <div className="hidden lg:block w-64 flex-shrink-0 overflow-y-auto pt-0 pb-24">
             <RightSidebar appType={appType} />
           </div>
         )}

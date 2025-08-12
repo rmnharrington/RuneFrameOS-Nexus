@@ -9,6 +9,7 @@ import DistillaraView from './DistillaraView'
 import FeastwellView from './FeastwellView'
 import HoardwellView from './HoardwellView'
 import TavernView from './TavernView'
+import ScriptoriaView from './ScriptoriaView'
 import ModuleSubscriptionModal from './ModuleSubscriptionModal'
 
 interface AppLayoutProps {
@@ -41,14 +42,14 @@ const AppLayout = forwardRef<AppLayoutRef, AppLayoutProps>(({
   onAddModule
 }, ref) => {
   const [showStatsPanel, setShowStatsPanel] = useState(false)
-  const [currentView, setCurrentView] = useState<'nexus' | 'distillara' | 'feastwell' | 'hoardwell' | 'tavern'>('nexus')
+  const [currentView, setCurrentView] = useState<'nexus' | 'distillara' | 'feastwell' | 'hoardwell' | 'tavern' | 'scriptoria'>('nexus')
   const [isModuleModalOpen, setIsModuleModalOpen] = useState(false)
 
   const handleViewChange = (view: string) => {
     console.log(`🔄 AppLayout: Changing view to ${view}`)
     
     // Type guard to ensure view is valid
-    if (view === 'nexus' || view === 'distillara' || view === 'feastwell' || view === 'hoardwell' || view === 'tavern') {
+    if (view === 'nexus' || view === 'distillara' || view === 'feastwell' || view === 'hoardwell' || view === 'tavern' || view === 'scriptoria') {
       setCurrentView(view)
       
       // Don't call onNavigate here to prevent infinite recursion
@@ -90,6 +91,8 @@ const AppLayout = forwardRef<AppLayoutRef, AppLayoutProps>(({
         return <HoardwellView onReturnToNexus={() => handleViewChange('nexus')} />
       case 'tavern':
         return <TavernView onReturnToNexus={() => handleViewChange('nexus')} />
+      case 'scriptoria':
+        return <ScriptoriaView />
       case 'nexus':
       default:
         return (

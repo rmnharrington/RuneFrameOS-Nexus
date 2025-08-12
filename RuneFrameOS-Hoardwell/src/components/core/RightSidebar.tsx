@@ -34,18 +34,18 @@ export default function RightSidebar({ appType }: RightSidebarProps) {
   ]
 
   return (
-    <aside className="fixed right-0 top-20 w-64 h-[calc(100vh-5rem)] gradient-right-sidebar border-l-2 border-orange-300/30 overflow-y-auto">
+    <aside className="w-full h-full bg-gradient-to-b from-yellow-500 via-amber-500 to-yellow-600 border-l-2 border-yellow-500/30 overflow-y-auto">
       <div className="p-3 lg:p-4">
         {/* Header */}
         <div className="mb-4 lg:mb-6 text-center">
-          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-orange-200 to-red-200 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
-            <img
-              src="/runeframeos_logo2.png"
-              alt="RuneFrameOS"
-              className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
-            />
+          <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-yellow-300 to-amber-300 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
+                         <img
+               src="/Hoardwell_Logos_IconOnly.png"
+               alt="Hoardwell"
+               className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
+             />
           </div>
-          <h2 className="text-sm lg:text-base font-fantasy font-bold text-orange-800">Quick Actions</h2>
+          <h2 className="text-sm lg:text-base font-fantasy font-bold text-yellow-800">Quick Actions</h2>
         </div>
 
         {/* Inventory Controls */}
@@ -54,10 +54,10 @@ export default function RightSidebar({ appType }: RightSidebarProps) {
             <button
               key={index}
               onClick={control.action}
-              className="w-full flex items-center space-x-3 p-3 rounded-lg bg-white/60 hover:bg-white/80 transition-colors mb-2 border border-orange-200"
+              className="w-full flex items-center space-x-3 p-3 rounded-lg bg-white/60 hover:bg-white/80 transition-colors mb-2 border border-yellow-200"
             >
-              <control.icon size={20} className="text-orange-700" />
-              <span className="font-medium text-orange-900">{control.label}</span>
+              <control.icon size={20} className="text-yellow-700" />
+              <span className="text-yellow-900">{control.label}</span>
             </button>
           ))}
         </div>
@@ -158,10 +158,10 @@ export default function RightSidebar({ appType }: RightSidebarProps) {
             <button
               key={index}
               onClick={action.action}
-              className="w-full flex items-center space-x-3 p-3 rounded-lg bg-white/60 hover:bg-white/80 transition-colors mb-2 border border-orange-200"
+              className="w-full flex items-center space-x-3 p-3 rounded-lg bg-white/60 hover:bg-white/80 transition-colors mb-2 border border-yellow-200"
             >
-              <action.icon size={20} className="text-orange-700" />
-              <span className="font-medium text-orange-900">{action.label}</span>
+              <action.icon size={20} className="text-yellow-700" />
+              <span className="text-yellow-900">{action.label}</span>
             </button>
           ))}
         </div>
