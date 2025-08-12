@@ -268,18 +268,17 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
 
                     {/* Module Header */}
                     <div className="text-center mb-4">
-                      <div className="text-4xl mb-3">{module.icon}</div>
-                      <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">{module.name}</h3>
-                      <p className="text-sm text-slate-200 mb-3 drop-shadow-lg">{module.description}</p>
+                      <h3 className="text-3xl font-bold text-white mb-3 drop-shadow-lg">{module.name}</h3>
+                      <p className="text-base text-slate-200 mb-3 drop-shadow-lg">{module.description}</p>
                       
                       {/* Price */}
                       <div className="mb-4">
                         {module.isFree ? (
-                          <div className="text-2xl font-bold text-green-300 drop-shadow-lg">FREE</div>
+                          <div className="text-3xl font-bold text-green-300 drop-shadow-lg">FREE</div>
                         ) : (
-                          <div className="text-2xl font-bold text-white drop-shadow-lg">
+                          <div className="text-3xl font-bold text-white drop-shadow-lg">
                             ${module.price}
-                            <span className="text-sm text-slate-200 ml-1">/month</span>
+                            <span className="text-base text-slate-200 ml-1">/month</span>
                           </div>
                         )}
                       </div>
