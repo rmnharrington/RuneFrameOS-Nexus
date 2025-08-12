@@ -18,6 +18,26 @@ interface DashboardProps {
   onNavigate?: (destination: string) => void
 }
 
+// Helper function to get image name for each module
+const getModuleImage = (moduleId: string): string => {
+  const imageMap: { [key: string]: string } = {
+    'broke-unicorn-tavern': 'BrokeUnicornTavern',
+    'persona-vault': 'PersonaVault',
+    'scriptoria': 'Scriptoria',
+    'distillara': 'Distillara',
+    'feastwell': 'Feastwell',
+    'hoardwell': 'Hoardwell',
+    'loreforge': 'LoreForge',
+    'mercatrix': 'Mercatrix',
+    'tapestry-engine': 'TapestryEngine',
+    'travelers-table': 'TravelersTable',
+    'echeladon': 'Echeladon',
+    'rune-weaver': 'RuneWeaver',
+    'necrotic-arcanum': 'NecroticArcanum'
+  }
+  return imageMap[moduleId] || 'Default'
+}
+
 export default function Dashboard({ modules, setModules, onNavigate }: DashboardProps) {
   const [moduleStatuses, setModuleStatuses] = useState<Record<string, any>>({})
   const [connectedModules, setConnectedModules] = useState<Set<string>>(new Set())
@@ -151,81 +171,91 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
           return (
             <div
               key={module.id}
-              className={`bg-gradient-to-br from-slate-50 to-gray-100 rounded-xl border-2 p-4 hover:shadow-lg transition-all duration-200 flex flex-col ${
+              className={`relative overflow-hidden rounded-xl border-2 p-4 hover:shadow-lg transition-all duration-200 flex flex-col ${
                 isModuleConnected 
                   ? 'border-blue-500 shadow-lg' 
                   : 'border-slate-200 hover:border-slate-300'
               }`}
               style={{
-                minHeight: '280px'
+                minHeight: '280px',
+                backgroundImage: `url('/${getModuleImage(module.id)}.png')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
               }}
             >
-              {/* Module Header */}
-              <div className="text-center mb-3 flex-shrink-0">
-                <div className="text-3xl mb-2">{module.icon}</div>
-                <h3 className="text-lg font-bold text-slate-800 mb-1 line-clamp-2">{module.name}</h3>
-                <p className="text-xs text-slate-600 mb-2 line-clamp-2">{module.description}</p>
-                
-                {/* Status Badge */}
-                <div className="inline-block px-2 py-1 bg-slate-200 text-slate-800 text-xs font-medium rounded-full mb-2">
-                  {module.status}
-                </div>
-              </div>
-
-              {/* Connection Status */}
-              {isModuleConnected && moduleData && (
-                <div className="mb-3 p-2 bg-blue-50 border border-blue-200 rounded-lg flex-shrink-0">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className={`text-xs px-1 py-0.5 rounded-full ${getStatusColor(moduleData.status)} bg-white`}>
-                      {moduleData.status === 'operational' ? 'Online' : moduleData.status}
-                    </span>
+              {/* Dark Overlay for Readability */}
+              <div className="absolute inset-0 bg-black/50"></div>
+              
+              {/* Content with relative positioning for overlay */}
+              <div className="relative z-10 h-full flex flex-col">
+                {/* Module Header */}
+                <div className="text-center mb-3 flex-shrink-0">
+                  <div className="text-3xl mb-2">{module.icon}</div>
+                  <h3 className="text-lg font-bold text-white mb-1 line-clamp-2 drop-shadow-lg">{module.name}</h3>
+                  <p className="text-xs text-slate-200 mb-2 line-clamp-2 drop-shadow-lg">{module.description}</p>
+                  
+                  {/* Status Badge */}
+                  <div className="inline-block px-2 py-1 bg-white/20 text-white text-xs font-medium rounded-full mb-2 border border-white/30">
+                    {module.status}
                   </div>
-                  {moduleData.lastUpdated && (
-                    <p className="text-xs text-blue-600">
-                      Last updated: {new Date(moduleData.lastUpdated).toLocaleTimeString()}
-                    </p>
+                </div>
+
+                {/* Connection Status */}
+                {isModuleConnected && moduleData && (
+                  <div className="mb-3 p-2 bg-blue-50/80 border border-blue-200/50 rounded-lg flex-shrink-0">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className={`text-xs px-1 py-0.5 rounded-full ${getStatusColor(moduleData.status)} bg-white/90`}>
+                        {moduleData.status === 'operational' ? 'Online' : moduleData.status}
+                      </span>
+                    </div>
+                    {moduleData.lastUpdated && (
+                      <p className="text-xs text-blue-200 drop-shadow-lg">
+                        Last updated: {new Date(moduleData.lastUpdated).toLocaleTimeString()}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Action Button */}
+                <div className="mt-auto">
+                  {isModuleConnected ? (
+                    <button
+                      onClick={() => handleOpenInNexus(module)}
+                      className="w-full py-2 px-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg text-sm"
+                    >
+                      🚀 Open in Nexus
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleConnect(module)}
+                      disabled={!module.url}
+                      className={`w-full py-2 px-3 rounded-lg font-semibold transition-all duration-200 text-sm ${
+                        module.url
+                          ? 'bg-gradient-to-r from-slate-500 to-slate-600 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105'
+                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      }`}
+                    >
+                      {module.url ? '🔌 Connect' : 'No URL'}
+                    </button>
                   )}
                 </div>
-              )}
 
-              {/* Action Button */}
-              <div className="mt-auto">
-                {isModuleConnected ? (
-                  <button
-                    onClick={() => handleOpenInNexus(module)}
-                    className="w-full py-2 px-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg text-sm"
-                  >
-                    🚀 Open in Nexus
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => handleConnect(module)}
-                    disabled={!module.url}
-                    className={`w-full py-2 px-3 rounded-lg font-semibold transition-all duration-200 text-sm ${
-                      module.url
-                        ? 'bg-gradient-to-r from-slate-500 to-slate-600 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105'
-                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    }`}
-                  >
-                    {module.url ? '🔌 Connect' : 'No URL'}
-                  </button>
+                {/* Live Data Display (in settings gear) */}
+                {isModuleConnected && moduleData && (
+                  <div className="mt-3 p-2 bg-white/20 rounded-lg flex-shrink-0 border border-white/30">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-medium text-white drop-shadow-lg">Live Data</span>
+                      <span className="text-xs text-white/80">⚙️</span>
+                    </div>
+                    <div className="text-xs text-slate-200 space-y-0.5 drop-shadow-lg">
+                      <p>Status: {moduleData.status}</p>
+                      {moduleData.version && <p>Version: {moduleData.version}</p>}
+                      {moduleData.uptime && <p>Uptime: {moduleData.uptime}</p>}
+                    </div>
+                  </div>
                 )}
               </div>
-
-              {/* Live Data Display (in settings gear) */}
-              {isModuleConnected && moduleData && (
-                <div className="mt-3 p-2 bg-slate-100/50 rounded-lg flex-shrink-0">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-medium text-slate-700">Live Data</span>
-                    <span className="text-xs text-slate-500">⚙️</span>
-                  </div>
-                  <div className="text-xs text-slate-600 space-y-0.5">
-                    <p>Status: {moduleData.status}</p>
-                    {moduleData.version && <p>Version: {moduleData.version}</p>}
-                    {moduleData.uptime && <p>Uptime: {moduleData.uptime}</p>}
-                  </div>
-                </div>
-              )}
             </div>
           )
         })}
