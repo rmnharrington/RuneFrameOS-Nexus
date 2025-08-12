@@ -11,7 +11,7 @@ export default function AppFooter() {
           <div className="flex items-center space-x-4 lg:space-x-6">
             <div className="flex items-center space-x-2">
               <img
-                src="/Logo_light.png"
+                src="/BGG_Logo_light.png"
                 alt="Bad Guy Gas"
                 className="w-6 h-6 object-contain"
               />
