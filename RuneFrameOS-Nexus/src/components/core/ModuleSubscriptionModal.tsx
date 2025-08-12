@@ -129,45 +129,36 @@ const availableModules: AvailableModule[] = [
     currency: 'USD',
     isFree: false,
     category: 'Economy',
-    features: ['Market simulation', 'Price tracking', 'Trade routes', 'Merchant AI']
-  },
-  {
-    id: 'runeweaver',
-    name: 'RuneWeaver',
-    description: 'Modular enchanting system using runes and energy circuits.',
-    icon: '🔮',
-    price: 2.99,
-    currency: 'USD',
-    isFree: false,
-    category: 'Magic System',
-    features: ['Rune crafting', 'Energy circuits', 'Enchantment design', 'Spell creation']
+    features: ['Barter system', 'Trade routes', 'Market simulation', 'Currency management']
   },
   {
     id: 'tapestry-engine',
     name: 'Tapestry Engine',
-    description: 'Narrative engine for weaving interconnected storylines.',
+    description: 'Advanced storytelling and narrative management system.',
     icon: '📖',
     price: 2.99,
     currency: 'USD',
     isFree: false,
-    category: 'Narrative',
-    features: ['Story weaving', 'Plot tracking', 'Character arcs', 'Narrative tools']
+    category: 'Storytelling',
+    features: ['Plot tracking', 'Character arcs', 'Story beats', 'Narrative tools']
   },
   {
     id: 'travelers-table',
-    name: 'Travelers\' Table',
-    description: 'Party/campaign session manager for group play.',
+    name: 'Travelers Table',
+    description: 'Virtual tabletop with integrated tools for remote gaming.',
     icon: '🎲',
-    price: 1.99,
+    price: 2.99,
     currency: 'USD',
     isFree: false,
-    category: 'Session Management',
-    features: ['Session planning', 'Party management', 'Campaign tracking', 'Group tools']
+    category: 'Virtual Tabletop',
+    features: ['Dice rolling', 'Map sharing', 'Character sheets', 'Voice chat']
   }
 ]
 
 export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }: ModuleSubscriptionModalProps) {
   const [selectedModules, setSelectedModules] = useState<AvailableModule[]>([])
+
+  // Add debugging
   console.log('🔍 ModuleSubscriptionModal render - isOpen:', isOpen)
   console.log('🔍 ModuleSubscriptionModal render - selectedModules:', selectedModules)
 
@@ -183,11 +174,8 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
   }
 
   const handleSubscribe = () => {
-    if (selectedModules.length > 0) {
-      onSubscribe(selectedModules)
-      setSelectedModules([])
-      onClose()
-    }
+    onSubscribe(selectedModules)
+    setSelectedModules([])
   }
 
   const getTotalPrice = () => {
@@ -196,17 +184,22 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
 
   const getSelectedCount = () => selectedModules.length
 
-  if (!isOpen) return null
+  if (!isOpen) {
+    console.log('🔍 Modal not open, returning null')
+    return null
+  }
+
+  console.log('🔍 Modal is open, rendering content')
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-2xl shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-amber-500 to-orange-600 text-white p-6">
+        <div className="bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 text-white p-6">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold">Module Marketplace</h2>
-              <p className="text-amber-100 mt-1">Select multiple modules to add to your dashboard</p>
+              <p className="text-slate-100 mt-1">Select multiple modules to add to your dashboard</p>
             </div>
             <div className="flex items-center space-x-4">
               {/* Selection Counter */}
@@ -233,10 +226,10 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
               return (
                 <div 
                   key={module.id} 
-                  className={`bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 p-6 hover:shadow-lg transition-all duration-200 cursor-pointer ${
+                  className={`bg-gradient-to-br from-slate-50 to-gray-100 rounded-xl border-2 p-6 hover:shadow-lg transition-all duration-200 cursor-pointer ${
                     isSelected 
-                      ? 'border-green-500 bg-green-50 shadow-lg scale-105' 
-                      : 'border-amber-200 hover:border-amber-300'
+                      ? 'border-blue-500 bg-blue-50 shadow-lg scale-105' 
+                      : 'border-slate-200 hover:border-slate-300'
                   }`}
                   onClick={() => handleModuleToggle(module)}
                 >
@@ -244,8 +237,8 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
                   <div className="flex justify-end mb-2">
                     <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
                       isSelected 
-                        ? 'bg-green-500 border-green-600' 
-                        : 'bg-white border-amber-300'
+                        ? 'bg-blue-500 border-blue-600' 
+                        : 'bg-white border-slate-300'
                     }`}>
                       {isSelected && <span className="text-white text-sm">✓</span>}
                     </div>
@@ -254,33 +247,33 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
                   {/* Module Header */}
                   <div className="text-center mb-4">
                     <div className="text-4xl mb-3">{module.icon}</div>
-                    <h3 className="text-xl font-bold text-amber-800 mb-2">{module.name}</h3>
-                    <p className="text-sm text-amber-600 mb-3">{module.description}</p>
+                    <h3 className="text-xl font-bold text-slate-800 mb-2">{module.name}</h3>
+                    <p className="text-sm text-slate-600 mb-3">{module.description}</p>
                     
                     {/* Price */}
                     <div className="mb-4">
                       {module.isFree ? (
                         <div className="text-2xl font-bold text-green-600">FREE</div>
                       ) : (
-                        <div className="text-2xl font-bold text-amber-700">
+                        <div className="text-2xl font-bold text-slate-700">
                           ${module.price}
-                          <span className="text-sm text-amber-600 ml-1">/month</span>
+                          <span className="text-sm text-slate-600 ml-1">/month</span>
                         </div>
                       )}
                     </div>
 
                     {/* Category Badge */}
-                    <div className="inline-block px-3 py-1 bg-amber-200 text-amber-800 text-xs font-medium rounded-full mb-4">
+                    <div className="inline-block px-3 py-1 bg-slate-200 text-slate-800 text-xs font-medium rounded-full mb-4">
                       {module.category}
                     </div>
                   </div>
 
                   {/* Features */}
                   <div className="mb-6">
-                    <h4 className="font-semibold text-amber-800 mb-2 text-sm">Features:</h4>
+                    <h4 className="font-semibold text-slate-800 mb-2 text-sm">Features:</h4>
                     <ul className="space-y-1">
                       {module.features.map((feature, index) => (
-                        <li key={index} className="text-xs text-amber-700 flex items-center">
+                        <li key={index} className="text-xs text-slate-700 flex items-center">
                           <span className="text-green-500 mr-2">✓</span>
                           {feature}
                         </li>
@@ -291,7 +284,7 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
                   {/* Selection Status */}
                   <div className="text-center">
                     <span className={`text-sm font-medium ${
-                      isSelected ? 'text-green-600' : 'text-amber-600'
+                      isSelected ? 'text-blue-600' : 'text-slate-600'
                     }`}>
                       {isSelected ? '✓ Selected' : 'Click to select'}
                     </span>
@@ -325,7 +318,7 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
                 disabled={getSelectedCount() === 0}
                 className={`px-6 py-2 rounded-lg font-semibold transition-all duration-200 ${
                   getSelectedCount() > 0
-                    ? 'bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white hover:scale-105'
+                    ? 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white hover:scale-105'
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 }`}
               >

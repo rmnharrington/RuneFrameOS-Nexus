@@ -3,10 +3,12 @@
 import React, { useState, useRef, useCallback } from 'react'
 import Dashboard from '@/components/core/Dashboard'
 import AppLayout, { AppLayoutRef } from '@/components/core/AppLayout'
+import { useRouter } from 'next/navigation'
 
 export default function DashboardPage() {
   const [modules, setModules] = useState<any[]>([])
   const appLayoutRef = useRef<AppLayoutRef>(null)
+  const router = useRouter()
 
   const handleAddModule = (module: any) => {
     // Convert AvailableModule to Module format
@@ -43,6 +45,11 @@ export default function DashboardPage() {
     }
   }, [])
 
+  const handleLogout = useCallback(() => {
+    console.log('🔄 Logging out, returning to index page')
+    router.push('/')
+  }, [router])
+
   return (
     <AppLayout 
       ref={appLayoutRef}
@@ -52,6 +59,7 @@ export default function DashboardPage() {
       showStats={true}
       onAddModule={handleAddModule}
       onNavigate={handleNavigate}
+      onLogout={handleLogout}
     >
       <Dashboard modules={modules} setModules={setModules} onNavigate={handleNavigate} />
     </AppLayout>

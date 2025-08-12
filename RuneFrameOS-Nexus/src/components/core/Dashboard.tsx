@@ -9,6 +9,7 @@ interface Module {
   icon: string
   status: 'operational' | 'degraded' | 'down'
   url?: string
+  version?: string
 }
 
 interface DashboardProps {
@@ -110,15 +111,29 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
     }
   }
 
+  const handleOpenExternal = (module: Module) => {
+    console.log(`Opening external URL for ${module.name}`)
+    if (module.url) {
+      window.open(module.url, '_blank')
+    } else {
+      console.warn(`No external URL configured for ${module.name}`)
+    }
+  }
+
+  const onAddModules = () => {
+    console.log('Add Modules clicked')
+    // Implement navigation or modal for adding modules
+  }
+
   const isConnected = (moduleId: string) => connectedModules.has(moduleId)
 
   if (modules.length === 0) {
     return (
       <div className="text-center py-12">
         <div className="text-6xl mb-4">🏗️</div>
-        <h2 className="text-2xl font-bold text-amber-800 mb-2">Dashboard Empty</h2>
-        <p className="text-amber-600 mb-6">Use the "Add Modules" button in the left sidebar to get started</p>
-        <div className="text-sm text-amber-500">
+        <h2 className="text-2xl font-bold text-slate-800 mb-2">Dashboard Empty</h2>
+        <p className="text-slate-600 mb-6">Use the "Add Modules" button in the left sidebar to get started</p>
+        <div className="text-sm text-slate-500">
           <p>Your RuneFrameOS ecosystem awaits...</p>
         </div>
       </div>
@@ -136,10 +151,10 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
           return (
             <div
               key={module.id}
-              className={`bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 p-4 hover:shadow-lg transition-all duration-200 flex flex-col ${
+              className={`bg-gradient-to-br from-slate-50 to-gray-100 rounded-xl border-2 p-4 hover:shadow-lg transition-all duration-200 flex flex-col ${
                 isModuleConnected 
-                  ? 'border-green-500 shadow-lg' 
-                  : 'border-amber-200 hover:border-amber-300'
+                  ? 'border-blue-500 shadow-lg' 
+                  : 'border-slate-200 hover:border-slate-300'
               }`}
               style={{
                 minHeight: '280px'
@@ -148,25 +163,25 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
               {/* Module Header */}
               <div className="text-center mb-3 flex-shrink-0">
                 <div className="text-3xl mb-2">{module.icon}</div>
-                <h3 className="text-lg font-bold text-amber-800 mb-1 line-clamp-2">{module.name}</h3>
-                <p className="text-xs text-amber-600 mb-2 line-clamp-2">{module.description}</p>
+                <h3 className="text-lg font-bold text-slate-800 mb-1 line-clamp-2">{module.name}</h3>
+                <p className="text-xs text-slate-600 mb-2 line-clamp-2">{module.description}</p>
                 
                 {/* Status Badge */}
-                <div className="inline-block px-2 py-1 bg-amber-200 text-amber-800 text-xs font-medium rounded-full mb-2">
+                <div className="inline-block px-2 py-1 bg-slate-200 text-slate-800 text-xs font-medium rounded-full mb-2">
                   {module.status}
                 </div>
               </div>
 
               {/* Connection Status */}
               {isModuleConnected && moduleData && (
-                <div className="mb-3 p-2 bg-green-50 border border-green-200 rounded-lg flex-shrink-0">
+                <div className="mb-3 p-2 bg-blue-50 border border-blue-200 rounded-lg flex-shrink-0">
                   <div className="flex items-center justify-between mb-1">
                     <span className={`text-xs px-1 py-0.5 rounded-full ${getStatusColor(moduleData.status)} bg-white`}>
                       {moduleData.status === 'operational' ? 'Online' : moduleData.status}
                     </span>
                   </div>
                   {moduleData.lastUpdated && (
-                    <p className="text-xs text-green-600">
+                    <p className="text-xs text-blue-600">
                       Last updated: {new Date(moduleData.lastUpdated).toLocaleTimeString()}
                     </p>
                   )}
@@ -178,7 +193,7 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
                 {isModuleConnected ? (
                   <button
                     onClick={() => handleOpenInNexus(module)}
-                    className="w-full py-2 px-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg text-sm"
+                    className="w-full py-2 px-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 shadow-lg text-sm"
                   >
                     🚀 Open in Nexus
                   </button>
@@ -188,7 +203,7 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
                     disabled={!module.url}
                     className={`w-full py-2 px-3 rounded-lg font-semibold transition-all duration-200 text-sm ${
                       module.url
-                        ? 'bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white hover:scale-105'
+                        ? 'bg-gradient-to-r from-slate-500 to-slate-600 hover:from-slate-600 hover:to-slate-700 text-white hover:scale-105'
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     }`}
                   >
@@ -199,12 +214,12 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
 
               {/* Live Data Display (in settings gear) */}
               {isModuleConnected && moduleData && (
-                <div className="mt-3 p-2 bg-amber-100/50 rounded-lg flex-shrink-0">
+                <div className="mt-3 p-2 bg-slate-100/50 rounded-lg flex-shrink-0">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-medium text-amber-700">Live Data</span>
-                    <span className="text-xs text-amber-500">⚙️</span>
+                    <span className="text-xs font-medium text-slate-700">Live Data</span>
+                    <span className="text-xs text-slate-500">⚙️</span>
                   </div>
-                  <div className="text-xs text-amber-600 space-y-0.5">
+                  <div className="text-xs text-slate-600 space-y-0.5">
                     <p>Status: {moduleData.status}</p>
                     {moduleData.version && <p>Version: {moduleData.version}</p>}
                     {moduleData.uptime && <p>Uptime: {moduleData.uptime}</p>}
@@ -217,24 +232,24 @@ export default function Dashboard({ modules, setModules, onNavigate }: Dashboard
       </div>
 
       {/* Footer Stats */}
-      <div className="mt-8 p-6 bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl border border-amber-200">
-        <h3 className="text-lg font-semibold text-amber-800 mb-4">Dashboard Overview</h3>
+      <div className="mt-8 p-6 bg-gradient-to-r from-slate-100 to-gray-100 rounded-xl border border-slate-200">
+        <h3 className="text-lg font-semibold text-slate-800 mb-4">Dashboard Overview</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-amber-700">{modules.length}</div>
-            <div className="text-sm text-amber-600">Total Modules</div>
+            <div className="text-2xl font-bold text-slate-700">{modules.length}</div>
+            <div className="text-sm text-slate-600">Total Modules</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-green-600">{connectedModules.size}</div>
-            <div className="text-sm text-amber-600">Connected</div>
+            <div className="text-sm text-slate-600">Connected</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-amber-600">{modules.filter(m => m.status === 'operational').length}</div>
-            <div className="text-sm text-amber-600">Operational</div>
+            <div className="text-2xl font-bold text-slate-600">{modules.filter(m => m.status === 'operational').length}</div>
+            <div className="text-sm text-slate-600">Operational</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-orange-600">{modules.filter(m => m.status !== 'operational').length}</div>
-            <div className="text-sm text-amber-600">Issues</div>
+            <div className="text-sm text-slate-600">Issues</div>
           </div>
         </div>
       </div>
