@@ -20,6 +20,27 @@ interface ModuleSubscriptionModalProps {
   onSubscribe: (modules: AvailableModule[]) => void
 }
 
+// Helper function to get image name for each module
+const getModuleImage = (moduleId: string): string => {
+  const imageMap: { [key: string]: string } = {
+    'broke-unicorn-tavern': 'BrokeUnicornTavern',
+    'persona-vault': 'PersonaVault',
+    'scriptoria': 'Scriptoria',
+    'distillara': 'Distillara',
+    'feastwell': 'Feastwell',
+    'hoardwell': 'Hoardwell',
+    'rulesmith-ai': 'RulesmithAI',
+    'loreforge': 'LoreForge',
+    'mercatrix': 'Mercatrix',
+    'tapestry-engine': 'TapestryEngine',
+    'travelers-table': 'TravelersTable',
+    'echeladon': 'Echeladon',
+    'rune-weaver': 'RuneWeaver',
+    'necrotic-arcanum': 'NecroticArcanum'
+  }
+  return imageMap[moduleId] || 'Default'
+}
+
 const availableModules: AvailableModule[] = [
   {
     id: 'broke-unicorn-tavern',
@@ -226,68 +247,80 @@ export default function ModuleSubscriptionModal({ isOpen, onClose, onSubscribe }
               return (
                 <div 
                   key={module.id} 
-                  className={`bg-gradient-to-br from-slate-50 to-gray-100 rounded-xl border-2 p-6 hover:shadow-lg transition-all duration-200 cursor-pointer ${
+                  className={`relative overflow-hidden rounded-xl border-2 p-6 hover:shadow-lg transition-all duration-200 cursor-pointer ${
                     isSelected 
-                      ? 'border-blue-500 bg-blue-50 shadow-lg scale-105' 
+                      ? 'border-blue-500 shadow-lg scale-105' 
                       : 'border-slate-200 hover:border-slate-300'
                   }`}
                   onClick={() => handleModuleToggle(module)}
+                  style={{
+                    backgroundImage: `url('/${getModuleImage(module.id)}.png')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
                 >
-                  {/* Selection Indicator */}
-                  <div className="flex justify-end mb-2">
-                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
-                      isSelected 
-                        ? 'bg-blue-500 border-blue-600' 
-                        : 'bg-white border-slate-300'
-                    }`}>
-                      {isSelected && <span className="text-white text-sm">✓</span>}
-                    </div>
-                  </div>
-
-                  {/* Module Header */}
-                  <div className="text-center mb-4">
-                    <div className="text-4xl mb-3">{module.icon}</div>
-                    <h3 className="text-xl font-bold text-slate-800 mb-2">{module.name}</h3>
-                    <p className="text-sm text-slate-600 mb-3">{module.description}</p>
-                    
-                    {/* Price */}
-                    <div className="mb-4">
-                      {module.isFree ? (
-                        <div className="text-2xl font-bold text-green-600">FREE</div>
-                      ) : (
-                        <div className="text-2xl font-bold text-slate-700">
-                          ${module.price}
-                          <span className="text-sm text-slate-600 ml-1">/month</span>
-                        </div>
-                      )}
+                  {/* Dark Overlay for Readability */}
+                  <div className="absolute inset-0 bg-black/50"></div>
+                  
+                  {/* Content with relative positioning for overlay */}
+                  <div className="relative z-10 h-full flex flex-col">
+                    {/* Selection Indicator */}
+                    <div className="flex justify-end mb-2">
+                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${
+                        isSelected 
+                          ? 'bg-blue-500 border-blue-600' 
+                          : 'bg-white/80 border-white/60'
+                      }`}>
+                        {isSelected && <span className="text-white text-sm">✓</span>}
+                      </div>
                     </div>
 
-                    {/* Category Badge */}
-                    <div className="inline-block px-3 py-1 bg-slate-200 text-slate-800 text-xs font-medium rounded-full mb-4">
-                      {module.category}
+                    {/* Module Header */}
+                    <div className="text-center mb-4">
+                      <div className="text-4xl mb-3">{module.icon}</div>
+                      <h3 className="text-xl font-bold text-white mb-2 drop-shadow-lg">{module.name}</h3>
+                      <p className="text-sm text-slate-200 mb-3 drop-shadow-lg">{module.description}</p>
+                      
+                      {/* Price */}
+                      <div className="mb-4">
+                        {module.isFree ? (
+                          <div className="text-2xl font-bold text-green-300 drop-shadow-lg">FREE</div>
+                        ) : (
+                          <div className="text-2xl font-bold text-white drop-shadow-lg">
+                            ${module.price}
+                            <span className="text-sm text-slate-200 ml-1">/month</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Category Badge */}
+                      <div className="inline-block px-3 py-1 bg-white/20 text-white text-xs font-medium rounded-full mb-4 border border-white/30">
+                        {module.category}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Features */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-slate-800 mb-2 text-sm">Features:</h4>
-                    <ul className="space-y-1">
-                      {module.features.map((feature, index) => (
-                        <li key={index} className="text-xs text-slate-700 flex items-center">
-                          <span className="text-green-500 mr-2">✓</span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    {/* Features */}
+                    <div className="mb-6">
+                      <h4 className="font-semibold text-white mb-2 text-sm drop-shadow-lg">Features:</h4>
+                      <ul className="space-y-1">
+                        {module.features.map((feature, index) => (
+                          <li key={index} className="text-xs text-slate-200 flex items-center drop-shadow-lg">
+                            <span className="text-green-300 mr-2">✓</span>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                  {/* Selection Status */}
-                  <div className="text-center">
-                    <span className={`text-sm font-medium ${
-                      isSelected ? 'text-blue-600' : 'text-slate-600'
-                    }`}>
-                      {isSelected ? '✓ Selected' : 'Click to select'}
-                    </span>
+                    {/* Selection Status */}
+                    <div className="text-center mt-auto">
+                      <span className={`text-sm font-medium drop-shadow-lg ${
+                        isSelected ? 'text-blue-300' : 'text-slate-200'
+                      }`}>
+                        {isSelected ? '✓ Selected' : 'Click to select'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               )
