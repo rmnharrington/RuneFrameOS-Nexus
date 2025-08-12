@@ -108,20 +108,10 @@ const availableModules: AvailableModule[] = [
     category: 'Inventory',
     features: ['Smart categorization', 'Weight tracking', 'Value estimation', 'Loot management']
   },
+
   {
-    id: 'rulesmith-ai',
-    name: 'Rulesmith AI',
-    description: 'AI-powered rule generation and game mechanics assistance for Game Masters.',
-    icon: '🤖',
-    price: 2.99,
-    currency: 'USD',
-    isFree: false,
-    category: 'AI Assistant',
-    features: ['Rule generation', 'Balance suggestions', 'Mechanic design', 'AI consultation']
-  },
-  {
-    id: 'cryptwell',
-    name: 'Cryptwell',
+    id: 'necrotic-arcanum',
+    name: 'Necrotic Arcanum',
     description: 'Undead/necromancy management and lore repository.',
     icon: '💀',
     price: 1.99,
