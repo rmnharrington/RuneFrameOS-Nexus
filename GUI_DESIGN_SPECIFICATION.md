@@ -114,6 +114,12 @@ All sidebars **MUST** include this standardized header:
 - **Icons**: Castle, chat, mission board, character
 - **Features**: Party chat, event planning, character meetups
 
+### **Scriptoria (Gaming Systems)**
+- **Theme**: Knowledge, learning, systems
+- **Colors**: Slate to blue gradients (forge-style)
+- **Icons**: Book, sword, castle, star
+- **Features**: Gaming system library, rulesets, documentation
+
 ## 📱 **Responsive Design Requirements**
 
 ### **Mobile-First Approach**
@@ -215,6 +221,125 @@ All applications **MUST** use this exact layout structure to ensure consistent b
 - **Hover effects**: Implement `hover:scale-105` for buttons
 - **Transitions**: Use `transition-all duration-200` for smooth animations
 
+## 🖼️ **Image Organization Standards (NEW)**
+
+### **Image File Structure (MANDATORY)**
+All applications **MUST** follow this image organization:
+
+```
+Images/
+├── AppName.png              # Regular image (main app icon)
+├── AppName_HeroBanner.png   # Hero banner image
+└── AppName_Logos_IconOnly.png # Outline/icon-only version
+```
+
+### **Image Usage Guidelines**
+- **Regular Images**: Use for main app icons and primary branding
+- **Hero Banners**: Use for large header images and promotional content
+- **Icon-Only Logos**: Use for sidebars, navigation, and compact spaces
+
+### **Image Implementation in Components**
+```tsx
+// Header/Logo usage
+<img 
+  src="/AppName_Logos_IconOnly.png" 
+  alt="App Name" 
+  className="w-8 h-8 object-contain"
+/>
+
+// Hero banner usage
+<div className="bg-cover bg-center bg-no-repeat" 
+     style={{backgroundImage: "url('/AppName_HeroBanner.png')"}}>
+  {/* Content */}
+</div>
+
+// Sidebar icon usage
+<img 
+  src="/AppName_Logos_IconOnly.png" 
+  alt="App Name" 
+  className="w-6 h-6 object-contain"
+/>
+```
+
+### **Image File Naming Convention**
+- **Use PascalCase**: `Scriptoria.png`, `BrokeUnicornTavern.png`
+- **Be specific**: `Distillara.png` not `distillara.png`
+- **Include all three versions**: Regular, HeroBanner, Logos_IconOnly
+
+## 🔌 **Module Integration Standards (NEW)**
+
+### **Nexus Module Integration Pattern (MANDATORY)**
+When integrating external modules into Nexus, **NEVER** embed the full application. Instead, create a **Nexus-native view** that fetches data via API:
+
+```tsx
+// CORRECT: Nexus-native integration
+function ScriptoriaView({ onReturnToNexus }: ScriptoriaViewProps) {
+  const [data, setData] = useState(null)
+  
+  // Fetch data from external app API
+  const fetchData = async () => {
+    const response = await fetch('http://localhost:PORT/api/module-info')
+    const data = await response.json()
+    setData(data)
+  }
+  
+  // Return Nexus-native UI, not external app layout
+  return (
+    <div className="w-full h-full">
+      {/* Nexus-styled content using external data */}
+    </div>
+  )
+}
+
+// WRONG: Full app embedding
+function ScriptoriaView() {
+  return (
+    <div className="flex flex-col h-full">
+      {/* External app header */}
+      {/* External app left sidebar */}
+      {/* External app content */}
+    </div>
+  )
+}
+```
+
+### **Required Components for Module Integration**
+1. **Main View Component**: `AppNameView` with `onReturnToNexus` prop
+2. **Sidebar Component**: `AppNameView.Sidebar` for right panel
+3. **API Integration**: Fetch data from external app endpoints
+4. **Loading States**: Show loading spinners during API calls
+5. **Error Handling**: Display error messages with retry options
+
+### **API Endpoints Required**
+All integrated modules **MUST** provide these endpoints:
+- `/api/health` - Health check
+- `/api/module-info` - Module information and data
+- `/api/status` - Current status
+
+### **Module View Structure**
+```tsx
+// Standard module view structure
+<div className="w-full h-full">
+  {/* Module Header */}
+  <div className="mb-6 p-4 bg-gradient-to-r from-slate-100 to-gray-100 rounded-lg border border-slate-300">
+    <div className="flex items-center space-x-3">
+      <div className="w-12 h-12 flex items-center justify-center">
+        <img src="/appname_logo_IconOnly.png" alt="App Name" className="w-full h-full object-contain" />
+      </div>
+      <div>
+        <h1 className="text-2xl font-bold text-slate-800">App Name</h1>
+        <p className="text-slate-600">App Description</p>
+      </div>
+    </div>
+  </div>
+
+  {/* Main Content */}
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    {/* Content sections */}
+  </div>
+</div>
+```
+
 ## ✅ **Compliance Checklist**
 
 Before deploying any application, ensure:
@@ -231,6 +356,9 @@ Before deploying any application, ensure:
 - [ ] **Typography scale** follows responsive pattern
 - [ ] **Spacing system** uses standardized values
 - [ ] **Component structure** matches Nexus patterns
+- [ ] **Image organization** follows new file structure standards
+- [ ] **Module integration** uses Nexus-native pattern, not full app embedding
+- [ ] **API endpoints** provide required health/status/module-info data
 - **No custom CSS** that could break consistency
 
 ## 🚫 **Forbidden Practices**
@@ -245,6 +373,9 @@ Before deploying any application, ensure:
 - **Non-responsive designs** that don't scale properly
 - **Custom fonts** that break the fantasy theme
 - **Inconsistent spacing** that doesn't follow the system
+- **Embedding full external apps** instead of creating Nexus-native views
+- **Missing API endpoints** for module integration
+- **Inconsistent image naming** or missing image versions
 
 ## 🔄 **Update Process**
 
@@ -258,8 +389,8 @@ When updating the design specification:
 
 ---
 
-**Last Updated**: Current Development Session - Layout Standards Added  
-**Status**: All applications must follow new layout and grid standards  
+**Last Updated**: Current Development Session - Scriptoria Integration & Image Standards Added  
+**Status**: All applications must follow new layout, grid, image, and module integration standards  
 **Next Review**: After major design changes or new applications added
 
 ## 📋 **Recent Updates (Current Session)**
@@ -276,9 +407,25 @@ When updating the design specification:
 - **Fixed responsive grids** to use `md:grid-cols-2` pattern
 - **Resolved content overlap** with left sidebar
 
+### **Scriptoria Integration Pattern (NEW)**
+- **Established Nexus-native integration pattern** instead of full app embedding
+- **Created ScriptoriaView.Sidebar component** for right panel integration
+- **Implemented proper API data fetching** from external Scriptoria app
+- **Removed standalone app layout** (header, left menu) when integrated in Nexus
+- **Added loading states and error handling** for professional user experience
+
+### **Image Organization Standards (NEW)**
+- **Standardized image file structure** with Regular, HeroBanner, and Logos_IconOnly versions
+- **Established mandatory naming conventions** using PascalCase
+- **Defined image usage guidelines** for different component contexts
+- **Ensured all apps have public folders** with proper image organization
+
 ### **Standards to Apply to All Apps**
 1. **Use exact layout structure** from Implementation Guidelines
 2. **Never use `fixed` positioning** for sidebars
 3. **Always use `md:grid-cols-2`** for responsive grids
 4. **Ensure left sidebar visibility** at all screen sizes
 5. **Hide right sidebar** on mobile/tablet with `hidden lg:block`
+6. **Follow image organization standards** with all three image versions
+7. **Use Nexus-native integration** for external modules, not full app embedding
+8. **Provide required API endpoints** for health, status, and module-info
