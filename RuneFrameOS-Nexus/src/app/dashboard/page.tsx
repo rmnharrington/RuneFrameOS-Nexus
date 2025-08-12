@@ -19,11 +19,11 @@ export default function DashboardPage() {
       status: 'offline' as const,
       version: 'v0.1.0',
       // Add URLs for modules that have them
-      url: module.id === 'distillara' ? 'http://localhost:3001' :
-           module.id === 'feastwell' ? 'http://localhost:3003' :
-           module.id === 'hoardwell' ? 'http://localhost:3004' :
-           module.id === 'broke-unicorn-tavern' ? 'http://localhost:3005' :
-           module.id === 'scriptoria' ? 'http://localhost:3006' : undefined
+      url: module.id === 'distillara' ? 'http://172.16.253.102:3001' :
+           module.id === 'feastwell' ? 'http://172.16.253.102:3003' :
+           module.id === 'hoardwell' ? 'http://172.16.253.102:3004' :
+           module.id === 'broke-unicorn-tavern' ? 'http://172.16.253.102:3005' :
+           module.id === 'scriptoria' ? 'http://172.16.253.102:3006' : undefined
     }
 
     // Check if module already exists
