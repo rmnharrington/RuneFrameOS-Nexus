@@ -21,17 +21,17 @@ export default function Home() {
         <p className="text-blue-600 mb-4 text-sm">Test each application individually for development and debugging</p>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          {/* Nexus Card */}
+          {/* Necrotic Arcanum Card */}
           <div className="bg-white/80 rounded-lg border border-blue-200 p-4 text-center hover:shadow-md transition-all duration-200">
-            <div className="text-3xl mb-2">🏛️</div>
-            <h3 className="font-semibold text-blue-800 text-sm mb-1">Nexus Dashboard</h3>
-            <p className="text-xs text-blue-600 mb-3">Main Hub</p>
-            <div className="text-xs text-green-600 font-medium mb-2">Port 3000</div>
+            <div className="text-3xl mb-2">🧟</div>
+            <h3 className="font-semibold text-blue-800 text-sm mb-1">Necrotic Arcanum</h3>
+            <p className="text-xs text-blue-600 mb-3">Undead Mastery</p>
+            <div className="text-xs text-green-600 font-medium mb-2">Port 3007</div>
             <button 
-              onClick={() => window.open('/dashboard', '_blank')}
-              className="w-full py-2 px-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 text-xs"
+              onClick={() => window.open('http://localhost:3007', '_blank')}
+              className="w-full py-2 px-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 text-xs"
             >
-              🚀 Open Dashboard
+              🧟 Open Necrotic Arcanum
             </button>
           </div>
 

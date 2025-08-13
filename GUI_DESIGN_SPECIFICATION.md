@@ -2,27 +2,31 @@
 
 ## 🎯 **Design Philosophy**
 
-The RuneFrameOS ecosystem follows a **unified design language** where all applications maintain visual consistency while preserving their unique thematic elements. **Nexus serves as the design foundation** that all other applications must follow.
+The RuneFrameOS ecosystem follows a **unified structural design language** where all applications maintain consistent layout, spacing, and component behavior while preserving their unique thematic elements and color schemes. **Nexus serves as the structural foundation** that all other applications must follow, but each app defines its own visual identity through colors and theming.
 
-## 🎨 **Color Palette**
+**Key Principle**: **Color flexibility is a core feature** - each application will have its own unique color palette and theme as one of its defining characteristics.
 
-### **Primary Colors**
-- **Amber**: `#f59e0b` - Primary brand color, warmth, energy
-- **Orange**: `#ea580c` - Secondary brand color, creativity, adventure
-- **Red**: `#dc2626` - Accent color, power, intensity
+## 🎨 **Color Palette Philosophy**
 
-### **Gradient Combinations**
-- **Primary Gradient**: `from-amber-500 via-orange-500 to-red-500`
-- **Sidebar Gradients**: 
-  - Left: `from-amber-50 to-orange-50`
-  - Right: `from-orange-50 to-red-50`
-- **Button Gradients**: `from-amber-500 to-orange-600`
+### **Color Freedom (NEW)**
+- **Each app defines its own color scheme** - no centralized color restrictions
+- **Colors are a defining feature** of each application's identity
+- **Nexus will adapt** to integrate with different app color schemes
+- **Maintains visual uniqueness** while preserving structural consistency
 
-### **Semantic Colors**
-- **Success**: `#16a34a` (green-600)
-- **Warning**: `#ca8a04` (yellow-600)
-- **Error**: `#dc2626` (red-600)
-- **Info**: `#2563eb` (blue-600)
+### **Current Implementation Examples**
+- **Nexus**: Slate/blue theme for system interface
+- **Distillara**: Amber/orange theme for alchemy
+- **Feastwell**: Warm culinary colors
+- **Hoardwell**: Treasure/wealth themed colors
+- **Broke Unicorn Tavern**: Social/adventure themed colors
+- **Scriptoria**: Knowledge/learning themed colors
+
+### **Future Color Integration**
+- **Nexus will adapt** to show app-specific color schemes when integrated
+- **Dynamic theming** based on active application
+- **Color coordination** between app and Nexus interface
+- **Maintains brand identity** while ensuring structural consistency
 
 ## 📐 **Layout Standards**
 
@@ -60,63 +64,68 @@ w-64
 ## 🏗️ **Component Standards**
 
 ### **Header Design (MANDATORY)**
-All sidebars **MUST** include this standardized header:
+All sidebars **MUST** include this standardized header structure, but colors can be customized:
 
 ```tsx
 <div className="mb-4 lg:mb-6 text-center">
-  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-amber-200 to-orange-200 rounded-full flex items-center justify-center mx-auto mb-2 lg:mb-4 shadow-lg">
-    <img
-      src="/runeframeos_logo2.png"
-      alt="RuneFrameOS"
+  <div className="w-10 h-10 lg:w-12 lg:h-12 mx-auto rounded-full flex items-center justify-center shadow-lg mb-2">
+    <img 
+      src="/AppName_Logos_IconOnly.png" 
+      alt="App Name"
       className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
     />
   </div>
-  <h2 className="text-sm lg:text-base font-fantasy font-bold text-amber-800">
+  <h3 className="text-sm lg:text-base font-fantasy font-semibold">
     Navigation
-  </h2>
+  </h3>
+  <p className="text-xs">
+    Choose your path
+  </p>
 </div>
 ```
 
+**Note**: Colors, gradients, and specific styling can be customized per app.
+
 ### **Navigation Items**
-- **Icon Size**: `w-4 h-4 lg:w-5 lg:h-5`
-- **Active State**: `bg-gradient-to-r from-amber-200 to-orange-200`
-- **Hover State**: `hover:bg-amber-100/50`
-- **Border**: `border border-amber-200/50`
+- **Icon Size**: `text-lg lg:text-xl`
+- **Active State**: Customizable colors with consistent structure
+- **Hover State**: Customizable colors with consistent behavior
+- **Border**: Customizable colors with consistent sizing
 
 ### **Buttons**
-- **Primary**: `bg-gradient-to-r from-amber-500 to-orange-600`
-- **Secondary**: `bg-white/60 border border-amber-200/50`
-- **Hover Effects**: `hover:scale-105 transition-all duration-200`
+- **Primary**: Customizable colors with consistent sizing and hover effects
+- **Secondary**: Customizable colors with consistent structure
+- **Hover Effects**: `hover:scale-105 transition-all duration-200` (mandatory)
 
 ## 🎭 **Application-Specific Theming**
 
 ### **Distillara (Alchemy)**
 - **Theme**: Warm, mystical, scientific
-- **Colors**: Amber to orange gradients
+- **Colors**: **Custom amber/orange theme** (app-defined)
 - **Icons**: Flask, book, clock, settings
 - **Features**: Recipe management, material tracking, quality settings
 
 ### **Feastwell (Cooking)**
 - **Theme**: Culinary, warm, inviting
-- **Colors**: Amber to red gradients
+- **Colors**: **Custom culinary theme** (app-defined)
 - **Icons**: Utensils, food, nutrition
 - **Features**: Recipe database, flavor system, meal planning
 
 ### **Hoardwell (Inventory)**
 - **Theme**: Treasure, wealth, organization
-- **Colors**: Amber to orange gradients
+- **Colors**: **Custom treasure theme** (app-defined)
 - **Icons**: Gem, scale, bag, chart
 - **Features**: Smart categorization, weight tracking, value estimation
 
 ### **Broke Unicorn Tavern (Social)**
 - **Theme**: Social, gathering, adventure
-- **Colors**: Slate to blue gradients
+- **Colors**: **Custom social theme** (app-defined)
 - **Icons**: Castle, chat, mission board, character
 - **Features**: Party chat, event planning, character meetups
 
 ### **Scriptoria (Gaming Systems)**
 - **Theme**: Knowledge, learning, systems
-- **Colors**: Slate to blue gradients (forge-style)
+- **Colors**: **Custom knowledge theme** (app-defined)
 - **Icons**: Book, sword, castle, star
 - **Features**: Gaming system library, rulesets, documentation
 
@@ -140,7 +149,7 @@ lg:w-56 lg:p-4 lg:mb-6 lg:space-y-2 lg:text-sm
 All grid layouts **MUST** use this exact pattern to ensure consistent column behavior:
 
 ```tsx
-// Standard responsive grid pattern
+// Standard responsive grid pattern (CURRENTLY IMPLEMENTED)
 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
 ```
 
@@ -158,7 +167,7 @@ All grid layouts **MUST** use this exact pattern to ensure consistent column beh
 - **XL (1280px+)**: 3+ columns
 
 ### **Content Adaptation**
-- **Icons**: Scale from `w-4 h-4` to `lg:w-5 lg:h-5`
+- **Icons**: Scale from `text-lg` to `lg:text-xl`
 - **Text**: Scale from `text-xs` to `lg:text-sm`
 - **Spacing**: Scale from compact to comfortable
 - **Padding**: Scale from `p-2` to `lg:p-3`
@@ -174,11 +183,11 @@ All grid layouts **MUST** use this exact pattern to ensure consistent column beh
 All applications **MUST** use this exact layout structure to ensure consistent behavior:
 
 ```tsx
-// Main layout container
-<div className="flex flex-1 pt-20 relative">
+// Main layout container (CURRENTLY IMPLEMENTED)
+<div className="flex flex-1 relative">
   {/* Left Sidebar - Always visible, fixed width */}
   {showSidebar && (
-    <div className="w-48 lg:w-56 flex-shrink-0">
+    <div className="relative">
       <LeftSidebar />
     </div>
   )}
@@ -188,7 +197,7 @@ All applications **MUST** use this exact layout structure to ensure consistent b
     {children}
   </main>
   
-  {/* Right Sidebar - Hidden on mobile/tablet */}
+  {/* Desktop Stats Panel - Floating right sidebar */}
   {showStats && (
     <div className="hidden lg:block w-64 flex-shrink-0">
       <RightSidebar />
@@ -205,8 +214,8 @@ All applications **MUST** use this exact layout structure to ensure consistent b
 
 ### **Component Structure**
 ```tsx
-// Standard sidebar structure
-<aside className="w-full h-full bg-gradient-to-b from-amber-50 to-orange-50 border-r-2 border-amber-300/30 overflow-y-auto">
+// Standard sidebar structure (CURRENTLY IMPLEMENTED)
+<aside className="w-48 lg:w-56 border-r-2 shadow-lg">
   <div className="p-3 lg:p-4">
     {/* Header - MANDATORY */}
     {/* Navigation Items */}
@@ -216,12 +225,14 @@ All applications **MUST** use this exact layout structure to ensure consistent b
 </aside>
 ```
 
-### **State Management**
-- **Active states**: Use consistent color schemes
-- **Hover effects**: Implement `hover:scale-105` for buttons
-- **Transitions**: Use `transition-all duration-200` for smooth animations
+**Note**: Colors, gradients, and specific styling can be customized per app.
 
-## 🖼️ **Image Organization Standards (NEW)**
+### **State Management**
+- **Active states**: Use consistent structure with customizable colors
+- **Hover effects**: Implement `hover:scale-105` for buttons (mandatory)
+- **Transitions**: Use `transition-all duration-200` for smooth animations (mandatory)
+
+## 🖼️ **Image Organization Standards (CURRENT)**
 
 ### **Image File Structure (MANDATORY)**
 All applications **MUST** follow this image organization:
@@ -240,11 +251,11 @@ Images/
 
 ### **Image Implementation in Components**
 ```tsx
-// Header/Logo usage
+// Header/Logo usage (CURRENTLY IMPLEMENTED)
 <img 
   src="/AppName_Logos_IconOnly.png" 
   alt="App Name" 
-  className="w-8 h-8 object-contain"
+  className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
 />
 
 // Hero banner usage
@@ -266,13 +277,13 @@ Images/
 - **Be specific**: `Distillara.png` not `distillara.png`
 - **Include all three versions**: Regular, HeroBanner, Logos_IconOnly
 
-## 🔌 **Module Integration Standards (NEW)**
+## 🔌 **Module Integration Standards (CURRENT)**
 
 ### **Nexus Module Integration Pattern (MANDATORY)**
 When integrating external modules into Nexus, **NEVER** embed the full application. Instead, create a **Nexus-native view** that fetches data via API:
 
 ```tsx
-// CORRECT: Nexus-native integration
+// CORRECT: Nexus-native integration (CURRENTLY IMPLEMENTED)
 function ScriptoriaView({ onReturnToNexus }: ScriptoriaViewProps) {
   const [data, setData] = useState(null)
   
@@ -318,17 +329,17 @@ All integrated modules **MUST** provide these endpoints:
 
 ### **Module View Structure**
 ```tsx
-// Standard module view structure
+// Standard module view structure (CURRENTLY IMPLEMENTED)
 <div className="w-full h-full">
   {/* Module Header */}
-  <div className="mb-6 p-4 bg-gradient-to-r from-slate-100 to-gray-100 rounded-lg border border-slate-300">
+  <div className="mb-6 p-4 rounded-lg border">
     <div className="flex items-center space-x-3">
       <div className="w-12 h-12 flex items-center justify-center">
         <img src="/appname_logo_IconOnly.png" alt="App Name" className="w-full h-full object-contain" />
       </div>
       <div>
-        <h1 className="text-2xl font-bold text-slate-800">App Name</h1>
-        <p className="text-slate-600">App Description</p>
+        <h1 className="text-2xl font-bold">App Name</h1>
+        <p className="text-muted">App Description</p>
       </div>
     </div>
   </div>
@@ -340,26 +351,76 @@ All integrated modules **MUST** provide these endpoints:
 </div>
 ```
 
+**Note**: Colors and specific styling can be customized per app.
+
+## 🎯 **Center Panel Layout Standards (UPDATED)**
+
+### **Dashboard Grid Layout (CURRENTLY IMPLEMENTED)**
+The main dashboard uses a sophisticated grid system with background images:
+
+```tsx
+// Dashboard grid layout (CURRENTLY IMPLEMENTED)
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+  {modules.map((module) => (
+    <div
+      key={module.id}
+      className="relative overflow-hidden rounded-xl border-2 p-4 hover:shadow-lg transition-all duration-200 flex flex-col"
+      style={{
+        minHeight: '280px',
+        backgroundImage: `url('/${getModuleImage(module.id)}.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark Overlay for Readability */}
+      <div className="absolute inset-0 bg-black/50"></div>
+      
+      {/* Content with relative positioning for overlay */}
+      <div className="relative z-10 h-full flex flex-col">
+        {/* Module content */}
+      </div>
+    </div>
+  ))}
+</div>
+```
+
+### **Module Card Structure**
+Each module card includes:
+- **Background Image**: Full-size app logo as background
+- **Dark Overlay**: `bg-black/50` for text readability
+- **Content Layout**: Flexbox column with proper spacing
+- **Status Indicators**: Connection status and live data
+- **Action Buttons**: Connect/Open in Nexus functionality
+
+### **Responsive Behavior**
+- **Mobile**: Single column layout
+- **Tablet**: Two columns (md:grid-cols-2)
+- **Desktop**: Two columns with option for more on larger screens
+- **Touch Optimization**: Proper spacing for mobile interaction
+
 ## ✅ **Compliance Checklist**
 
 Before deploying any application, ensure:
 
-- [ ] **Menu sizing** matches Nexus standards exactly
-- [ ] **Header design** follows mandatory template
+- [ ] **Menu sizing** matches Nexus standards exactly (`w-48 lg:w-56`)
+- [ ] **Header design** follows mandatory template structure (colors customizable)
 - [ ] **Layout structure** uses mandatory flexbox pattern
 - [ ] **Sidebar positioning** uses normal document flow (no `fixed` positioning)
 - [ ] **Responsive grids** use `md:grid-cols-2` pattern for medium screens
 - [ ] **Left sidebar always visible** at all screen sizes
 - [ ] **Right sidebar hidden** on mobile/tablet (`hidden lg:block`)
 - [ ] **Responsive breakpoints** use `lg:` prefix correctly
-- [ ] **Color palette** stays within approved ranges
 - [ ] **Typography scale** follows responsive pattern
 - [ ] **Spacing system** uses standardized values
 - [ ] **Component structure** matches Nexus patterns
-- [ ] **Image organization** follows new file structure standards
+- [ ] **Image organization** follows file structure standards
 - [ ] **Module integration** uses Nexus-native pattern, not full app embedding
 - [ ] **API endpoints** provide required health/status/module-info data
-- **No custom CSS** that could break consistency
+- [ ] **Dashboard grid** uses current responsive pattern
+- [ ] **Module cards** include background images and dark overlays
+- [ ] **No custom CSS** that could break consistency
+- [ ] **Colors and themes** are app-specific and unique (no restrictions)
 
 ## 🚫 **Forbidden Practices**
 
@@ -369,13 +430,14 @@ Before deploying any application, ensure:
 - **Left sidebar hidden** on any screen size
 - **Right sidebar visible** on mobile/tablet (should be `hidden lg:block`)
 - **Hardcoded pixel values** instead of Tailwind utilities
-- **Inconsistent color schemes** that don't match the palette
 - **Non-responsive designs** that don't scale properly
 - **Custom fonts** that break the fantasy theme
 - **Inconsistent spacing** that doesn't follow the system
 - **Embedding full external apps** instead of creating Nexus-native views
 - **Missing API endpoints** for module integration
 - **Inconsistent image naming** or missing image versions
+- **Dashboard grids** that don't use the current responsive pattern
+- **Module cards** without proper background images and overlays
 
 ## 🔄 **Update Process**
 
@@ -389,39 +451,38 @@ When updating the design specification:
 
 ---
 
-**Last Updated**: Current Development Session - Scriptoria Integration & Image Standards Added  
-**Status**: All applications must follow new layout, grid, image, and module integration standards  
+**Last Updated**: Current Development Session - Color Theme Restrictions Removed  
+**Status**: All applications must follow current layout, grid, image, and module integration standards. Colors and themes are app-specific and unrestricted.  
 **Next Review**: After major design changes or new applications added
 
 ## 📋 **Recent Updates (Current Session)**
 
-### **Layout Structure Standardization**
-- **Added mandatory flexbox layout pattern** for all applications
-- **Fixed sidebar positioning issues** that caused disappearing menus
-- **Standardized responsive grid behavior** to prevent 3 narrow columns on iPad
-- **Ensured left sidebar always visible** at all screen sizes
+### **Color Theme Freedom (NEW)**
+- **Removed centralized color restrictions** - each app defines its own theme
+- **Color flexibility is now a core feature** of the RuneFrameOS ecosystem
+- **Each app maintains unique visual identity** through custom color schemes
+- **Nexus will adapt** to integrate with different app color schemes in the future
 
-### **Critical Fixes Applied to Distillara**
-- **Removed `fixed` positioning** from LeftSidebar component
-- **Updated AppLayout** to use proper flexbox structure
-- **Fixed responsive grids** to use `md:grid-cols-2` pattern
-- **Resolved content overlap** with left sidebar
+### **Layout Structure Standardization (CURRENT)**
+- **Updated to match current AppLayout implementation** with proper flexbox structure
+- **Confirmed sidebar positioning** uses normal document flow (no `fixed` positioning)
+- **Verified responsive grid behavior** uses `md:grid-cols-2` pattern correctly
+- **Confirmed left sidebar always visible** at all screen sizes
 
-### **Scriptoria Integration Pattern (NEW)**
-- **Established Nexus-native integration pattern** instead of full app embedding
-- **Created ScriptoriaView.Sidebar component** for right panel integration
-- **Implemented proper API data fetching** from external Scriptoria app
-- **Removed standalone app layout** (header, left menu) when integrated in Nexus
-- **Added loading states and error handling** for professional user experience
+### **Current Implementation Status**
+- **AppLayout**: Uses proper flexbox with `relative` positioning for sidebars
+- **LeftSidebar**: Implements current theme with proper sizing (colors customizable)
+- **Dashboard**: Uses current responsive grid with background images and overlays
+- **Module Integration**: All views properly integrated with Nexus-native patterns
 
-### **Image Organization Standards (NEW)**
-- **Standardized image file structure** with Regular, HeroBanner, and Logos_IconOnly versions
-- **Established mandatory naming conventions** using PascalCase
-- **Defined image usage guidelines** for different component contexts
-- **Ensured all apps have public folders** with proper image organization
+### **Dashboard Grid System (CURRENT)**
+- **Responsive Grid**: `grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4`
+- **Module Cards**: Background images with dark overlays for readability
+- **Touch Optimization**: Proper spacing and sizing for mobile devices
+- **Status Integration**: Live connection status and module information
 
-### **Standards to Apply to All Apps**
-1. **Use exact layout structure** from Implementation Guidelines
+### **Standards to Maintain**
+1. **Use exact layout structure** from current AppLayout implementation
 2. **Never use `fixed` positioning** for sidebars
 3. **Always use `md:grid-cols-2`** for responsive grids
 4. **Ensure left sidebar visibility** at all screen sizes
@@ -429,3 +490,6 @@ When updating the design specification:
 6. **Follow image organization standards** with all three image versions
 7. **Use Nexus-native integration** for external modules, not full app embedding
 8. **Provide required API endpoints** for health, status, and module-info
+9. **Maintain current dashboard grid** with background images and overlays
+10. **Colors and themes are completely customizable** per application
+11. **Maintain structural consistency** while allowing visual uniqueness

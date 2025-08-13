@@ -1,369 +1,293 @@
-# 🎯 Cursor AI Instructions for Frontend Upload Service
-# Successfully deployed on Sherlock cluster at 172.18.254.88
+# 🚀 RuneFrameOS Cursor AI Instructions
+# This file teaches Cursor AI how to properly set up the development environment
+# for other developers working on the RuneFrameOS project
 
-frontend_service:
-  name: "Frontend Development Upload Server"
-  status: "DEPLOYED ✅"
-  url: "http://frontend.pedantictheory.com"
-  ip: "172.18.254.88"
-  port: 80
-  protocol: "HTTP"
-  deployed_on: "2025-08-07T19:46:00-05:00"
-  deployment_method: "Docker container on Sherlock control plane"
+project_overview:
+  name: "RuneFrameOS Ecosystem"
+  description: "A unified gaming ecosystem with multiple specialized applications integrating through a central Nexus dashboard"
+  architecture: "Microservices with Docker containerization"
+  tech_stack:
+    - "Frontend: Next.js, React, TypeScript, Tailwind CSS"
+    - "Backend: Node.js, Express, JWT authentication"
+    - "Infrastructure: Docker, Docker Compose"
+    - "Database: PostgreSQL (planned)"
+    - "Real-time: WebSocket (planned)"
 
-# 🔑 Authentication
-api_access:
-  api_key: "dev-key-2025"
-  authentication_header: "Authorization: Bearer dev-key-2025"
-  security_note: "This is a development API key. Change for production use."
+development_environment_setup:
+  prerequisites:
+    - "Docker Desktop installed and running"
+    - "Git configured and repository cloned"
+    - "VS Code or Cursor IDE"
+    - "Node.js 18+ (for local development)"
+    - "PowerShell (Windows) or Bash (macOS/Linux)"
 
-# 🚀 Upload Methods for Cursor AI
+  initial_setup_steps:
+    1: "Clone the repository: git clone <repository-url>"
+    2: "Navigate to project root: cd Code_Repository"
+    3: "Start all services: docker-compose up -d"
+    4: "Verify services: docker-compose ps"
+    5: "Access Nexus Hub: http://localhost:3000"
 
-upload_methods:
-  
-  # Method 1: Web Interface (Easiest)
-  web_interface:
-    url: "http://172.18.254.88/upload/"
-    description: "Beautiful drag-and-drop interface for manual uploads"
-    features:
-      - "Drag and drop files or folders"
-      - "Real-time progress tracking"
-      - "File management interface"
-      - "ZIP extraction support"
-      - "Multi-file upload"
-    usage: "Open URL in browser, drag files, upload instantly"
-    
-  # Method 2: API Upload (Recommended for Automation)
-  api_upload:
-    endpoint: "http://172.18.254.88/api/upload"
-    method: "POST"
-    headers:
-      Authorization: "Bearer dev-key-2025"
-      Content-Type: "multipart/form-data"
-    
-    # Basic file upload
-    basic_upload:
-      curl_example: |
-        curl -X POST http://172.18.254.88/api/upload \
-          -H "Authorization: Bearer dev-key-2025" \
-          -F "files=@dist.zip"
-      
-      node_example: |
-        const FormData = require('form-data');
-        const fs = require('fs');
-        const fetch = require('node-fetch');
-        
-        const form = new FormData();
-        form.append('files', fs.createReadStream('dist.zip'));
-        
-        fetch('http://172.18.254.88/api/upload', {
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer dev-key-2025'
-          },
-          body: form
-        }).then(res => res.json());
-    
-    # Advanced upload with options
-    advanced_upload:
-      description: "Upload with ZIP extraction and custom path"
-      curl_example: |
-        curl -X POST http://172.18.254.88/api/upload \
-          -H "Authorization: Bearer dev-key-2025" \
-          -F "files=@build.zip" \
-          -F "extract=true" \
-          -F "path=/apps/myapp"
-      
-      parameters:
-        files: "File(s) to upload (required)"
-        extract: "Set to 'true' to auto-extract ZIP files"
-        path: "Target path on server (e.g., '/apps/myapp')"
-    
-    # Multiple files upload
-    multiple_files:
-      curl_example: |
-        curl -X POST http://172.18.254.88/api/upload \
-          -H "Authorization: Bearer dev-key-2025" \
-          -F "files=@index.html" \
-          -F "files=@style.css" \
-          -F "files=@app.js"
+  service_ports:
+    nexus: 3000
+    distillara: 3001
+    core: 3002
+    feastwell: 3003
+    hoardwell: 3004
+    tavern: 3005
+    scriptoria: 3006
+    auth_service: 4001
+    core_service: 4002
+    user_service: 4003
 
-  # Method 3: Script-based Upload (Best for Development Workflow)
-  script_upload:
-    bash_script: "./scripts/upload-to-frontend.sh"
-    node_script: "node ./scripts/cursor-deploy.js"
-    
-    bash_examples:
-      basic: "./scripts/upload-to-frontend.sh ./dist"
-      with_path: "./scripts/upload-to-frontend.sh ./dist /apps/myapp"
-      with_api_key: "./scripts/upload-to-frontend.sh -k custom-key ./build"
-    
-    node_examples:
-      auto_deploy: "node scripts/cursor-deploy.js"
-      custom_path: "node scripts/cursor-deploy.js --target-path /apps/myapp"
-      skip_build: "node scripts/cursor-deploy.js --skip-build"
+project_structure:
+  root_directory: "Code_Repository/"
+  frontend_apps:
+    - "RuneFrameOS-Nexus/ (Main dashboard)"
+    - "RuneFrameOS-Distillara/ (Alchemy system)"
+    - "RuneFrameOS-Feastwell/ (Cooking system)"
+    - "RuneFrameOS-Hoardwell/ (Inventory management)"
+    - "RuneFrameOS-BrokeUnicornTavern/ (Social hub)"
+    - "RuneFrameOS-Scriptoria/ (Gaming systems)"
+    - "RuneFrameOS-Core/ (Admin dashboard)"
 
-# 📋 API Endpoints
+  backend_services:
+    - "RuneFrameOS-SharedServices/auth-service/"
+    - "RuneFrameOS-SharedServices/core-service/"
+    - "RuneFrameOS-SharedServices/user-service/"
 
-api_endpoints:
-  health_check:
-    url: "http://172.18.254.88/health"
-    method: "GET"
-    description: "Check server health"
-    expected_response: "HTTP 200 with 'healthy' text"
-  
-  upload_files:
-    url: "http://172.18.254.88/api/upload"
-    method: "POST"
-    description: "Upload files to server"
-    authentication: "Required (Bearer token)"
-    rate_limit: "10 uploads per 15 minutes"
-    max_file_size: "100MB per file"
-    max_files: "50 files per request"
-  
-  list_files:
-    url: "http://172.18.254.88/api/files"
-    method: "GET"
-    description: "List uploaded files"
-    authentication: "Required (Bearer token)"
-    parameters:
-      path: "Directory path to list (optional)"
-  
-  delete_file:
-    url: "http://172.18.254.88/api/files/:filename"
-    method: "DELETE"
-    description: "Delete a specific file"
-    authentication: "Required (Bearer token)"
-    parameters:
-      filename: "Name of file to delete"
-      path: "Directory path (query parameter)"
-  
-  metrics:
-    url: "http://172.18.254.88/metrics"
-    method: "GET"
-    description: "Prometheus metrics for monitoring"
-    authentication: "None"
+  configuration_files:
+    - "docker-compose.yml (Main orchestration)"
+    - "SERVER_SETUP_ARCHITECTURE.md (System overview)"
+    - "GUI_DESIGN_SPECIFICATION.md (Design standards)"
+    - "README.md (Project overview)"
 
-# 🎯 Cursor AI Integration
+design_standards:
+  layout_requirements:
+    left_sidebar: "Always w-48 lg:w-56 (192px mobile, 224px desktop)"
+    right_sidebar: "Always w-64 (256px, hidden on mobile/tablet)"
+    responsive_grids: "Use md:grid-cols-2 pattern for medium screens"
+    positioning: "Never use fixed positioning for sidebars"
 
-cursor_integration:
-  
-  # Option 1: Add to Cursor Commands
-  commands_json:
-    file_path: ".cursor/commands.json"
-    content: |
+  color_philosophy:
+    principle: "Each application defines its own unique color scheme and theme"
+    structural_consistency: "Unified layout, spacing, and component behavior"
+    visual_diversity: "Apps maintain unique visual identity through colors"
+
+  responsive_design:
+    pattern: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4"
+    mobile_first: "Design for mobile, enhance for larger screens"
+    sidebar_visibility: "Left sidebar always visible, right sidebar hidden on mobile"
+
+development_workflow:
+  docker_commands:
+    start_all: "docker-compose up -d"
+    start_specific: "docker-compose up -d [service-name]"
+    rebuild_service: "docker-compose build --no-cache [service-name]"
+    view_logs: "docker-compose logs -f [service-name]"
+    stop_service: "docker-compose stop [service-name]"
+    restart_service: "docker-compose restart [service-name]"
+
+  local_development:
+    navigate_to_app: "cd RuneFrameOS-[AppName]"
+    install_dependencies: "npm install"
+    start_dev_server: "npm run dev"
+    build_app: "npm run build"
+    run_tests: "npm test"
+
+  hot_reload:
+    enabled: true
+    volume_mounts: "Source code mounted as volumes for live editing"
+    file_changes: "Save files to see changes immediately in browser"
+
+api_integration:
+  required_endpoints:
+    - "/api/health (Health check)"
+    - "/api/module-info (Module information)"
+    - "/api/status (Current status)"
+
+  response_format:
+    success: |
       {
-        "deployToFrontend": {
-          "command": "bash",
-          "args": ["./scripts/upload-to-frontend.sh", "${workspaceFolder}/dist"],
-          "description": "Deploy current build to frontend server",
-          "group": "deployment"
-        },
-        "deployWithPath": {
-          "command": "bash",
-          "args": ["./scripts/upload-to-frontend.sh", "${workspaceFolder}/dist", "${input:targetPath}"],
-          "description": "Deploy to specific path on frontend server",
-          "group": "deployment"
-        },
-        "deployNodeScript": {
-          "command": "node",
-          "args": ["scripts/cursor-deploy.js"],
-          "description": "Auto-deploy using Node.js script",
-          "group": "deployment"
-        }
+        "success": true,
+        "data": { /* response data */ },
+        "message": "Operation completed successfully",
+        "timestamp": "ISO timestamp",
+        "requestId": "uuid-v4"
       }
-  
-  # Option 2: Environment Variables
-  environment_variables:
-    FRONTEND_URL: "http://172.18.254.88"
-    FRONTEND_API_KEY: "dev-key-2025"
-    usage: "Set these in your .env file or Cursor settings"
-  
-  # Option 3: VS Code Tasks
-  tasks_json:
-    file_path: ".vscode/tasks.json"
-    content: |
+    
+    error: |
       {
-        "version": "2.0.0",
-        "tasks": [
-          {
-            "label": "Deploy to Frontend",
-            "type": "shell",
-            "command": "./scripts/upload-to-frontend.sh",
-            "args": ["${workspaceFolder}/dist"],
-            "group": "build",
-            "presentation": {
-              "echo": true,
-              "reveal": "always",
-              "focus": false,
-              "panel": "shared"
-            }
-          }
-        ]
+        "success": false,
+        "error": {
+          "code": "ERROR_CODE",
+          "message": "Human readable error message",
+          "details": "Additional error details"
+        },
+        "timestamp": "ISO timestamp",
+        "requestId": "uuid-v4"
       }
 
-# 🔧 Developer Workflow Examples
+  authentication:
+    type: "JWT Bearer token"
+    header: "Authorization: Bearer <JWT_TOKEN>"
+    endpoints: "All protected routes require valid token"
 
-workflows:
-  
-  # React/Vue/Angular Standard Workflow
-  spa_workflow:
-    steps:
-      1: "npm run build"
-      2: "Run Cursor command 'Deploy to Frontend'"
-      3: "View app at http://172.18.254.88"
-    
-    automated_version: |
-      # Add to package.json scripts:
-      "deploy": "npm run build && ./scripts/upload-to-frontend.sh ./dist"
-      
-      # Then just run:
-      npm run deploy
-  
-  # Static Site Workflow
-  static_workflow:
-    steps:
-      1: "Build your static site"
-      2: "Upload directly: curl -X POST http://172.18.254.88/api/upload -H 'Authorization: Bearer dev-key-2025' -F 'files=@site.zip' -F 'extract=true'"
-      3: "Access at http://172.18.254.88"
-  
-  # Multi-app Deployment
-  multi_app_workflow:
-    description: "Deploy multiple apps to different paths"
-    examples:
-      admin_panel: "./scripts/upload-to-frontend.sh ./admin-build /admin"
-      user_dashboard: "./scripts/upload-to-frontend.sh ./dashboard-build /dashboard"
-      marketing_site: "./scripts/upload-to-frontend.sh ./marketing-build /"
+testing_requirements:
+  before_submitting:
+    - "Local testing: Changes work in local ecosystem"
+    - "Cross-app testing: Changes don't break other applications"
+    - "Responsive testing: Works on mobile, tablet, and desktop"
+    - "Integration testing: Module integration still functions"
 
-# 📊 Monitoring & Debugging
+  testing_checklist:
+    - "App starts without errors"
+    - "Left sidebar visible and functional"
+    - "Right sidebar hidden on mobile/tablet"
+    - "Responsive design works correctly"
+    - "Module integration functions"
+    - "No console errors in browser"
+    - "Performance is acceptable"
 
-monitoring:
-  server_health:
-    check: "curl -I http://172.18.254.88/health"
-    expected: "HTTP 200 OK"
-  
-  view_logs:
-    command: "ssh jonar-sherlock 'sudo docker logs frontend-server -f'"
-    
-  check_uploads:
-    list_files: "curl -H 'Authorization: Bearer dev-key-2025' http://172.18.254.88/api/files"
-    
-  metrics:
-    prometheus: "http://172.18.254.88/metrics"
-    includes: ["upload_counts", "file_sizes", "success_rates", "response_times"]
+documentation_files:
+  essential_documents:
+    - "GETTING_STARTED.md (New developer setup)"
+    - "CONTRIBUTING.md (Contribution guidelines)"
+    - "DEVELOPMENT_SETUP.md (Development environment)"
+    - "API_DOCUMENTATION.md (API reference)"
+    - "TROUBLESHOOTING.md (Common issues)"
+    - "PROJECT_ROADMAP.md (Project direction)"
 
-# 🚨 Troubleshooting
+  update_requirements:
+    - "New features: Update README.md and relevant guides"
+    - "API changes: Update API_DOCUMENTATION.md"
+    - "Design changes: Update GUI_DESIGN_SPECIFICATION.md"
+    - "Architecture changes: Update SERVER_SETUP_ARCHITECTURE.md"
 
-troubleshooting:
-  
+git_workflow:
+  branch_naming:
+    - "feature/feature-name"
+    - "bugfix/bug-description"
+    - "docs/documentation-update"
+    - "refactor/component-name"
+
+  commit_messages:
+    format: "type: description"
+    types:
+      - "feat: new feature"
+      - "fix: bug fix"
+      - "docs: documentation update"
+      - "refactor: code refactoring"
+      - "style: formatting changes"
+
+  pull_request_process:
+    1: "Create feature branch from main"
+    2: "Make changes following code standards"
+    3: "Test locally in ecosystem"
+    4: "Commit with clear messages"
+    5: "Push branch and create PR"
+    6: "Address review feedback"
+    7: "Merge after approval"
+
+troubleshooting_guide:
   common_issues:
+    docker_service_wont_start:
+      - "Check port conflicts: netstat -an | findstr :3000"
+      - "Check service logs: docker-compose logs [service-name]"
+      - "Restart Docker Desktop if needed"
     
-    connection_refused:
-      problem: "Cannot connect to 172.18.254.88"
-      solutions:
-        - "Check if you're on the correct network (172.18.254.0/24)"
-        - "Verify server is running: ssh jonar-sherlock 'sudo docker ps | grep frontend-server'"
-        - "Test from cluster: ssh jonar-sherlock 'curl -I http://172.18.254.88/health'"
+    hot_reload_not_working:
+      - "Check volume mounts: docker-compose exec [service] ls -la /app"
+      - "Restart service: docker-compose restart [service-name]"
+      - "Fix permissions: docker-compose exec [service] chown -R node:node /app"
     
-    upload_failed:
-      problem: "File upload returns error"
-      solutions:
-        - "Check API key is correct: 'dev-key-2025'"
-        - "Verify file size < 100MB"
-        - "Check file type is allowed (web files only)"
-        - "Check rate limits (10 uploads per 15 minutes)"
-    
-    api_unauthorized:
-      problem: "401 Unauthorized error"
-      solutions:
-        - "Ensure Authorization header: 'Bearer dev-key-2025'"
-        - "Check API key spelling and format"
-        - "Verify the header is properly formatted"
-    
-    files_not_visible:
-      problem: "Uploaded files don't appear on website"
-      solutions:
-        - "Check if extraction was needed for ZIP files"
-        - "Verify target path is correct"
-        - "Check file permissions in container"
-        - "Clear browser cache"
+    module_integration_issues:
+      - "Verify API endpoints: curl http://localhost:[port]/api/health"
+      - "Check browser console for errors"
+      - "Verify module is running: docker-compose ps"
 
-# 📝 Quick Reference
+  emergency_fixes:
+    nuclear_option: "docker-compose down && docker system prune -a -f && docker-compose up -d"
+    restart_docker: "Restart Docker Desktop completely, then restart services"
 
-quick_reference:
-  
-  # Most Common Commands
-  essential_commands:
-    test_server: "curl -I http://172.18.254.88/health"
-    upload_zip: "curl -X POST http://172.18.254.88/api/upload -H 'Authorization: Bearer dev-key-2025' -F 'files=@dist.zip' -F 'extract=true'"
-    list_files: "curl -H 'Authorization: Bearer dev-key-2025' http://172.18.254.88/api/files"
-    view_website: "open http://172.18.254.88"
-    upload_interface: "open http://172.18.254.88/upload"
-  
-  # File Upload Limits
-  limits:
-    max_file_size: "100MB"
-    max_files_per_request: "50"
-    rate_limit: "10 uploads per 15 minutes per IP"
-    supported_types: ["HTML", "CSS", "JS", "JSON", "Images", "Fonts", "ZIP", "Text"]
-  
-  # URLs to Remember
-  important_urls:
-    main_site: "http://172.18.254.88/"
-    upload_interface: "http://172.18.254.88/upload/"
-    health_check: "http://172.18.254.88/health"
-    api_base: "http://172.18.254.88/api/"
-    metrics: "http://172.18.254.88/metrics"
+performance_optimization:
+  docker_optimization:
+    - "Use BuildKit: export DOCKER_BUILDKIT=1"
+    - "Multi-stage builds in Dockerfiles"
+    - "Proper .dockerignore files"
+    - "Resource limits in docker-compose.yml"
 
-# 🎉 Success Confirmation
+  node_optimization:
+    - "Memory limits: NODE_OPTIONS='--max-old-space-size=1024'"
+    - "Build optimization: npm ci --only=production"
+    - "Bundle analysis: @next/bundle-analyzer"
 
-deployment_status:
-  status: "✅ SUCCESSFULLY DEPLOYED"
-  server_running: true
-  health_check_passing: true
-  api_accessible: true
-  upload_interface_working: true
-  docker_container_healthy: true
-  network_routing_configured: true
-  
-  deployed_components:
-    - "✅ Nginx web server"
-    - "✅ Node.js upload API"
-    - "✅ Web upload interface"
-    - "✅ File management system"
-    - "✅ API endpoints"
-    - "✅ Health monitoring"
-    - "✅ Metrics collection"
-    - "✅ Security headers"
-    - "✅ Rate limiting"
-    - "✅ File validation"
+security_considerations:
+  development_security:
+    - "Never commit .env files"
+    - "Use environment variables for secrets"
+    - "Validate all inputs"
+    - "Implement proper CORS policies"
+    - "Use HTTPS in production"
 
-  test_results:
-    health_endpoint: "✅ Responding HTTP 200"
-    upload_interface: "✅ Accessible at /upload/"
-    api_upload: "✅ Accepts authenticated requests"
-    file_serving: "✅ Static files served correctly"
-    docker_container: "✅ Running and healthy"
-    network_access: "✅ Accessible from external network"
+  api_security:
+    - "JWT token validation"
+    - "Rate limiting implementation"
+    - "Input sanitization"
+    - "SQL injection protection"
+    - "XSS prevention"
 
-# 📞 Support Information
+monitoring_and_debugging:
+  tools:
+    - "Docker stats: docker stats"
+    - "Service logs: docker-compose logs -f"
+    - "Health checks: curl health endpoints"
+    - "Browser DevTools: React Developer Tools, Network tab"
+    - "VS Code debugging: launch.json configuration"
 
-support:
-  cluster_access: "SSH via jonar-sherlock using jonar user"
-  container_logs: "sudo docker logs frontend-server"
-  container_restart: "sudo docker restart frontend-server"
-  server_ip: "172.18.254.88"
-  server_port: "80"
-  deployment_location: "Sherlock control plane (172.18.254.35)"
-  
-  key_files:
-    docker_image: "frontend-server:latest"
-    upload_scripts: "./scripts/upload-to-frontend.sh, ./scripts/cursor-deploy.js"
-    container_name: "frontend-server"
-    storage_paths:
-      web_files: "/var/lib/frontend-files"
-      uploads: "/var/lib/frontend-uploads"
+  metrics_to_track:
+    - "Service response times"
+    - "Memory and CPU usage"
+    - "Error rates"
+    - "API call volumes"
+    - "User engagement metrics"
 
----
-# END OF CURSOR AI INSTRUCTIONS
-# Server is ready for frontend development deployments! 🚀
+next_steps_for_developers:
+  immediate_actions:
+    1: "Read GETTING_STARTED.md for basic setup"
+    2: "Start ecosystem with docker-compose up -d"
+    3: "Explore Nexus Hub at http://localhost:3000"
+    4: "Read CONTRIBUTING.md for development standards"
+    5: "Set up development environment per DEVELOPMENT_SETUP.md"
+
+  learning_path:
+    1: "Understand project architecture (SERVER_SETUP_ARCHITECTURE.md)"
+    2: "Learn design standards (GUI_DESIGN_SPECIFICATION.md)"
+    3: "Study API structure (API_DOCUMENTATION.md)"
+    4: "Practice with troubleshooting (TROUBLESHOOTING.md)"
+    5: "Contribute following guidelines (CONTRIBUTING.md)"
+
+  project_goals:
+    - "Build a unified gaming ecosystem"
+    - "Maintain structural consistency across apps"
+    - "Enable visual diversity and unique theming"
+    - "Create seamless module integration"
+    - "Support responsive design on all devices"
+
+# 🎯 Key Principles for Cursor AI
+# When helping developers with this project:
+
+# 1. ALWAYS check the documentation first
+# 2. Follow the design standards strictly (sidebar widths, responsive patterns)
+# 3. Use Docker commands for service management
+# 4. Test changes in the local ecosystem before suggesting
+# 5. Maintain structural consistency while allowing visual diversity
+# 6. Reference the appropriate documentation files for guidance
+# 7. Ensure responsive design works on all screen sizes
+# 8. Verify module integration still functions after changes
+# 9. Use the established git workflow and commit message format
+# 10. Prioritize user experience and system stability
+
+# This file should be updated whenever the project structure or standards change
+# Last Updated: Current Development Session
+# Status: Complete Cursor AI instructions for RuneFrameOS development

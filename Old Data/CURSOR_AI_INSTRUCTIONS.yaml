@@ -1,0 +1,369 @@
+# 🎯 Cursor AI Instructions for Frontend Upload Service
+# Successfully deployed on Sherlock cluster at 172.18.254.88
+
+frontend_service:
+  name: "Frontend Development Upload Server"
+  status: "DEPLOYED ✅"
+  url: "http://frontend.pedantictheory.com"
+  ip: "172.18.254.88"
+  port: 80
+  protocol: "HTTP"
+  deployed_on: "2025-08-07T19:46:00-05:00"
+  deployment_method: "Docker container on Sherlock control plane"
+
+# 🔑 Authentication
+api_access:
+  api_key: "dev-key-2025"
+  authentication_header: "Authorization: Bearer dev-key-2025"
+  security_note: "This is a development API key. Change for production use."
+
+# 🚀 Upload Methods for Cursor AI
+
+upload_methods:
+  
+  # Method 1: Web Interface (Easiest)
+  web_interface:
+    url: "http://172.18.254.88/upload/"
+    description: "Beautiful drag-and-drop interface for manual uploads"
+    features:
+      - "Drag and drop files or folders"
+      - "Real-time progress tracking"
+      - "File management interface"
+      - "ZIP extraction support"
+      - "Multi-file upload"
+    usage: "Open URL in browser, drag files, upload instantly"
+    
+  # Method 2: API Upload (Recommended for Automation)
+  api_upload:
+    endpoint: "http://172.18.254.88/api/upload"
+    method: "POST"
+    headers:
+      Authorization: "Bearer dev-key-2025"
+      Content-Type: "multipart/form-data"
+    
+    # Basic file upload
+    basic_upload:
+      curl_example: |
+        curl -X POST http://172.18.254.88/api/upload \
+          -H "Authorization: Bearer dev-key-2025" \
+          -F "files=@dist.zip"
+      
+      node_example: |
+        const FormData = require('form-data');
+        const fs = require('fs');
+        const fetch = require('node-fetch');
+        
+        const form = new FormData();
+        form.append('files', fs.createReadStream('dist.zip'));
+        
+        fetch('http://172.18.254.88/api/upload', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer dev-key-2025'
+          },
+          body: form
+        }).then(res => res.json());
+    
+    # Advanced upload with options
+    advanced_upload:
+      description: "Upload with ZIP extraction and custom path"
+      curl_example: |
+        curl -X POST http://172.18.254.88/api/upload \
+          -H "Authorization: Bearer dev-key-2025" \
+          -F "files=@build.zip" \
+          -F "extract=true" \
+          -F "path=/apps/myapp"
+      
+      parameters:
+        files: "File(s) to upload (required)"
+        extract: "Set to 'true' to auto-extract ZIP files"
+        path: "Target path on server (e.g., '/apps/myapp')"
+    
+    # Multiple files upload
+    multiple_files:
+      curl_example: |
+        curl -X POST http://172.18.254.88/api/upload \
+          -H "Authorization: Bearer dev-key-2025" \
+          -F "files=@index.html" \
+          -F "files=@style.css" \
+          -F "files=@app.js"
+
+  # Method 3: Script-based Upload (Best for Development Workflow)
+  script_upload:
+    bash_script: "./scripts/upload-to-frontend.sh"
+    node_script: "node ./scripts/cursor-deploy.js"
+    
+    bash_examples:
+      basic: "./scripts/upload-to-frontend.sh ./dist"
+      with_path: "./scripts/upload-to-frontend.sh ./dist /apps/myapp"
+      with_api_key: "./scripts/upload-to-frontend.sh -k custom-key ./build"
+    
+    node_examples:
+      auto_deploy: "node scripts/cursor-deploy.js"
+      custom_path: "node scripts/cursor-deploy.js --target-path /apps/myapp"
+      skip_build: "node scripts/cursor-deploy.js --skip-build"
+
+# 📋 API Endpoints
+
+api_endpoints:
+  health_check:
+    url: "http://172.18.254.88/health"
+    method: "GET"
+    description: "Check server health"
+    expected_response: "HTTP 200 with 'healthy' text"
+  
+  upload_files:
+    url: "http://172.18.254.88/api/upload"
+    method: "POST"
+    description: "Upload files to server"
+    authentication: "Required (Bearer token)"
+    rate_limit: "10 uploads per 15 minutes"
+    max_file_size: "100MB per file"
+    max_files: "50 files per request"
+  
+  list_files:
+    url: "http://172.18.254.88/api/files"
+    method: "GET"
+    description: "List uploaded files"
+    authentication: "Required (Bearer token)"
+    parameters:
+      path: "Directory path to list (optional)"
+  
+  delete_file:
+    url: "http://172.18.254.88/api/files/:filename"
+    method: "DELETE"
+    description: "Delete a specific file"
+    authentication: "Required (Bearer token)"
+    parameters:
+      filename: "Name of file to delete"
+      path: "Directory path (query parameter)"
+  
+  metrics:
+    url: "http://172.18.254.88/metrics"
+    method: "GET"
+    description: "Prometheus metrics for monitoring"
+    authentication: "None"
+
+# 🎯 Cursor AI Integration
+
+cursor_integration:
+  
+  # Option 1: Add to Cursor Commands
+  commands_json:
+    file_path: ".cursor/commands.json"
+    content: |
+      {
+        "deployToFrontend": {
+          "command": "bash",
+          "args": ["./scripts/upload-to-frontend.sh", "${workspaceFolder}/dist"],
+          "description": "Deploy current build to frontend server",
+          "group": "deployment"
+        },
+        "deployWithPath": {
+          "command": "bash",
+          "args": ["./scripts/upload-to-frontend.sh", "${workspaceFolder}/dist", "${input:targetPath}"],
+          "description": "Deploy to specific path on frontend server",
+          "group": "deployment"
+        },
+        "deployNodeScript": {
+          "command": "node",
+          "args": ["scripts/cursor-deploy.js"],
+          "description": "Auto-deploy using Node.js script",
+          "group": "deployment"
+        }
+      }
+  
+  # Option 2: Environment Variables
+  environment_variables:
+    FRONTEND_URL: "http://172.18.254.88"
+    FRONTEND_API_KEY: "dev-key-2025"
+    usage: "Set these in your .env file or Cursor settings"
+  
+  # Option 3: VS Code Tasks
+  tasks_json:
+    file_path: ".vscode/tasks.json"
+    content: |
+      {
+        "version": "2.0.0",
+        "tasks": [
+          {
+            "label": "Deploy to Frontend",
+            "type": "shell",
+            "command": "./scripts/upload-to-frontend.sh",
+            "args": ["${workspaceFolder}/dist"],
+            "group": "build",
+            "presentation": {
+              "echo": true,
+              "reveal": "always",
+              "focus": false,
+              "panel": "shared"
+            }
+          }
+        ]
+      }
+
+# 🔧 Developer Workflow Examples
+
+workflows:
+  
+  # React/Vue/Angular Standard Workflow
+  spa_workflow:
+    steps:
+      1: "npm run build"
+      2: "Run Cursor command 'Deploy to Frontend'"
+      3: "View app at http://172.18.254.88"
+    
+    automated_version: |
+      # Add to package.json scripts:
+      "deploy": "npm run build && ./scripts/upload-to-frontend.sh ./dist"
+      
+      # Then just run:
+      npm run deploy
+  
+  # Static Site Workflow
+  static_workflow:
+    steps:
+      1: "Build your static site"
+      2: "Upload directly: curl -X POST http://172.18.254.88/api/upload -H 'Authorization: Bearer dev-key-2025' -F 'files=@site.zip' -F 'extract=true'"
+      3: "Access at http://172.18.254.88"
+  
+  # Multi-app Deployment
+  multi_app_workflow:
+    description: "Deploy multiple apps to different paths"
+    examples:
+      admin_panel: "./scripts/upload-to-frontend.sh ./admin-build /admin"
+      user_dashboard: "./scripts/upload-to-frontend.sh ./dashboard-build /dashboard"
+      marketing_site: "./scripts/upload-to-frontend.sh ./marketing-build /"
+
+# 📊 Monitoring & Debugging
+
+monitoring:
+  server_health:
+    check: "curl -I http://172.18.254.88/health"
+    expected: "HTTP 200 OK"
+  
+  view_logs:
+    command: "ssh jonar-sherlock 'sudo docker logs frontend-server -f'"
+    
+  check_uploads:
+    list_files: "curl -H 'Authorization: Bearer dev-key-2025' http://172.18.254.88/api/files"
+    
+  metrics:
+    prometheus: "http://172.18.254.88/metrics"
+    includes: ["upload_counts", "file_sizes", "success_rates", "response_times"]
+
+# 🚨 Troubleshooting
+
+troubleshooting:
+  
+  common_issues:
+    
+    connection_refused:
+      problem: "Cannot connect to 172.18.254.88"
+      solutions:
+        - "Check if you're on the correct network (172.18.254.0/24)"
+        - "Verify server is running: ssh jonar-sherlock 'sudo docker ps | grep frontend-server'"
+        - "Test from cluster: ssh jonar-sherlock 'curl -I http://172.18.254.88/health'"
+    
+    upload_failed:
+      problem: "File upload returns error"
+      solutions:
+        - "Check API key is correct: 'dev-key-2025'"
+        - "Verify file size < 100MB"
+        - "Check file type is allowed (web files only)"
+        - "Check rate limits (10 uploads per 15 minutes)"
+    
+    api_unauthorized:
+      problem: "401 Unauthorized error"
+      solutions:
+        - "Ensure Authorization header: 'Bearer dev-key-2025'"
+        - "Check API key spelling and format"
+        - "Verify the header is properly formatted"
+    
+    files_not_visible:
+      problem: "Uploaded files don't appear on website"
+      solutions:
+        - "Check if extraction was needed for ZIP files"
+        - "Verify target path is correct"
+        - "Check file permissions in container"
+        - "Clear browser cache"
+
+# 📝 Quick Reference
+
+quick_reference:
+  
+  # Most Common Commands
+  essential_commands:
+    test_server: "curl -I http://172.18.254.88/health"
+    upload_zip: "curl -X POST http://172.18.254.88/api/upload -H 'Authorization: Bearer dev-key-2025' -F 'files=@dist.zip' -F 'extract=true'"
+    list_files: "curl -H 'Authorization: Bearer dev-key-2025' http://172.18.254.88/api/files"
+    view_website: "open http://172.18.254.88"
+    upload_interface: "open http://172.18.254.88/upload"
+  
+  # File Upload Limits
+  limits:
+    max_file_size: "100MB"
+    max_files_per_request: "50"
+    rate_limit: "10 uploads per 15 minutes per IP"
+    supported_types: ["HTML", "CSS", "JS", "JSON", "Images", "Fonts", "ZIP", "Text"]
+  
+  # URLs to Remember
+  important_urls:
+    main_site: "http://172.18.254.88/"
+    upload_interface: "http://172.18.254.88/upload/"
+    health_check: "http://172.18.254.88/health"
+    api_base: "http://172.18.254.88/api/"
+    metrics: "http://172.18.254.88/metrics"
+
+# 🎉 Success Confirmation
+
+deployment_status:
+  status: "✅ SUCCESSFULLY DEPLOYED"
+  server_running: true
+  health_check_passing: true
+  api_accessible: true
+  upload_interface_working: true
+  docker_container_healthy: true
+  network_routing_configured: true
+  
+  deployed_components:
+    - "✅ Nginx web server"
+    - "✅ Node.js upload API"
+    - "✅ Web upload interface"
+    - "✅ File management system"
+    - "✅ API endpoints"
+    - "✅ Health monitoring"
+    - "✅ Metrics collection"
+    - "✅ Security headers"
+    - "✅ Rate limiting"
+    - "✅ File validation"
+
+  test_results:
+    health_endpoint: "✅ Responding HTTP 200"
+    upload_interface: "✅ Accessible at /upload/"
+    api_upload: "✅ Accepts authenticated requests"
+    file_serving: "✅ Static files served correctly"
+    docker_container: "✅ Running and healthy"
+    network_access: "✅ Accessible from external network"
+
+# 📞 Support Information
+
+support:
+  cluster_access: "SSH via jonar-sherlock using jonar user"
+  container_logs: "sudo docker logs frontend-server"
+  container_restart: "sudo docker restart frontend-server"
+  server_ip: "172.18.254.88"
+  server_port: "80"
+  deployment_location: "Sherlock control plane (172.18.254.35)"
+  
+  key_files:
+    docker_image: "frontend-server:latest"
+    upload_scripts: "./scripts/upload-to-frontend.sh, ./scripts/cursor-deploy.js"
+    container_name: "frontend-server"
+    storage_paths:
+      web_files: "/var/lib/frontend-files"
+      uploads: "/var/lib/frontend-uploads"
+
+---
+# END OF CURSOR AI INSTRUCTIONS
+# Server is ready for frontend development deployments! 🚀

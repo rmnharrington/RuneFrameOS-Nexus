@@ -111,6 +111,22 @@ services:
     networks:
       - runeframeos-network
 
+  # NecroticArcanum - Undead Creation & Control
+  necrotic-arcanum:
+    build: ./RuneFrameOS-NecroticArcanum
+    ports:
+      - "3007:3007"
+    environment:
+      - NODE_ENV=development
+      - PORT=3007
+    volumes:
+      - ./RuneFrameOS-NecroticArcanum:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - runeframeos-network
+
   # Shared Services - Authentication
   auth-service:
     build: ./RuneFrameOS-SharedServices/auth-service
