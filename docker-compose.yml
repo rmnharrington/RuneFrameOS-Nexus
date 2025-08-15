@@ -1,183 +1,175 @@
+# RuneFrameOS Docker Compose Configuration
+# Port assignments are ESTABLISHED - DO NOT CHANGE existing ports
+
 services:
-  # Main Nexus Hub - Central access point
+  # Central Hub - Central access point
   nexus:
-    build: ./RuneFrameOS-Nexus
+    build:
+      context: ./RuneFrameOS-Nexus
+      dockerfile: Dockerfile
+    container_name: runeframeos-nexus
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
       - PORT=3000
-    volumes:
-      - ./RuneFrameOS-Nexus:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+    restart: unless-stopped
     networks:
       - runeframeos-network
 
-  # Distillara - Gaming Application
-  distillara:
-    build: ./RuneFrameOS-Distillara
-    ports:
-      - "3001:3001"
-    environment:
-      - NODE_ENV=development
-      - PORT=3001
-    volumes:
-      - ./RuneFrameOS-Distillara:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
-    networks:
-      - runeframeos-network
-
-  # Core - Admin Dashboard
+  # Admin Dashboard
   core:
-    build: ./RuneFrameOS-Core
+    build:
+      context: ./RuneFrameOS-Core
+      dockerfile: Dockerfile
+    container_name: runeframeos-core
     ports:
       - "3002:3002"
     environment:
       - NODE_ENV=development
       - PORT=3002
-    volumes:
-      - ./RuneFrameOS-Core:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+    restart: unless-stopped
     networks:
       - runeframeos-network
 
-  # Feastwell - Food Management
-  feastwell:
-    build: ./RuneFrameOS-Feastwell
+  # Alchemy Builder & Potion Master
+  distillara:
+    build:
+      context: ./RuneFrameOS-Distillara
+      dockerfile: Dockerfile
+    container_name: runeframeos-distillara
     ports:
       - "3003:3003"
     environment:
       - NODE_ENV=development
       - PORT=3003
-    volumes:
-      - ./RuneFrameOS-Feastwell:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+    restart: unless-stopped
     networks:
       - runeframeos-network
 
-  # Hoardwell - Inventory Management
+  # Inventory Management
   hoardwell:
-    build: ./RuneFrameOS-Hoardwell
+    build:
+      context: ./RuneFrameOS-Hoardwell
+      dockerfile: Dockerfile
+    container_name: runeframeos-hoardwell
     ports:
       - "3004:3004"
     environment:
       - NODE_ENV=development
       - PORT=3004
-    volumes:
-      - ./RuneFrameOS-Hoardwell:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+    restart: unless-stopped
     networks:
       - runeframeos-network
 
-  # Scriptoria - Gaming Systems Library
-  scriptoria:
-    build: ./RuneFrameOS-Scriptoria
-    ports:
-      - "3006:3006"
-    environment:
-      - NODE_ENV=development
-      - PORT=3006
-    volumes:
-      - ./RuneFrameOS-Scriptoria:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
-    networks:
-      - runeframeos-network
-
-  # BrokeUnicornTavern - Tavern Interface
-  tavern:
-    build: ./RuneFrameOS-BrokeUnicornTavern
+  # Social Hub & Game Coordination
+  broke-unicorn-tavern:
+    build:
+      context: ./RuneFrameOS-BrokeUnicornTavern
+      dockerfile: Dockerfile
+    container_name: runeframeos-broke-unicorn-tavern
     ports:
       - "3005:3005"
     environment:
       - NODE_ENV=development
       - PORT=3005
-    volumes:
-      - ./RuneFrameOS-BrokeUnicornTavern:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+    restart: unless-stopped
     networks:
       - runeframeos-network
 
-  # NecroticArcanum - Undead Creation & Control
+  # Gaming Systems Library
+  scriptoria:
+    build:
+      context: ./RuneFrameOS-Scriptoria
+      dockerfile: Dockerfile
+    container_name: runeframeos-scriptoria
+    ports:
+      - "3006:3006"
+    environment:
+      - NODE_ENV=development
+      - PORT=3006
+    restart: unless-stopped
+    networks:
+      - runeframeos-network
+
+  # Undead Creation & Control
   necrotic-arcanum:
-    build: ./RuneFrameOS-NecroticArcanum
+    build:
+      context: ./RuneFrameOS-NecroticArcanum
+      dockerfile: Dockerfile
+    container_name: runeframeos-necrotic-arcanum
     ports:
       - "3007:3007"
     environment:
       - NODE_ENV=development
       - PORT=3007
-    volumes:
-      - ./RuneFrameOS-NecroticArcanum:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+    restart: unless-stopped
     networks:
       - runeframeos-network
 
-  # Shared Services - Authentication
-  auth-service:
-    build: ./RuneFrameOS-SharedServices/auth-service
+  # Economy Management & Building
+  mercatrix:
+    build:
+      context: ./RuneFrameOS-Mercatrix
+      dockerfile: Dockerfile
+    container_name: runeframeos-mercatrix
     ports:
-      - "4001:4001"
+      - "3008:3008"
     environment:
       - NODE_ENV=development
-      - PORT=4001
-    volumes:
-      - ./RuneFrameOS-SharedServices/auth-service:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+      - PORT=3008
+    restart: unless-stopped
     networks:
       - runeframeos-network
 
-  # Shared Services - Core Service
-  core-service:
-    build: ./RuneFrameOS-SharedServices/core-service
+  # Character Sheet Binder & Dice Roller
+  personavault:
+    build:
+      context: ./RuneFrameOS-PersonaVault
+      dockerfile: Dockerfile
+    container_name: runeframeos-personavault
     ports:
-      - "4002:4002"
+      - "3009:3009"
     environment:
       - NODE_ENV=development
-      - PORT=4002
-    volumes:
-      - ./RuneFrameOS-SharedServices/core-service:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+      - PORT=3009
+    restart: unless-stopped
     networks:
       - runeframeos-network
 
-  # Shared Services - User Service
-  user-service:
-    build: ./RuneFrameOS-SharedServices/user-service
+  # GameMaster Campaign Management
+  travelerstable:
+    build:
+      context: ./RuneFrameOS-TravelersTable
+      dockerfile: Dockerfile
+    container_name: runeframeos-travelerstable
     ports:
-      - "4003:4003"
+      - "3010:3010"
     environment:
       - NODE_ENV=development
-      - PORT=4003
-    volumes:
-      - ./RuneFrameOS-SharedServices/user-service:/app
-      - /app/node_modules
-    working_dir: /app
-    command: npm run dev
+      - PORT=3010
+    restart: unless-stopped
     networks:
       - runeframeos-network
+
+  # Feastwell (port 3001) - needs to be added when rebuilt
+  # feastwell:
+  #   build:
+  #     context: ./RuneFrameOS-Feastwell
+  #     dockerfile: Dockerfile
+  #   container_name: runeframeos-feastwell
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     - NODE_ENV=development
+  #     - PORT=3001
+  #   restart: unless-stopped
+  #   networks:
+  #     - runeframeos-network
 
 networks:
   runeframeos-network:
     driver: bridge
-
-volumes:
-  node_modules:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

@@ -1,29 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: 'Inter', system-ui, sans-serif;
-  }
+  html { font-family: system-ui, sans-serif; }
+  body { @apply bg-brown-950 text-tan-100; }
 }
 
 @layer components {
-  .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
-  }
-  
-  .btn-secondary {
-    @apply bg-slate-200 hover:bg-slate-300 text-slate-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
-  }
-  
-  .card {
-    @apply bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-xl shadow-lg;
-  }
-  
-  .rune-border {
-    @apply border-2 border-blue-300/30;
-  }
+  .sidebar-header { @apply mb-4 lg:mb-6 text-center; }
+  .sidebar-icon { @apply w-10 h-10 lg:w-12 lg:h-12 mx-auto rounded-full flex items-center justify-center shadow-lg mb-2 bg-gradient-to-br from-tan-400 to-tan-600; }
+  .sidebar-title { @apply text-sm lg:text-base font-semibold text-tan-100; }
+  .sidebar-subtitle { @apply text-xs text-brown-400; }
 }
-

@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-economy-950 text-gold-100;
+  }
+}
+
+@layer components {
+  .mercatrix-gradient {
+    @apply bg-gradient-to-br from-gold-800 via-wealth-900 to-economy-950;
+  }
+  
+  .gold-accent {
+    @apply bg-gradient-to-r from-gold-600 to-wealth-600;
+  }
+  
+  .economy-border {
+    @apply border border-economy-700/50;
+  }
+  
+  .gold-shadow {
+    box-shadow: 0 4px 20px rgba(234, 179, 8, 0.15);
+  }
+  
+  .wealth-shadow {
+    box-shadow: 0 4px 20px rgba(242, 117, 14, 0.2);
+  }
+  
+  .commerce-glow {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+  }
+}
+
+@layer utilities {
+  .text-shadow-gold {
+    text-shadow: 0 2px 4px rgba(234, 179, 8, 0.3);
+  }
+  
+  .text-shadow-wealth {
+    text-shadow: 0 2px 4px rgba(242, 117, 14, 0.4);
+  }
+  
+  .text-shadow-commerce {
+    text-shadow: 0 2px 4px rgba(14, 165, 233, 0.3);
+  }
+}

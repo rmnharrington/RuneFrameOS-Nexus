@@ -1,16 +1,10 @@
-"use client"
-
 import AppLayout from '@/components/core/AppLayout'
-import TavernWelcome from '@/components/apps/TavernWelcome'
+import TavernHub from '@/components/apps/TavernHub'
 
 export default function Home() {
   return (
-    <AppLayout
-      appName="BrokeUnicorn Tavern"
-      userName="Adventurer"
-    >
-      <TavernWelcome />
+    <AppLayout>
+      <TavernHub />
     </AppLayout>
   )
 }
-

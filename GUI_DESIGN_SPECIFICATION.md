@@ -63,7 +63,86 @@ w-64
 
 ## 🏗️ **Component Standards**
 
-### **Header Design (MANDATORY)**
+### **Main Application Header Design (MANDATORY)**
+All applications **MUST** include this standardized main header structure, but colors can be customized:
+
+```tsx
+<header className="fixed top-0 left-0 right-0 z-50 bg-neutral-900 border-b-2 border-app-accent shadow-lg">
+  <div className="flex items-center justify-between px-4 py-3">
+    {/* Left Section - App Branding */}
+    <div className="flex items-center space-x-3">
+      {/* Mobile Menu Button (hidden on desktop) */}
+      <button className="lg:hidden p-2 text-app-text hover:text-app-accent transition-colors">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      
+      {/* App Logo and Title */}
+      <div className="flex items-center space-x-2">
+        <img 
+          src="/AppName_Logos_IconOnly.png" 
+          alt="App Name" 
+          className="w-8 h-8 object-contain"
+        />
+        <h1 className="text-xl font-bold text-app-text">
+          App Name
+        </h1>
+      </div>
+    </div>
+
+    {/* Center Section - App Description */}
+    <div className="hidden md:flex items-center">
+      <span className="text-sm text-neutral-400">
+        App Description
+      </span>
+    </div>
+
+    {/* Right Section - Controls and Status */}
+    <div className="flex items-center space-x-3">
+      {/* Status Information */}
+      <div className="hidden sm:flex items-center space-x-2 text-xs text-neutral-400">
+        <span>Status: Online</span>
+        <span>•</span>
+        <span>{currentTime}</span>
+      </div>
+
+      {/* Settings Gear (MANDATORY) */}
+      <button className="p-2 text-app-text hover:text-app-accent hover:bg-neutral-800 rounded-md transition-colors">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </button>
+
+      {/* Logout Button (MANDATORY) */}
+      <button className="px-4 py-2 bg-neutral-700 hover:bg-neutral-600 text-app-text hover:text-white rounded-md transition-all duration-200 text-sm font-medium border border-neutral-600 hover:border-neutral-500 shadow-sm hover:shadow-md">
+        Logout
+      </button>
+      
+      {/* Stats Toggle (hidden on mobile) */}
+      <button className="hidden lg:block p-2 text-app-text hover:text-app-accent transition-colors">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+```
+
+**Header Requirements (MANDATORY):**
+- **Fixed positioning**: `fixed top-0 left-0 right-0 z-50`
+- **App branding**: Logo + app name on left
+- **Mobile menu button**: Hidden on desktop (`lg:hidden`)
+- **App description**: Centered (hidden on small screens)
+- **Settings gear**: Always visible, right side
+- **Logout button**: Always visible, right side
+- **Stats toggle**: Hidden on mobile (`hidden lg:block`)
+- **Status info**: Hidden on small screens
+- **Color customization**: Use app-specific color variables
+
+### **Sidebar Header Design (MANDATORY)**
 All sidebars **MUST** include this standardized header structure, but colors can be customized:
 
 ```tsx
@@ -75,7 +154,7 @@ All sidebars **MUST** include this standardized header structure, but colors can
       className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
     />
   </div>
-  <h3 className="text-sm lg:text-base font-fantasy font-semibold">
+  <h3 className="text-sm lg:text-base font-semibold">
     Navigation
   </h3>
   <p className="text-xs">
@@ -404,7 +483,10 @@ Each module card includes:
 Before deploying any application, ensure:
 
 - [ ] **Menu sizing** matches Nexus standards exactly (`w-48 lg:w-56`)
-- [ ] **Header design** follows mandatory template structure (colors customizable)
+- [ ] **Main header design** follows mandatory template structure (colors customizable)
+- [ ] **Main header includes** settings gear and logout button (MANDATORY)
+- [ ] **Main header positioning** uses `fixed top-0 left-0 right-0 z-50`
+- [ ] **Sidebar header design** follows mandatory template structure (colors customizable)
 - [ ] **Layout structure** uses mandatory flexbox pattern
 - [ ] **Sidebar positioning** uses normal document flow (no `fixed` positioning)
 - [ ] **Responsive grids** use `md:grid-cols-2` pattern for medium screens
@@ -424,6 +506,8 @@ Before deploying any application, ensure:
 
 ## 🚫 **Forbidden Practices**
 
+- **Missing main header elements** - settings gear and logout button are MANDATORY
+- **Incorrect header positioning** - must use `fixed top-0 left-0 right-0 z-50`
 - **Custom sidebar widths** outside of `w-48 lg:w-56` and `w-64`
 - **Fixed positioning** for sidebars (`fixed left-0 top-20`) - causes layout issues
 - **Grid layouts without `md:grid-cols-2`** - creates 3 narrow columns on iPad

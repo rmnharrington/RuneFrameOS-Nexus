@@ -1,0 +1,270 @@
+# RuneFrameOS Project State Tracker
+# This file tracks the current state, progress, and next steps
+# Updated: Current Session - Clean Slate Rebuild
+
+project_state:
+  session_id: "2024-12-19-clean-slate-rebuild"
+  last_updated: "Current Session - Clean Slate"
+  status: "Clean Slate - Starting Fresh Rebuild"
+
+# Current Project Status
+current_status:
+  phase: "Clean Slate Rebuild Phase"
+  focus: "Rebuilding all applications from scratch following GUI_DESIGN_SPECIFICATION.md exactly"
+  priority: "Alphabetical order rebuild with clean slate approach"
+  notes: "User deleted all extraneous files and updated images. Starting fresh rebuild."
+
+# Current Working Services (Docker Desktop)
+working_services:
+  - name: "Nexus"
+    port: 3000
+    status: "✅ Running"
+    description: "Central Hub - Central access point"
+    notes: "Container running but may need rebuild to match current standards"
+
+  - name: "Mercatrix"
+    port: 3008
+    status: "✅ Running"
+    description: "Economy Management & Building"
+    notes: "Container running, used as reference for successful implementation patterns"
+
+  - name: "PersonaVault"
+    port: 3009
+    status: "✅ Running"
+    description: "Character Sheet Binder & Dice Roller"
+    notes: "Container running but may need rebuild to match current standards"
+
+  - name: "TravelersTable"
+    port: 3010
+    status: "✅ Running"
+    description: "GameMaster Campaign Management"
+    notes: "Container running but may need rebuild to match current standards"
+
+# Applications to Rebuild (Clean Slate)
+applications_to_rebuild:
+  - name: "Broke Unicorn Tavern"
+    priority: "1 - First Priority (Alphabetical)"
+    port: 3005
+    description: "Social Hub & Game Coordination"
+    color_theme: "Light yellow/neutral (tavern, warm, neutral)"
+    features:
+      - "Available Games listing"
+      - "Post Game functionality"
+      - "My Games management"
+      - "Player Ratings system"
+      - "Community features"
+      - "Events coordination"
+    hero_banner: "✅ Implemented with proper structure"
+    layout_compliance: "✅ Follows GUI_DESIGN_SPECIFICATION.md exactly"
+    status: "✅ COMPLETED - Running on port 3005"
+    notes: "✅ COMPLETED - Running on port 3005, CSS loading properly, hero banner implemented, all API endpoints working, hydration errors fixed, sidebar heights corrected, gold/off-white color scheme applied, settings gear and logout button added to header, GUI_DESIGN_SPECIFICATION.md updated with main header requirements"
+
+  - name: "Core"
+    priority: "2 - Second Priority (Alphabetical)"
+    port: 3002
+    description: "Admin Dashboard"
+    color_theme: "Admin/system theme (to be defined)"
+    features:
+      - "System administration"
+      - "User management"
+      - "Configuration settings"
+      - "System monitoring"
+    hero_banner: "Required - follow GUI_DESIGN_SPECIFICATION.md exactly"
+    layout_compliance: "Must follow GUI_DESIGN_SPECIFICATION.md exactly"
+    status: "🔄 Ready for rebuild from scratch"
+    notes: "Clean slate rebuild - follow Mercatrix pattern for success"
+
+  - name: "Distillara"
+    priority: "3 - Third Priority (Alphabetical)"
+    port: 3003
+    description: "Alchemy Builder & Potion Master"
+    color_theme: "Amber/orange alchemy theme (amber, alchemy, potion, mystic)"
+    features:
+      - "Ingredients management"
+      - "Laboratory workspace"
+      - "Recipe system"
+      - "Experiment tracking"
+      - "Potion/explosion tracker (with snarky comments)"
+      - "Achievement system"
+    hero_banner: "Required - follow GUI_DESIGN_SPECIFICATION.md exactly"
+    layout_compliance: "Must follow GUI_DESIGN_SPECIFICATION.md exactly"
+    status: "🔄 Ready for rebuild from scratch"
+    notes: "Clean slate rebuild - follow Mercatrix pattern for success"
+
+  - name: "Feastwell"
+    priority: "4 - Fourth Priority (Alphabetical)"
+    port: 3001
+    description: "Culinary Management & Recipe System"
+    color_theme: "Warm culinary colors (to be defined)"
+    features:
+      - "Recipe database"
+      - "Flavor system"
+      - "Meal planning"
+      - "Nutrition tracking"
+      - "Cooking techniques"
+    hero_banner: "Required - follow GUI_DESIGN_SPECIFICATION.md exactly"
+    layout_compliance: "Must follow GUI_DESIGN_SPECIFICATION.md exactly"
+    status: "🔄 Ready for rebuild from scratch"
+    notes: "Clean slate rebuild - follow Mercatrix pattern for success"
+
+  - name: "Hoardwell"
+    priority: "5 - Fifth Priority (Alphabetical)"
+    port: 3004
+    description: "Inventory Management"
+    color_theme: "Treasure/wealth themed colors (to be defined)"
+    features:
+      - "Smart categorization"
+      - "Weight tracking"
+      - "Value estimation"
+      - "Storage management"
+      - "Item database"
+    hero_banner: "Required - follow GUI_DESIGN_SPECIFICATION.md exactly"
+    layout_compliance: "Must follow GUI_DESIGN_SPECIFICATION.md exactly"
+    status: "🔄 Ready for rebuild from scratch"
+    notes: "Clean slate rebuild - follow Mercatrix pattern for success"
+
+  - name: "Necrotic Arcanum"
+    priority: "6 - Sixth Priority (Alphabetical)"
+    port: 3007
+    description: "Undead Creation & Control"
+    color_theme: "Dark/mystical theme (to be defined)"
+    features:
+      - "Undead creation"
+      - "Necromancy spells"
+      - "Undead management"
+      - "Dark magic system"
+      - "Corruption tracking"
+    hero_banner: "Required - follow GUI_DESIGN_SPECIFICATION.md exactly"
+    layout_compliance: "Must follow GUI_DESIGN_SPECIFICATION.md exactly"
+    status: "🔄 Ready for rebuild from scratch"
+    notes: "Clean slate rebuild - follow Mercatrix pattern for success"
+
+  - name: "Scriptoria"
+    priority: "7 - Seventh Priority (Alphabetical)"
+    port: 3006
+    description: "Gaming Systems Library"
+    color_theme: "Knowledge/learning themed colors (to be defined)"
+    features:
+      - "Gaming system library"
+      - "Rulesets"
+      - "Documentation"
+      - "System comparison"
+      - "Learning resources"
+    hero_banner: "Required - follow GUI_DESIGN_SPECIFICATION.md exactly"
+    layout_compliance: "Must follow GUI_DESIGN_SPECIFICATION.md exactly"
+    status: "🔄 Ready for rebuild from scratch"
+    notes: "Clean slate rebuild - follow Mercatrix pattern for success"
+
+# Applications Not Yet Implemented
+pending_applications:
+  - name: "LoreForge"
+    description: "World building and management system"
+    status: "Not yet implemented"
+    notes: "Will be used by Tapestry Engine for world selection"
+
+  - name: "Tapestry Engine"
+    description: "Heavy story and NPC manager for World Architects"
+    status: "Not yet implemented"
+    color_theme: "Light yellow and green color scheme"
+    connections: "Will connect with Mercatrix, LoreForge, and TravelersTable"
+    notes: "Folder exists with images but application not built"
+
+# Critical Rules & Standards (ENFORCED)
+critical_rules:
+  docker_management:
+    - "NEVER build individual containers - use only the main code_repository container"
+    - "All docker operations must be run from Code_Repository root directory"
+    - "Use docker compose commands, not individual docker commands"
+    - "Port assignments are ESTABLISHED - DO NOT CHANGE existing ports"
+
+  application_standards:
+    - "Follow GUI_DESIGN_SPECIFICATION.md EXACTLY - NO EXCEPTIONS"
+    - "Each app must have its own unique color theme (unrestricted)"
+    - "Mandatory layout structure: Header, Footer, LeftSidebar, RightSidebar"
+    - "Responsive grid system: grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4"
+    - "Hero banner implementation follows standard structure (MANDATORY)"
+    - "Required API endpoints: /api/health, /api/module-info, /api/status"
+    - "Use Mercatrix as the golden standard for successful implementation"
+
+  build_process:
+    - "Use Mercatrix pattern for successful builds (NODE_ENV=development, npm run dev)"
+    - "Include user/group creation and permissions in Dockerfiles"
+    - "Use CommonJS postcss.config.js (not .mjs)"
+    - "Simplify tailwind.config.js (no custom plugins initially)"
+    - "Follow exact file structure from Mercatrix"
+
+  image_standards:
+    - "BGG_logo_light.png is the corporate image of Bad Guy Gas"
+    - "Each app needs: AppName.png, AppName_HeroBanner.png, AppName_Logos_IconOnly.png"
+    - "Images are in public folders and updated by user"
+    - "Follow image organization standards exactly"
+
+# Current Issues & Blockers
+current_issues:
+  - issue: "Clean slate rebuild required"
+    description: "All applications need complete rebuild from scratch"
+    impact: "No working applications except 4 running containers"
+    status: "🔄 In Progress - Starting Broke Unicorn Tavern first"
+
+  - issue: "Missing package.json files"
+    description: "Most applications lost package.json during deletion incident"
+    impact: "Cannot build applications without dependencies"
+    status: "✅ Resolved - Will rebuild from scratch"
+
+# Recent Accomplishments
+recent_accomplishments:
+  - "✅ Recovered from deletion incident with clean slate approach"
+  - "✅ Docker Compose configuration working correctly"
+  - "✅ 4 services running (Nexus, Mercatrix, PersonaVault, TravelersTable)"
+  - "✅ Updated all images in public folders with correct BGG branding"
+  - "✅ Established clean rebuild process following GUI_DESIGN_SPECIFICATION.md exactly"
+  - "✅ Identified Mercatrix as golden standard for successful implementation"
+
+# Next Session Priorities
+next_session_priorities:
+  1: "Rebuild Broke Unicorn Tavern from scratch (port 3005)"
+  2: "Follow GUI_DESIGN_SPECIFICATION.md exactly - NO EXCEPTIONS"
+  3: "Use Mercatrix pattern for successful Docker builds"
+  4: "Implement hero banner and proper layout structure"
+  5: "Continue alphabetical rebuild: Core (port 3002)"
+  6: "Ensure all rebuilt applications follow standards exactly"
+  7: "Maintain existing port structure - DO NOT CHANGE established ports"
+
+# Session Notes
+session_notes:
+  - "User deleted all extraneous files for clean slate approach"
+  - "Updated all images in public folders with correct BGG branding"
+  - "BGG_logo_light.png is the corporate image of Bad Guy Gas"
+  - "Starting fresh rebuild following GUI_DESIGN_SPECIFICATION.md exactly"
+  - "Mercatrix is the golden standard for successful implementation"
+  - "All applications need complete rebuild from scratch"
+  - "Focus on quality and standards compliance over speed"
+  - "Use proven Mercatrix pattern for Docker builds and layout structure"
+
+# Build Process for Each Application
+build_process:
+  1: "Create package.json with correct dependencies and scripts"
+  2: "Create tailwind.config.js with app-specific color theme"
+  3: "Create postcss.config.js in CommonJS format"
+  4: "Create Dockerfile following Mercatrix pattern"
+  5: "Implement AppLayout with exact structure from GUI spec"
+  6: "Create Header, Footer, LeftSidebar, RightSidebar components"
+  7: "Implement main app component with hero banner"
+  8: "Create API endpoints (/api/health, /api/module-info, /api/status)"
+  9: "Test Docker build from Code_Repository root"
+  10: "Verify CSS loading and layout compliance"
+  11: "Update docker-compose.yml if needed"
+  12: "Test application functionality"
+
+# Success Criteria
+success_criteria:
+  - "Application follows GUI_DESIGN_SPECIFICATION.md exactly"
+  - "CSS loads properly in Docker container"
+  - "Layout structure matches Nexus standards"
+  - "Hero banner implemented correctly"
+  - "API endpoints respond properly"
+  - "Docker container runs without errors"
+  - "Port assignment matches established system"
+  - "Color theme is unique and app-specific"
+  - "Responsive design works on all screen sizes"
+  - "Image organization follows standards"

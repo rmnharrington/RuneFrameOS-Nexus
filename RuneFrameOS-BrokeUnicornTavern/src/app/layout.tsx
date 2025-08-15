@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'BrokeUnicorn Tavern - RuneFrameOS',
-  description: 'Social hub & in-game gathering place for Travelers',
+  title: 'Broke Unicorn Tavern - RuneFrameOS',
+  description: 'Social Hub & Game Coordination for RuneFrameOS',
 }
 
 export default function RootLayout({
@@ -13,10 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen">
+      <body className="bg-brown-950 text-tan-100">
         {children}
       </body>
     </html>
   )
 }
-

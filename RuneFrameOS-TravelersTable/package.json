@@ -1,0 +1,39 @@
+{
+  "name": "runeframeos-travelerstable",
+  "version": "1.0.0",
+  "description": "GameMaster Campaign & Player Management for RuneFrameOS",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3010",
+    "build": "next build",
+    "start": "next start -p 3010",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.3.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "14.0.0"
+  },
+  "keywords": [
+    "gamemaster",
+    "campaign-management",
+    "player-tracking",
+    "dice-roller",
+    "rpg",
+    "runeframeos"
+  ],
+  "author": "Bad Guy Gas LLC",
+  "license": "MIT"
+}

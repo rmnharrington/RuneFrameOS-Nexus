@@ -1,129 +1,65 @@
-"use client"
+'use client'
 
-import React from 'react'
-
-interface LeftSidebarProps {
-  currentApp?: string
-}
-
-export default function LeftSidebar({ currentApp = "BrokeUnicorn Tavern" }: LeftSidebarProps) {
-  const tavernNavigation = [
-    {
-      id: 'main-hall',
-      name: 'Main Hall',
-      icon: '🏛️',
-      description: 'Central gathering area',
-      active: currentApp === 'Main Hall'
-    },
-    {
-      id: 'chat-rooms',
-      name: 'Chat Rooms',
-      icon: '💬',
-      description: 'Social conversations',
-      active: currentApp === 'Chat Rooms'
-    },
-    {
-      id: 'mission-board',
-      name: 'Mission Board',
-      icon: '📋',
-      description: 'Available quests',
-      active: currentApp === 'Mission Board'
-    },
-    {
-      id: 'character-profiles',
-      name: 'Character Profiles',
-      icon: '👤',
-      description: 'Traveler information',
-      active: currentApp === 'Character Profiles'
-    },
-    {
-      id: 'tavern-rules',
-      name: 'Tavern Rules',
-      icon: '📜',
-      description: 'Establishment guidelines',
-      active: currentApp === 'Tavern Rules'
-    }
-  ]
-
+export default function LeftSidebar() {
   return (
-    <aside className="w-full h-full bg-gradient-to-b from-amber-50 to-orange-50 border-r-2 border-amber-300/30 overflow-y-auto">
-      <div className="p-3 lg:p-4">
-        {/* Header */}
+    <aside className="w-48 lg:w-56 h-full bg-brown-900 border-r-2 border-tan-600 shadow-lg flex flex-col">
+      <div className="p-3 lg:p-4 h-full flex flex-col">
+        {/* Header - MANDATORY structure from GUI spec */}
         <div className="mb-4 lg:mb-6 text-center">
-          <img
-            src="/BrokeUnicornTavern_Logos_IconOnly.png"
-            alt="BrokeUnicorn Tavern"
-            className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-2 lg:mb-4 object-contain"
-          />
-          <h2 className="text-sm lg:text-base font-fantasy font-bold text-amber-800">Navigation</h2>
+          <div className="w-10 h-10 lg:w-12 lg:h-12 mx-auto rounded-full flex items-center justify-center shadow-lg mb-2 bg-gradient-to-br from-tan-400 to-tan-600">
+            <img 
+              src="/BGG_logo_light.png" 
+              alt="Broke Unicorn Tavern"
+              className="w-6 h-6 lg:w-8 lg:h-8 object-contain"
+            />
+          </div>
+          <h3 className="text-sm lg:text-base font-semibold text-tan-100">
+            Navigation
+          </h3>
+          <p className="text-xs text-brown-400">
+            Choose your path
+          </p>
         </div>
 
         {/* Navigation Items */}
-        <nav className="space-y-1 lg:space-y-2 mb-4 lg:mb-6">
-          {tavernNavigation.map((item) => (
+        <nav className="flex-1 space-y-1 lg:space-y-2">
+          {[
+            { name: 'Available Games', icon: '🎲', active: true },
+            { name: 'Post Game', icon: '📝', active: false },
+            { name: 'My Games', icon: '👤', active: false },
+            { name: 'Community', icon: '👥', active: false },
+            { name: 'Events', icon: '📅', active: false }
+          ].map((item) => (
             <button
-              key={item.id}
-              className={`w-full p-2 lg:p-3 text-left rounded-lg transition-all duration-200 group ${
+              key={item.name}
+              className={`w-full flex items-center space-x-2 p-2 lg:p-3 rounded-lg text-left transition-all duration-200 ${
                 item.active
-                  ? 'bg-gradient-to-r from-yellow-200 to-amber-300 border-2 border-yellow-400 shadow-md'
-                  : 'bg-white/60 hover:bg-white/80 border border-amber-200/50 hover:border-yellow-300/70 hover:shadow-md'
+                  ? 'bg-tan-600 text-brown-900 shadow-md'
+                  : 'text-tan-200 hover:bg-brown-800 hover:text-tan-100'
               }`}
             >
-              <div className="flex items-center space-x-2 lg:space-x-3">
-                <span className="text-lg lg:text-xl">{item.icon}</span>
-                <div className="flex-1 text-left">
-                  <h3 className={`font-medium text-xs lg:text-sm ${
-                    item.active ? 'text-amber-800' : 'text-amber-900'
-                  }`}>
-                    {item.name}
-                  </h3>
-                  <p className={`text-xs ${
-                    item.active ? 'text-amber-700' : 'text-amber-700'
-                  }`}>
-                    {item.description}
-                  </p>
-                </div>
-              </div>
+              <span className="text-lg lg:text-xl">{item.icon}</span>
+              <span className="text-xs lg:text-sm font-medium">{item.name}</span>
             </button>
           ))}
         </nav>
 
         {/* Quick Actions */}
-        <div className="mb-4 lg:mb-6 border-t border-amber-200/50 pt-4">
-          <h3 className="text-xs lg:text-sm font-medium text-amber-700 mb-2 lg:mb-3">Quick Actions</h3>
-          <div className="space-y-1 lg:space-y-2">
-            <button className="w-full p-2 bg-yellow-100 hover:bg-yellow-200 text-amber-700 rounded-lg text-xs lg:text-sm font-medium transition-colors">
-              🎲 Roll Dice
+        <div className="mt-auto pt-4 border-t border-brown-700">
+          <h4 className="text-xs text-brown-400 mb-2 font-medium">Quick Actions</h4>
+          <div className="space-y-1">
+            <button className="w-full text-left p-2 text-xs text-tan-300 hover:text-tan-100 hover:bg-brown-800 rounded transition-colors">
+              🔍 Search Games
             </button>
-            <button className="w-full p-2 bg-amber-100 hover:bg-amber-200 text-amber-700 rounded-lg text-xs lg:text-sm font-medium transition-colors">
-              📖 Read Lore
+            <button className="w-full text-left p-2 text-xs text-tan-300 hover:text-tan-100 hover:bg-brown-800 rounded transition-colors">
+              ⭐ Rate Players
             </button>
-            <button className="w-full p-2 bg-yellow-100 hover:bg-yellow-200 text-amber-700 rounded-lg text-xs lg:text-sm font-medium transition-colors">
-              🗺️ View Map
+            <button className="w-full text-left p-2 text-xs text-tan-300 hover:text-tan-100 hover:bg-brown-800 rounded transition-colors">
+              📊 View Stats
             </button>
-          </div>
-        </div>
-
-        {/* Tavern Status */}
-        <div className="border-t border-amber-200/50 pt-4">
-          <h3 className="text-xs lg:text-sm font-medium text-amber-700 mb-2 lg:mb-3">Tavern Status</h3>
-          <div className="space-y-2 text-xs">
-            <div className="flex justify-between">
-              <span className="text-amber-600">Active Travelers:</span>
-              <span className="font-medium text-amber-800">47</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-amber-600">Missions:</span>
-              <span className="font-medium text-amber-800">12</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-amber-600">Events:</span>
-              <span className="font-medium text-amber-800">2</span>
-            </div>
           </div>
         </div>
       </div>
     </aside>
   )
 }
-
