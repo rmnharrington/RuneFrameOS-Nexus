@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'PersonaVault - Character Management',
-  description: 'Character Sheet Binder & Dice Roller for RuneFrameOS',
+  title: 'PersonaVault - RuneFrameOS',
+  description: 'PersonaVault - Comprehensive character sheet management system for all gaming genres and systems. Create, edit, and view character sheets with access to various templates supplied by RuneFrameOS, working seamlessly across all gaming systems.',
 }
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gradient-to-br from-grey-50 via-grey-100 to-grey-50">
+      <body className="bg-stone-950 text-white">
         {children}
       </body>
     </html>

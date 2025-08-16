@@ -3,8 +3,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Mercatrix - RuneFrameOS',
-  description: 'Master economy management and building across all genres and gaming systems. Build, manage, and optimize entire economic structures.',
-  keywords: 'economy, management, gaming, RPG, tabletop, economic systems, trade, commerce, wealth',
+  description: 'Mercatrix - Comprehensive economy management system for all gaming genres and systems. Build entire economies from macro-world scale down to individual vendor inventories, manage trade routes, currency systems, and economic policies.',
 }
 
 export default function RootLayout({
@@ -14,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-economy-950">
+      <body className="bg-stone-950 text-white">
         {children}
       </body>
     </html>

@@ -12,46 +12,46 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
-    id: 'build',
-    label: 'Build Economy',
-    icon: '🏗️',
-    description: 'Create economic structures',
-    color: 'from-gold-600 to-wealth-600'
+    id: 'economies',
+    label: 'Economies',
+    icon: '🌍',
+    description: 'World-scale economies',
+    color: 'from-gold-600 to-stone-600'
   },
   {
-    id: 'manage',
-    label: 'Manage Systems',
-    icon: '⚙️',
-    description: 'Control economic flows',
-    color: 'from-wealth-600 to-commerce-600'
+    id: 'trade_routes',
+    label: 'Trade Routes',
+    icon: '🛣️',
+    description: 'Commercial pathways',
+    color: 'from-stone-600 to-character-600'
   },
   {
-    id: 'trade',
-    label: 'Trade Networks',
-    icon: '🔄',
-    description: 'Establish trade routes',
-    color: 'from-commerce-600 to-economy-600'
-  },
-  {
-    id: 'analyze',
-    label: 'Economic Analysis',
-    icon: '📊',
-    description: 'Data and insights',
-    color: 'from-economy-600 to-gold-600'
-  },
-  {
-    id: 'resources',
-    label: 'Resource Management',
-    icon: '💎',
-    description: 'Manage commodities',
-    color: 'from-gold-700 to-wealth-700'
+    id: 'currencies',
+    label: 'Currencies',
+    icon: '💰',
+    description: 'Monetary systems',
+    color: 'from-character-600 to-dice-600'
   },
   {
     id: 'markets',
-    label: 'Market Systems',
+    label: 'Markets',
     icon: '🏪',
-    description: 'Create marketplaces',
-    color: 'from-wealth-700 to-commerce-700'
+    description: 'Trading centers',
+    color: 'from-dice-600 to-gold-600'
+  },
+  {
+    id: 'vendors',
+    label: 'Vendors',
+    icon: '👨‍💼',
+    description: 'Individual merchants',
+    color: 'from-gold-700 to-stone-700'
+  },
+  {
+    id: 'inventories',
+    label: 'Inventories',
+    icon: '📦',
+    description: 'Item stockpiles',
+    color: 'from-stone-700 to-character-700'
   }
 ]
 
@@ -59,14 +59,14 @@ export default function LeftSidebar() {
   const [activeItem, setActiveItem] = useState<string | null>(null)
 
   return (
-    <div className="h-full bg-gradient-to-b from-economy-900 via-gold-900 to-wealth-900 border-r border-economy-700/50 p-4">
+    <div className="h-full bg-gradient-to-b from-stone-900 via-gold-900 to-stone-900 border-r border-stone-700/50 p-4">
       {/* App Title */}
       <div className="mb-6 text-center">
         <h2 className="text-lg font-bold text-gold-100 text-shadow-gold mb-1">
           Mercatrix
         </h2>
-        <p className="text-xs text-gold-300 text-shadow-wealth">
-          Economy Mastery
+        <p className="text-xs text-gold-300 text-shadow-stone">
+          Economy Hub
         </p>
       </div>
 
@@ -79,7 +79,7 @@ export default function LeftSidebar() {
             className={`w-full text-left p-3 rounded-lg transition-all duration-200 group ${
               activeItem === item.id
                 ? 'bg-gradient-to-r ' + item.color + ' shadow-lg transform scale-105'
-                : 'bg-economy-800/50 hover:bg-economy-700/70 hover:transform hover:scale-102'
+                : 'bg-stone-800/50 hover:bg-stone-700/70 hover:transform hover:scale-102'
             }`}
           >
             <div className="flex items-center space-x-3">
@@ -101,7 +101,37 @@ export default function LeftSidebar() {
         ))}
       </nav>
 
+      {/* Quick Actions */}
+      <div className="mt-8 pt-6 border-t border-stone-700/30">
+        <h3 className="text-sm font-semibold text-gold-200 text-shadow-stone mb-3">
+          Quick Actions
+        </h3>
+        <div className="space-y-2">
+          <button className="w-full p-2 bg-gradient-to-r from-gold-700 to-stone-700 rounded-lg text-xs text-gold-100 hover:from-gold-600 hover:to-stone-600 transition-all duration-200">
+            🌍 Create Economy
+          </button>
+          <button className="w-full p-2 bg-gradient-to-r from-character-700 to-dice-700 rounded-lg text-xs text-white hover:from-character-600 hover:to-dice-700 transition-all duration-200">
+            🛣️ New Trade Route
+          </button>
+        </div>
+      </div>
 
+      {/* Status Indicators */}
+      <div className="mt-8 pt-6 border-t border-stone-700/30">
+        <h3 className="text-sm font-semibold text-gold-200 text-shadow-stone mb-3">
+          Status
+        </h3>
+        <div className="space-y-2 text-xs">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="text-gold-300">Market Active</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <span className="text-gold-300">8 Economies Running</span>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

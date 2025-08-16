@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personavault
+  namespace: runeframeos
+  labels:
+    app: personavault
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: personavault
+  template:
+    metadata:
+      labels:
+        app: personavault
+    spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: personavault
+        image: personavault:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3010
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "3010"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        # Health checks disabled for initial testing
+        # livenessProbe:
+        #   httpGet:
+        #     path: /api/health
+        #     port: 3010
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 10
+        #   timeoutSeconds: 5
+        #   failureThreshold: 3
+        # readinessProbe:
+        #   httpGet:
+        #     path: /api/health
+        #     port: 3010
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 5
+        #   timeoutSeconds: 3
+        #   failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: personavault
+  namespace: runeframeos
+  labels:
+    app: personavault
+spec:
+  selector:
+    app: personavault
+  ports:
+  - port: 3010
+    targetPort: 3010
+    nodePort: 30010
+    protocol: TCP
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: personavault-ingress
+  namespace: runeframeos
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: personavault.pedantictheory.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: personavault
+            port:
+              number: 3010

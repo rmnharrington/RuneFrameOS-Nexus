@@ -1,214 +1,127 @@
-# PersonaVault - Character Sheet Binder & Dice Roller
+# PersonaVault - RuneFrameOS
 
 ## Overview
 
-PersonaVault is a comprehensive character management system for the RuneFrameOS ecosystem. It allows users to create, manage, and view character sheets from any gaming system, with an integrated dice rolling engine and template management system.
+PersonaVault is a comprehensive character sheet management system for all gaming genres and systems. Create, edit, and view character sheets with access to various templates supplied by RuneFrameOS, working seamlessly across all gaming systems.
 
 ## Features
 
-### 🎭 Character Management
-- **Multi-System Support**: Create characters for D&D 5e, Pathfinder 2e, Call of Cthulhu, and custom systems
-- **Character Creation**: Build characters using templates or from scratch
-- **Character Storage**: Secure storage for all your character data
-- **Import/Export**: Transfer characters between systems and devices
+### 📋 Character Creation & Management
+- **Character Builder**: Create characters with step-by-step guidance and validation
+- **Sheet Editor**: Edit and modify existing character sheets with real-time updates
+- **Interactive Sheets**: Dynamic character sheets that update in real-time
+- **Validation**: Automatic calculations, validation, and error checking
 
-### 🎲 Dice Rolling Engine
-- **Standard Dice**: Support for d4, d6, d8, d10, d12, d20, d100
-- **Custom Expressions**: Roll complex dice expressions like "2d6+3" or "4d10-2"
-- **Quick Rolls**: Pre-configured buttons for common dice rolls
-- **Roll History**: Track your dice rolling history
+### 🎭 Templates & Systems
+- **System Templates**: Pre-built templates for all major gaming systems
+- **Genre Support**: Fantasy, sci-fi, modern, horror, and more
+- **Template Library**: Access to hundreds of pre-built character sheet templates
+- **Custom Systems**: Build your own templates and systems
 
-### 📋 Template System
-- **Pre-built Templates**: Ready-to-use character sheets for popular RPG systems
-- **Custom Templates**: Upload and manage your own character sheet templates
-- **Template Preview**: See templates before using them
-- **System Integration**: Templates automatically integrate with character creation
+### 🎲 Gaming Systems Support
+- **D&D 5e**: Complete character sheets
+- **Pathfinder**: 1e & 2e support
+- **Starfinder**: Sci-fi adventures
+- **Custom Systems**: Build your own
 
-### 🎮 Gaming System Management
-- **System Support**: Manage multiple RPG systems in one place
-- **Extensible**: Add support for new gaming systems
-- **Cross-Platform**: Access your characters from anywhere
+### 🔗 Cross-Genre Support
+- Works across all gaming genres and systems
+- From medieval fantasy to cyberpunk
+- From space opera to post-apocalyptic
+- Universal character engine for all systems
 
 ## Technical Details
 
-### Architecture
-- **Frontend**: Next.js 14 with TypeScript
-- **Styling**: Tailwind CSS with custom character sheet theme
-- **Layout**: Responsive design following RuneFrameOS GUI specifications
-- **API**: RESTful endpoints for all functionality
+- **Port**: 3010
+- **NodePort**: 30010
+- **Ingress**: personavault.pedantictheory.com
+- **Framework**: Next.js 14.0.4
+- **Styling**: Tailwind CSS with custom color scheme
 
-### Port Configuration
-- **Development**: Port 3009
-- **Production**: Configurable via environment variables
-
-### Dependencies
-- Next.js 14.0.0
-- React 18.2.0
-- TypeScript 5.0.0
-- Tailwind CSS 3.3.0
-
-## Getting Started
+## Deployment
 
 ### Prerequisites
-- Node.js 18+ (LTS recommended)
-- Docker Desktop (for containerized deployment)
-- RuneFrameOS ecosystem access
+- Kubernetes cluster with nginx ingress controller
+- Docker installed on all nodes
+- Access to the runeframeos namespace
 
-### Installation
+### Build & Deploy
 
-1. **Clone the repository**
-   ```bash
-   git clone [repository-url]
-   cd RuneFrameOS-PersonaVault
-   ```
-
-2. **Install dependencies**
+1. **Install Dependencies**
    ```bash
    npm install
    ```
 
-3. **Start development server**
+2. **Build Docker Image**
    ```bash
-   npm run dev
+   sudo docker build -f Dockerfile.clean -t personavault:latest .
    ```
 
-4. **Access the application**
-   - Local: http://localhost:3009
-   - Docker: http://localhost:3009
-
-### Docker Deployment
-
-1. **Build the container**
+3. **Load Image to All Nodes**
    ```bash
-   docker build -t personavault .
+   # On sherlock (control plane)
+   sudo docker save personavault:latest | sudo ctr -n=k8s.io images import -
+   
+   # On watson
+   sudo docker save personavault:latest | ssh wee@watson sudo ctr -n=k8s.io images import -
+   
+   # On adler
+   sudo docker save personavault:latest | ssh wee@adler sudo ctr -n=k8s.io images import -
    ```
 
-2. **Run the container**
+4. **Deploy to Kubernetes**
    ```bash
-   docker run -p 3009:3009 personavault
+   sudo kubectl apply -f personavault-deployment.yaml --kubeconfig /etc/kubernetes/admin.conf
    ```
 
-## API Endpoints
+5. **Verify Deployment**
+   ```bash
+   sudo kubectl get pods -n runeframeos --kubeconfig /etc/kubernetes/admin.conf
+   sudo kubectl get service personavault -n runeframeos --kubeconfig /etc/kubernetes/admin.conf
+   ```
 
-### Health Check
-- `GET /api/health` - Service health status
+## Access
 
-### Module Information
-- `GET /api/module-info` - Module capabilities and features
+- **Direct Access**: NodePort 30010 on any cluster node
+- **Ingress**: http://personavault.pedantictheory.com
+- **Local Test**: `curl http://localhost:30010`
 
-### Status
-- `GET /api/status` - Current module status and metrics
+## Architecture
 
-### Characters (Future)
-- `GET /api/characters` - List all characters
-- `POST /api/characters` - Create new character
-- `PUT /api/characters/:id` - Update character
-- `DELETE /api/characters/:id` - Delete character
+The application follows the exact PersonaVault layout structure:
+- **Header**: App logo, title, and navigation controls
+- **Left Sidebar**: Character management navigation and quick actions
+- **Right Sidebar**: Active character info, dice roller, and status
+- **Center Console**: Main content area with character management features
+- **Footer**: Brand information and social links
 
-### Templates (Future)
-- `GET /api/templates` - List all templates
-- `POST /api/templates` - Upload new template
-- `GET /api/templates/:id` - Get template details
+## Integration
 
-### Dice Rolling (Future)
-- `POST /api/dice/roll` - Roll dice with expression
-- `GET /api/dice/history` - Get roll history
-
-## Design System
-
-### Color Palette
-- **Gold**: Warm, character-focused colors for primary elements
-- **Grey**: Neutral, professional colors for secondary elements
-- **Stats**: Color-coded character statistics
-
-### Typography
-- **Fantasy Fonts**: Cinzel for headers, Kalam for handwriting effects
-- **Responsive**: Scales appropriately across all device sizes
-- **Accessibility**: High contrast and readable text
-
-### Layout
-- **Responsive Grid**: Adapts to different screen sizes
-- **Sidebar Navigation**: Left sidebar for main navigation
-- **Right Panel**: Quick actions and character stats
-- **Mobile-First**: Optimized for mobile and tablet devices
-
-## Integration with RuneFrameOS
-
-### Nexus Integration
-- **Character Cards**: Display character summaries in Nexus dashboard
-- **Quick Actions**: Access PersonaVault features from Nexus
-- **Cross-App Navigation**: Seamless movement between applications
-
-### Shared Services
-- **Authentication**: Integrated with RuneFrameOS auth system
-- **Storage**: Uses centralized storage for character data
-- **Templates**: Shares template library across the ecosystem
+PersonaVault integrates with other RuneFrameOS applications:
+- **Hoardwell**: Track character equipment and gear
+- **LoreForge**: Integrate character backstories
+- **Mercatrix**: Manage character economic impact
+- **All Apps**: Share character data seamlessly
 
 ## Development
 
-### Code Structure
-```
-src/
-├── app/                 # Next.js app router
-│   ├── api/            # API endpoints
-│   ├── globals.css     # Global styles
-│   ├── layout.tsx      # Root layout
-│   └── page.tsx        # Main page
-├── components/          # React components
-│   ├── Header.tsx      # Application header
-│   ├── LeftSidebar.tsx # Navigation sidebar
-│   ├── RightSidebar.tsx # Stats panel
-│   └── CharacterDashboard.tsx # Main content
-└── types/               # TypeScript type definitions
-```
-
-### Development Commands
+### Local Development
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run type-check   # Run TypeScript checks
+npm run dev
 ```
 
-### Contributing
-1. Follow RuneFrameOS coding standards
-2. Use the established design system
-3. Test across different screen sizes
-4. Ensure accessibility compliance
-5. Update documentation for new features
+### Build for Production
+```bash
+npm run build
+npm start
+```
 
-## Future Enhancements
+### Linting
+```bash
+npm run lint
+```
 
-### Planned Features
-- **Advanced Dice Engine**: Complex dice expressions and modifiers
-- **Character Sharing**: Share characters with other players
-- **Mobile App**: Native mobile application
-- **Offline Support**: Work without internet connection
-- **Character Analytics**: Track character development over time
+## License
 
-### Technical Improvements
-- **Real-time Updates**: WebSocket integration for live character updates
-- **Advanced Templates**: Drag-and-drop template builder
-- **Performance Optimization**: Lazy loading and caching improvements
-- **Internationalization**: Multi-language support
-
-## Support
-
-### Documentation
-- [RuneFrameOS Architecture](../SERVER_SETUP_ARCHITECTURE.md)
-- [GUI Design Standards](../GUI_DESIGN_SPECIFICATION.md)
-- [API Documentation](../API_DOCUMENTATION.md)
-
-### Contact
-- **Development Team**: dev@badguygas.com
-- **Support**: support@badguygas.com
-- **Security Issues**: security@badguygas.com
-
----
-
-**Version**: 1.0.0  
-**Last Updated**: Current Development Session  
-**Status**: Development - Core Features Complete  
-**License**: MIT  
-**Author**: Bad Guy Gas LLC
+© 2024 Bad Guy Gas LLC. All rights reserved.
+Trademarked by Bad Guy Gas LLC.

@@ -1,0 +1,96 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mercatrix-config
+  namespace: runeframeos
+data:
+  NODE_ENV: development
+  PORT: 3008
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mercatrix
+  namespace: runeframeos
+  labels:
+    app: mercatrix
+spec:
+  selector:
+    app: mercatrix
+  ports:
+  - port: 3008
+    targetPort: 3008
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mercatrix
+  namespace: runeframeos
+  labels:
+    app: mercatrix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mercatrix
+  template:
+    metadata:
+      labels:
+        app: mercatrix
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - adler
+      containers:
+      - name: mercatrix
+        image: localhost:5000/mercatrix:latest
+        ports:
+        - containerPort: 3008
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: mercatrix-config
+              key: NODE_ENV
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mercatrix-config
+              key: PORT
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 250m
+          limits:
+            memory: 512Mi
+            cpu: 500m
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mercatrix-ingress
+  namespace: runeframeos
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: mercatrix.pedantictheory.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mercatrix
+            port:
+              number: 3008

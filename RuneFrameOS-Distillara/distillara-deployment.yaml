@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: distillara
+  namespace: runeframeos
+  labels:
+    app: distillara
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: distillara
+  template:
+    metadata:
+      labels:
+        app: distillara
+    spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: distillara
+        image: distillara:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3008
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "3008"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        # Health checks disabled for initial testing
+        # livenessProbe:
+        #   httpGet:
+        #     path: /api/health
+        #     port: 3008
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 10
+        #   timeoutSeconds: 5
+        #   failureThreshold: 3
+        # readinessProbe:
+        #   httpGet:
+        #     path: /api/health
+        #     port: 3008
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 5
+        #   timeoutSeconds: 3
+        #   failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: distillara
+  namespace: runeframeos
+  labels:
+    app: distillara
+spec:
+  selector:
+    app: distillara
+  ports:
+  - port: 3008
+    targetPort: 3008
+    nodePort: 30003
+    protocol: TCP
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: distillara-ingress
+  namespace: runeframeos
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: distillara.pedantictheory.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: distillara
+            port:
+              number: 3008

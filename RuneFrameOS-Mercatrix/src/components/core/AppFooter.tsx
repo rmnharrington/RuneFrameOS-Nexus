@@ -4,14 +4,14 @@ import React from 'react'
 
 export default function AppFooter() {
   return (
-    <footer className="bg-gradient-to-r from-gold-800 via-wealth-900 to-economy-950 text-white border-t-2 border-gold-600/30 shadow-xl">
+    <footer className="bg-gradient-to-r from-gold-800 via-stone-900 to-stone-950 text-white border-t-2 border-gold-600/30 shadow-xl">
       <div className="px-4 py-3 lg:px-6 lg:py-4">
         <div className="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0">
           {/* Left Section - Brand and Links */}
           <div className="flex items-center space-x-4 lg:space-x-6">
             <div className="flex items-center space-x-2">
               <img
-                src="/Logo_light.png"
+                src="/BGG_logo_light.png"
                 alt="Bad Guy Gas"
                 className="w-6 h-6 object-contain"
               />
@@ -46,7 +46,7 @@ export default function AppFooter() {
             </a>
           </div>
 
-          {/* Right Section - Version and Copyright */}
+          {/* Right Section - Version Info */}
           <div className="text-xs text-gold-400 text-center lg:text-right">
             <div>RuneFrameOS Mercatrix v1.0.0</div>
             <div>Built by Bad Guy Gas LLC</div>

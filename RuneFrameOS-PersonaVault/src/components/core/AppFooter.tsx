@@ -11,7 +11,7 @@ export default function AppFooter() {
           <div className="flex items-center space-x-4 lg:space-x-6">
             <div className="flex items-center space-x-2">
               <img
-                src="/Logo_light.png"
+                src="/BGG_logo_light.png"
                 alt="Bad Guy Gas"
                 className="w-6 h-6 object-contain"
               />
@@ -46,7 +46,7 @@ export default function AppFooter() {
             </a>
           </div>
 
-          {/* Right Section - Version and Copyright */}
+          {/* Right Section - Version Info */}
           <div className="text-xs text-gold-400 text-center lg:text-right">
             <div>RuneFrameOS PersonaVault v1.0.0</div>
             <div>Built by Bad Guy Gas LLC</div>

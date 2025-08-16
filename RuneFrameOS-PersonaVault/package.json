@@ -1,38 +1,28 @@
 {
   "name": "runeframeos-personavault",
   "version": "1.0.0",
-  "description": "Character Sheet Binder & Dice Roller for RuneFrameOS",
+  "description": "PersonaVault - Comprehensive character sheet management system for all gaming genres and systems. Create, edit, and view character sheets with access to various templates supplied by RuneFrameOS, working seamlessly across all gaming systems.",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3009",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3009",
-    "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "start": "next start -H 0.0.0.0",
+    "lint": "next lint"
   },
   "dependencies": {
-    "next": "14.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0"
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.4.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8",
     "tailwindcss": "^3.3.0",
-    "eslint": "^8.0.0",
-    "eslint-config-next": "14.0.0"
-  },
-  "keywords": [
-    "character-sheets",
-    "dice-roller",
-    "gaming",
-    "rpg",
-    "runeframeos"
-  ],
-  "author": "Bad Guy Gas LLC",
-  "license": "MIT"
+    "typescript": "^5"
+  }
 }

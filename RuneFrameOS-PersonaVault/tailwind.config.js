@@ -8,8 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // PersonaVault Theme - Gold & Stone Grey
-        'gold': {
+        gold: {
           50: '#fefce8',
           100: '#fef9c3',
           200: '#fef08a',
@@ -22,7 +21,7 @@ module.exports = {
           900: '#713f12',
           950: '#422006',
         },
-        'stone': {
+        stone: {
           50: '#fafaf9',
           100: '#f5f5f4',
           200: '#e7e5e4',
@@ -35,7 +34,7 @@ module.exports = {
           900: '#1c1917',
           950: '#0c0a09',
         },
-        'character': {
+        character: {
           50: '#f0f9ff',
           100: '#e0f2fe',
           200: '#bae6fd',
@@ -48,37 +47,54 @@ module.exports = {
           900: '#0c4a6e',
           950: '#082f49',
         },
-        'dice': {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
-          950: '#052e16',
+        dice: {
+          50: '#fdf4ff',
+          100: '#fae8ff',
+          200: '#f5d0fe',
+          300: '#f0abfc',
+          400: '#e879f9',
+          500: '#d946ef',
+          600: '#c026d3',
+          700: '#a21caf',
+          800: '#86198f',
+          900: '#701a75',
+          950: '#4a044e',
         }
-      },
-      fontFamily: {
-        'fantasy': ['Cinzel', 'serif'],
-        'handwriting': ['Kalam', 'cursive'],
       },
       textShadow: {
         'gold': '0 2px 4px rgba(234, 179, 8, 0.3)',
-        'stone': '0 2px 4px rgba(28, 25, 23, 0.4)',
+        'stone': '0 2px 4px rgba(87, 83, 78, 0.3)',
         'character': '0 2px 4px rgba(14, 165, 233, 0.3)',
-        'dice': '0 2px 4px rgba(34, 197, 94, 0.3)',
+        'dice': '0 2px 4px rgba(217, 70, 239, 0.3)',
       },
       boxShadow: {
-        'gold': '0 4px 20px rgba(234, 179, 8, 0.15)',
-        'stone': '0 4px 20px rgba(28, 25, 23, 0.2)',
-        'character': '0 4px 20px rgba(14, 165, 233, 0.3)',
-        'dice': '0 4px 20px rgba(34, 197, 94, 0.3)',
+        'gold': '0 4px 6px -1px rgba(234, 179, 8, 0.1), 0 2px 4px -1px rgba(234, 179, 8, 0.06)',
+        'stone': '0 4px 6px -1px rgba(87, 83, 78, 0.1), 0 2px 4px -1px rgba(87, 83, 78, 0.06)',
+        'character': '0 4px 6px -1px rgba(14, 165, 233, 0.1), 0 2px 4px -1px rgba(14, 165, 233, 0.06)',
+        'dice': '0 4px 6px -1px rgba(217, 70, 239, 0.1), 0 2px 4px -1px rgba(217, 70, 239, 0.06)',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.text-shadow-gold': {
+          'text-shadow': '0 2px 4px rgba(234, 179, 8, 0.3)',
+        },
+        '.text-shadow-stone': {
+          'text-shadow': '0 2px 4px rgba(87, 83, 78, 0.3)',
+        },
+        '.text-shadow-character': {
+          'text-shadow': '0 2px 4px rgba(14, 165, 233, 0.3)',
+        },
+        '.text-shadow-dice': {
+          'text-shadow': '0 2px 4px rgba(217, 70, 239, 0.3)',
+        },
+        '.dice-button': {
+          '@apply bg-gradient-to-r from-dice-600 to-dice-700 text-white px-3 py-2 rounded-lg hover:from-dice-500 hover:to-dice-600 transition-all duration-200 font-medium border border-dice-500 hover:border-dice-400 shadow-sm hover:shadow-md': {},
+        },
+      }
+      addUtilities(newUtilities)
+    }
+  ],
 }

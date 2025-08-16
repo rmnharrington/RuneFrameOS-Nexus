@@ -12,45 +12,45 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
-    id: 'characters',
-    label: 'Characters',
-    icon: '👤',
-    description: 'Manage character sheets',
+    id: 'character_sheets',
+    label: 'Character Sheets',
+    icon: '📋',
+    description: 'View & manage sheets',
     color: 'from-gold-600 to-stone-600'
+  },
+  {
+    id: 'create_character',
+    label: 'Create Character',
+    icon: '✨',
+    description: 'Build new character',
+    color: 'from-stone-600 to-character-600'
   },
   {
     id: 'templates',
     label: 'Templates',
-    icon: '📋',
-    description: 'Download from Scriptoria',
-    color: 'from-stone-600 to-character-600'
-  },
-  {
-    id: 'dice',
-    label: 'Dice Roller',
-    icon: '🎲',
-    description: 'Roll dice for gaming',
+    icon: '🎭',
+    description: 'Genre & system templates',
     color: 'from-character-600 to-dice-600'
   },
   {
-    id: 'scriptoria',
-    label: 'Scriptoria',
-    icon: '📚',
-    description: 'Connect to library',
+    id: 'edit_character',
+    label: 'Edit Character',
+    icon: '✏️',
+    description: 'Modify existing sheets',
     color: 'from-dice-600 to-gold-600'
   },
   {
-    id: 'import',
-    label: 'Import/Export',
-    icon: '📥',
-    description: 'Data management',
+    id: 'character_library',
+    label: 'Character Library',
+    icon: '📚',
+    description: 'Browse all characters',
     color: 'from-gold-700 to-stone-700'
   },
   {
-    id: 'settings',
-    label: 'Settings',
-    icon: '⚙️',
-    description: 'App configuration',
+    id: 'export_import',
+    label: 'Export/Import',
+    icon: '📤',
+    description: 'Share characters',
     color: 'from-stone-700 to-character-700'
   }
 ]
@@ -66,7 +66,7 @@ export default function LeftSidebar() {
           PersonaVault
         </h2>
         <p className="text-xs text-gold-300 text-shadow-stone">
-          Character Mastery
+          Character Hub
         </p>
       </div>
 
@@ -108,10 +108,10 @@ export default function LeftSidebar() {
         </h3>
         <div className="space-y-2">
           <button className="w-full p-2 bg-gradient-to-r from-gold-700 to-stone-700 rounded-lg text-xs text-gold-100 hover:from-gold-600 hover:to-stone-600 transition-all duration-200">
-            🆕 New Character
+            ✨ Create Character
           </button>
-          <button className="w-full p-2 bg-gradient-to-r from-character-700 to-dice-700 rounded-lg text-xs text-white hover:from-character-600 hover:to-dice-600 transition-all duration-200">
-            🎲 Quick Roll
+          <button className="w-full p-2 bg-gradient-to-r from-character-700 to-dice-700 rounded-lg text-xs text-white hover:from-character-600 hover:to-dice-700 transition-all duration-200">
+            📋 New Sheet
           </button>
         </div>
       </div>
@@ -124,11 +124,11 @@ export default function LeftSidebar() {
         <div className="space-y-2 text-xs">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="text-gold-300">Scriptoria Connected</span>
+            <span className="text-gold-300">System Active</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            <span className="text-gold-300">3 Characters Loaded</span>
+            <span className="text-gold-300">24 Characters</span>
           </div>
         </div>
       </div>

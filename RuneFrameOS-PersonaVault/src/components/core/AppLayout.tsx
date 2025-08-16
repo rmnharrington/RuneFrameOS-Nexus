@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import Header from './Header'
 import LeftSidebar from './LeftSidebar'
 import RightSidebar from './RightSidebar'
-import Header from './Header'
 import AppFooter from './AppFooter'
 
 interface AppLayoutProps {
@@ -11,46 +11,38 @@ interface AppLayoutProps {
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const handleMenuClick = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
 
   return (
     <div className="min-h-screen bg-stone-950 flex flex-col">
       {/* Header */}
-      <Header onMenuClick={() => setIsRightSidebarOpen(!isRightSidebarOpen)} />
+      <Header onMenuClick={handleMenuClick} />
       
+      {/* Main Content Area */}
       <div className="flex flex-1">
-        {/* Left Sidebar - Always visible following design standards */}
-        <div className="w-48 lg:w-56 flex-shrink-0">
+        {/* Left Sidebar - Hidden on mobile unless menu is open */}
+        <div className={`${
+          isMobileMenuOpen ? 'block' : 'hidden'
+        } lg:block w-48 lg:w-56 flex-shrink-0`}>
           <LeftSidebar />
         </div>
         
-        {/* Main Content Area */}
+        {/* Main Content */}
         <main className="flex-1 min-w-0">
-          <div className="p-4 lg:p-6">
-            {children}
-          </div>
+          {children}
         </main>
         
-        {/* Right Sidebar - Hidden on mobile/tablet following design standards */}
+        {/* Right Sidebar - Hidden on mobile */}
         <div className="hidden lg:block w-64 flex-shrink-0">
           <RightSidebar />
         </div>
       </div>
       
-      {/* Mobile Right Sidebar Overlay */}
-      {isRightSidebarOpen && (
-        <div className="lg:hidden fixed inset-0 z-50">
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50"
-            onClick={() => setIsRightSidebarOpen(false)}
-          />
-          <div className="fixed right-0 top-0 h-full w-64 bg-stone-900 border-l border-stone-700">
-            <RightSidebar />
-          </div>
-        </div>
-      )}
-      
-      {/* Footer - Now properly positioned at bottom */}
+      {/* Footer */}
       <AppFooter />
     </div>
   )

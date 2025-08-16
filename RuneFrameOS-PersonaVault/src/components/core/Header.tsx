@@ -22,7 +22,7 @@ export default function Header({ onMenuClick }: HeaderProps) {
               PersonaVault
             </h1>
             <p className="text-sm text-gold-300 text-shadow-stone">
-              Character Sheet Mastery
+              Character Sheet Management
             </p>
           </div>
         </div>

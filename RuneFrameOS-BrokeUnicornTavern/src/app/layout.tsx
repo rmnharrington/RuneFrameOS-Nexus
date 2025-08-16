@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Broke Unicorn Tavern - RuneFrameOS',
-  description: 'Social Hub & Game Coordination for RuneFrameOS',
+  title: 'BrokeUnicorn Tavern - RuneFrameOS',
+  description: 'The legendary BrokeUnicorn Tavern - A haven for adventurers, storytellers, and those seeking mystical brews and rare artifacts.',
 }
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-brown-950 text-tan-100">
+      <body className="bg-stone-950 text-white">
         {children}
       </body>
     </html>

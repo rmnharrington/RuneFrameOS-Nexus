@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+  env: {
+    HOSTNAME: '0.0.0.0'
+  }
 }
 
 module.exports = nextConfig

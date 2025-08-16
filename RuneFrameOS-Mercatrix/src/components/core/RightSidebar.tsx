@@ -1,145 +1,118 @@
 'use client'
 
-import { useState } from 'react'
-
-interface ToolItem {
-  id: string
-  name: string
-  description: string
-  icon: string
-  status: 'ready' | 'cooldown' | 'locked'
-}
-
-const toolItems: ToolItem[] = [
-  {
-    id: 'gold-standard',
-    name: 'Gold Standard',
-    description: 'Set currency standards and values',
-    icon: '💰',
-    status: 'ready'
-  },
-  {
-    id: 'trade-routes',
-    name: 'Trade Routes',
-    description: 'Design and optimize trade networks',
-    icon: '🗺️',
-    status: 'ready'
-  },
-  {
-    id: 'market-maker',
-    name: 'Market Maker',
-    description: 'Create and manage marketplaces',
-    icon: '🏪',
-    status: 'cooldown'
-  },
-  {
-    id: 'wealth-analyzer',
-    name: 'Wealth Analyzer',
-    description: 'Analyze economic trends',
-    icon: '📈',
-    status: 'locked'
-  }
-]
-
 export default function RightSidebar() {
-  const [selectedTool, setSelectedTool] = useState<string | null>(null)
-
-  const getStatusColor = (status: ToolItem['status']) => {
-    switch (status) {
-      case 'ready':
-        return 'text-gold-400 border-gold-600'
-      case 'cooldown':
-        return 'text-wealth-400 border-wealth-600'
-      case 'locked':
-        return 'text-economy-400 border-economy-600'
-      default:
-        return 'text-gold-400 border-gold-600'
-    }
-  }
-
-  const getStatusText = (status: ToolItem['status']) => {
-    switch (status) {
-      case 'ready':
-        return 'Ready'
-      case 'cooldown':
-        return 'Cooldown'
-      case 'locked':
-        return 'Locked'
-      default:
-        return 'Unknown'
-    }
-  }
-
   return (
-    <div className="h-full bg-gradient-to-b from-wealth-900 via-economy-900 to-gold-900 border-l border-economy-700/50 p-4">
-      {/* Title */}
-      <div className="mb-6 text-center">
-        <h3 className="text-lg font-bold text-gold-100 text-shadow-gold mb-1">
-          Economic Tools
+    <div className="h-full bg-gradient-to-b from-stone-900 via-gold-900 to-stone-900 border-l border-stone-700/50 p-4">
+      {/* Active Economy Info */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-gold-100 text-shadow-gold mb-3">
+          Active Economy
         </h3>
-        <p className="text-xs text-gold-300 text-shadow-wealth">
-          Your wealth management arsenal
-        </p>
-      </div>
-
-      {/* Tools List */}
-      <div className="space-y-3 mb-6">
-        {toolItems.map((tool) => (
-          <div
-            key={tool.id}
-            onClick={() => setSelectedTool(selectedTool === tool.id ? null : tool.id)}
-            className={`p-3 rounded-lg border cursor-pointer transition-all duration-200 ${
-              selectedTool === tool.id
-                ? 'bg-economy-800/70 border-gold-500 shadow-lg'
-                : 'bg-economy-800/30 hover:bg-economy-800/50'
-            } ${getStatusColor(tool.status)}`}
-          >
-            <div className="flex items-center space-x-3">
-              <span className="text-2xl">{tool.icon}</span>
-              <div className="flex-1 min-w-0">
-                <div className="font-medium text-gold-200">{tool.name}</div>
-                <div className="text-xs text-gold-400">{tool.description}</div>
-                <div className={`text-xs mt-1 ${getStatusColor(tool.status)}`}>
-                  {getStatusText(tool.status)}
-                </div>
-              </div>
+        <div className="bg-gradient-to-br from-stone-800/50 to-gold-900/50 rounded-lg p-4 border border-stone-700/50">
+          <div className="text-center mb-3">
+            <div className="w-16 h-16 bg-gradient-to-r from-gold-600 to-stone-600 rounded-full mx-auto mb-2 flex items-center justify-center text-2xl">
+              🌍
             </div>
+            <h4 className="font-semibold text-gold-100 text-shadow-stone">Eldoria Prime</h4>
+            <p className="text-xs text-gold-300">High Fantasy Economy - Active</p>
           </div>
-        ))}
-      </div>
-
-      {/* Quick Stats */}
-      <div className="bg-economy-800/50 rounded-lg p-3 border border-economy-700/30 mb-4">
-        <h4 className="text-sm font-medium text-gold-200 mb-2">Economic Metrics</h4>
-        <div className="space-y-2 text-xs">
-          <div className="flex justify-between">
-            <span className="text-gold-400">Markets Created:</span>
-            <span className="text-gold-200">23</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gold-400">Trade Routes:</span>
-            <span className="text-gold-200">47</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gold-400">GDP Managed:</span>
-            <span className="text-gold-200">$2.4M</span>
+          
+          {/* Quick Stats */}
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="bg-stone-800/50 rounded p-2 text-center">
+              <div className="text-gold-300">Markets</div>
+              <div className="text-gold-100 font-bold">12</div>
+            </div>
+            <div className="bg-stone-800/50 rounded p-2 text-center">
+              <div className="text-gold-300">Vendors</div>
+              <div className="text-gold-100 font-bold">47</div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Recent Activity */}
-      <div className="bg-economy-800/50 rounded-lg p-3 border border-economy-700/30">
-        <h4 className="text-sm font-medium text-gold-200 mb-2">Recent Activity</h4>
-        <div className="space-y-2 text-xs">
-          <div className="text-gold-400">
-            <span className="text-gold-300">2 min ago:</span> Created new market
+      {/* Quick Dice Roller */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-gold-100 text-shadow-gold mb-3">
+          Quick Dice
+        </h3>
+        <div className="grid grid-cols-2 gap-2">
+          <button className="dice-button text-xs">
+            d20
+          </button>
+          <button className="dice-button text-xs">
+            d12
+          </button>
+          <button className="dice-button text-xs">
+            d10
+          </button>
+          <button className="dice-button text-xs">
+            d8
+          </button>
+          <button className="dice-button text-xs">
+            d6
+          </button>
+          <button className="dice-button text-xs">
+            d4
+          </button>
+        </div>
+      </div>
+
+      {/* Recent Transactions */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-gold-100 text-shadow-gold mb-3">
+          Recent Transactions
+        </h3>
+        <div className="space-y-2">
+          <div className="bg-stone-800/50 rounded p-2 text-xs">
+            <div className="flex justify-between">
+              <span className="text-gold-300">Iron Trade Route</span>
+              <span className="text-gold-100 font-bold">Established</span>
+            </div>
+            <div className="text-gold-400">Dwarven mines to human cities</div>
           </div>
-          <div className="text-gold-400">
-            <span className="text-gold-300">15 min ago:</span> Established trade route
+          <div className="bg-stone-800/50 rounded p-2 text-xs">
+            <div className="flex justify-between">
+              <span className="text-gold-300">Magic Shop</span>
+              <span className="text-gold-100 font-bold">Updated</span>
+            </div>
+            <div className="text-gold-400">Added 15 new items</div>
           </div>
-          <div className="text-gold-400">
-            <span className="text-gold-300">1 hour ago:</span> Updated currency values
+        </div>
+      </div>
+
+      {/* Market Status */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-gold-100 text-shadow-gold mb-3">
+          Market Status
+        </h3>
+        <div className="bg-gradient-to-br from-character-800/50 to-dice-900/50 rounded-lg p-4 border border-character-700/50">
+          <div className="text-center">
+            <div className="text-3xl mb-2">📈</div>
+            <div className="text-sm text-character-200 mb-2">Bull Market</div>
+            <div className="text-xs text-character-300">Prices trending up</div>
+            <button className="mt-2 w-full py-1 px-2 bg-gradient-to-r from-character-600 to-dice-600 rounded text-xs text-white hover:from-character-500 hover:to-dice-500 transition-all duration-200">
+              View Markets
+            </button>
           </div>
+        </div>
+      </div>
+
+      {/* Quick Actions */}
+      <div>
+        <h3 className="text-lg font-semibold text-gold-100 text-shadow-gold mb-3">
+          Quick Actions
+        </h3>
+        <div className="space-y-2">
+          <button className="w-full p-2 bg-gradient-to-r from-gold-700 to-stone-700 rounded-lg text-xs text-gold-100 hover:from-gold-600 hover:to-stone-600 transition-all duration-200">
+            🌍 Create Economy
+          </button>
+          <button className="w-full p-2 bg-gradient-to-r from-character-700 to-dice-700 rounded-lg text-xs text-white hover:from-character-600 hover:to-dice-700 transition-all duration-200">
+            🛣️ New Trade Route
+          </button>
+          <button className="w-full p-2 bg-gradient-to-r from-stone-700 to-gold-700 rounded-lg text-xs text-gold-100 hover:from-stone-600 hover:to-gold-700 transition-all duration-200">
+            💰 Add Currency
+          </button>
         </div>
       </div>
     </div>
