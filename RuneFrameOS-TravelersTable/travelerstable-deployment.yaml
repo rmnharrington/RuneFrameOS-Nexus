@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: travelerstable
+  namespace: runeframeos
+  labels:
+    app: travelerstable
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: travelerstable
+  template:
+    metadata:
+      labels:
+        app: travelerstable
+    spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: travelerstable
+        image: travelerstable:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3008
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "3008"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        # Health checks disabled for initial testing
+        # livenessProbe: [ADD_LATER]
+        # readinessProbe: [ADD_LATER]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: travelerstable
+  namespace: runeframeos
+  labels:
+    app: travelerstable
+spec:
+  selector:
+    app: travelerstable
+  ports:
+  - port: 3008
+    targetPort: 3008
+    nodePort: 30002
+    protocol: TCP
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: travelerstable-ingress
+  namespace: runeframeos
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: travelerstable.pedantictheory.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: travelerstable
+            port:
+              number: 3008
