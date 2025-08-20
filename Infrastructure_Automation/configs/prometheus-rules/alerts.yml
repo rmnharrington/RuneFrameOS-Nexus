@@ -1,0 +1,84 @@
+# Prometheus Alerting Rules for RuneFrame-DevOps
+# Author: RuneFrameOS Infrastructure Team
+# Version: 1.0.0
+
+groups:
+  - name: runeframeos-monitoring
+    rules:
+      # High CPU Usage
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 5m
+        labels:
+          severity: warning
+          service: "host-metrics"
+        annotations:
+          summary: "High CPU usage on {{ $labels.instance }}"
+          description: "CPU usage is above 80% for more than 5 minutes on {{ $labels.instance }}"
+          runbook_url: "https://runeframeos.com/runbooks/high-cpu-usage"
+
+      # High Memory Usage
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          service: "host-metrics"
+        annotations:
+          summary: "High memory usage on {{ $labels.instance }}"
+          description: "Memory usage is above 85% for more than 5 minutes on {{ $labels.instance }}"
+
+      # Disk Space Low
+      - alert: DiskSpaceLow
+        expr: (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"}) * 100 < 15
+        for: 5m
+        labels:
+          severity: critical
+          service: "host-metrics"
+        annotations:
+          summary: "Low disk space on {{ $labels.instance }}"
+          description: "Disk space is below 15% on {{ $labels.instance }}"
+
+      # Service Down
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: "monitoring"
+        annotations:
+          summary: "Service {{ $labels.job }} is down on {{ $labels.instance }}"
+          description: "Service {{ $labels.job }} has been down for more than 1 minute on {{ $labels.instance }}"
+
+      # Elasticsearch Cluster Health
+      - alert: ElasticsearchClusterRed
+        expr: elasticsearch_cluster_health_status{color="red"} == 1
+        for: 1m
+        labels:
+          severity: critical
+          service: "elasticsearch"
+        annotations:
+          summary: "Elasticsearch cluster is RED"
+          description: "Elasticsearch cluster health status is RED on {{ $labels.instance }}"
+
+      # Prometheus High Scrape Duration
+      - alert: PrometheusHighScrapeDuration
+        expr: prometheus_target_scrape_pool_targets < 1
+        for: 5m
+        labels:
+          severity: warning
+          service: "prometheus"
+        annotations:
+          summary: "Prometheus targets are down"
+          description: "Prometheus is unable to scrape targets on {{ $labels.instance }}"
+
+      # Grafana High Response Time
+      - alert: GrafanaHighResponseTime
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 2
+        for: 5m
+        labels:
+          severity: warning
+          service: "grafana"
+        annotations:
+          summary: "Grafana response time is high"
+          description: "95th percentile response time is above 2 seconds on {{ $labels.instance }}"

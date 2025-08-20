@@ -1,0 +1,51 @@
+# Grafana Alerting Configuration for RuneFrame-DevOps
+# Author: RuneFrameOS Infrastructure Team
+# Version: 1.0.0
+
+# Email Notification Channel
+apiVersion: 1
+notifiers:
+  - name: "Email Alerts"
+    type: email
+    uid: email_alerts
+    org_id: 1
+    is_default: true
+    settings:
+      addresses: "admin@runeframeos.com,ops@runeframeos.com"
+      singleEmail: false
+    secure_settings:
+      password: "your_smtp_password"
+    send_reminder: true
+    frequency: "1m"
+    disable_resolve_message: false
+
+  # SMS via Twilio Webhook
+  - name: "SMS Alerts"
+    type: webhook
+    uid: sms_alerts
+    org_id: 1
+    is_default: false
+    settings:
+      url: "https://api.twilio.com/2010-04-01/Accounts/ACCOUNT_SID/Messages.json"
+      httpMethod: "POST"
+      httpHeader: "Authorization: Basic BASE64_ENCODED_CREDENTIALS"
+      message: "{{.Message}}"
+      title: "{{.Title}}"
+    send_reminder: true
+    frequency: "5m"
+    disable_resolve_message: false
+
+  # Slack Integration
+  - name: "Slack Alerts"
+    type: slack
+    uid: slack_alerts
+    org_id: 1
+    is_default: false
+    settings:
+      url: "https://hooks.slack.com/services/YOUR_WEBHOOK_URL"
+      recipient: "#alerts"
+      mentionChannel: "here"
+      mentionUsers: "U1234567890"
+    send_reminder: true
+    frequency: "2m"
+    disable_resolve_message: false

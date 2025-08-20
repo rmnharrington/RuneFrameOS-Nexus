@@ -1,0 +1,267 @@
+# GUI 2.0 Instructions - How to Replicate PersonaVault Layout
+# This file documents the exact process to create identical layouts across all RuneFrameOS applications
+
+layout_template:
+  name: "PersonaVault Layout Clone"
+  description: "Exact replication of PersonaVault's header, footer, left menu, right menu, and center layout"
+  source_app: "PersonaVault"
+  target_apps: "Any RuneFrameOS application"
+  
+  core_principle: "Copy PersonaVault's exact structure, only change content and branding"
+
+file_structure:
+  required_directories:
+    - "src/app/"
+    - "src/components/core/"
+    - "public/"
+    
+  required_files:
+    - "src/app/page.tsx (Main content page with HeroBanner)"
+    - "src/app/layout.tsx (Next.js root layout)"
+    - "src/app/globals.css (Global styles and Tailwind imports)"
+    - "src/components/core/AppLayout.tsx (Main layout wrapper)"
+    - "src/components/core/Header.tsx (Top navigation bar)"
+    - "src/components/core/LeftSidebar.tsx (Left navigation menu)"
+    - "src/components/core/RightSidebar.tsx (Right information panel)"
+    - "src/components/core/AppFooter.tsx (Bottom footer)"
+    - "src/components/core/HeroBanner.tsx (Hero banner with smooth fading gradient)"
+    - "tailwind.config.js (Color scheme and custom styles)"
+    - "package.json (Next.js dependencies)"
+    - "next.config.js (Next.js configuration)"
+    - "tsconfig.json (TypeScript configuration)"
+    - "postcss.config.js (PostCSS configuration)"
+    - "next-env.d.ts (Next.js types)"
+
+component_cloning_process:
+  step_1_app_layout:
+    description: "Copy AppLayout.tsx structure exactly"
+    key_elements:
+      - "min-h-screen bg-stone-950 flex flex-col (root container)"
+      - "Header component with onMenuClick prop"
+      - "Left sidebar: w-48 lg:w-56 flex-shrink-0"
+      - "Main content: flex-1 min-w-0 with p-4 lg:p-6 padding"
+      - "Right sidebar: hidden lg:block w-64 flex-shrink-0"
+      - "Mobile overlay for right sidebar"
+      - "Footer at bottom"
+    notes: "Do NOT change any CSS classes, only modify content inside components"
+    
+  step_2_header:
+    description: "Copy Header.tsx structure exactly"
+    key_elements:
+      - "bg-gradient-to-r from-gold-900 via-stone-800 to-stone-900"
+      - "border-b border-stone-700/50 shadow-lg"
+      - "Left side: Logo image and app title with subtitle"
+      - "Right side: Settings gear, Logout button, Mobile menu button"
+      - "Same spacing: px-4 py-3 lg:px-6 lg:py-4"
+      - "Same button styling and hover effects"
+    customization_allowed:
+      - "Logo image path"
+      - "App title text"
+      - "Subtitle text"
+    customization_forbidden:
+      - "CSS classes"
+      - "Layout structure"
+      - "Button positioning"
+      
+  step_3_left_sidebar:
+    description: "Copy LeftSidebar.tsx structure exactly"
+    key_elements:
+      - "bg-gradient-to-b from-stone-900 via-gold-900 to-stone-900"
+      - "border-r border-stone-700/50 p-4"
+      - "App title section with mb-6 text-center"
+      - "Navigation items with same button structure"
+      - "Quick Actions section with mt-8 pt-6 border-t"
+      - "Status Indicators section with mt-8 pt-6 border-t"
+    customization_allowed:
+      - "Navigation item labels and descriptions"
+      - "Navigation item icons (emojis)"
+      - "Quick action button text"
+      - "Status indicator text"
+    customization_forbidden:
+      - "CSS classes and gradients"
+      - "Layout spacing and borders"
+      - "Button styling and hover effects"
+      
+  step_4_right_sidebar:
+    description: "Copy RightSidebar.tsx structure exactly"
+    key_elements:
+      - "bg-gradient-to-b from-stone-900 via-gold-900 to-stone-900"
+      - "border-l border-stone-700/50 p-4"
+      - "Top section: Active item info with rounded-lg and gradients"
+      - "Middle sections: Quick tools, Recent items, Connection status"
+      - "Bottom section: Quick Actions with same button styling"
+    customization_allowed:
+      - "Section titles and content"
+      - "Data values and text"
+      - "Button labels"
+    customization_forbidden:
+      - "CSS classes and gradients"
+      - "Layout structure and spacing"
+      - "Card styling and borders"
+      
+  step_5_footer:
+    description: "Copy AppFooter.tsx structure exactly"
+    key_elements:
+      - "bg-gradient-to-r from-gold-800 via-stone-900 to-stone-950"
+      - "border-t-2 border-gold-600/30 shadow-xl"
+      - "Three sections: Left (brand), Center (social), Right (copyright)"
+      - "Same spacing: px-4 py-3 lg:px-6 lg:py-4"
+      - "Same social media icons and links"
+    customization_allowed:
+      - "App name in copyright"
+      - "Logo image path"
+    customization_forbidden:
+      - "CSS classes and gradients"
+      - "Layout structure"
+      - "Social media links"
+      
+  step_6_hero_banner:
+    description: "Copy HeroBanner.tsx structure exactly"
+    key_elements:
+      - "relative rounded-lg overflow-hidden border border-stone-700/50 (container)"
+      - "Background image with responsive heights: h-64 md:h-80 lg:h-96"
+      - "30% black overlay: bg-black bg-opacity-30"
+      - "Smooth fading gradient: bg-gradient-to-t from-stone-900/90 via-stone-800/70 to-transparent"
+      - "Content positioning: relative z-10 p-6 -mt-20"
+      - "Text content with proper z-index: relative z-20"
+    customization_allowed:
+      - "appName prop value"
+      - "heroBannerImage path (must be [APPNAME]_HeroBanner.png)"
+      - "title text"
+      - "subtitle text"
+      - "details array content (icons and text)"
+    customization_forbidden:
+      - "CSS classes and structure"
+      - "Gradient values and opacity"
+      - "Layout positioning and z-index"
+      - "Responsive height classes"
+    required_image_format:
+      - "Image name: [APPNAME]_HeroBanner.png"
+      - "Example: BrokeUnicornTavern_HeroBanner.png"
+      - "Place in: public/ directory"
+      - "Supported formats: PNG, JPG, WebP"
+
+# CRITICAL IMAGE RULES - NEVER VIOLATE THESE
+hero_banner_image_rules:
+  critical_warning: "NEVER copy _HeroBanner_wText.png files - these have text overlays and are NOT for hero banners"
+  correct_files:
+    - "Use: [APPNAME]_HeroBanner.png (NO text overlay - for hero banner background)"
+    - "Avoid: [APPNAME]_HeroBanner_wText.png (HAS text overlay - NOT for hero banners)"
+  file_purpose:
+    - "[APPNAME]_HeroBanner.png: Clean background image for HeroBanner component"
+    - "[APPNAME]_HeroBanner_wText.png: Marketing image with text overlay for other uses"
+  copy_instructions:
+    - "ALWAYS copy from Images/[APPNAME]_HeroBanner.png (without _wText suffix)"
+    - "NEVER copy [APPNAME]_HeroBanner_wText.png to app public folders"
+    - "Verify file size differences - _wText files are usually larger due to text overlay"
+
+styling_requirements:
+  tailwind_config:
+    description: "Copy tailwind.config.js exactly"
+    required_colors:
+      gold: "Complete gold palette (50-950)"
+      stone: "Complete stone palette (50-950)"
+      character: "Complete character palette (50-950)"
+      dice: "Complete dice palette (50-950)"
+    required_extensions:
+      fontFamily: "fantasy (Cinzel), handwriting (Kalam)"
+      textShadow: "gold, stone, character, dice variants"
+      boxShadow: "gold, stone, character, dice variants"
+    notes: "Do NOT modify any color values or add new colors"
+    
+  globals_css:
+    description: "Copy globals.css exactly"
+    required_imports:
+      - "@tailwind base;"
+      - "@tailwind components;"
+      - "@tailwind utilities;"
+    required_custom_classes:
+      - ".text-shadow-gold, .text-shadow-stone, .text-shadow-character, .text-shadow-dice"
+      - ".dice-button styling"
+      - ".hover\\:scale-102:hover"
+    required_fonts:
+      - "Google Fonts import for Cinzel and Kalam"
+    notes: "Do NOT modify any CSS values or add new custom classes"
+
+content_customization_rules:
+  allowed_changes:
+    - "App name and branding"
+    - "Navigation menu items and descriptions"
+    - "Main page content and sections"
+    - "Button labels and text"
+    - "Data values and status information"
+    - "Images and logos"
+    - "Hero banner content (title, subtitle, details)"
+    - "Hero banner background image ([APPNAME]_HeroBanner.png)"
+    
+  forbidden_changes:
+    - "CSS classes and styling"
+    - "Layout structure and positioning"
+    - "Component hierarchy"
+    - "Responsive breakpoints"
+    - "Animation and transition effects"
+    - "Color schemes and gradients"
+
+deployment_notes:
+  build_process:
+    - "Use Next.js 14.0.4"
+    - "Build with 'npm run build'"
+    - "Start with 'npm start'"
+    - "Port: 3008 (configurable in Dockerfile)"
+    
+  docker_requirements:
+    - "Dockerfile.clean for containerization"
+    - "Node.js 18 Alpine base image"
+    - "Production dependencies only"
+    - "Build step before start"
+
+quality_assurance:
+  visual_verification:
+    - "Layout must look identical to PersonaVault"
+    - "Same spacing, borders, and shadows"
+    - "Same color gradients and text effects"
+    - "Same responsive behavior"
+    
+  code_verification:
+    - "All CSS classes must match exactly"
+    - "Component structure must be identical"
+    - "No custom styling additions"
+    - "Only content text should differ"
+    
+  testing_checklist:
+    - "Desktop layout matches PersonaVault"
+    - "Mobile layout matches PersonaVault"
+    - "Hover effects work identically"
+    - "Responsive breakpoints behave the same"
+    - "All gradients and shadows render correctly"
+
+example_applications:
+  completed:
+    - "BrokeUnicorn Tavern (tavern theme)"
+    - "Uses identical layout with tavern content"
+    - "Includes perfect hero banner with smooth fading gradient"
+    - "Hero banner: BrokeUnicornTavern_HeroBanner.png"
+    
+  future_applications:
+    - "Distillara (alchemy theme)"
+    - "Hoardwell (treasure theme)"
+    - "Feastwell (culinary theme)"
+    - "Any new RuneFrameOS app"
+
+success_criteria:
+  - "User cannot tell the difference in layout between apps"
+  - "Only content and branding distinguish applications"
+  - "All apps maintain identical visual hierarchy"
+  - "Responsive behavior is consistent across all apps"
+  - "Color schemes and styling are identical"
+  - "Component interactions work the same way"
+  - "Hero banner renders identically across all apps"
+  - "Smooth fading gradient works consistently"
+  - "Background images display properly with correct sizing"
+
+notes:
+  - "This layout system ensures visual consistency across all RuneFrameOS applications"
+  - "Each app maintains its unique identity through content while sharing identical structure"
+  - "The system is designed for easy replication and maintenance"
+  - "Any deviation from this template will break visual consistency"
+  - "Always test against PersonaVault for visual verification"

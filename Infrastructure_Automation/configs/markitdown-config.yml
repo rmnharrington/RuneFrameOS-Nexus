@@ -1,0 +1,108 @@
+# MarkItDown Configuration for RuneFrame-DevOps
+# Author: RuneFrameOS Infrastructure Team
+# Version: 1.0.0
+
+# Service Configuration
+service:
+  name: "markitdown-service"
+  version: "1.0.0"
+  environment: "production"
+  datacenter: "watson"
+
+# Processing Configuration
+processing:
+  # File size limits
+  max_file_size: "100MB"
+  max_concurrent_jobs: 5
+  
+  # Supported input formats
+  supported_formats:
+    - pdf
+    - docx
+    - pptx
+    - xlsx
+    - html
+    - txt
+    - csv
+    - json
+    - xml
+  
+  # Output configuration
+  output:
+    format: "markdown"
+    preserve_structure: true
+    include_metadata: true
+    include_tables: true
+    include_images: true
+
+# NIST Document Processing
+nist_processing:
+  enabled: true
+  # NIST document categories
+  categories:
+    - "cybersecurity-framework"
+    - "risk-management"
+    - "incident-response"
+    - "security-controls"
+    - "governance"
+  
+  # Metadata extraction
+  metadata:
+    extract_headers: true
+    extract_tables: true
+    extract_lists: true
+    extract_links: true
+  
+  # Compliance mapping
+  compliance:
+    map_to_frameworks: true
+    extract_requirements: true
+    identify_controls: true
+
+# Storage Configuration
+storage:
+  documents_path: "/app/documents"
+  output_path: "/app/output"
+  cache_path: "/app/cache"
+  
+  # Retention policies
+  retention:
+    processed_docs: "90d"
+    cache_files: "7d"
+    temp_files: "1d"
+
+# Integration Configuration
+integration:
+  elasticsearch:
+    enabled: true
+    host: "elasticsearch"
+    port: 9200
+    index_prefix: "runeframeos-docs"
+    
+  # API Configuration
+  api:
+    enabled: true
+    port: 8000
+    host: "0.0.0.0"
+    cors_enabled: true
+    rate_limit: 100  # requests per minute
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "json"
+  output: "stdout"
+  
+  # Structured logging
+  fields:
+    service: "markitdown"
+    environment: "production"
+    datacenter: "watson"
+
+# Health Check Configuration
+health:
+  enabled: true
+  endpoint: "/health"
+  interval: "30s"
+  timeout: "10s"
+  retries: 3

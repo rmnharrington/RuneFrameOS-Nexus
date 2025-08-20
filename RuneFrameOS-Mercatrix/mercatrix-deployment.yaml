@@ -38,22 +38,8 @@ spec:
             memory: "512Mi"
             cpu: "500m"
         # Health checks disabled for initial testing
-        # livenessProbe:
-        #   httpGet:
-        #     path: /api/health
-        #     port: 3008
-        #   initialDelaySeconds: 30
-        #   periodSeconds: 10
-        #   timeoutSeconds: 5
-        #   failureThreshold: 3
-        # readinessProbe:
-        #   httpGet:
-        #     path: /api/health
-        #     port: 3008
-        #   initialDelaySeconds: 5
-        #   periodSeconds: 5
-        #   timeoutSeconds: 3
-        #   failureThreshold: 3
+        # livenessProbe: [ADD_LATER]
+        # readinessProbe: [ADD_LATER]
 ---
 apiVersion: v1
 kind: Service

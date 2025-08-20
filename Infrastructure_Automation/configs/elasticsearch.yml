@@ -1,0 +1,74 @@
+# Elasticsearch configuration for RuneFrameOS monitoring stack
+# Author: RuneFrameOS Infrastructure Team
+# Version: 1.0.0
+
+# Cluster settings
+cluster:
+  name: runeframeos-cluster
+
+# Node settings
+node:
+  name: watson-node
+  data: true
+  master: true
+
+# Network settings
+network:
+  host: 0.0.0.0
+  publish_host: elasticsearch
+
+# HTTP settings
+http:
+  port: 9200
+  cors:
+    enabled: true
+    allow-origin: "*"
+    allow-methods: OPTIONS, HEAD, GET, POST, PUT, DELETE
+    allow-headers: "X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization"
+
+# Discovery settings
+discovery:
+  type: single-node
+
+# Security settings (disabled for development)
+xpack:
+  security:
+    enabled: false
+  monitoring:
+    enabled: false
+  ml:
+    enabled: false
+  graph:
+    enabled: false
+  watcher:
+    enabled: false
+
+# Path settings
+path:
+  data: /usr/share/elasticsearch/data
+  logs: /usr/share/elasticsearch/logs
+
+# Memory settings
+bootstrap:
+  memory_lock: false
+
+# Index settings
+indices:
+  fielddata:
+    cache:
+      size: 20%
+  recovery:
+    max_bytes_per_sec: 50mb
+  query:
+    bool:
+      max_clause_count: 4096
+
+# Logging settings
+logger:
+  level: INFO
+  appender:
+    console:
+      type: console
+      layout:
+        type: console
+        conversion_pattern: "[%d{ISO8601}][%-5p][%-25c{1.}] %marker%m%n"

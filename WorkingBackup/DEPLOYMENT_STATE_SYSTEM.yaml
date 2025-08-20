@@ -1,0 +1,499 @@
+# RuneFrameOS Deployment State System
+# This document captures the EXACT state and process for successful application deployment
+# Use this to repeat the deployment 12 more times without errors
+
+deployment_state:
+  timestamp: "2025-08-16 09:20:00"
+  status: "SUCCESSFULLY_DEPLOYED"
+  application: "BrokeUnicornTavern"
+  cluster: "sherlock.pedantictheory.com"
+  
+  # PROVEN SUCCESSFUL DEPLOYMENT PATTERN
+  success_pattern: "BrokeUnicornTavern deployment completed with identical PersonaVault layout"
+
+completed_applications:
+  brokeunicorn_tavern:
+    status: "DEPLOYED_SUCCESSFULLY"
+    deployment_date: "2025-08-16"
+    layout_source: "PersonaVault (exact clone)"
+    access_url: "http://adler.pedantictheory.com:30005"
+    nodeport: 30005
+    internal_port: 3008
+    
+    # VERIFIED WORKING CONFIGURATION
+    verified_config:
+      docker_image: "brokeunicorn-tavern:latest"
+      nextjs_version: "14.0.4"
+      binding: "0.0.0.0:3008"
+      health_checks: "DISABLED_FOR_TESTING"
+      pod_status: "Running (1/1)"
+      
+    # PROVEN FILE STRUCTURE
+    working_file_structure:
+      - "src/app/page.tsx (tavern-themed content with HeroBanner)"
+      - "src/app/layout.tsx (Next.js root layout)"
+      - "src/app/globals.css (Tailwind + custom styles)"
+      - "src/components/core/AppLayout.tsx (main wrapper)"
+      - "src/components/core/Header.tsx (navigation bar)"
+      - "src/components/core/LeftSidebar.tsx (left menu)"
+      - "src/components/core/RightSidebar.tsx (right panel)"
+      - "src/components/core/AppFooter.tsx (footer)"
+      - "src/components/core/HeroBanner.tsx (hero banner with smooth fading gradient)"
+      - "tailwind.config.js (identical to PersonaVault)"
+      - "package.json (Next.js dependencies + 0.0.0.0 binding)"
+      - "next.config.js (clean config)"
+      - "Dockerfile.clean (multi-stage build)"
+      - "brokeunicorn-deployment.yaml (K8s manifests)"
+      - "public/[APPNAME]_HeroBanner.png (hero banner background image)"
+
+  distillara:
+    status: "DEPLOYED_SUCCESSFULLY"
+    deployment_date: "2025-08-16"
+    layout_source: "PersonaVault (exact clone)"
+    access_url: "http://adler.pedantictheory.com:30003"
+    nodeport: 30003
+    internal_port: 3008
+    
+    # VERIFIED WORKING CONFIGURATION
+    verified_config:
+      docker_image: "distillara:latest"
+      nextjs_version: "14.0.4"
+      binding: "0.0.0.0:3008"
+      health_checks: "DISABLED_FOR_TESTING"
+      pod_status: "Running (1/1)"
+      
+    # PROVEN FILE STRUCTURE
+    working_file_structure:
+      - "src/app/page.tsx (alchemy-themed content with HeroBanner)"
+      - "src/app/layout.tsx (Next.js root layout)"
+      - "src/app/globals.css (Tailwind + custom styles)"
+      - "src/components/core/AppLayout.tsx (main wrapper)"
+      - "src/components/core/Header.tsx (navigation bar)"
+      - "src/components/core/LeftSidebar.tsx (left menu)"
+      - "src/components/core/RightSidebar.tsx (right panel)"
+      - "src/components/core/AppFooter.tsx (footer)"
+      - "src/components/core/HeroBanner.tsx (hero banner with smooth fading gradient)"
+      - "tailwind.config.js (identical to PersonaVault)"
+      - "package.json (Next.js dependencies + 0.0.0.0 binding)"
+      - "next.config.js (clean config)"
+      - "Dockerfile.clean (multi-stage build)"
+      - "distillara-deployment.yaml (K8s manifests)"
+      - "public/[APPNAME]_HeroBanner.png (hero banner background image)"
+    
+    # VERIFIED WORKING CONFIGURATION
+    verified_config:
+      docker_image: "brokeunicorn-tavern:latest"
+      nextjs_version: "14.0.4"
+      binding: "0.0.0.0:3008"
+      health_checks: "DISABLED_FOR_TESTING"
+      pod_status: "Running (1/1)"
+      
+    # PROVEN FILE STRUCTURE
+    working_file_structure:
+      - "src/app/page.tsx (tavern-themed content with HeroBanner)"
+      - "src/app/layout.tsx (Next.js root layout)"
+      - "src/app/globals.css (Tailwind + custom styles)"
+      - "src/components/core/AppLayout.tsx (main wrapper)"
+      - "src/components/core/Header.tsx (navigation bar)"
+      - "src/components/core/LeftSidebar.tsx (left menu)"
+      - "src/components/core/RightSidebar.tsx (right panel)"
+      - "src/components/core/AppFooter.tsx (footer)"
+      - "src/components/core/HeroBanner.tsx (hero banner with smooth fading gradient)"
+      - "tailwind.config.js (identical to PersonaVault)"
+      - "package.json (Next.js dependencies + 0.0.0.0 binding)"
+      - "next.config.js (clean config)"
+      - "Dockerfile.clean (multi-stage build)"
+      - "brokeunicorn-deployment.yaml (K8s manifests)"
+      - "public/[APPNAME]_HeroBanner.png (hero banner background image)"
+
+deployment_process_blueprint:
+  # STEP-BY-STEP PROVEN PROCESS
+  step_1_local_setup:
+    description: "Create Next.js app with PersonaVault layout clone"
+    actions:
+      - "Copy PersonaVault component structure exactly"
+      - "Modify only content text and branding"
+      - "Keep all CSS classes identical"
+      - "Update package.json start script to 'next start -H 0.0.0.0'"
+      - "Create clean next.config.js (no deprecated options)"
+      - "Use identical tailwind.config.js colors and extensions"
+      - "Copy globals.css exactly (same custom classes)"
+    
+    verification:
+      - "App builds locally with 'npm run build'"
+      - "No TypeScript errors in components"
+      - "All PersonaVault layout elements present"
+      - "Only content differs from PersonaVault"
+    
+  step_2_dockerfile_creation:
+    description: "Create production-ready Dockerfile"
+    dockerfile_content: |
+      # Use Node.js 18 Alpine as base image
+      FROM node:18-alpine
+      
+      # Set working directory
+      WORKDIR /app
+      
+      # Copy package files
+      COPY package*.json ./
+      
+      # Install ALL dependencies (including dev dependencies for building)
+      RUN npm ci
+      
+      # Copy source code
+      COPY . .
+      
+      # Build the Next.js application
+      RUN npm run build
+      
+      # Remove dev dependencies for production
+      RUN npm prune --production
+      
+      # Expose port
+      EXPOSE 3008
+      
+      # Start the application
+      CMD ["npm", "start"]
+    
+    key_points:
+      - "Install ALL dependencies first (not --only=production)"
+      - "Build step before pruning"
+      - "Use npm prune --production after build"
+      - "CMD uses npm start (which includes -H 0.0.0.0)"
+    
+  step_3_kubernetes_manifests:
+    description: "Create deployment, service, and ingress YAML"
+    deployment_template: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: [APP_NAME]
+        namespace: runeframeos
+        labels:
+          app: [APP_NAME]
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: [APP_NAME]
+        template:
+          metadata:
+            labels:
+              app: [APP_NAME]
+          spec:
+            tolerations:
+            - key: "node-role.kubernetes.io/control-plane"
+              operator: "Exists"
+              effect: "NoSchedule"
+            containers:
+            - name: [APP_NAME]
+              image: [APP_NAME]:latest
+              imagePullPolicy: Never
+              ports:
+              - containerPort: 3008
+              env:
+              - name: NODE_ENV
+                value: "production"
+              - name: PORT
+                value: "3008"
+              resources:
+                requests:
+                  memory: "256Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "512Mi"
+                  cpu: "500m"
+              # Health checks disabled for initial testing
+              # livenessProbe: [ADD_LATER]
+              # readinessProbe: [ADD_LATER]
+    
+    service_template: |
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: [APP_NAME]
+        namespace: runeframeos
+        labels:
+          app: [APP_NAME]
+      spec:
+        selector:
+          app: [APP_NAME]
+        ports:
+        - port: 3008
+          targetPort: 3008
+          nodePort: [NODEPORT]
+          protocol: TCP
+        type: NodePort
+    
+    ingress_template: |
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: [APP_NAME]-ingress
+        namespace: runeframeos
+        annotations:
+          nginx.ingress.kubernetes.io/rewrite-target: /
+          nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      spec:
+        ingressClassName: nginx
+        rules:
+        - host: [DOMAIN].pedantictheory.com
+          http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: [APP_NAME]
+                  port:
+                    number: 3008
+    
+    port_assignments:
+      brokeunicorn_tavern: 30005
+      mercatrix: 30008
+      distillara: 30003
+      hoardwell: 30004
+      feastwell: 30001
+      # Reserve remaining ports: 30002, 30006, 30007, 30009-30020
+    
+  step_4_server_deployment:
+    description: "Deploy to Kubernetes cluster via SSH"
+    commands:
+      - "scp -r [APP_DIRECTORY] wee@sherlock.pedantictheory.com:/home/wee/"
+      - "ssh wee@sherlock.pedantictheory.com 'cd [APP_DIRECTORY] && npm install'"
+      - "ssh wee@sherlock.pedantictheory.com 'cd [APP_DIRECTORY] && sudo docker build -f Dockerfile.clean -t [APP_NAME]:latest .'"
+      - "ssh wee@sherlock.pedantictheory.com 'sudo docker save [APP_NAME]:latest | sudo ctr -n=k8s.io images import -'"
+      - "ssh wee@sherlock.pedantictheory.com 'sudo docker save [APP_NAME]:latest' | ssh wee@adler.pedantictheory.com 'sudo ctr -n=k8s.io images import -'"
+      - "ssh wee@sherlock.pedantictheory.com 'sudo docker save [APP_NAME]:latest' | ssh wee@watson.pedantictheory.com 'sudo ctr -n=k8s.io images import -'"
+      - "ssh wee@sherlock.pedantictheory.com 'sudo kubectl apply -f [APP_DIRECTORY]/[APP_NAME]-deployment.yaml --kubeconfig /etc/kubernetes/admin.conf'"
+    
+    critical_notes:
+      - "Images must be loaded on ALL nodes (sherlock, adler, watson)"
+      - "Use 'sudo ctr -n=k8s.io images import -' for containerd"
+      - "Always use --kubeconfig /etc/kubernetes/admin.conf"
+      - "Wait for pod to become Ready before testing"
+    
+  step_5_verification:
+    description: "Verify deployment success"
+    checks:
+      - "Pod status: kubectl get pods -n runeframeos"
+      - "Pod logs: kubectl logs -n runeframeos [POD_NAME]"
+      - "Service status: kubectl get service [APP_NAME] -n runeframeos"
+      - "Test access: curl http://[NODE_IP]:[NODEPORT]"
+    
+    success_indicators:
+      - "Pod shows READY 1/1"
+      - "Logs show '✓ Ready in [X]ms'"
+      - "Service shows correct NodePort"
+      - "HTML response contains app content"
+
+critical_success_factors:
+  # MUST FOLLOW EXACTLY FOR SUCCESS
+  layout_cloning:
+    - "Copy PersonaVault components EXACTLY"
+    - "Change ONLY content text, NEVER CSS classes"
+    - "Use identical tailwind.config.js"
+    - "Use identical globals.css"
+    - "Maintain same component hierarchy"
+    - "Include HeroBanner component with smooth fading gradient"
+    - "Use [APPNAME]_HeroBanner.png naming convention"
+  
+  docker_build:
+    - "Install ALL dependencies first (npm ci)"
+    - "Build before pruning (npm run build)"
+    - "Prune after build (npm prune --production)"
+    - "Use npm start (includes -H 0.0.0.0)"
+  
+  kubernetes_deployment:
+    - "Load images on ALL nodes"
+    - "Use containerd import (not docker load)"
+    - "Disable health checks initially"
+    - "Use correct NodePort assignments"
+    - "Apply manifests with --kubeconfig flag"
+  
+  testing_verification:
+    - "Wait for pod to become Ready"
+    - "Check logs for successful startup"
+    - "Test NodePort access directly"
+    - "Verify HTML content renders correctly"
+
+application_templates:
+  # READY-TO-USE TEMPLATES FOR NEXT 12 APPS
+  
+  distillara:
+    name: "distillara"
+    theme: "Alchemy and potion brewing"
+    navigation_items:
+      - "Laboratory, Experiments, Recipes, Ingredients, Potions, Settings"
+    content_sections:
+      - "Welcome to Distillara, Potion Master's Workshop, Active Experiments, Recipe Library, Ingredient Inventory, Alchemy Tools"
+    hero_banner:
+      image: "Distillara_HeroBanner.png"
+      title: "Welcome to Distillara"
+      subtitle: "Master alchemist's workshop for crafting mystical potions and elixirs"
+      details:
+        - "🏺 Location: Alchemy District"
+        - "🧪 Master: Archmage Zephyrix"
+        - "⚗️ Specialty: Mystical Brews"
+    nodeport: 30003
+    domain: "distillara.pedantictheory.com"
+    
+  hoardwell:
+    name: "hoardwell"
+    theme: "Treasure hunting and collection"
+    navigation_items:
+      - "Vault, Quests, Artifacts, Collections, Trading, Settings"
+    content_sections:
+      - "Welcome to Hoardwell, Treasure Vault, Active Hunts, Artifact Gallery, Collection Status, Trading Post"
+    hero_banner:
+      image: "Hoardwell_HeroBanner.png"
+      title: "Welcome to Hoardwell"
+      subtitle: "Legendary treasure vault for adventurers seeking fortune and glory"
+      details:
+        - "💎 Location: Treasure District"
+        - "🗝️ Keeper: Master Collector Thorne"
+        - "🏆 Specialty: Rare Artifacts"
+    nodeport: 30004
+    domain: "hoardwell.pedantictheory.com"
+    
+  feastwell:
+    name: "feastwell"
+    theme: "Culinary arts and feasting"
+    navigation_items:
+      - "Kitchen, Recipes, Ingredients, Events, Reservations, Settings"
+    content_sections:
+      - "Welcome to Feastwell, Master Chef's Kitchen, Today's Menu, Recipe Collection, Ingredient Stock, Upcoming Feasts"
+    hero_banner:
+      image: "Feastwell_HeroBanner.png"
+      title: "Welcome to Feastwell"
+      subtitle: "Master chef's kitchen where culinary magic meets epic feasting"
+      details:
+        - "🍳 Location: Culinary District"
+        - "👨‍🍳 Chef: Master Chef Gustavo"
+        - "🍽️ Specialty: Epic Feasts"
+    nodeport: 30001
+    domain: "feastwell.pedantictheory.com"
+    
+  # Additional apps can follow same pattern...
+
+deployment_checklist:
+  # USE THIS CHECKLIST FOR EACH NEW APP
+  pre_deployment:
+    - [x] App directory created with correct structure
+    - [x] PersonaVault components copied exactly
+    - [x] Content customized for app theme
+    - [x] HeroBanner component included with smooth fading gradient
+    - [x] Hero banner image ([APPNAME]_HeroBanner.png) placed in public/ directory
+    - [x] package.json updated with -H 0.0.0.0
+    - [x] Dockerfile.clean created
+    - [x] Kubernetes manifests created
+    - [x] Port assignments verified
+  
+  deployment_execution:
+    - [ ] Files copied to server
+    - [ ] Dependencies installed
+    - [ ] Docker image built
+    - [ ] Image loaded on all nodes
+    - [ ] Kubernetes manifests applied
+    - [ ] Pod status verified
+    - [ ] Service accessible
+  
+  post_deployment:
+    - [ ] Layout matches PersonaVault exactly
+    - [ ] Content reflects app theme
+    - [ ] Hero banner displays correctly with smooth fading gradient
+    - [ ] Background image loads properly
+    - [ ] NodePort access working
+    - [ ] No errors in logs
+    - [ ] Ready for production use
+
+error_prevention:
+  # COMMON FAILURES AND SOLUTIONS
+  
+  image_pull_errors:
+    cause: "Image not loaded on worker nodes"
+    solution: "Always load images on sherlock, adler, AND watson"
+    
+  health_check_failures:
+    cause: "Missing /api/health endpoint"
+    solution: "Disable health checks initially, add endpoints later"
+    
+  binding_errors:
+    cause: "Next.js only binding to localhost"
+    solution: "Use 'next start -H 0.0.0.0' in package.json"
+    
+  build_failures:
+    cause: "Missing dev dependencies during build"
+    solution: "Install ALL dependencies first, prune after build"
+    
+  layout_mismatches:
+    cause: "Modified CSS classes or structure"
+    solution: "Copy PersonaVault EXACTLY, change only content text"
+
+next_steps:
+  immediate_actions:
+    - "✅ BrokeUnicornTavern GUI matches PersonaVault exactly - VERIFIED"
+    - "✅ Hero banner with smooth fading gradient - WORKING PERFECTLY"
+    - "✅ Network access resolved - Port 30005 working correctly"
+    - "✅ Distillara deployed successfully with correct hero banner - VERIFIED"
+    - "Choose next app to deploy (Hoardwell, Feastwell, or rebuild Mercatrix)"
+    - "Follow deployment checklist step by step"
+    - "Use proven templates and configurations"
+  
+  long_term_goals:
+    - "Deploy all 12 remaining applications"
+    - "Add health check endpoints to all apps"
+    - "Configure ingress for domain access"
+    - "Build Nexus dashboard to link everything"
+    - "Implement PostgreSQL databases"
+    - "Add API hooks for inter-app communication"
+
+notes:
+  - "This state system is based on PROVEN successful deployment"
+  - "Follow EXACTLY - any deviation may cause failures"
+  - "Each app maintains unique identity through content only"
+  - "Layout and styling must remain identical across all apps"
+  - "Test thoroughly before moving to next application"
+  - "Document any issues or modifications for future reference"
+  - "IMPORTANT: BrokeUnicornTavern uses NodePort 30005 - this is correct and working"
+  - "Network access works via ingress: brokeunicorntavern.pedantictheory.com"
+  - "Direct NodePort access: 172.18.254.109:30005 (adler node)"
+  - "IMPORTANT: Distillara uses NodePort 30003 - this is correct and working"
+  - "Network access works via ingress: distillara.pedantictheory.com"
+  - "Direct NodePort access: 172.18.254.109:30003 (adler node)"
+  - "Both apps running in parallel successfully - proven architecture"
+
+# CRITICAL IMAGE RULES - NEVER VIOLATE THESE
+hero_banner_image_rules:
+  critical_warning: "NEVER copy _HeroBanner_wText.png files - these have text overlays and are NOT for hero banners"
+  correct_files:
+    - "Use: [APPNAME]_HeroBanner.png (NO text overlay - for hero banner background)"
+    - "Avoid: [APPNAME]_HeroBanner_wText.png (HAS text overlay - NOT for hero banners)"
+  file_purpose:
+    - "[APPNAME]_HeroBanner.png: Clean background image for HeroBanner component"
+    - "[APPNAME]_HeroBanner_wText.png: Marketing image with text overlay for other uses"
+  copy_instructions:
+    - "ALWAYS copy from Images/[APPNAME]_HeroBanner.png (without _wText suffix)"
+    - "NEVER copy [APPNAME]_HeroBanner_wText.png to app public folders"
+    - "Verify file size differences - _wText files are usually larger due to text overlay"
+
+deployment_status:
+  current_deployment: "hoardwell_and_loreforge_redeployed"
+  status: "✅ SUCCESSFULLY REDEPLOYED WITH CORRECT IMAGES"
+  timestamp: "2024-08-16 12:00 UTC"
+  details:
+    - "✅ CRITICAL ISSUE RESOLVED: Wrong hero banner images removed from server"
+    - "✅ CRITICAL ISSUE RESOLVED: Wrong logo images removed from server"
+    - "✅ Correct Hoardwell_HeroBanner.png image uploaded (NO _wText suffix)"
+    - "✅ Correct LoreForge_HeroBanner.png image uploaded (NO _wText suffix)"
+    - "✅ Correct Hoardwell_Logos_IconOnly.png logo uploaded"
+    - "✅ Correct LoreForge_Logos_IconOnly.png logo uploaded"
+    - "✅ Docker images rebuilt successfully (hoardwell:latest, loreforge:latest)"
+    - "✅ Images loaded onto all Kubernetes nodes (sherlock, watson, adler)"
+    - "✅ Kubernetes deployments successful (hoardwell-85f9c7d8bd-69zgl, loreforge-6b7c96d975-lj9qm)"
+    - "✅ Services exposed on NodePorts 30004 (hoardwell) and 30006 (loreforge)"
+    - "✅ Ingress configured for hoardwell.pedantictheory.com and loreforge.pedantictheory.com"
+    - "✅ Both applications accessible and running correctly"
+    - "✅ Hero banners displaying correctly with clean background images"
+    - "✅ Equipment management content customized for Hoardwell theme"
+    - "✅ World-building content customized for LoreForge theme"

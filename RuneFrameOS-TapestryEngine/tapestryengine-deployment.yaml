@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tapestryengine
+  namespace: runeframeos
+  labels:
+    app: tapestryengine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tapestryengine
+  template:
+    metadata:
+      labels:
+        app: tapestryengine
+    spec:
+      tolerations:
+      - key: "node-role.kubernetes.io/control-plane"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: tapestryengine
+        image: tapestryengine:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3010
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "3010"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tapestryengine
+  namespace: runeframeos
+spec:
+  type: NodePort
+  selector:
+    app: tapestryengine
+  ports:
+    - protocol: TCP
+      port: 3010
+      targetPort: 3010
+      nodePort: 30013
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tapestryengine-ingress
+  namespace: runeframeos
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: tapestryengine.pedantictheory.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tapestryengine
+            port:
+              number: 3010

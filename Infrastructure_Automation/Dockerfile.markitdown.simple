@@ -1,0 +1,128 @@
+# MarkItDown Docker Image for RuneFrame-DevOps - Simple Version
+# Based on Microsoft's MarkItDown with custom enhancements
+# Author: RuneFrameOS Infrastructure Team
+# Version: 1.0.0
+
+FROM python:3.11-slim
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    git \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    zlib1g-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libwebp-dev \
+    libopenjp2-7-dev \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    poppler-utils \
+    antiword \
+    unrtf \
+    pandoc \
+    libreoffice \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
+
+# Install MarkItDown with all optional dependencies
+RUN pip install --no-cache-dir 'markitdown[all]'
+
+# Install additional useful packages
+RUN pip install --no-cache-dir \
+    fastapi \
+    uvicorn \
+    python-multipart \
+    elasticsearch \
+    requests \
+    python-dotenv \
+    pydantic \
+    loguru
+
+# Create necessary directories
+RUN mkdir -p /app/documents /app/output /app/cache /app/config
+
+# Copy configuration
+COPY markitdown-config.yml /app/config/config.yml
+
+# Create the main application file
+RUN echo 'from fastapi import FastAPI, File, UploadFile, HTTPException' > /app/main.py && \
+    echo 'from fastapi.responses import JSONResponse' >> /app/main.py && \
+    echo 'from markitdown import MarkItDown' >> /app/main.py && \
+    echo 'import os' >> /app/main.py && \
+    echo 'import json' >> /app/main.py && \
+    echo 'from datetime import datetime' >> /app/main.py && \
+    echo 'from elasticsearch import Elasticsearch' >> /app/main.py && \
+    echo 'import logging' >> /app/main.py && \
+    echo '' >> /app/main.py && \
+    echo '# Configure logging' >> /app/main.py && \
+    echo 'logging.basicConfig(level=logging.INFO)' >> /app/main.py && \
+    echo 'logger = logging.getLogger(__name__)' >> /app/main.py && \
+    echo '' >> /app/main.py && \
+    echo 'app = FastAPI(' >> /app/main.py && \
+    echo '    title="MarkItDown API for RuneFrame-DevOps",' >> /app/main.py && \
+    echo '    description="PDF to Markdown conversion service with NIST document processing",' >> /app/main.py && \
+    echo '    version="1.0.0"' >> /app/main.py && \
+    echo ')' >> /app/main.py && \
+    echo '' >> /app/main.py && \
+    echo '# Initialize MarkItDown' >> /app/main.py && \
+    echo 'md = MarkItDown(enable_plugins=True)' >> /app/main.py && \
+    echo '' >> /app/main.py && \
+    echo '# Initialize Elasticsearch connection' >> /app/main.py && \
+    echo 'try:' >> /app/main.py && \
+    echo '    es = Elasticsearch(["http://elasticsearch:9200"])' >> /app/main.py && \
+    echo '    es_available = es.ping()' >> /app/main.py && \
+    echo 'except:' >> /app/main.py && \
+    echo '    es_available = False' >> /app/main.py && \
+    echo '    logger.warning("Elasticsearch not available")' >> /app/main.py && \
+    echo '' >> /app/main.py && \
+    echo '@app.get("/health")' >> /app/main.py && \
+    echo 'async def health_check():' >> /app/main.py && \
+    echo '    """Health check endpoint"""' >> /app/main.py && \
+    echo '    return {' >> /app/main.py && \
+    echo '        "status": "healthy",' >> /app/main.py && \
+    echo '        "service": "markitdown",' >> /app/main.py && \
+    echo '        "timestamp": datetime.now().isoformat(),' >> /app/main.py && \
+    echo '        "elasticsearch": es_available' >> /app/main.py && \
+    echo '    }' >> /app/main.py && \
+    echo '' >> /app/main.py && \
+    echo '@app.get("/status")' >> /app/main.py && \
+    echo 'async def get_status():' >> /app/main.py && \
+    echo '    """Get service status and statistics"""' >> /app/main.py && \
+    echo '    return {' >> /app/main.py && \
+    echo '        "service": "markitdown",' >> /app/main.py && \
+    echo '        "status": "running",' >> /app/main.py && \
+    echo '        "timestamp": datetime.now().isoformat(),' >> /app/main.py && \
+    echo '        "elasticsearch": es_available,' >> /app/main.py && \
+    echo '        "supported_formats": [".pdf", ".docx", ".pptx", ".xlsx", ".html", ".txt", ".csv", ".json", ".xml"]' >> /app/main.py && \
+    echo '    }' >> /app/main.py && \
+    echo '' >> /app/main.py && \
+    echo 'if __name__ == "__main__":' >> /app/main.py && \
+    echo '    import uvicorn' >> /app/main.py && \
+    echo '    uvicorn.run(app, host="0.0.0.0", port=8000)' >> /app/main.py
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Start the service
+CMD ["python", "/app/main.py"]

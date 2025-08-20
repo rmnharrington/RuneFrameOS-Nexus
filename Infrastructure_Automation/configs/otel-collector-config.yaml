@@ -1,0 +1,156 @@
+receivers:
+  # Kubernetes metrics receiver (for when we connect to K3S cluster)
+  k8s_cluster:
+    collection_interval: 10s
+    auth_type: serviceAccount
+  
+  # Prometheus metrics receiver
+  prometheus:
+    config:
+      scrape_configs:
+        - job_name: 'node-exporter'
+          static_configs:
+            - targets: ['node-exporter:9100']
+              labels:
+                instance: 'watson'
+                job: 'node-exporter'
+        
+        - job_name: 'cadvisor'
+          static_configs:
+            - targets: ['cadvisor:8080']
+              labels:
+                instance: 'watson'
+                job: 'cadvisor'
+        
+        - job_name: 'otel-collector'
+          static_configs:
+            - targets: ['otel-collector:9464']
+              labels:
+                instance: 'watson'
+                job: 'otel-collector'
+  
+  # Syslog receiver for security logs from network devices
+  syslog:
+    protocol: udp
+    listen_address: "0.0.0.0:514"
+    location: "UTC"
+    operators:
+      - type: regex_parser
+        regex: '^(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z?) (?P<hostname>[^ ]+) (?P<app>[^:]+): (?P<message>.*)$'
+        timestamp:
+          parse_from: timestamp
+          layout: "2006-01-02T15:04:05.000Z"
+        severity:
+          parse_from: message
+          mapping:
+            error: "ERROR"
+            warn: "WARN"
+            info: "INFO"
+            debug: "DEBUG"
+  
+  # OTLP receiver for application telemetry
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "0.0.0.0:4317"
+      http:
+        endpoint: "0.0.0.0:4318"
+
+processors:
+  # Resource detection for Kubernetes
+  k8sattributes:
+    auth_type: serviceAccount
+    passthrough: false
+    extract:
+      metadata:
+        - k8s.pod.name
+        - k8s.pod.uid
+        - k8s.deployment.name
+        - k8s.namespace.name
+        - k8s.node.name
+        - k8s.pod.start_time
+  
+  # Batch processing for efficiency
+  batch:
+    timeout: 1s
+    send_batch_size: 1024
+    send_batch_max_size: 2048
+  
+  # Memory limiter
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 1500
+  
+  # Resource processor for adding common attributes
+  resource:
+    attributes:
+      - key: environment
+        value: "production"
+        action: upsert
+      - key: service.namespace
+        from_attribute: kubernetes_namespace
+        action: upsert
+      - key: service.name
+        from_attribute: kubernetes_pod_name
+        action: upsert
+      - key: service.instance.id
+        from_attribute: kubernetes_pod_uid
+        action: upsert
+      - key: host.name
+        from_attribute: kubernetes_node_name
+        action: upsert
+      - key: datacenter
+        value: "watson"
+        action: upsert
+
+exporters:
+  # Elasticsearch exporter for logs and metrics
+  elasticsearch:
+    endpoints: ["http://elasticsearch:9200"]
+    num_workers: 4
+    timeout: 30s
+    retry_on_failure:
+      enabled: true
+      initial_interval: 5s
+      max_interval: 30s
+      max_elapsed_time: 300s
+    sending_queue:
+      enabled: true
+      num_consumers: 10
+  
+  # Prometheus exporter for metrics
+  prometheus:
+    endpoint: "0.0.0.0:9464"
+    namespace: "runeframeos"
+    const_labels:
+      datacenter: "watson"
+      environment: "production"
+    send_timestamps: true
+    metric_expiration: 180m
+    enable_open_metrics: true
+  
+  # OTLP exporter for forwarding to other systems
+  otlp:
+    endpoint: "http://localhost:4317"
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    # Metrics pipeline
+    metrics:
+      receivers: [k8s_cluster, prometheus, otlp]
+      processors: [k8sattributes, batch, memory_limiter, resource]
+      exporters: [elasticsearch, prometheus, otlp]
+    
+    # Logs pipeline
+    logs:
+      receivers: [syslog, otlp]
+      processors: [batch, memory_limiter, resource]
+      exporters: [elasticsearch]
+    
+    # Traces pipeline
+    traces:
+      receivers: [otlp]
+      processors: [k8sattributes, batch, memory_limiter, resource]
+      exporters: [elasticsearch, otlp]

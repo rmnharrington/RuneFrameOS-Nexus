@@ -54,7 +54,7 @@ spec:
   ports:
   - port: 3008
     targetPort: 3008
-    nodePort: 30002
+    nodePort: 30015
     protocol: TCP
   type: NodePort
 ---

@@ -24,12 +24,12 @@ spec:
         image: personavault:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 3010
+        - containerPort: 3008
         env:
         - name: NODE_ENV
           value: "production"
         - name: PORT
-          value: "3010"
+          value: "3008"
         resources:
           requests:
             memory: "256Mi"
@@ -38,22 +38,8 @@ spec:
             memory: "512Mi"
             cpu: "500m"
         # Health checks disabled for initial testing
-        # livenessProbe:
-        #   httpGet:
-        #     path: /api/health
-        #     port: 3010
-        #   initialDelaySeconds: 30
-        #   periodSeconds: 10
-        #   timeoutSeconds: 5
-        #   failureThreshold: 3
-        # readinessProbe:
-        #   httpGet:
-        #     path: /api/health
-        #     port: 3010
-        #   initialDelaySeconds: 5
-        #   periodSeconds: 5
-        #   timeoutSeconds: 3
-        #   failureThreshold: 3
+        # livenessProbe: [ADD_LATER]
+        # readinessProbe: [ADD_LATER]
 ---
 apiVersion: v1
 kind: Service
@@ -66,8 +52,8 @@ spec:
   selector:
     app: personavault
   ports:
-  - port: 3010
-    targetPort: 3010
+  - port: 3008
+    targetPort: 3008
     nodePort: 30010
     protocol: TCP
   type: NodePort
@@ -92,4 +78,4 @@ spec:
           service:
             name: personavault
             port:
-              number: 3010
+              number: 3008

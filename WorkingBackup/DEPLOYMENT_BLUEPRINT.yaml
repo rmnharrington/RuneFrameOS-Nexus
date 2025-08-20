@@ -1,0 +1,154 @@
+# RuneFrameOS Deployment Blueprint
+# This file defines the exact deployment process for each application
+
+deployment_target:
+  cluster_name: "sherlock"
+  master_node: "sherlock.pedantictheory.com"
+  worker_nodes: 
+    - "watson.pedantictheory.com"
+    - "adler.pedantictheory.com"
+  user: "wee"
+  namespace: "runeframeos"
+  ssh_key: "~/.ssh/id_rsa"
+
+applications:
+  mercatrix:
+    status: "DEPLOYED"
+    domain: "mercatrix.pedantictheory.com"
+    internal_ip: "172.18.254.78"
+    port: 3008
+    nodeport: 30008
+    notes: "Currently running but has GUI issues that need fixing"
+    
+  brokeunicorn_tavern:
+    status: "NOT_DEPLOYED"
+    domain: "brokeunicorntavern.pedantictheory.com"
+    internal_ip: "172.18.254.70"
+    port: 3008
+    nodeport: 30005
+    deployment_steps:
+      - step: "1"
+        action: "VERIFY_LOCAL_FILES"
+        description: "Confirm local RuneFrameOS-BrokeUnicornTavern directory contains correct files"
+        required_files:
+          - "src/app/page.tsx (Main page)"
+          - "src/app/layout.tsx (App layout)"
+          - "src/app/globals.css (Styling)"
+          - "src/components/core/ (Layout components)"
+          - "package.json (with Next.js dependencies)"
+          - "Dockerfile.clean (for containerization)"
+          - "tailwind.config.js (Tailwind configuration)"
+        notes: "This is now a Next.js application with identical layout to PersonaVault"
+        
+      - step: "2"
+        action: "COPY_TO_SERVER"
+        description: "Copy clean application files to sherlock"
+        command: "scp -r RuneFrameOS-BrokeUnicornTavern wee@sherlock.pedantictheory.com:/home/wee/"
+        
+      - step: "3"
+        action: "BUILD_DOCKER_IMAGE"
+        description: "Build Docker image on sherlock server"
+        command: "ssh wee@sherlock.pedantictheory.com 'cd RuneFrameOS-BrokeUnicornTavern && sudo docker build -f Dockerfile.clean -t brokeunicorn-tavern:latest .'"
+        
+      - step: "4"
+        action: "LOAD_TO_CONTAINERD"
+        description: "Load image into containerd for Kubernetes access"
+        command: "ssh wee@sherlock.pedantictheory.com 'sudo docker save brokeunicorn-tavern:latest | sudo ctr -n=k8s.io images import -'"
+        
+      - step: "5"
+        action: "CREATE_KUBERNETES_MANIFESTS"
+        description: "Create deployment, service, and ingress YAML files"
+        files:
+          - "brokeunicorn-deployment.yaml"
+          - "brokeunicorn-configmap.yaml"
+        
+      - step: "6"
+        action: "DEPLOY_TO_CLUSTER"
+        description: "Apply Kubernetes manifests"
+        command: "ssh wee@sherlock.pedantictheory.com 'sudo kubectl apply -f RuneFrameOS-BrokeUnicornTavern/brokeunicorn-deployment.yaml --kubeconfig /etc/kubernetes/admin.conf'"
+        
+      - step: "7"
+        action: "VERIFY_DEPLOYMENT"
+        description: "Check pod status and test application"
+        commands:
+          - "ssh wee@sherlock.pedantictheory.com 'sudo kubectl get pods -n runeframeos --kubeconfig /etc/kubernetes/admin.conf'"
+          - "ssh wee@sherlock.pedantictheory.com 'sudo kubectl get service brokeunicorn-tavern -n runeframeos --kubeconfig /etc/kubernetes/admin.conf'"
+          - "Test access via NodePort: http://[NODE_IP]:30005"
+
+  # Additional apps to be deployed later
+  distillara:
+    status: "NOT_DEPLOYED"
+    domain: "distillara.pedantictheory.com"
+    internal_ip: "172.18.254.73"
+    port: 3003
+    nodeport: 30003
+    
+  hoardwell:
+    status: "NOT_DEPLOYED"
+    domain: "hoardwell.pedantictheory.com"
+    internal_ip: "172.18.254.75"
+    port: 3004
+    nodeport: 30004
+    
+  feastwell:
+    status: "NOT_DEPLOYED"
+    domain: "feastwell.pedantictheory.com"
+    internal_ip: "172.18.254.74"
+    port: 3001
+    nodeport: 30001
+
+deployment_requirements:
+  prerequisites:
+    - "SSH access to sherlock.pedantictheory.com as user 'wee'"
+    - "sudo access on all cluster nodes"
+    - "Docker installed on all nodes"
+    - "containerd configured for Kubernetes"
+    - "nginx-ingress controller running"
+    
+  file_structure:
+    each_app_should_have:
+      - "src/app/page.tsx (Main page)"
+      - "src/app/layout.tsx (App layout)"
+      - "src/app/globals.css (Styling)"
+      - "src/components/core/ (Layout components)"
+      - "package.json (with Next.js dependencies)"
+      - "Dockerfile.clean (for containerization)"
+      - "tailwind.config.js (Tailwind configuration)"
+      
+  kubernetes_manifest_template:
+    deployment:
+      - "apiVersion: apps/v1"
+      - "kind: Deployment"
+      - "namespace: runeframeos"
+      - "replicas: 1"
+      - "resources: 256Mi-512Mi memory, 250m-500m CPU"
+      - "health checks: /api/health endpoint"
+      - "tolerations for control-plane scheduling"
+      
+    service:
+      - "apiVersion: v1"
+      - "kind: Service"
+      - "type: NodePort"
+      - "port mapping: [PORT]:[NODEPORT]"
+      
+    ingress:
+      - "apiVersion: networking.k8s.io/v1"
+      - "kind: Ingress"
+      - "host: [DOMAIN].pedantictheory.com"
+      - "nginx.ingress.kubernetes.io annotations"
+
+testing_procedure:
+  after_deployment:
+    - "Check pod status: kubectl get pods -n runeframeos"
+    - "Test service: kubectl port-forward service/[APP] [LOCAL_PORT]:[APP_PORT]"
+    - "Test health endpoint: curl http://localhost:[LOCAL_PORT]/api/health"
+    - "Test web interface: Open browser to http://localhost:[LOCAL_PORT]"
+    - "Verify GUI matches working app design"
+
+notes:
+  - "Each app gets its own PostgreSQL database (implemented later)"
+  - "Each app has API hooks to communicate with other apps"
+  - "Nexus dashboard will be built last to link everything together"
+  - "All apps use agentic implementation capability"
+  - "Each app maintains its own color theme and design"
+  - "No centralized color theme - each app is independent"

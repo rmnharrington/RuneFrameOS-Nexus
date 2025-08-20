@@ -1,0 +1,243 @@
+filebeat.inputs:
+# =============================================================================
+# NETWORK DEVICE INPUTS
+# =============================================================================
+
+# Extreme Networks Switching - Syslog UDP
+- type: udp
+  host: "0.0.0.0"
+  port: 5141
+  fields:
+    vendor: "extreme_networks"
+    device_type: "switch"
+    type: "syslog"
+    format: "extreme"
+  fields_under_root: true
+  tags: ["extreme", "switch", "network", "enterprise"]
+
+# Palo Alto Networks Firewalls - Syslog UDP
+- type: udp
+  host: "0.0.0.0"
+  port: 5142
+  fields:
+    vendor: "palo_alto"
+    device_type: "firewall"
+    type: "syslog"
+    format: "palo_alto"
+  fields_under_root: true
+  tags: ["palo_alto", "firewall", "security", "enterprise"]
+
+# Ubiquiti Unifi Wireless - Syslog UDP
+- type: udp
+  host: "0.0.0.0"
+  port: 5143
+  fields:
+    vendor: "ubiquiti"
+    device_type: "wireless"
+    type: "syslog"
+    format: "unifi"
+  fields_under_root: true
+  tags: ["ubiquiti", "unifi", "wireless", "network"]
+
+# =============================================================================
+# SERVER INPUTS
+# =============================================================================
+
+# Windows Servers - Event Logs (when Filebeat is installed on Windows)
+- type: log
+  enabled: false  # Will be enabled when Filebeat is deployed on Windows servers
+  paths:
+    - "C:\\ProgramData\\Elastic\\Beats\\filebeat\\logs\\*.log"
+  fields:
+    vendor: "microsoft"
+    device_type: "windows_server"
+    type: "event_log"
+    format: "windows"
+  fields_under_root: true
+  tags: ["windows", "server", "microsoft", "enterprise"]
+
+# Linux Servers - System Logs
+- type: log
+  enabled: true
+  paths:
+    - /var/log/syslog
+    - /var/log/messages
+    - /var/log/auth.log
+    - /var/log/secure
+    - /var/log/kern.log
+    - /var/log/dmesg
+  fields:
+    vendor: "linux"
+    device_type: "linux_server"
+    type: "system_log"
+    format: "syslog"
+  fields_under_root: true
+  tags: ["linux", "server", "system", "enterprise"]
+
+# =============================================================================
+# ACTIVE DIRECTORY INPUTS
+# =============================================================================
+
+# Active Directory Domain Controller Logs
+- type: log
+  enabled: false  # Will be enabled when Filebeat is deployed on DCs
+  paths:
+    - "C:\\Windows\\System32\\winevt\\Logs\\Security.evtx"
+    - "C:\\Windows\\System32\\winevt\\Logs\\System.evtx"
+    - "C:\\Windows\\System32\\winevt\\Logs\\Application.evtx"
+    - "C:\\Windows\\System32\\winevt\\Logs\\Directory Service.evtx"
+    - "C:\\Windows\\System32\\winevt\\Logs\\DFS Replication.evtx"
+  fields:
+    vendor: "microsoft"
+    device_type: "active_directory"
+    type: "event_log"
+    format: "windows_evtx"
+  fields_under_root: true
+  tags: ["active_directory", "domain_controller", "microsoft", "enterprise"]
+
+# =============================================================================
+# CLIENT INPUTS
+# =============================================================================
+
+# Windows Clients - Event Logs
+- type: log
+  enabled: false  # Will be enabled when Filebeat is deployed on Windows clients
+  paths:
+    - "C:\\ProgramData\\Elastic\\Beats\\filebeat\\logs\\*.log"
+  fields:
+    vendor: "microsoft"
+    device_type: "windows_client"
+    type: "event_log"
+    format: "windows"
+  fields_under_root: true
+  tags: ["windows", "client", "microsoft", "endpoint"]
+
+# macOS Clients - System Logs
+- type: log
+  enabled: false  # Will be enabled when Filebeat is deployed on macOS clients
+  paths:
+    - "/var/log/system.log"
+    - "/var/log/secure.log"
+    - "/var/log/auth.log"
+    - "/var/log/install.log"
+    - "/var/log/com.apple.xpc.launchd/*.log"
+  fields:
+    vendor: "apple"
+    device_type: "macos_client"
+    type: "system_log"
+    format: "macos"
+  fields_under_root: true
+  tags: ["macos", "client", "apple", "endpoint"]
+
+# =============================================================================
+# KUBERNETES INPUTS
+# =============================================================================
+
+# Kubernetes Container Logs
+- type: container
+  paths:
+    - '/var/lib/docker/containers/*/*.log'
+  fields:
+    vendor: "kubernetes"
+    device_type: "container"
+    type: "container_log"
+    format: "json"
+  fields_under_root: true
+  tags: ["kubernetes", "container", "docker", "cloud_native"]
+
+# =============================================================================
+# PROCESSORS
+# =============================================================================
+
+processors:
+  # Add host metadata
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  
+  # Add cloud metadata
+  - add_cloud_metadata: ~
+  
+  # Add Kubernetes metadata
+  - add_kubernetes_metadata:
+      host: ${NODE_NAME}
+      matchers:
+      - logs_path:
+          k8s_container_name: "filebeat"
+  
+  # Parse syslog messages
+  - syslog:
+      field: message
+      target_field: syslog
+  
+  # Parse JSON logs
+  - decode_json_fields:
+      fields: ["message"]
+      target: "json"
+      overwrite_keys: true
+  
+  # Add timestamp if not present
+  - timestamp:
+      field: "@timestamp"
+      layouts:
+        - "2006-01-02T15:04:05.000Z"
+        - "2006-01-02T15:04:05Z"
+        - "Jan 02 15:04:05"
+        - "2006-01-02 15:04:05"
+  
+  # Add message field if not present
+  - add_fields:
+      target: ""
+      fields:
+        message: "{{.message}}"
+  
+  # Remove obvious generator tags
+  - drop_fields:
+      fields: ["ecs.version"]
+
+# =============================================================================
+# OUTPUT CONFIGURATION
+# =============================================================================
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  index: "runeframeos-logs-%{+yyyy.MM.dd}"
+  template:
+    name: "runeframeos-logs"
+    pattern: "runeframeos-logs-*"
+    order: 1
+    settings:
+      index:
+        number_of_shards: 1
+        number_of_replicas: 0
+        refresh_interval: "5s"
+        codec: "best_compression"
+        mapping:
+          total_fields.limit: 2000
+          depth.limit: 20
+          nested_fields.limit: 100
+
+# =============================================================================
+# LOGGING CONFIGURATION
+# =============================================================================
+
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: /var/logs/filebeat
+  name: filebeat
+  keepfiles: 7
+  rotateeverybytes: 10485760  # 10MB
+  permissions: 0644
+
+# =============================================================================
+# MONITORING CONFIGURATION
+# =============================================================================
+
+monitoring:
+  enabled: true
+  metrics:
+    enabled: true
+    period: 10s
+  logs:
+    enabled: true
+    level: info

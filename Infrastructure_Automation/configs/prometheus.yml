@@ -1,0 +1,172 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    datacenter: "watson"
+    environment: "production"
+    cluster: "runeframeos"
+
+rule_files:
+  - /etc/prometheus/rules/*.yml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+scrape_configs:
+  # =============================================================================
+  # MONITORING STACK COMPONENTS
+  # =============================================================================
+  
+  # OpenTelemetry Collector metrics
+  - job_name: 'otel-collector'
+    static_configs:
+      - targets: ['otel-collector:9464']
+        labels:
+          instance: 'watson'
+          job: 'otel-collector'
+          component: 'telemetry'
+  
+  # Node Exporter for host metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          instance: 'watson'
+          job: 'node-exporter'
+          component: 'host_metrics'
+  
+  # cAdvisor for container metrics
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+        labels:
+          instance: 'watson'
+          job: 'cadvisor'
+          component: 'container_metrics'
+  
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          instance: 'watson'
+          job: 'prometheus'
+          component: 'monitoring'
+  
+  # =============================================================================
+  # K3S CLUSTER METRICS (when accessible)
+  # =============================================================================
+  
+  # K3S API Server metrics
+  - job_name: 'k3s-api-server'
+    static_configs:
+      - targets: ['sherlock.pedantictheory.com:6443']
+        labels:
+          instance: 'sherlock'
+          job: 'k3s-api-server'
+          component: 'kubernetes'
+    metrics_path: /metrics
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    bearer_token_file: /etc/prometheus/k3s-token
+  
+  # K3S Node metrics (if metrics-server is accessible)
+  - job_name: 'k3s-node-metrics'
+    static_configs:
+      - targets: 
+          - 'sherlock.pedantictheory.com:10250'
+          - 'watson.pedantictheory.com:10250'
+          - 'adler.pedantictheory.com:10250'
+        labels:
+          job: 'k3s-node-metrics'
+          component: 'kubernetes'
+    metrics_path: /metrics
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    bearer_token_file: /etc/prometheus/k3s-token
+  
+  # =============================================================================
+  # NETWORK DEVICE METRICS (if SNMP enabled)
+  # =============================================================================
+  
+  # Extreme Networks Switch SNMP (if available)
+  - job_name: 'extreme-switch-snmp'
+    static_configs:
+      - targets: ['192.168.1.1']  # Replace with actual switch IP
+        labels:
+          vendor: 'extreme_networks'
+          device_type: 'switch'
+          instance: 'extreme-switch-01'
+    metrics_path: /snmp
+    params:
+      module: [extreme_networks]
+    scrape_interval: 30s
+  
+  # Palo Alto Firewall SNMP (if available)
+  - job_name: 'palo-alto-snmp'
+    static_configs:
+      - targets: ['192.168.1.2']  # Replace with actual firewall IP
+        labels:
+          vendor: 'palo_alto'
+          device_type: 'firewall'
+          instance: 'palo-alto-fw-01'
+    metrics_path: /snmp
+    params:
+      module: [palo_alto]
+    scrape_interval: 30s
+  
+  # =============================================================================
+  # WINDOWS SERVER METRICS (if WMI exporter available)
+  # =============================================================================
+  
+  # Windows Server WMI metrics
+  - job_name: 'windows-server-wmi'
+    static_configs:
+      - targets: ['192.168.1.10']  # Replace with actual Windows server IP
+        labels:
+          vendor: 'microsoft'
+          device_type: 'windows_server'
+          instance: 'windows-server-01'
+    metrics_path: /metrics
+    scrape_interval: 30s
+  
+  # =============================================================================
+  # ACTIVE DIRECTORY METRICS (if available)
+  # =============================================================================
+  
+  # Active Directory Domain Controller metrics
+  - job_name: 'ad-domain-controller'
+    static_configs:
+      - targets: ['192.168.1.11']  # Replace with actual DC IP
+        labels:
+          vendor: 'microsoft'
+          device_type: 'active_directory'
+          instance: 'ad-dc-01'
+    metrics_path: /metrics
+    scrape_interval: 30s
+  
+  # =============================================================================
+  # FILEBEAT METRICS
+  # =============================================================================
+  
+  # Filebeat metrics
+  - job_name: 'filebeat'
+    static_configs:
+      - targets: ['filebeat:5066']
+        labels:
+          instance: 'watson'
+          job: 'filebeat'
+          component: 'log_collection'
+    metrics_path: /stats
+    scrape_interval: 30s
+
+# =============================================================================
+# STORAGE CONFIGURATION
+# =============================================================================
+
+# Storage configuration is handled via command line arguments in docker-compose
