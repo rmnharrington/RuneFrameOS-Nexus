@@ -1,0 +1,252 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ========================================
+// GAMING SYSTEMS & VERSIONS
+// ========================================
+
+model GamingSystem {
+  id          String   @id @default(cuid())
+  name        String   @unique // e.g., "Echeladon", "D&D 5e", "Pathfinder"
+  description String?
+  publisher   String?  // e.g., "Proprietary", "Wizards of the Coast"
+  isActive    Boolean  @default(true)
+  isProprietary Boolean @default(false) // true for Echeladon, false for 3rd party
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  versions    SystemVersion[]
+  ruleBooks   RuleBook[]
+  mechanics   GameMechanic[]
+  content     ContentItem[]
+  purchases   UserPurchase[]
+  characterTemplates CharacterTemplate[]
+  systemImplementations SystemImplementation[]
+
+  @@map("gaming_systems")
+}
+
+model SystemVersion {
+  id              String   @id @default(cuid())
+  versionName     String   // e.g., "1.0", "5e", "2.0"
+  description     String?
+  releaseDate     DateTime?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  gamingSystemId  String
+  gamingSystem    GamingSystem @relation(fields: [gamingSystemId], references: [id], onDelete: Cascade)
+  ruleBooks       RuleBook[]
+  mechanics       GameMechanic[]
+  characterTemplates CharacterTemplate[]
+
+  @@unique([gamingSystemId, versionName])
+  @@map("system_versions")
+}
+
+// ========================================
+// RULE BOOKS & CONTENT
+// ========================================
+
+model RuleBook {
+  id              String   @id @default(cuid())
+  title           String   // e.g., "Echeladon Core Rules", "Player's Handbook"
+  description     String?
+  bookType        BookType // CORE, EXPANSION, SUPPLEMENT, etc.
+  pageCount       Int?
+  isbn            String?
+  publicationDate DateTime?
+  price           Decimal  @db.Decimal(10, 2)
+  isActive        Boolean  @default(true)
+  isPurchasable   Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  gamingSystemId  String
+  gamingSystem    GamingSystem @relation(fields: [gamingSystemId], references: [id], onDelete: Cascade)
+  systemVersionId String?
+  systemVersion   SystemVersion? @relation(fields: [systemVersionId], references: [id], onDelete: SetNull)
+  contentItems    ContentItem[]
+  purchases       UserPurchase[]
+
+  @@map("rule_books")
+}
+
+enum BookType {
+  CORE
+  EXPANSION
+  SUPPLEMENT
+  ADVENTURE
+  SETTING
+  MAGAZINE
+  OTHER
+}
+
+// ========================================
+// GAME MECHANICS
+// ========================================
+
+model GameMechanic {
+  id              String   @id @default(cuid())
+  name            String   // e.g., "Dice Rolling", "Combat", "Skill Checks"
+  description     String?
+  mechanicType    MechanicType
+  implementation  String?  // JSON or text description of how it works
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  gamingSystemId  String
+  gamingSystem    GamingSystem @relation(fields: [gamingSystemId], references: [id], onDelete: Cascade)
+  systemVersionId String?
+  systemVersion   SystemVersion? @relation(fields: [systemVersionId], references: [id], onDelete: SetNull)
+  contentItems    ContentItem[]
+
+  @@map("game_mechanics")
+}
+
+enum MechanicType {
+  DICE_ROLLING
+  COMBAT
+  SKILL_CHECKS
+  CHARACTER_CREATION
+  MAGIC
+  EQUIPMENT
+  MOVEMENT
+  SOCIAL_INTERACTION
+  OTHER
+}
+
+// ========================================
+// CONTENT LIBRARY
+// ========================================
+
+model ContentItem {
+  id              String   @id @default(cuid())
+  title           String   // e.g., "Longsword", "Fireball Spell", "Combat Rules"
+  description     String?
+  content         String   // The actual game content/rules
+  contentType     ContentType
+  tags            String[] // Array of tags for searchability
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  gamingSystemId  String
+  gamingSystem    GamingSystem @relation(fields: [gamingSystemId], references: [id], onDelete: Cascade)
+  ruleBookId      String?
+  ruleBook        RuleBook? @relation(fields: [ruleBookId], references: [id], onDelete: SetNull)
+  mechanics       GameMechanic[]
+
+  @@map("content_items")
+}
+
+enum ContentType {
+  EQUIPMENT
+  SPELL
+  FEAT
+  RULE
+  MONSTER
+  NPC
+  LOCATION
+  ITEM
+  OTHER
+}
+
+// ========================================
+// USER PURCHASES & LICENSING
+// ========================================
+
+model UserPurchase {
+  id              String   @id @default(cuid())
+  userId          String   // External user ID (from auth system)
+  purchaseDate    DateTime @default(now())
+  purchasePrice   Decimal  @db.Decimal(10, 2)
+  licenseType     LicenseType
+  isActive        Boolean  @default(true)
+  expiresAt       DateTime? // For time-limited licenses
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  gamingSystemId  String?
+  gamingSystem    GamingSystem? @relation(fields: [gamingSystemId], references: [id], onDelete: SetNull)
+  ruleBookId      String?
+  ruleBook        RuleBook? @relation(fields: [ruleBookId], references: [id], onDelete: SetNull)
+
+  @@map("user_purchases")
+}
+
+enum LicenseType {
+  PERMANENT
+  SUBSCRIPTION
+  TIME_LIMITED
+  RENTAL
+}
+
+// ========================================
+// CHARACTER CREATION TEMPLATES
+// ========================================
+
+model CharacterTemplate {
+  id              String   @id @default(cuid())
+  name            String   // e.g., "Echeladon Warrior", "D&D 5e Wizard"
+  description     String?
+  templateData    String   // JSON structure for character creation
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  gamingSystemId  String
+  gamingSystem    GamingSystem @relation(fields: [gamingSystemId], references: [id], onDelete: Cascade)
+  systemVersionId String?
+  systemVersion   SystemVersion? @relation(fields: [systemVersionId], references: [id], onDelete: SetNull)
+
+  @@map("character_templates")
+}
+
+// ========================================
+// SYSTEM IMPLEMENTATIONS
+// ========================================
+
+model SystemImplementation {
+  id              String   @id @default(cuid())
+  name            String   // e.g., "Echeladon Character Builder", "D&D 5e Combat"
+  description     String?
+  implementationType ImplementationType
+  config          String   // JSON configuration for the implementation
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  gamingSystemId  String
+  gamingSystem    GamingSystem @relation(fields: [gamingSystemId], references: [id], onDelete: Cascade)
+
+  @@map("system_implementations")
+}
+
+enum ImplementationType {
+  CHARACTER_BUILDER
+  COMBAT_SYSTEM
+  MAGIC_SYSTEM
+  EQUIPMENT_SYSTEM
+  SKILL_SYSTEM
+  OTHER
+}

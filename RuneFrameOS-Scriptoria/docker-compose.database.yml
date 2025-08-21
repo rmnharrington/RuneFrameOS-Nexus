@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  scriptoria-postgres:
+    image: postgres:15
+    container_name: scriptoria-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: scriptoria_db
+      POSTGRES_USER: scriptoria_user
+      POSTGRES_PASSWORD: scriptoria_secure_pass_2024
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    ports:
+      - "5433:5432"
+    volumes:
+      - scriptoria_postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - scriptoria_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scriptoria_user -d scriptoria_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  scriptoria_postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/wee/scriptoria-postgres-data
+
+networks:
+  scriptoria_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
