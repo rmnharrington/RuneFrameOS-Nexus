@@ -5,6 +5,7 @@ import LeftSidebar from './LeftSidebar'
 import RightSidebar from './RightSidebar'
 import Header from './Header'
 import AppFooter from './AppFooter'
+import SystemSelectionModal from '../functional/SystemSelectionModal'
 
 interface AppLayoutProps {
   children: React.ReactNode
@@ -52,6 +53,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
       
       {/* Footer - Now properly positioned at bottom */}
       <AppFooter />
+      
+      {/* System Selection Modal */}
+      <SystemSelectionModal />
     </div>
   )
 }

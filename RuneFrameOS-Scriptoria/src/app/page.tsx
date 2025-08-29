@@ -1,9 +1,11 @@
 import AppLayout from '../components/core/AppLayout'
 import HeroBanner from '../components/core/HeroBanner'
+import { SystemProvider } from '../contexts/SystemContext'
 
 export default function Home() {
   return (
-    <AppLayout>
+    <SystemProvider>
+      <AppLayout>
       <div className="space-y-6">
         {/* Welcome Section with Hero Banner Background */}
         <HeroBanner
@@ -124,6 +126,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </AppLayout>
+      </AppLayout>
+    </SystemProvider>
   )
 }

@@ -147,3 +147,4 @@ echo "3. Configure monitoring alerts"
 echo "4. Update DNS if needed"
 echo ""
 print_success "Bad Guy Gas Intranet is now live on Gandalf!"
+

@@ -42,7 +42,7 @@ export async function testDatabaseConnection() {
   } catch (error) {
     console.error('❌ Database connection failed:', error)
     await prisma.$disconnect()
-    return { success: false, error: error.message }
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' }
   }
 }
 

@@ -4,42 +4,31 @@ export async function seedDatabase() {
   console.log('🌱 Seeding database...')
 
   try {
-    // Create Echeladon gaming system
-    const echeladon = await prisma.gamingSystem.upsert({
-      where: { name: 'Echeladon' },
-      update: {},
-      create: {
-        name: 'Echeladon',
-        description: 'Proprietary fantasy roleplaying system with deep lore and innovative mechanics',
-        publisher: 'Proprietary',
-        isProprietary: true,
-        isActive: true,
-      },
-    })
+         // Create Echeladon gaming system
+     const echeladon = await prisma.gamingSystem.create({
+       data: {
+         name: 'Echeladon',
+         description: 'Proprietary fantasy roleplaying system with deep lore and innovative mechanics',
+         publisher: 'Proprietary',
+         isProprietary: true,
+         isActive: true,
+       },
+     })
 
-    // Create Echeladon version
-    const echeladonVersion = await prisma.systemVersion.upsert({
-      where: {
-        gamingSystemId_versionName: {
-          gamingSystemId: echeladon.id,
-          versionName: '1.0',
-        },
-      },
-      update: {},
-      create: {
-        versionName: '1.0',
-        description: 'Initial release of Echeladon',
-        releaseDate: new Date('2024-01-01'),
-        isActive: true,
-        gamingSystemId: echeladon.id,
-      },
-    })
+         // Create Echeladon version
+     const echeladonVersion = await prisma.systemVersion.create({
+       data: {
+         versionName: '1.0',
+         description: 'Initial release of Echeladon',
+         releaseDate: new Date('2024-01-01'),
+         isActive: true,
+         gamingSystemId: echeladon.id,
+       },
+     })
 
     // Create Echeladon core rulebook
-    const echeladonCore = await prisma.ruleBook.upsert({
-      where: { title: 'Echeladon Core Rules' },
-      update: {},
-      create: {
+    const echeladonCore = await prisma.ruleBook.create({
+      data: {
         title: 'Echeladon Core Rules',
         description: 'Complete core rulebook for the Echeladon system',
         bookType: 'CORE',
@@ -53,77 +42,70 @@ export async function seedDatabase() {
     })
 
     // Create core game mechanics
-    const mechanics = [
-      {
-        name: 'Dice Rolling',
-        description: 'Core dice mechanics for Echeladon',
-        mechanicType: 'DICE_ROLLING',
-        implementation: JSON.stringify({
-          primaryDie: 'd20',
-          secondaryDice: ['d6', 'd8', 'd10', 'd12'],
-          criticalRange: [19, 20],
-          fumbleRange: [1],
-        }),
-        gamingSystemId: echeladon.id,
-        systemVersionId: echeladonVersion.id,
-      },
-      {
-        name: 'Combat System',
-        description: 'Turn-based tactical combat mechanics',
-        mechanicType: 'COMBAT',
-        implementation: JSON.stringify({
-          initiative: 'd20 + Dexterity modifier',
-          actionPoints: 3,
-          movement: 'Speed in squares',
-          attackRoll: 'd20 + Attack Bonus',
-        }),
-        gamingSystemId: echeladon.id,
-        systemVersionId: echeladonVersion.id,
-      },
-      {
-        name: 'Character Creation',
-        description: 'Step-by-step character creation process',
-        mechanicType: 'CHARACTER_CREATION',
-        implementation: JSON.stringify({
-          steps: [
-            'Choose Race',
-            'Determine Attributes',
-            'Select Class',
-            'Choose Skills',
-            'Select Equipment',
-            'Calculate Derived Values',
-          ],
-          attributePoints: 25,
-          skillPoints: 'Class base + Intelligence modifier',
-        }),
-        gamingSystemId: echeladon.id,
-        systemVersionId: echeladonVersion.id,
-      },
-      {
-        name: 'Magic System',
-        description: 'Spellcasting and magical abilities',
-        mechanicType: 'MAGIC',
-        implementation: JSON.stringify({
-          spellcasting: 'Intelligence-based',
-          spellSlots: 'Per level',
-          manaPoints: 'Intelligence × 2',
-          spellSchools: ['Elemental', 'Divine', 'Arcane', 'Nature'],
-        }),
-        gamingSystemId: echeladon.id,
-        systemVersionId: echeladonVersion.id,
-      },
-    ]
+         const mechanics = [
+       {
+         name: 'Dice Rolling',
+         description: 'Core dice mechanics for Echeladon',
+         mechanicType: 'DICE_ROLLING' as const,
+         implementation: JSON.stringify({
+           primaryDie: 'd20',
+           secondaryDice: ['d6', 'd8', 'd10', 'd12'],
+           criticalRange: [19, 20],
+           fumbleRange: [1],
+         }),
+         gamingSystemId: echeladon.id,
+         systemVersionId: echeladonVersion.id,
+       },
+       {
+         name: 'Combat System',
+         description: 'Turn-based tactical combat mechanics',
+         mechanicType: 'COMBAT' as const,
+         implementation: JSON.stringify({
+           initiative: 'd20 + Dexterity modifier',
+           actionPoints: 3,
+           movement: 'Speed in squares',
+           attackRoll: 'd20 + Attack Bonus',
+         }),
+         gamingSystemId: echeladon.id,
+         systemVersionId: echeladonVersion.id,
+       },
+       {
+         name: 'Character Creation',
+         description: 'Step-by-step character creation process',
+         mechanicType: 'CHARACTER_CREATION' as const,
+         implementation: JSON.stringify({
+           steps: [
+             'Choose Race',
+             'Determine Attributes',
+             'Select Class',
+             'Choose Skills',
+             'Select Equipment',
+             'Calculate Derived Values',
+           ],
+           attributePoints: 25,
+           skillPoints: 'Class base + Intelligence modifier',
+         }),
+         gamingSystemId: echeladon.id,
+         systemVersionId: echeladonVersion.id,
+       },
+       {
+         name: 'Magic System',
+         description: 'Spellcasting and magical abilities',
+         mechanicType: 'MAGIC' as const,
+         implementation: JSON.stringify({
+           spellcasting: 'Intelligence-based',
+           spellSlots: 'Per level',
+           manaPoints: 'Intelligence × 2',
+           spellSchools: ['Elemental', 'Divine', 'Arcane', 'Nature'],
+         }),
+         gamingSystemId: echeladon.id,
+         systemVersionId: echeladonVersion.id,
+       },
+     ]
 
     for (const mechanic of mechanics) {
-      await prisma.gameMechanic.upsert({
-        where: {
-          gamingSystemId_name: {
-            gamingSystemId: mechanic.gamingSystemId,
-            name: mechanic.name,
-          },
-        },
-        update: {},
-        create: mechanic,
+      await prisma.gameMechanic.create({
+        data: mechanic,
       })
     }
 
@@ -139,7 +121,7 @@ export async function seedDatabase() {
           properties: ['Versatile (1d10)'],
           cost: '15 gold pieces',
         }),
-        contentType: 'EQUIPMENT',
+                 contentType: 'EQUIPMENT' as const,
         tags: ['weapon', 'sword', 'martial', 'versatile'],
         gamingSystemId: echeladon.id,
         ruleBookId: echeladonCore.id,
@@ -158,7 +140,7 @@ export async function seedDatabase() {
           damage: '8d6 fire damage',
           save: 'Dexterity',
         }),
-        contentType: 'SPELL',
+                 contentType: 'SPELL' as const,
         tags: ['spell', 'fire', 'damage', 'area', 'elemental'],
         gamingSystemId: echeladon.id,
         ruleBookId: echeladonCore.id,
@@ -166,23 +148,14 @@ export async function seedDatabase() {
     ]
 
     for (const item of contentItems) {
-      await prisma.contentItem.upsert({
-        where: {
-          gamingSystemId_title: {
-            gamingSystemId: item.gamingSystemId,
-            title: item.title,
-          },
-        },
-        update: {},
-        create: item,
+      await prisma.contentItem.create({
+        data: item,
       })
     }
 
     // Create character template for Echeladon
-    await prisma.characterTemplate.upsert({
-      where: { name: 'Echeladon Warrior' },
-      update: {},
-      create: {
+    await prisma.characterTemplate.create({
+      data: {
         name: 'Echeladon Warrior',
         description: 'Template for creating a warrior character in Echeladon',
         templateData: JSON.stringify({
@@ -206,10 +179,8 @@ export async function seedDatabase() {
     })
 
     // Create D&D 5e system (example of third-party system)
-    const dnd5e = await prisma.gamingSystem.upsert({
-      where: { name: 'D&D 5e' },
-      update: {},
-      create: {
+    const dnd5e = await prisma.gamingSystem.create({
+      data: {
         name: 'D&D 5e',
         description: 'Fifth edition of Dungeons & Dragons',
         publisher: 'Wizards of the Coast',
@@ -218,22 +189,15 @@ export async function seedDatabase() {
       },
     })
 
-    const dnd5eVersion = await prisma.systemVersion.upsert({
-      where: {
-        gamingSystemId_versionName: {
-          gamingSystemId: dnd5e.id,
-          versionName: '5e',
-        },
-      },
-      update: {},
-      create: {
-        versionName: '5e',
-        description: 'Fifth edition',
-        releaseDate: new Date('2014-08-19'),
-        isActive: true,
-        gamingSystemId: dnd5e.id,
-      },
-    })
+         const dnd5eVersion = await prisma.systemVersion.create({
+       data: {
+         versionName: '5e',
+         description: 'Fifth edition',
+         releaseDate: new Date('2014-08-19'),
+         isActive: true,
+         gamingSystemId: dnd5e.id,
+       },
+     })
 
     console.log('✅ Database seeded successfully!')
     console.log(`📚 Created ${echeladon.name} system with ${mechanics.length} mechanics`)

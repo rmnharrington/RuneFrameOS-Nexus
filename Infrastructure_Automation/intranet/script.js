@@ -241,3 +241,4 @@ window.BadGuyGasIntranet = {
 };
 
 console.log('Bad Guy Gas IT Intranet JavaScript loaded and ready');
+

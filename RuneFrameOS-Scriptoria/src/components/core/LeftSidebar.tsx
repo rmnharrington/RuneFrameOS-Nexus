@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { useSystemContext } from '../../contexts/SystemContext'
+import LeftSidebarSystems from '../functional/LeftSidebarSystems'
 
 interface NavItem {
   id: string
@@ -99,6 +101,13 @@ export default function LeftSidebar() {
             </div>
           </button>
         ))}
+        
+        {/* System Selection - Only show when Library is active */}
+        {activeItem === 'library' && (
+          <div className="mt-4 p-3 bg-stone-800/30 rounded-lg border border-stone-700/30">
+            <LeftSidebarSystems />
+          </div>
+        )}
       </nav>
 
       {/* Quick Actions */}
