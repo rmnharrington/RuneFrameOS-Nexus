@@ -10,17 +10,17 @@ module.exports = {
       colors: {
         // BrokeUnicorn Tavern Theme - Gold & Stone Grey (identical to PersonaVault)
         'gold': {
-          50: '#fefce8',
-          100: '#fef9c3',
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-          500: '#eab308',
-          600: '#ca8a04',
-          700: '#a16207',
-          800: '#854d0e',
-          900: '#713f12',
-          950: '#422006',
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+          950: '#172554',
         },
         'stone': {
           50: '#fafaf9',
@@ -67,17 +67,17 @@ module.exports = {
         'handwriting': ['Kalam', 'cursive'],
       },
       textShadow: {
-        'gold': '0 2px 4px rgba(234, 179, 8, 0.3)',
+        'gold': '0 2px 4px rgba(59, 130, 246, 0.3)',
         'stone': '0 2px 4px rgba(28, 25, 23, 0.4)',
         'character': '0 2px 4px rgba(14, 165, 233, 0.3)',
         'dice': '0 2px 4px rgba(34, 197, 94, 0.3)',
       },
-      boxShadow: {
-        'gold': '0 4px 20px rgba(234, 179, 8, 0.15)',
-        'stone': '0 4px 20px rgba(28, 25, 23, 0.2)',
-        'character': '0 4px 20px rgba(14, 165, 233, 0.3)',
-        'dice': '0 4px 20px rgba(34, 197, 94, 0.3)',
-      }
+              boxShadow: {
+          'gold': '0 4px 20px rgba(59, 130, 246, 0.15)',
+          'stone': '0 4px 20px rgba(28, 25, 23, 0.2)',
+          'character': '0 4px 20px rgba(14, 165, 233, 0.3)',
+          'dice': '0 4px 20px rgba(34, 197, 94, 0.3)',
+        }
     },
   },
   plugins: [],

@@ -35,13 +35,13 @@ export default function HeroBanner({
         
         {/* Content positioned above the fading gradient */}
         <div className="relative z-20">
-          <h1 className="text-3xl font-bold text-gold-100 text-shadow-gold mb-2">
-            {title}
-          </h1>
-          <p className="text-gold-300 text-lg">
-            {subtitle}
-          </p>
-          <div className="mt-4 flex items-center space-x-4 text-sm text-gold-400">
+                  <h1 className="text-3xl font-bold text-blue-100 text-shadow-gold mb-2">
+          {title}
+        </h1>
+        <p className="text-blue-300 text-lg">
+          {subtitle}
+        </p>
+        <div className="mt-4 flex items-center space-x-4 text-sm text-blue-400">
             {details.map((detail, index) => (
               <span key={index}>
                 {detail.icon} {detail.text}
