@@ -1,0 +1,123 @@
+{
+  "id": "hearthleaf_herb",
+  "name": "Hearthleaf Herb",
+  "category": "herb",
+  "origin_plane": "earth",
+  "rarity_culinary": 1,
+  "acquisition_cycle": "daily",
+  "legal_status": "unrestricted",
+  "cost_range": {
+    "unit": "bunch",
+    "currency": "copper",
+    "min": 1,
+    "max": 3,
+    "volatility": 0.1
+  },
+  "yield_per_unit": {
+    "net_edible_fraction": 0.85,
+    "byproducts": ["woody stems for stock", "spent leaves for herb oil infusion"]
+  },
+  "shelf_life": {
+    "days": 7,
+    "storage_temp_c": 4,
+    "storage_method": "refrigerated in damp cloth or perforated box"
+  },
+  "perishability": "medium",
+  "hazards": {
+    "types": ["microbial"],
+    "detox_protocols": ["rinse under cold water", "spin-dry to reduce surface moisture"]
+  },
+  "dietary_flags": {
+    "vegan": true,
+    "vegetarian": true,
+    "kosher_halal_like": true,
+    "allergen": []
+  },
+  "cuisine_affinities": [
+    "Mediterranean",
+    "Sichuan",
+    "Andean",
+    "Undersea-Dwarven",
+    "Martian-Hydroponic"
+  ],
+  "technique_affinities": [
+    "chiffonade",
+    "infuse",
+    "emulsify",
+    "cure",
+    "sous-vide",
+    "aether-infusion"
+  ],
+  "pairing_synergies": [
+    "common_potato",
+    "pasture_butter",
+    "lemon_citrus",
+    "field_chicken",
+    "spring_pea",
+    "moon_milk"
+  ],
+  "pairing_antagonists": [
+    "black_licorice_root",
+    "void_onion_resin"
+  ],
+  "substitutions": {
+    "soft": ["flatleaf_parsley", "young_celery_leaf"],
+    "hard": ["cilantro", "lemon_balm"]
+  },
+  "flavor_profile": {
+    "sweet": 1,
+    "sour": 0,
+    "salty": 0,
+    "bitter": 2,
+    "umami": 1,
+    "fat": 0,
+    "heat": 0,
+    "astringent": 1,
+    "cooling": 3,
+    "metallic": 0,
+    "floral": 2,
+    "earthy": 4,
+    "smoky": 0,
+    "funky": 0,
+    "ozone_ion": 0,
+    "numbing": 0
+  },
+  "texture_profile": ["tender", "leafy", "delicate"],
+  "aroma_notes": [
+    { "note": "grassy", "intensity": 6 },
+    { "note": "lemon-pepper", "intensity": 4 },
+    { "note": "herbaceous", "intensity": 7 }
+  ],
+  "nutritional_profile": {
+    "per_100g": {
+      "kcal": 36,
+      "protein_g": 3.0,
+      "fat_g": 0.8,
+      "carb_g": 6.0,
+      "fiber_g": 3.2,
+      "micronutrients": {
+        "vitA_mcg": 420,
+        "vitC_mg": 60,
+        "folate_mcg": 120,
+        "iron_mg": 3.2,
+        "potassium_mg": 420
+      },
+      "hydration_pct": 87,
+      "abv_pct": 0
+    }
+  },
+  "intoxication_index": 0,
+  "tolerance_curve": { "type": "none" },
+  "culinary_effects": [
+    {
+      "effect": "+Calm",
+      "magnitude": 1,
+      "duration_min": 10,
+      "stacking": "diminishing",
+      "risks": "none observed at culinary doses"
+    }
+  ],
+  "lore_hook": "A humble garden staple said to steady the hands of cooks and captains alike—Hearthleaf’s clean, earthy lift makes broths brighter and tempers rich stews without stealing the spotlight."
+}
+
+

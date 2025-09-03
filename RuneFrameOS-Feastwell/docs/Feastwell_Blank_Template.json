@@ -1,0 +1,126 @@
+{
+  "id": "",
+  "name": "",
+  "category": "protein | vegetable | fruit | grain | legume | tuber | fungi | algae | dairy | fat/oil | spice | herb | mineral | sweetener | ferment | beverage-base | essence | synthetic | alien | planar",
+  "origin_plane": "earth | exoplanet | pocket-realm | astral | infernal | feywild | void | clockwork | oceanic abyss | other",
+  "rarity_culinary": 1,
+  "acquisition_cycle": "daily | weekly | seasonal | lunar | stellar | event-bound | quest-bound | once-ever",
+  "legal_status": "unrestricted | licensed | guild-controlled | embargoed | forbidden",
+  "cost_range": {
+    "unit": "",
+    "currency": "copper/silver/gold or credits",
+    "min": 0,
+    "max": 0,
+    "volatility": 0.0
+  },
+  "yield_per_unit": {
+    "net_edible_fraction": 0.0,
+    "byproducts": []
+  },
+  "shelf_life": {
+    "days": 0,
+    "storage_temp_c": 0,
+    "storage_method": ""
+  },
+  "perishability": "low | medium | high | volatile | dimensional",
+  "hazards": {
+    "types": [],
+    "detox_protocols": []
+  },
+  "dietary_flags": {
+    "vegan": false,
+    "vegetarian": false,
+    "kosher_halal_like": false,
+    "allergen": []
+  },
+  "cuisine_affinities": [],
+  "technique_affinities": [],
+  "pairing_synergies": [],
+  "pairing_antagonists": [],
+  "substitutions": {
+    "soft": [],
+    "hard": []
+  },
+  "flavor_profile": {
+    "sweet": 0,
+    "sour": 0,
+    "salty": 0,
+    "bitter": 0,
+    "umami": 0,
+    "fat": 0,
+    "heat": 0,
+    "astringent": 0,
+    "cooling": 0,
+    "metallic": 0,
+    "floral": 0,
+    "earthy": 0,
+    "smoky": 0,
+    "funky": 0,
+    "ozone_ion": 0,
+    "numbing": 0
+  },
+  "texture_profile": [],
+  "aroma_notes": [
+    { "note": "", "intensity": 0 }
+  ],
+  "nutritional_profile": {
+    "per_100g": {
+      "kcal": 0,
+      "protein_g": 0.0,
+      "fat_g": 0.0,
+      "carb_g": 0.0,
+      "fiber_g": 0.0,
+      "micronutrients": {},
+      "hydration_pct": 0,
+      "abv_pct": 0
+    }
+  },
+  "intoxication_index": 0,
+  "tolerance_curve": { "type": "none" },
+  "culinary_effects": [],
+  "lore_hook": "",
+
+  "appearance": {
+    "description": "",
+    "presentation": "",
+    "image_prompt": ""
+  },
+  "preparation": {
+    "fresh_use": "",
+    "preservation": "",
+    "cooking_methods": [],
+    "fermentation_or_infusion": "",
+    "other_methods": []
+  },
+  "applications": {
+    "daily_cuisine": "",
+    "festival_or_ritual": "",
+    "gourmet_or_exotic": "",
+    "street_food_or_communal": "",
+    "beverages": "",
+    "industrial": ""
+  },
+  "effects_on_subjects": {
+    "immediate": "",
+    "long_term": "",
+    "toxicity": ""
+  },
+  "cultural_notes": {
+    "significance": "",
+    "mythology": "",
+    "history": ""
+  },
+  "case_studies": [
+    {
+      "observer": "",
+      "location": "",
+      "findings": ""
+    }
+  ],
+  "ecology": {
+    "role": "",
+    "propagation": "",
+    "sustainability": ""
+  },
+  "quotes": []
+}

@@ -1,0 +1,2387 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "system": "Feastwell™",
+    "rarity_tier": 1,
+    "tier_name": "Daily",
+    "description": "Common, everyday ingredients found in most kitchens and markets",
+    "ingredient_count": 20,
+    "created_date": "2025-09-03",
+    "last_updated": "2024-09-03"
+  },
+  "ingredients": [
+    {
+      "id": "hearthleaf_herb_01",
+      "name": "Hearthleaf Herb",
+      "scientific_name": "Ocimum viridescens",
+      "nickname": "The Steady Hand's Herb",
+      "category": "herb",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "bunch",
+        "min": 1,
+        "max": 3,
+        "volatility": 0.1
+      },
+      "yield_per_unit": 0.85,
+      "shelf_life": {
+        "days": 3,
+        "storage_temp_c": 4,
+        "method": "damp cloth, refrigerated"
+      },
+      "perishability": "medium",
+      "hazards": ["drowsiness if overconsumed", "heavy stomach in large quantities"],
+      "detox_protocols": ["moderate consumption", "avoid on empty stomach"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Martian-Hydroponic", "Coastal-Elven"],
+      "technique_affinities": ["chiffonade", "infuse", "lacto-ferment", "oil extraction", "espuma"],
+      "pairing_synergies": ["potatoes", "butter", "lemon", "peas", "chicken", "moon_milk"],
+      "pairing_antagonists": ["black_licorice", "void_onions"],
+      "substitutions": {
+        "soft": ["basil", "oregano"],
+        "hard": ["sage", "thyme"]
+      },
+      "flavor_profile": {
+        "sweet": 1,
+        "sour": 2,
+        "salty": 0,
+        "bitter": 6,
+        "umami": 2,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 1,
+        "cooling": 7,
+        "metallic": 0,
+        "floral": 3,
+        "earthy": 8,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["velvety", "tender when young", "robust when mature"],
+      "aroma_notes": [
+        {"note": "lemon-pepper", "intensity": 4},
+        {"note": "grassy", "intensity": 6},
+        {"note": "herbaceous", "intensity": 7}
+      ],
+      "nutritional_profile": {
+        "kcal": 25,
+        "protein_g": 2.1,
+        "fat_g": 0.4,
+        "carb_g": 4.3,
+        "fiber_g": 3.2,
+        "micros": {
+          "vitamin_k_mcg": 415,
+          "vitamin_a_mcg": 264,
+          "folate_mcg": 68,
+          "iron_mg": 3.2
+        },
+        "hydration_percent": 85,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 15,
+        "half_life_min": 45
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Calm",
+          "magnitude": 2,
+          "duration_min": 30,
+          "description": "Steadies nerves and clears the mind"
+        },
+        {
+          "effect": "+Focus",
+          "magnitude": 1,
+          "duration_min": 20,
+          "description": "Quiets nerves during long cooking sessions"
+        },
+        {
+          "effect": "Seasickness Resistance",
+          "magnitude": 3,
+          "duration_min": 120,
+          "description": "Wards off motion sickness when chewed dried"
+        }
+      ],
+      "lore_hook": "Sprouted from the tears of a homesick chef who longed for the taste of home",
+      "detailed_description": "A low, bushy plant with velvety oval leaves and a faint lemon-pepper scent, Hearthleaf thrives in sun-dappled gardens and rocky hillsides. Its leaves, tender when young, grow more robust and earthy with age. When crushed, they release a grassy aroma that steadies the nerves and clears the mind.",
+      "cultural_significance": "Universal herb of hospitality - no kitchen hearth is truly complete without a bundle of fresh Hearthleaf hanging to dry. Monks once cultivated it in hidden cloisters to soothe fasting novices.",
+      "harvesting_notes": "Pick young leaves in the morning after the dew has lifted. The plant thrives in sun-dappled gardens and rocky hillsides, growing more robust with age.",
+      "preparation_lore": "Traditional chiffonade for fresh applications, infusion in cream or butter for rich sauces, lacto-fermentation with citrus peel for tangy pastes. The Broth of Reunion, simmered with Hearthleaf, is served during spring feasts to symbolize harmony.",
+      "serving_traditions": "Flatbreads brushed with Hearthleaf oil are beloved in market squares. A legendary Martian-Hydroponic chef once paired Hearthleaf oil espuma with moon milk and toasted buckwheat - a dish that shimmered faintly green under starlight.",
+      "seasonal_notes": "Best harvested in spring and early summer when leaves are tender. Drying extends life up to six months, making it available year-round.",
+      "storage_wisdom": "Wrap fresh leaves in damp cloth and keep cool. Drying preserves the herb for up to six months while maintaining its calming properties.",
+      "pairing_philosophy": "Hearthleaf is the quiet chorus that lets the solo shine - it adds brightness without overwhelming other flavors. Avoid pairing with black licorice or void onions as they clash with its earthy, cooling nature.",
+      "chef_notes": "A steady hand starts with a steady herb. Prized by chefs for quieting nerves during long banquets. Use sparingly to avoid drowsiness or heavy stomach. The cooling effect works well to balance rich, fatty dishes.",
+      "safety_lore": "Too much may bring drowsiness or a heavy stomach. Avoid consuming on empty stomach. Dried leaves are safe for chewing to ward off seasickness, but fresh consumption should be moderate.",
+      "economic_context": "Affordable and universally available (1-3 copper per bunch). Grown in most kitchen gardens and available in every market. No special trade routes or guild restrictions.",
+      "quoted_wisdom": [
+        "\"A steady hand starts with a steady herb.\" — Dockside proverb",
+        "\"Hearthleaf is the quiet chorus that lets the solo shine.\" — Chef Rellan Ash"
+      ],
+      "ingredient_complexity_score": 1.2
+    },
+    {
+      "id": "starpetal_thyme_01",
+      "name": "Starpetal Thyme",
+      "scientific_name": "Thymus astralis",
+      "nickname": "The Midnight Bloom",
+      "category": "herb",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "bundle",
+        "min": 2,
+        "max": 4,
+        "volatility": 0.2
+      },
+      "yield_per_unit": 0.90,
+      "shelf_life": {
+        "days": 5,
+        "storage_temp_c": 4,
+        "method": "dried, sealed glass jar"
+      },
+      "perishability": "low",
+      "hazards": ["restlessness if overconsumed", "vivid dreams in large quantities"],
+      "detox_protocols": ["moderate consumption", "avoid before sleep if sensitive to vivid dreams"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Coastal-Elven", "Astral-Celestial"],
+      "technique_affinities": ["infuse", "rub", "blend", "dry", "burn as incense"],
+      "pairing_synergies": ["roast_beef", "boar", "poultry", "moonmilk_custard", "fireplum_sauce", "crystal_honey"],
+      "pairing_antagonists": ["void_vinegar", "bitter_greens"],
+      "substitutions": {
+        "soft": ["regular thyme", "oregano"],
+        "hard": ["sage", "rosemary"]
+      },
+      "flavor_profile": {
+        "sweet": 3,
+        "sour": 1,
+        "salty": 0,
+        "bitter": 2,
+        "umami": 1,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 1,
+        "cooling": 0,
+        "metallic": 2,
+        "floral": 6,
+        "earthy": 4,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["tiny leaves", "silver-speckled", "delicate", "crisp when dried"],
+      "aroma_notes": [
+        {"note": "sharp resinous", "intensity": 7},
+        {"note": "floral sweetness", "intensity": 4},
+        {"note": "mineral", "intensity": 2}
+      ],
+      "nutritional_profile": {
+        "kcal": 28,
+        "protein_g": 1.7,
+        "fat_g": 0.6,
+        "carb_g": 6.1,
+        "fiber_g": 3.4,
+        "micros": {
+          "vitamin_k_mcg": 380,
+          "vitamin_c_mg": 45,
+          "iron_mg": 2.8,
+          "manganese_mg": 0.8
+        },
+        "hydration_percent": 75,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 20,
+        "half_life_min": 60
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Clarity",
+          "magnitude": 2,
+          "duration_min": 45,
+          "description": "Provides sense of clarity and quiet focus"
+        },
+        {
+          "effect": "+Steady Hands",
+          "magnitude": 1,
+          "duration_min": 30,
+          "description": "Calming properties that steady hands during long cooking sessions"
+        },
+        {
+          "effect": "Celestial Alignment",
+          "magnitude": 1,
+          "duration_min": 90,
+          "description": "Aligns the mind with celestial order, favored by astrologers"
+        }
+      ],
+      "lore_hook": "First sprouted where a meteor touched the earth, its silver flecks carrying whispers of the heavens",
+      "detailed_description": "Starpetal Thyme is a low-growing ground herb with tiny green leaves dusted in silver specks that resemble starlight. In dim light, its foliage glimmers faintly, as if sprinkled with dew under the moon. When crushed, the leaves release a sharp, resinous aroma laced with a whisper of sweetness. Tiny violet-white blossoms appear at night and close with the dawn, giving rise to its name.",
+      "cultural_significance": "Astrologers prize it for aligning the mind with celestial order, while sailors tuck sprigs into their collars for guidance at sea. In some regions, it is burned as incense to mark the changing of seasons.",
+      "harvesting_notes": "Pick at twilight for peak potency, when the leaves shimmer brightest. The plant's silver flecks are most luminous during the evening hours, and the tiny violet-white blossoms only appear at night.",
+      "preparation_lore": "Traditional infusion in broths and sauces for depth, rubbed onto meats as part of marinades, added sparingly to breads and oils for starlit fragrance. Celebratory mead infused with Starpetal Thyme produces a faint sparkle under torchlight.",
+      "serving_traditions": "Sprinkled over roasted vegetables to enhance earthy flavors, blended into savory pastry fillings for warmth and brightness. A legendary aether-star sorbet made with moonmilk frozen with starpetal essence shimmers like a constellation in a bowl.",
+      "seasonal_notes": "Best harvested during clear nights when the stars are visible. The silver specks are most prominent during meteor shower seasons. Dried slowly in darkness retains flavor for up to 1 year.",
+      "storage_wisdom": "Best dried slowly in darkness to preserve the starlight essence. Store in sealed glass jars to maintain potency. Wild-gathered 'meteor sprigs' from areas where meteors have fallen are considered most potent.",
+      "pairing_philosophy": "Starpetal Thyme's delicate floral notes are easily overwhelmed by strong flavors like void vinegar or bitter greens. It shines when paired with rich meats and sweet elements, creating a balance between earth and sky.",
+      "chef_notes": "A pinch of starlight steadies the hand, and the heart follows. Use sparingly as its delicate notes can be lost in complex dishes. The calming properties make it ideal for late-night feasts and long cooking sessions.",
+      "safety_lore": "Overindulgence may bring restlessness or vivid dreams of starlit landscapes. Those sensitive to vivid dreams should avoid consuming large quantities before sleep. The celestial alignment effects are generally mild but can be intense for those with astrological sensitivities.",
+      "economic_context": "Common in cultivated gardens (2-4 copper per bundle). Wild-gathered 'meteor sprigs' from areas where meteors have fallen fetch higher prices due to their enhanced celestial properties. No special trade restrictions.",
+      "quoted_wisdom": [
+        "\"A pinch of starlight steadies the hand, and the heart follows.\" — Guild Chef Ellorien Fael",
+        "\"When thyme shines in the night, your dish will never falter.\" — Old Astrologer's Proverb"
+      ],
+      "ingredient_complexity_score": 1.3
+    },
+    {
+      "id": "dragons_tongue_pepper_01",
+      "name": "Dragon's Tongue Pepper",
+      "scientific_name": "Capsicum draconis",
+      "nickname": "The Ember's Kiss",
+      "category": "spice",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "handful",
+        "min": 5,
+        "max": 7,
+        "volatility": 0.3
+      },
+      "yield_per_unit": 0.95,
+      "shelf_life": {
+        "days": 7,
+        "storage_temp_c": 15,
+        "method": "room temperature, braided strings"
+      },
+      "perishability": "low",
+      "hazards": ["intense heat", "dizziness if overconsumed", "heat hallucinations", "breathing sparks"],
+      "detox_protocols": ["moderate consumption", "have cooling beverages ready", "avoid on empty stomach"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Dragon-Cult", "Fire-Touched"],
+      "technique_affinities": ["char", "fire-roast", "mince", "dry", "grind", "stuff"],
+      "pairing_synergies": ["ashen_boar_ribs", "cloud_ox_beef", "void_vinegar", "crystal_honey", "fireplum"],
+      "pairing_antagonists": ["moonmilk", "delicate_dairy"],
+      "substitutions": {
+        "soft": ["habanero", "scotch bonnet"],
+        "hard": ["ghost pepper", "carolina reaper"]
+      },
+      "flavor_profile": {
+        "sweet": 3,
+        "sour": 1,
+        "salty": 0,
+        "bitter": 1,
+        "umami": 2,
+        "fat": 0,
+        "heat": 9,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 0,
+        "floral": 0,
+        "earthy": 0,
+        "smoky": 8,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["slender", "thin skin", "glossy", "leathery when dried"],
+      "aroma_notes": [
+        {"note": "fiery sharpness", "intensity": 9},
+        {"note": "subtle sweetness", "intensity": 3},
+        {"note": "smoky wisps", "intensity": 7}
+      ],
+      "nutritional_profile": {
+        "kcal": 31,
+        "protein_g": 1.4,
+        "fat_g": 0.4,
+        "carb_g": 6.7,
+        "fiber_g": 2.1,
+        "micros": {
+          "vitamin_c_mg": 144,
+          "vitamin_a_mcg": 48,
+          "potassium_mg": 322,
+          "capsaicin_mg": 150
+        },
+        "hydration_percent": 88,
+        "abv_percent": 0
+      },
+      "intoxication_index": 2,
+      "tolerance_curve": {
+        "type": "logistic",
+        "peak_time_min": 5,
+        "half_life_min": 30
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Fire Resistance",
+          "magnitude": 2,
+          "duration_min": 60,
+          "description": "Builds tolerance to heat and fire-based effects"
+        },
+        {
+          "effect": "+Courage",
+          "magnitude": 1,
+          "duration_min": 45,
+          "description": "Quickens pulse and brings boldness to the spirit"
+        },
+        {
+          "effect": "Dragon Breath",
+          "magnitude": 1,
+          "duration_min": 15,
+          "description": "Rare effect where sparks may escape breath after heavy indulgence"
+        }
+      ],
+      "lore_hook": "First sprouted from a field scorched by a young wyrm's flame, forever imbued with draconic fire",
+      "detailed_description": "Dragon's Tongue Pepper is a slender crimson chili shaped like a flickering flame. Its skin is thin and glossy, with faint black striations that resemble scorch marks. When sliced, the pepper releases a curling wisp of smoke, as though embers were hidden within its flesh. The seeds glow faintly orange in dim light, and the aroma carries both fiery sharpness and a subtle sweetness.",
+      "cultural_significance": "In culinary guilds, it is considered a test of skill — mastering the pepper without letting it overwhelm a dish marks a chef as seasoned. Rural households hang braids of dried Dragon's Tongues in kitchens as both spice and protective charm against fire spirits.",
+      "harvesting_notes": "Best gathered at midday when the sun is hottest, believed to awaken its fiery essence. The peppers are most potent when harvested during the peak of summer heat, their crimson color deepening to near-black at the tips.",
+      "preparation_lore": "Traditional charring or fire-roasting releases its full smoky depth. Minced raw into sauces for searing heat, dried and ground into powders for long-lasting spice. The legendary 'Dragonfire Reduction' sauce simmers fireplums, void vinegar, and a single tongue pepper for perfect balance of flame and sweetness.",
+      "serving_traditions": "A single pepper enlivens stews, lentil dishes, and spiced breads. Roasted whole on skewers and served with deepsea brine dipping sauce at festival tables. Stuffed with rice and herbs, charred until blistered, then sold from roadside braziers as street food.",
+      "seasonal_notes": "Peak harvest during the hottest summer months when the sun's intensity awakens the pepper's fiery essence. Dries easily into leathery pods that last months, making it available year-round.",
+      "storage_wisdom": "Keeps fresh for 5-7 days at room temperature. Best stored in braided strings hung in kitchens, which also serves as a protective charm against fire spirits. Dried peppers maintain their potency for months.",
+      "pairing_philosophy": "Dragon's Tongue Pepper can overwhelm delicate flavors like moonmilk unless used sparingly. It shines when paired with robust meats and bold flavors, creating a balance between fire and substance. The smoky undertones complement rich, fatty dishes.",
+      "chef_notes": "A single tongue can turn a meek stew into a dragon's banquet. Handle with respect, or it will bite back twice as hard. Master chefs use it as a test of skill — the ability to harness its fire without letting it dominate a dish marks true culinary expertise.",
+      "safety_lore": "Excessive consumption may cause dizziness or overwhelming heat hallucinations. Some describe a sensation of breathing smoke, as though dragonfire itself licked their tongue. Rare individuals report brief sparks escaping their breath after heavy indulgence. Always have cooling beverages ready.",
+      "economic_context": "5-7 copper per handful; braided strings of peppers may fetch up to 1 silver. No special trade restrictions, but the protective charm properties make it valuable in rural areas where fire spirits are a concern.",
+      "quoted_wisdom": [
+        "\"A single tongue can turn a meek stew into a dragon's banquet.\" — Chef Olvarn Flamebrand",
+        "\"Handle with respect, or it will bite back twice as hard.\" — Guild Instructor Mara Vey"
+      ],
+      "ingredient_complexity_score": 1.4
+    },
+    {
+      "id": "frostmint_01",
+      "name": "Frostmint",
+      "scientific_name": "Mentha glacialis",
+      "nickname": "The Winter's Breath",
+      "category": "herb",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "bundle",
+        "min": 4,
+        "max": 6,
+        "volatility": 0.2
+      },
+      "yield_per_unit": 0.88,
+      "shelf_life": {
+        "days": 5,
+        "storage_temp_c": 2,
+        "method": "refrigerated, damp cloth"
+      },
+      "perishability": "medium",
+      "hazards": ["shivering if overconsumed", "frostburn sensations", "chill effects"],
+      "detox_protocols": ["moderate consumption", "warm beverages to counter chill", "avoid on cold days"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Northern-Cultures", "Glass-Peaks"],
+      "technique_affinities": ["infuse", "crush", "mince", "candy", "dry", "burn as incense"],
+      "pairing_synergies": ["chocolate", "lamb", "moonmilk", "void_citrus", "crystal_honey"],
+      "pairing_antagonists": ["ashen_boar", "heavy_brines", "smoke_flavors"],
+      "substitutions": {
+        "soft": ["peppermint", "spearmint"],
+        "hard": ["wintergreen", "eucalyptus"]
+      },
+      "flavor_profile": {
+        "sweet": 4,
+        "sour": 1,
+        "salty": 0,
+        "bitter": 1,
+        "umami": 0,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 9,
+        "metallic": 0,
+        "floral": 2,
+        "earthy": 0,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 3
+      },
+      "texture_profile": ["icy-green", "silver-edged", "frost-dusted", "crisp", "crystalline"],
+      "aroma_notes": [
+        {"note": "menthol brightness", "intensity": 8},
+        {"note": "crystalline fragrance", "intensity": 5},
+        {"note": "sparkling vapor", "intensity": 6}
+      ],
+      "nutritional_profile": {
+        "kcal": 22,
+        "protein_g": 1.8,
+        "fat_g": 0.3,
+        "carb_g": 4.2,
+        "fiber_g": 2.8,
+        "micros": {
+          "vitamin_c_mg": 52,
+          "vitamin_a_mcg": 212,
+          "folate_mcg": 58,
+          "menthol_mg": 45
+        },
+        "hydration_percent": 90,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 10,
+        "half_life_min": 40
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Refreshment",
+          "magnitude": 3,
+          "duration_min": 60,
+          "description": "Induces refreshing chill, calming fevers and quenching thirst"
+        },
+        {
+          "effect": "+Focus",
+          "magnitude": 2,
+          "duration_min": 45,
+          "description": "Clears sinuses and sharpens focus when brewed"
+        },
+        {
+          "effect": "Winter Blessing",
+          "magnitude": 1,
+          "duration_min": 120,
+          "description": "Carries blessing of winter spirits, preserves freshness of spirit"
+        }
+      ],
+      "lore_hook": "First sprouted from snow that never melted on the slopes of the Glass Peaks, carrying the blessing of winter spirits",
+      "detailed_description": "Frostmint is a hardy perennial with icy-green leaves edged in pale silver, their surfaces dusted with what looks like frost even in warm climates. When plucked, the leaves exhale a faint sparkling vapor, shimmering like cold breath on a winter morning. Tiny pale-blue flowers cluster along the stems in late spring, carrying a delicate crystalline fragrance.",
+      "cultural_significance": "In northern cultures, it is burned in hearths during midwinter feasts to drive away illness. Among sailors, Frostmint tea is a ritual drink before long voyages, thought to preserve freshness of spirit against the sea's stagnation.",
+      "harvesting_notes": "Best gathered at dawn, when frost-dew still clings to its silver-edged leaves. The plant maintains its frost-dusted appearance even in warm climates, with tiny pale-blue flowers appearing in late spring.",
+      "preparation_lore": "Traditional fresh use in teas, tisanes, or iced infusions. Crushed into syrups for desserts and cocktails, minced into savory dishes to cut through richness. Candied Frostmint leaves dusted with crystal sugar gleam like shards of ice.",
+      "serving_traditions": "Frostmint tea served hot or cold for refreshment. Iced moonmilk drinks infused with Frostmint sold in tall glass jars at summer markets. The legendary 'Breath of Winter' lamb roast crusted with Frostmint salt releases cooling vapors when carved.",
+      "seasonal_notes": "Hardy perennial available year-round, but most potent when harvested at dawn with frost-dew. The crystalline fragrance is strongest in late spring when pale-blue flowers bloom.",
+      "storage_wisdom": "Fresh leaves last 4-5 days when refrigerated in damp cloth. Dried leaves retain flavor up to 1 year. The frost-dusted appearance persists even after drying, maintaining its magical winter aesthetic.",
+      "pairing_philosophy": "Frostmint's subtle chill can be overwhelmed by strong smoke flavors like ashen boar or heavy brines. It shines when paired with rich foods like chocolate and lamb, where its cooling properties provide perfect balance. The menthol brightness cuts through richness beautifully.",
+      "chef_notes": "One sip of Frostmint, and winter walks with you. To serve it hot is wisdom; to serve it cold is joy. The sparkling vapor that lifts from brewed Frostmint is not just visual — it carries the plant's cooling essence and should be preserved in presentation.",
+      "safety_lore": "In excess, it can cause shivering or frostburn sensations along the tongue. Those sensitive to cold should moderate consumption, especially on cold days. The refreshing chill can be intense for those unaccustomed to menthol effects.",
+      "economic_context": "4-6 copper per bundle; candied leaves may fetch up to 1 silver in festival markets. No special trade restrictions, but the winter blessing properties make it valuable in northern regions and among sailors.",
+      "quoted_wisdom": [
+        "\"One sip of Frostmint, and winter walks with you.\" — Northmarch proverb",
+        "\"To serve it hot is wisdom; to serve it cold is joy.\" — Chef Veyra Luthiel"
+      ],
+      "ingredient_complexity_score": 1.3
+    },
+    {
+      "id": "sunbloom_saffron_01",
+      "name": "Sunbloom Saffron",
+      "scientific_name": "Crocus aurorae",
+      "nickname": "The Dawn's Gold",
+      "category": "spice",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "silver",
+        "unit": "small vial",
+        "min": 2,
+        "max": 10,
+        "volatility": 0.8
+      },
+      "yield_per_unit": 0.02,
+      "shelf_life": {
+        "days": 730,
+        "storage_temp_c": 20,
+        "method": "airtight glass jar, away from sunlight"
+      },
+      "perishability": "low",
+      "hazards": ["restlessness if overused", "flushed skin", "overstimulation"],
+      "detox_protocols": ["use sparingly", "avoid on hot days", "moderate consumption"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Solar-Cult", "Dawn-Touched"],
+      "technique_affinities": ["infuse", "steep", "weave", "scatter", "brush"],
+      "pairing_synergies": ["rice", "lamb", "moonmilk_custard", "crystal_honey", "fireplum_stew", "skyfowl"],
+      "pairing_antagonists": ["heavy_smoke", "bitter_spices"],
+      "substitutions": {
+        "soft": ["turmeric", "annatto"],
+        "hard": ["safflower", "marigold petals"]
+      },
+      "flavor_profile": {
+        "sweet": 6,
+        "sour": 0,
+        "salty": 0,
+        "bitter": 3,
+        "umami": 2,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 0,
+        "floral": 5,
+        "earthy": 7,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["fine threads", "weightless", "delicate", "golden-red"],
+      "aroma_notes": [
+        {"note": "earthy", "intensity": 7},
+        {"note": "honey-sweet", "intensity": 6},
+        {"note": "faint warmth", "intensity": 4}
+      ],
+      "nutritional_profile": {
+        "kcal": 310,
+        "protein_g": 11.4,
+        "fat_g": 5.9,
+        "carb_g": 65.4,
+        "fiber_g": 3.9,
+        "micros": {
+          "vitamin_c_mg": 80.8,
+          "vitamin_a_mcg": 530,
+          "iron_mg": 11.1,
+          "manganese_mg": 28.4,
+          "crocin_mg": 150
+        },
+        "hydration_percent": 12,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 30,
+        "half_life_min": 90
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Warmth",
+          "magnitude": 2,
+          "duration_min": 120,
+          "description": "Gentle warmth spreading through the body, comfort akin to sitting near a hearth"
+        },
+        {
+          "effect": "+Joy",
+          "magnitude": 1,
+          "duration_min": 90,
+          "description": "Stirs the heart and sharpens joy, easing sorrow"
+        },
+        {
+          "effect": "Dawn Blessing",
+          "magnitude": 1,
+          "duration_min": 180,
+          "description": "Symbol of light, hope, and renewal; guards against the chill of despair"
+        }
+      ],
+      "lore_hook": "First grew from a teardrop of the Sun's Child, fallen to earth at dawn",
+      "detailed_description": "Sunbloom Saffron is harvested from the delicate flowers of the aurora crocus, which unfurl only in the brief moments of dawn. Each blossom bears three golden-red stigmas, shimmering faintly in morning light. The threads are so fine they appear almost weightless, yet they carry a fragrance both earthy and honey-sweet, with a faint warmth that seems to chase away the chill of night.",
+      "cultural_significance": "Farmers believe that planting saffron on the eastern edges of their fields brings prosperity. In many cultures, saffron threads are woven into bridal garlands or scattered in temple feasts as symbols of light, hope, and renewal.",
+      "harvesting_notes": "Blossoms must be picked at dawn, before the petals close with the day's heat. Each flower yields only three threads, making harvest extremely labor-intensive. The aurora crocus unfurls only in the brief moments of dawn.",
+      "preparation_lore": "Traditional infusion in broths, rice, and porridges for color and fragrance. Steeped in cream, moonmilk, or mead for golden desserts. Used sparingly — a few threads can transform a dish. The legendary 'Solar Glaze' steeps Sunbloom Saffron in crystal honey and brushes it on roast skyfowl for a shimmering golden crust.",
+      "serving_traditions": "A pinch in morning porridge, believed to 'warm the bones.' Golden sunrise cakes with saffron and moonmilk batter served at solstice feasts. Dawn-broth vendors add saffron threads to soup, marking it as a luxury for travelers.",
+      "seasonal_notes": "Available year-round due to careful storage, but most potent when harvested during the spring dawn season. Festival demand during solstice celebrations can drive prices to extraordinary heights.",
+      "storage_wisdom": "Threads must be dried gently and stored in airtight glass jars away from sunlight. Retains potency for up to 2 years when properly stored. The golden-red color and fragrance are preserved through careful handling.",
+      "pairing_philosophy": "Sunbloom Saffron's subtle warmth and honey-sweet notes can be overwhelmed by heavy smoke or overly bitter spices. It shines when paired with neutral bases like rice or rich elements like lamb and moonmilk, where its golden essence can transform the entire dish.",
+      "chef_notes": "The sun's warmth, captured in a thread, brightens even the darkest pot. Saffron is the spice of beginnings: every dawn, every feast, every hope. Use sparingly as its potency is extraordinary — a few threads can transform an entire dish.",
+      "safety_lore": "Overuse can cause restlessness or flushed skin due to its warming properties. Those sensitive to overstimulation should use sparingly, especially on hot days. The gentle warmth can be intense for those unaccustomed to saffron's effects.",
+      "economic_context": "Among the costliest spices — 2 silver per small vial; festival demand can push prices as high as 1 gold. The labor-intensive harvest (only 3 threads per flower) and limited dawn window make it extremely valuable.",
+      "quoted_wisdom": [
+        "\"The sun's warmth, captured in a thread, brightens even the darkest pot.\" — Master Cook Ahlren Vos",
+        "\"Saffron is the spice of beginnings: every dawn, every feast, every hope.\" — Dawnpriestess Callira"
+      ],
+      "ingredient_complexity_score": 1.5
+    },
+    {
+      "id": "stonecarrot_01",
+      "name": "Stonecarrot",
+      "scientific_name": "Daucus lapidarius",
+      "nickname": "The Root of Endurance",
+      "category": "tuber",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "root",
+        "min": 2,
+        "max": 3,
+        "volatility": 0.2
+      },
+      "yield_per_unit": 0.85,
+      "shelf_life": {
+        "days": 120,
+        "storage_temp_c": 8,
+        "method": "cool cellar, stony rind intact"
+      },
+      "perishability": "low",
+      "hazards": ["heaviness in limbs if overconsumed", "sluggish digestion", "mineral overload"],
+      "detox_protocols": ["moderate consumption", "ensure adequate hydration", "balance with lighter foods"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Dwarven", "Miner-Culture", "Frontier-Towns"],
+      "technique_affinities": ["slow-roast", "shave", "simmer", "bake", "char", "clarify"],
+      "pairing_synergies": ["river_eel", "pasture_butter", "crystal_honey", "frostmint_yogurt"],
+      "pairing_antagonists": ["delicate_herbs", "subtle_greens"],
+      "substitutions": {
+        "soft": ["carrot", "parsnip"],
+        "hard": ["turnip", "rutabaga"]
+      },
+      "flavor_profile": {
+        "sweet": 5,
+        "sour": 0,
+        "salty": 0,
+        "bitter": 1,
+        "umami": 3,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 4,
+        "floral": 0,
+        "earthy": 9,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["dense", "crunchy", "rocklike rind", "orange-veined", "mineral-sparkled"],
+      "aroma_notes": [
+        {"note": "earthy", "intensity": 8},
+        {"note": "nutty", "intensity": 5},
+        {"note": "metallic tang", "intensity": 3}
+      ],
+      "nutritional_profile": {
+        "kcal": 78,
+        "protein_g": 1.2,
+        "fat_g": 0.2,
+        "carb_g": 18.1,
+        "fiber_g": 4.7,
+        "micros": {
+          "vitamin_a_mcg": 835,
+          "vitamin_k_mcg": 13.2,
+          "potassium_mg": 320,
+          "calcium_mg": 33,
+          "iron_mg": 0.3,
+          "mineral_density": "high"
+        },
+        "hydration_percent": 88,
+        "abv_percent": 0
+      },
+      "intoxication_index": 0,
+      "tolerance_curve": {
+        "type": "none"
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Stamina",
+          "magnitude": 2,
+          "duration_min": 180,
+          "description": "Strengthens the body, lending stamina to laborers and travelers"
+        },
+        {
+          "effect": "+Bone Hardening",
+          "magnitude": 1,
+          "duration_min": 240,
+          "description": "Regular consumption hardens bones and improves resilience"
+        },
+        {
+          "effect": "Grounding Calm",
+          "magnitude": 1,
+          "duration_min": 120,
+          "description": "Provides grounding calm, as though anchored to the earth"
+        }
+      ],
+      "lore_hook": "First grew from seeds scattered by a mountain giant who wept into the earth, his tears turning to stone and root alike",
+      "detailed_description": "Stonecarrot is a squat, thick-rooted tuber with orange-veined flesh encased in a gray, rocklike rind. At first glance, it could be mistaken for a chunk of stone. When cut, however, the inner flesh reveals a bright orange marbled with mineral veins that sparkle faintly under torchlight. Its texture is dense and crunchy, carrying the earthy weight of the rocky soil in which it grows.",
+      "cultural_significance": "In dwarven kitchens, Stonecarrots are revered as a sacred food of endurance, often baked into traveling breads. In human frontier towns, gifting a Stonecarrot is a gesture of goodwill, symbolizing strength and perseverance.",
+      "harvesting_notes": "Dug with iron tools; roots cling stubbornly to rocky ground. The stony rind protects the inner flesh, making it appear like a chunk of stone until cut open to reveal the bright orange marbled interior.",
+      "preparation_lore": "Traditional slow-roasting caramelizes its hidden sugars, shaving thin into salads for crunch, simmering into stews to release mineral richness. The legendary stonecarrot consommé clarified with moonmilk creates a shimmering mineral spark in crystal bowls.",
+      "serving_traditions": "Sliced into hearty root stews for miners and farmers. Stonecarrot pies sweetened with crystal honey, baked until the filling glows orange-gold at festival tables. Charred wedges dusted with spice salts sold hot in paper cones as street food.",
+      "seasonal_notes": "Available year-round due to excellent storage properties. Most flavorful when harvested after the first frost, when the mineral content is at its peak. The stony rind allows for months of storage in cool cellars.",
+      "storage_wisdom": "Keeps for months in cool cellars due to its stony rind. The protective outer layer prevents spoilage and maintains the mineral-rich interior. Best stored with the rind intact until ready to use.",
+      "pairing_philosophy": "Stonecarrot's mineral heaviness can overpower delicate herbs and subtle greens. It shines when paired with robust proteins like river eel or rich elements like pasture butter, where its earthy weight provides substantial foundation.",
+      "chef_notes": "Stonecarrots will not break before your teeth, nor before your will. Hard as rock, sweet as hearthfire — the food of those who endure. The mineral veins that sparkle under torchlight are not just visual — they carry the plant's grounding essence.",
+      "safety_lore": "Excessive eating may cause heaviness in the limbs or sluggish digestion due to its dense mineral content. Those with sensitive digestion should moderate consumption and ensure adequate hydration. The grounding effect can be intense for those unaccustomed to mineral-rich foods.",
+      "economic_context": "Common and affordable — 2-3 copper per root, more in cities far from rocky farmland. No special trade restrictions, but the mineral-rich properties make it valuable in mining communities and frontier regions.",
+      "quoted_wisdom": [
+        "\"Stonecarrots will not break before your teeth, nor before your will.\" — Miner's saying",
+        "\"Hard as rock, sweet as hearthfire — the food of those who endure.\" — Dwarven cook's blessing"
+      ],
+      "ingredient_complexity_score": 1.2
+    },
+    {
+      "id": "moonturnip_01",
+      "name": "Moonturnip",
+      "scientific_name": "Brassica lunaris",
+      "nickname": "The Lunar Root",
+      "category": "tuber",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "bulb",
+        "min": 4,
+        "max": 8,
+        "volatility": 0.4
+      },
+      "yield_per_unit": 0.92,
+      "shelf_life": {
+        "days": 21,
+        "storage_temp_c": 6,
+        "method": "cool, dark cellar"
+      },
+      "perishability": "medium",
+      "hazards": ["pale skin flushes if overconsumed", "vivid lunar dreams", "luminous effects"],
+      "detox_protocols": ["moderate consumption", "avoid before sleep if sensitive to vivid dreams", "balance with grounding foods"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Lunar-Cult", "Farming-Villages", "Dwarven"],
+      "technique_affinities": ["shave", "pickle", "roast", "ferment", "skewer"],
+      "pairing_synergies": ["hearthleaf_herb", "pasture_butter", "river_eel", "frostmint", "crystal_honey", "void_citrus"],
+      "pairing_antagonists": ["bitter_greens", "overly_strong_flavors"],
+      "substitutions": {
+        "soft": ["turnip", "radish"],
+        "hard": ["daikon", "jicama"]
+      },
+      "flavor_profile": {
+        "sweet": 4,
+        "sour": 1,
+        "salty": 0,
+        "bitter": 0,
+        "umami": 1,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 6,
+        "metallic": 0,
+        "floral": 0,
+        "earthy": 3,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["crisp", "slightly translucent", "pale-white", "blue-streaked", "watery"],
+      "aroma_notes": [
+        {"note": "cool earth", "intensity": 4},
+        {"note": "dew", "intensity": 3},
+        {"note": "watery freshness", "intensity": 5}
+      ],
+      "nutritional_profile": {
+        "kcal": 28,
+        "protein_g": 0.9,
+        "fat_g": 0.1,
+        "carb_g": 6.4,
+        "fiber_g": 1.8,
+        "micros": {
+          "vitamin_c_mg": 27,
+          "folate_mcg": 15,
+          "potassium_mg": 233,
+          "lunar_essence": "moderate"
+        },
+        "hydration_percent": 92,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 45,
+        "half_life_min": 120
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Calm",
+          "magnitude": 2,
+          "duration_min": 90,
+          "description": "Carries a calming, luminous quality that soothes troubled sleep"
+        },
+        {
+          "effect": "+Dream Clarity",
+          "magnitude": 1,
+          "duration_min": 180,
+          "description": "Guides dreamers into clarity when eaten at night"
+        },
+        {
+          "effect": "Luminous Glow",
+          "magnitude": 1,
+          "duration_min": 60,
+          "description": "Provides steadying glow that calms both stomach and spirit"
+        }
+      ],
+      "lore_hook": "First grew where moonlight pooled in ancient fields, nourished by silver dew",
+      "detailed_description": "Moonturnip is a round, pale-white bulb streaked with faint blue concentric rings that seem to shimmer when held under moonlight. By day, its skin appears dull and chalky, but as dusk falls the root begins to glow faintly, like a lantern half-buried in the soil. When cut open, its flesh is crisp and slightly translucent, with a faint scent of cool earth and dew.",
+      "cultural_significance": "Farmers believe planting Moonturnips under a waxing moon ensures a healthy harvest. In some cultures, couples eat roasted Moonturnip at weddings to symbolize enduring light through darkness. Dwarves ferment Moonturnips into a glowing spirit said to shine in tavern mugs.",
+      "harvesting_notes": "Pulled by hand under moonlight — roots harvested at night glow brightest. The pale-white bulb with blue concentric rings becomes luminous as dusk falls, appearing like a lantern half-buried in the soil.",
+      "preparation_lore": "Traditional shaving thin into moonlit salads with herbs and citrus, pickling in void vinegar for glowing preserves, roasting whole with butter and spices. The legendary 'Moonlight Carpaccio' features paper-thin slices drizzled with void citrus and crystal honey pearls, sparkling like starlight.",
+      "serving_traditions": "Served raw in slices with salt as a common nighttime snack in farming villages. Lunar stews where Moonturnip cubes glow faintly in broth during full-moon feasts. Skewered and roasted over coals, brushed with spice honey glaze, glowing faintly in night markets.",
+      "seasonal_notes": "Best harvested under moonlight when the blue concentric rings shimmer brightest. Most potent during waxing moon phases. The luminous quality is strongest when harvested at night and stored in cool, dark conditions.",
+      "storage_wisdom": "Keeps fresh for up to 3 weeks in cool, dark cellars. The luminous properties are preserved when stored away from direct light. The blue concentric rings maintain their shimmer when properly stored.",
+      "pairing_philosophy": "Moonturnip's subtle sweetness and watery freshness can be overwhelmed by excessively bitter greens or overly strong flavors. It shines when paired with complementary herbs like hearthleaf and cooling elements like frostmint, where its lunar essence can provide gentle illumination.",
+      "chef_notes": "A lantern for the belly, a calm for the heart. Eat a Moonturnip by moonlight, and your dreams will shine clear. The luminous quality is not just visual — it carries the plant's calming essence and should be preserved in presentation.",
+      "safety_lore": "Overconsumption may cause pale skin flushes and vivid lunar dreams. Those sensitive to vivid dreams should avoid consuming large quantities before sleep. The luminous effects can be intense for those unaccustomed to lunar-influenced foods.",
+      "economic_context": "4-8 copper per bulb; festival nights can double the price. No special trade restrictions, but the lunar properties make it valuable during moon festivals and in communities that celebrate lunar cycles.",
+      "quoted_wisdom": [
+        "\"A lantern for the belly, a calm for the heart.\" — Village Healer's Saying",
+        "\"Eat a Moonturnip by moonlight, and your dreams will shine clear.\" — Old Market Proverb"
+      ],
+      "ingredient_complexity_score": 1.4
+    },
+    {
+      "id": "crimsonleaf_cabbage_01",
+      "name": "Crimsonleaf Cabbage",
+      "scientific_name": "Brassica sanguinea",
+      "nickname": "The Emberleaf Crown",
+      "category": "vegetable",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "head",
+        "min": 3,
+        "max": 6,
+        "volatility": 0.3
+      },
+      "yield_per_unit": 0.88,
+      "shelf_life": {
+        "days": 14,
+        "storage_temp_c": 4,
+        "method": "root cellar, outer leaves intact"
+      },
+      "perishability": "medium",
+      "hazards": ["restlessness if overconsumed", "dry heat in mouth and throat", "overstimulation"],
+      "detox_protocols": ["moderate consumption", "balance with cooling foods", "ensure adequate hydration"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Warrior-Cult", "Guild-Kitchens", "Winter-Staples"],
+      "technique_affinities": ["slice", "braise", "pickle", "sauté", "roast", "char", "wrap"],
+      "pairing_synergies": ["ashen_boar_ribs", "hearthleaf_herb", "dragons_tongue_pepper", "crystal_honey", "amber_mead"],
+      "pairing_antagonists": ["moonturnip", "frostmint", "delicate_flavors"],
+      "substitutions": {
+        "soft": ["red cabbage", "purple cabbage"],
+        "hard": ["kale", "collard greens"]
+      },
+      "flavor_profile": {
+        "sweet": 3,
+        "sour": 2,
+        "salty": 0,
+        "bitter": 4,
+        "umami": 2,
+        "fat": 0,
+        "heat": 6,
+        "astringent": 1,
+        "cooling": 0,
+        "metallic": 3,
+        "floral": 0,
+        "earthy": 2,
+        "smoky": 4,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["thick", "glossy", "compact head", "crimson inner folds", "scarlet veins"],
+      "aroma_notes": [
+        {"note": "sharp peppery", "intensity": 7},
+        {"note": "iron", "intensity": 4},
+        {"note": "smoke", "intensity": 5}
+      ],
+      "nutritional_profile": {
+        "kcal": 25,
+        "protein_g": 1.3,
+        "fat_g": 0.1,
+        "carb_g": 5.8,
+        "fiber_g": 2.5,
+        "micros": {
+          "vitamin_c_mg": 36.6,
+          "vitamin_k_mcg": 76,
+          "folate_mcg": 43,
+          "iron_mg": 0.47,
+          "anthocyanins_mg": 45
+        },
+        "hydration_percent": 92,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 20,
+        "half_life_min": 60
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Focus",
+          "magnitude": 2,
+          "duration_min": 90,
+          "description": "Invigorates the body, sharpening focus and stirring warmth in the chest"
+        },
+        {
+          "effect": "+Courage",
+          "magnitude": 1,
+          "duration_min": 120,
+          "description": "Stokes the fire in the belly, making it a winter staple for courage"
+        },
+        {
+          "effect": "Inner Fire",
+          "magnitude": 1,
+          "duration_min": 60,
+          "description": "Provides warmth and invigoration, especially valued in cold climates"
+        }
+      ],
+      "lore_hook": "First sprouted where a warrior's blood soaked into the earth after battle, its leaves forever carrying the fire of courage",
+      "detailed_description": "Crimsonleaf Cabbage forms a compact, heavy head of deep purple and green leaves, the outer layers tinged almost black, while the inner folds glow crimson like smoldering embers. Its leaves are thick and glossy, with faint veins of scarlet. When torn, it releases a sharp, peppery aroma with hints of iron and smoke.",
+      "cultural_significance": "It is a traditional offering at soldier's funerals, symbolizing strength carried beyond the grave. In guild kitchens, it is revered as the 'cabbage of resolve,' often given to apprentices to test their ability to tame bold flavors.",
+      "harvesting_notes": "Best cut in early morning, when leaves are crisp and dew-cooled. The compact head with deep purple and green outer layers and crimson inner folds is most potent when harvested fresh.",
+      "preparation_lore": "Traditional slicing raw into slaws for spice and crunch, braising slowly in moonmilk or amber mead to mellow bitterness, pickling in void vinegar to intensify crimson color. The legendary 'Crown of Fire' chars cabbage leaves until blackened, then layers them with moonmilk foam and saffron threads for a dish that glows crimson and gold.",
+      "serving_traditions": "Sautéed with butter and garlic alongside river eel. Crimsonleaf braids roasted whole and drizzled with honey glaze, symbolizing prosperity at festival tables. Wrapped around spiced rice and grilled on open coals, eaten by hand as street food.",
+      "seasonal_notes": "Available year-round but most flavorful in winter when the bold, peppery bite provides warmth. The crimson color intensifies in cooler weather, making it a prized winter staple.",
+      "storage_wisdom": "Keeps up to 2 weeks in root cellars with outer leaves intact. Pickled leaves can last all winter. The thick, glossy leaves maintain their structure and color when properly stored.",
+      "pairing_philosophy": "Crimsonleaf Cabbage's bold, peppery bite can overwhelm delicate flavors like moonturnip or frostmint. It shines when paired with robust elements like ashen boar ribs or bold spices like dragon's tongue pepper, where its fiery nature can provide substantial backbone.",
+      "chef_notes": "A leaf with fire enough to wake the laziest stew. Eat Crimsonleaf, and no winter will freeze your courage. The 'cabbage of resolve' tests a chef's ability to tame bold flavors while preserving its invigorating properties.",
+      "safety_lore": "Excessive consumption can cause restlessness and a dry heat in the mouth and throat due to its peppery, invigorating nature. Those sensitive to overstimulation should moderate consumption and balance with cooling foods.",
+      "economic_context": "3-6 copper per head; roasted festival braids may fetch up to 1 silver. No special trade restrictions, but the courage-inspiring properties make it valuable in warrior communities and during winter months.",
+      "quoted_wisdom": [
+        "\"A leaf with fire enough to wake the laziest stew.\" — Dockside Cook Garren Vol",
+        "\"Eat Crimsonleaf, and no winter will freeze your courage.\" — Old Farmer's Saying"
+      ],
+      "ingredient_complexity_score": 1.3
+    },
+    {
+      "id": "glowfungus_caps_01",
+      "name": "Glowfungus Caps",
+      "scientific_name": "Mycena lucerna",
+      "nickname": "The Lantern's Gift",
+      "category": "fungi",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "bundle",
+        "min": 6,
+        "max": 10,
+        "volatility": 0.4
+      },
+      "yield_per_unit": 0.90,
+      "shelf_life": {
+        "days": 3,
+        "storage_temp_c": 4,
+        "method": "refrigerated, gentle handling"
+      },
+      "perishability": "high",
+      "hazards": ["stomach upset if overindulged", "mild phosphorescent sweat", "glow sensitivity"],
+      "detox_protocols": ["moderate consumption", "avoid raw consumption in large quantities", "cook thoroughly"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Dwarven", "Elven-Caverns", "Miner-Culture"],
+      "technique_affinities": ["grill", "pan-sear", "simmer", "pickle", "dry", "skewer"],
+      "pairing_synergies": ["river_eel", "moonturnip", "amber_mead", "hearthleaf_herb"],
+      "pairing_antagonists": ["heavy_smoke", "char", "overly_strong_flavors"],
+      "substitutions": {
+        "soft": ["shiitake", "oyster mushrooms"],
+        "hard": ["porcini", "morel"]
+      },
+      "flavor_profile": {
+        "sweet": 3,
+        "sour": 0,
+        "salty": 0,
+        "bitter": 1,
+        "umami": 7,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 0,
+        "floral": 0,
+        "earthy": 8,
+        "smoky": 0,
+        "funky": 2,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["tender", "spongy", "soft ivory stalks", "domed caps", "luminescent"],
+      "aroma_notes": [
+        {"note": "earthy", "intensity": 7},
+        {"note": "hint of sweetness", "intensity": 3},
+        {"note": "nutty", "intensity": 4}
+      ],
+      "nutritional_profile": {
+        "kcal": 22,
+        "protein_g": 3.1,
+        "fat_g": 0.3,
+        "carb_g": 3.3,
+        "fiber_g": 1.0,
+        "micros": {
+          "vitamin_d_mcg": 0.2,
+          "vitamin_b2_mg": 0.4,
+          "copper_mg": 0.3,
+          "selenium_mcg": 9.3,
+          "luciferin_mg": 12
+        },
+        "hydration_percent": 92,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 30,
+        "half_life_min": 90
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Night Vision",
+          "magnitude": 2,
+          "duration_min": 60,
+          "description": "Sharpened night vision for a short time when eaten raw"
+        },
+        {
+          "effect": "+Calm Clarity",
+          "magnitude": 1,
+          "duration_min": 45,
+          "description": "Imparts a calming clarity when consumed"
+        },
+        {
+          "effect": "Grounding Earth",
+          "magnitude": 1,
+          "duration_min": 120,
+          "description": "Provides grounding, earthy flavor and connection to deep earth"
+        }
+      ],
+      "lore_hook": "First sprouted from sparks shed by a god's hammer deep underground, revered as a gift of the deep earth",
+      "detailed_description": "Glowfungus Caps are small, round mushrooms with soft ivory stalks and domed caps that emit a gentle, bluish-green luminescence in darkness. Found clinging to cavern walls and old timber beams, they grow in clusters that resemble tiny lanterns. The flesh is tender and spongy, releasing an earthy aroma with a hint of sweetness when cut.",
+      "cultural_significance": "Glowfungus is revered in dwarven kitchens as a gift of the deep earth, a natural lantern and food in one. In elven caverns, it is often used in rituals of guidance, symbolizing light in darkness. Travelers prize it as both food and torch, often drying caps for long journeys through shadowed tunnels.",
+      "harvesting_notes": "Cut gently at the base with bone or wooden blades; metal blades dull their glow. Found clinging to cavern walls and old timber beams, growing in clusters that resemble tiny lanterns.",
+      "preparation_lore": "Traditional grilling or pan-searing concentrates umami, simmering into broths lends depth and faint glow if added late, pickling in brine retains luminescence for months. The legendary 'Starlit Consommé' features crystal-clear broth with floating Glowfungus slices, shimmering like stars in night water.",
+      "serving_traditions": "Added to miner's stews where their soft glow helps light the bowls in dark taverns. Served in glowing mushroom pies at subterranean guild feasts, creating a constellation of light when cut. Skewered and grilled at cavern markets, their glow flickering as oils drip onto the fire.",
+      "seasonal_notes": "Available year-round in cavern environments but most luminous during the deep winter months. The bluish-green luminescence is brightest when harvested fresh and handled gently.",
+      "storage_wisdom": "Fresh caps last only 2-3 days; drying or pickling preserves flavor, but diminishes light. The gentle bluish-green luminescence fades with rough handling or exposure to bright light.",
+      "pairing_philosophy": "Glowfungus Caps' subtle sweetness and earthy depth can be overwhelmed by heavy smoke or char. It shines when paired with complementary elements like river eel or moonturnip, where its gentle luminescence and umami richness can provide both flavor and visual appeal.",
+      "chef_notes": "Eat of the Glowfungus, and the dark will never close fully around you. A lantern for the tongue, a star for the stomach. The gentle luminescence is not just visual — it carries the mushroom's connection to the deep earth and should be preserved in presentation.",
+      "safety_lore": "Overindulgence can cause stomach upset and mild phosphorescent sweat due to the luciferin content. Those sensitive to bioluminescent compounds should moderate consumption. The glow sensitivity can be intense for those unaccustomed to luminescent foods.",
+      "economic_context": "6-10 copper for a bundle of glowing caps; prized 'everbright clusters' fetch up to 2 silver. No special trade restrictions, but the dual function as food and light source makes it valuable in underground communities and for travelers.",
+      "quoted_wisdom": [
+        "\"Eat of the Glowfungus, and the dark will never close fully around you.\" — Dwarven miner's saying",
+        "\"A lantern for the tongue, a star for the stomach.\" — Cavern Market Proverb"
+      ],
+      "ingredient_complexity_score": 1.4
+    },
+    {
+      "id": "cloud_ox_beef_01",
+      "name": "Cloud Ox Beef",
+      "scientific_name": "Bos nebulis",
+      "nickname": "The Mistborn Herd",
+      "category": "protein",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "silver",
+        "unit": "cut",
+        "min": 8,
+        "max": 15,
+        "volatility": 0.2
+      },
+      "yield_per_unit": 0.75,
+      "shelf_life": {
+        "days": 7,
+        "storage_temp_c": 2,
+        "method": "chilled, wrapped in cloth"
+      },
+      "perishability": "medium",
+      "hazards": ["drowsy heaviness if overindulged", "fog of the stomach", "high fat content"],
+      "detox_protocols": ["moderate portion sizes", "balance with light vegetables", "avoid excessive consumption"],
+      "dietary_flags": ["carnivore"],
+      "cuisine_affinities": ["universal", "Highland-Clans", "Guild-Kitchens", "Festival-Feasts"],
+      "technique_affinities": ["slow-roast", "sear", "smoke", "braise", "grill", "skewer"],
+      "pairing_synergies": ["hearthleaf_herb", "crimsonleaf_cabbage", "void_vinegar", "fireplum", "crystal_honey", "sunbloom_saffron"],
+      "pairing_antagonists": ["overpowering_spices", "delicate_flavors"],
+      "substitutions": {
+        "soft": ["beef", "bison"],
+        "hard": ["venison", "elk"]
+      },
+      "flavor_profile": {
+        "sweet": 4,
+        "sour": 0,
+        "salty": 1,
+        "bitter": 0,
+        "umami": 9,
+        "fat": 8,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 2,
+        "floral": 0,
+        "earthy": 6,
+        "smoky": 3,
+        "funky": 1,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["tender", "resilient", "richly marbled", "silvery sheen", "buttery"],
+      "aroma_notes": [
+        {"note": "wild herbs", "intensity": 5},
+        {"note": "dew-soaked grasses", "intensity": 4},
+        {"note": "sweet earthy", "intensity": 6},
+        {"note": "wisp of smokiness", "intensity": 3}
+      ],
+      "nutritional_profile": {
+        "kcal": 250,
+        "protein_g": 26.0,
+        "fat_g": 15.0,
+        "carb_g": 0,
+        "fiber_g": 0,
+        "micros": {
+          "iron_mg": 2.6,
+          "zinc_mg": 4.3,
+          "vitamin_b12_mcg": 2.4,
+          "selenium_mcg": 22.0,
+          "mist_essence_mg": 8
+        },
+        "hydration_percent": 60,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 45,
+        "half_life_min": 180
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Endurance",
+          "magnitude": 2,
+          "duration_min": 240,
+          "description": "Sharpens endurance for long climbs and steadying breath"
+        },
+        {
+          "effect": "+Mountain Strength",
+          "magnitude": 1,
+          "duration_min": 180,
+          "description": "Provides lingering sense of calm and strength, anchored to mountain stone"
+        },
+        {
+          "effect": "Fog of the Stomach",
+          "magnitude": -1,
+          "duration_min": 120,
+          "description": "Overindulgence causes drowsy heaviness and foggy feeling"
+        }
+      ],
+      "lore_hook": "Descended from sky-spirits who fell to earth, choosing to graze where the heavens kiss the mountains",
+      "detailed_description": "Cloud Oxen are massive, slate-gray cattle that graze the high misty pastures where the mountains meet the sky. Their flesh is richly marbled with fat that carries a pale, silvery sheen, reminiscent of morning fog. The cuts are tender yet resilient, infused with the faint aroma of wild herbs and dew-soaked grasses. When cooked, the meat releases a sweet, earthy fragrance with a wisp of smokiness, as though the mountain fog itself lingers in every bite.",
+      "cultural_significance": "Cloud Oxen herds are fiercely guarded by highland clans, who revere them as both sacred and practical — beasts of burden, milk, and meat. To share a meal of Cloud Ox Beef is a bond of trust, a symbol of friendship and truce among warring clans. Only older, mist-fed oxen yield the prized marbled beef; calves are never slaughtered.",
+      "harvesting_notes": "Only older, mist-fed oxen yield the prized marbled beef; calves are never slaughtered. The massive, slate-gray cattle graze the high misty pastures where the mountains meet the sky, their flesh carrying the pale, silvery sheen of morning fog.",
+      "preparation_lore": "Traditional slow-roasting renders the delicate marbling, high-heat searing creates crisp crust with tender interior, smoking over cedar or fruitwood echoes its misty origins. The legendary 'Sky-Braised Beef' features ribs simmered in moonmilk and amber mead, producing a dish both rich and ethereal.",
+      "serving_traditions": "Grilled Cloud Ox skewers sold at highland markets, steaming in the cold mountain air. Grand 'Mist Roasts' feature whole haunches basted with crystal honey and saffron during harvest feasts. Thin-sliced beef fried quickly on hot stones, wrapped in flatbread with herbs as street food.",
+      "seasonal_notes": "Available year-round but most flavorful in late autumn when the mist-fed grasses are at their peak. The silvery marbling is most pronounced in oxen that have grazed the high pastures during the misty season.",
+      "storage_wisdom": "Fresh cuts last a week chilled; smoked or salted beef keeps for months. The rich marbling and silvery sheen are preserved best when wrapped in cloth and kept at proper temperature. The mist essence diminishes with improper storage.",
+      "pairing_philosophy": "Cloud Ox Beef's natural clarity and mineral depth can be overwhelmed by overpowering spices. It shines when paired with complementary elements like hearthleaf herb or crimsonleaf cabbage, where its buttery richness and earthy notes can provide substantial backbone without masking its misty character.",
+      "chef_notes": "Meat with the memory of mist — eat, and you carry the mountain in your marrow. Cloud Ox beef is not food alone; it is peace on the tongue, strength in the bones. The silvery marbling is not just visual — it carries the ox's connection to the high misty pastures and should be preserved in cooking.",
+      "safety_lore": "Overindulgence can cause drowsy heaviness and 'fog of the stomach' due to the rich fat content and mist essence. Those sensitive to heavy proteins should moderate consumption. The high fat content requires careful portion control to avoid digestive discomfort.",
+      "economic_context": "Expensive — 8-15 silver per cut, with whole ribs reserved for feasts. No special trade restrictions, but the sacred status among highland clans and the requirement for older, mist-fed oxen makes it a premium ingredient. The bond of trust aspect makes it valuable in diplomatic and ceremonial contexts.",
+      "quoted_wisdom": [
+        "\"Meat with the memory of mist — eat, and you carry the mountain in the marrow.\" — Highland saying",
+        "\"Cloud Ox beef is not food alone; it is peace on the tongue, strength in the bones.\" — Guild Chef Dorran Fenn"
+      ],
+      "ingredient_complexity_score": 1.6
+    },
+    {
+      "id": "river_eel_fillet_01",
+      "name": "River Eel Fillet",
+      "scientific_name": "Anguilla torrens",
+      "nickname": "The Current's Gift",
+      "category": "protein",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "fillet",
+        "min": 5,
+        "max": 7,
+        "volatility": 0.3
+      },
+      "yield_per_unit": 0.85,
+      "shelf_life": {
+        "days": 2,
+        "storage_temp_c": 2,
+        "method": "chilled, wrapped in damp cloth"
+      },
+      "perishability": "high",
+      "hazards": ["sluggishness if overindulged", "heaviness of spirit", "high fat content"],
+      "detox_protocols": ["moderate portion sizes", "balance with light vegetables", "avoid excessive consumption"],
+      "dietary_flags": ["carnivore"],
+      "cuisine_affinities": ["universal", "Riverside-Communities", "Highland-Fishermen", "Guild-Kitchens"],
+      "technique_affinities": ["grill", "smoke", "braise", "sear", "skewer", "terrine"],
+      "pairing_synergies": ["stonecarrot", "crimsonleaf_cabbage", "void_vinegar", "hearthleaf_herb", "crystal_honey", "sunbloom_saffron", "frostmint"],
+      "pairing_antagonists": ["overly_delicate_flavors", "light_vegetables"],
+      "substitutions": {
+        "soft": ["eel", "catfish"],
+        "hard": ["salmon", "trout"]
+      },
+      "flavor_profile": {
+        "sweet": 3,
+        "sour": 0,
+        "salty": 1,
+        "bitter": 0,
+        "umami": 8,
+        "fat": 9,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 3,
+        "floral": 0,
+        "earthy": 2,
+        "smoky": 0,
+        "funky": 1,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["supple", "oily", "dense", "pale ivory", "glistening silver fat", "crispy skin"],
+      "aroma_notes": [
+        {"note": "mineral scent of river stones", "intensity": 4},
+        {"note": "buttery", "intensity": 6},
+        {"note": "faint sweetness", "intensity": 3}
+      ],
+      "nutritional_profile": {
+        "kcal": 280,
+        "protein_g": 18.4,
+        "fat_g": 22.0,
+        "carb_g": 0,
+        "fiber_g": 0,
+        "micros": {
+          "omega_3_g": 1.2,
+          "vitamin_a_mcg": 1200,
+          "vitamin_d_mcg": 0.8,
+          "vitamin_e_mg": 2.0,
+          "current_essence_mg": 15
+        },
+        "hydration_percent": 65,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 30,
+        "half_life_min": 120
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Energy Recovery",
+          "magnitude": 2,
+          "duration_min": 180,
+          "description": "Quickens recovery and steadies the body after exhaustion"
+        },
+        {
+          "effect": "+Stamina",
+          "magnitude": 1,
+          "duration_min": 240,
+          "description": "Grants stamina for long night's work, prized by highland fishermen"
+        },
+        {
+          "effect": "Current's Pull",
+          "magnitude": -1,
+          "duration_min": 90,
+          "description": "Overindulgence causes sluggishness or heaviness of spirit, like a stone pulled by the current"
+        }
+      ],
+      "lore_hook": "Descendants of water-spirits, their flesh carrying the strength of the river's current",
+      "detailed_description": "River Eel Fillets are taken from the long-bodied eels that thrive in fast-flowing mountain and valley rivers. Their flesh is pale ivory with veins of glistening silver fat, giving it a rich sheen when cut. The meat is supple, oily, and dense, with a skin that crisps beautifully when seared. When raw, it carries a faint mineral scent of river stones, shifting to a buttery aroma when cooked.",
+      "cultural_significance": "River Eels are revered as descendants of water-spirits, their flesh carrying the strength of the river's current. In many cultures, offering eel is an act of respect to travelers, symbolizing safe passage. Some guilds use dried eel skin as protective charms, believing it binds one's soul against drowning.",
+      "harvesting_notes": "Best caught in fast, cold rivers using woven traps or night spears. The long-bodied eels thrive in fast-flowing mountain and valley rivers, their flesh carrying the mineral clarity from cold waters.",
+      "preparation_lore": "Traditional grilling over open flame with spice glaze, smoking over hardwood for preservation and depth, braising in amber mead or soy-like ferments for tenderness. The legendary 'Moonlit Terrine' features layers of River Eel, frostmint jelly, and saffron threads, shimmering like water under starlight.",
+      "serving_traditions": "Grilled fillets brushed with spice paste, eaten with rice or flatbread as daily fare. River eel smoked whole and sliced thin, served on silver platters with saffron sauces at festival tables. Eel skewers glazed with crystal honey, sold at riverside night markets as street food.",
+      "seasonal_notes": "Available year-round but most flavorful in spring when the rivers run cold and clear. The mineral clarity and silver fat veins are most pronounced in eels caught from fast-flowing mountain streams.",
+      "storage_wisdom": "Fresh fillets keep only 1-2 days; smoking or salting extends shelf life to months. The supple, oily texture and glistening silver fat are preserved best when wrapped in damp cloth and kept chilled. The current essence diminishes with improper storage.",
+      "pairing_philosophy": "River Eel's rich, fatty nature can easily overwhelm overly delicate flavors. It shines when paired with robust elements like stonecarrot or crimsonleaf cabbage, where its buttery richness and mineral clarity can provide substantial backbone while complementing the earthy notes.",
+      "chef_notes": "The river runs through its flesh — eat, and you will not tire. River eel feeds the body, but more than that, it feeds the will. The glistening silver fat is not just visual — it carries the eel's connection to the fast-flowing currents and should be preserved in cooking.",
+      "safety_lore": "Overindulgence can cause sluggishness and heaviness of spirit due to the high fat content and current essence. Those sensitive to rich proteins should moderate consumption. The 'current's pull' effect can be intense for those unaccustomed to river eel's energy-restoring properties.",
+      "economic_context": "Affordable near rivers (5-7 copper per fillet); more costly in landlocked regions. No special trade restrictions, but the water-spirit connection and protective charm properties make it valuable in riverside communities and for travelers seeking safe passage.",
+      "quoted_wisdom": [
+        "\"The river runs through its flesh — eat, and you will not tire.\" — Fisher's Proverb",
+        "\"River eel feeds the body, but more than that, it feeds the will.\" — Guild Butcher Karrin Vos"
+      ],
+      "ingredient_complexity_score": 1.5
+    },
+    {
+      "id": "skyfowl_breast_01",
+      "name": "Skyfowl Breast",
+      "scientific_name": "Aves caelora",
+      "nickname": "The Windborne Feast",
+      "category": "protein",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "silver",
+        "unit": "breast",
+        "min": 1,
+        "max": 2,
+        "volatility": 0.4
+      },
+      "yield_per_unit": 0.80,
+      "shelf_life": {
+        "days": 3,
+        "storage_temp_c": 2,
+        "method": "chilled, wrapped in parchment"
+      },
+      "perishability": "high",
+      "hazards": ["restlessness if overindulged", "craving for high places", "lightheadedness"],
+      "detox_protocols": ["moderate portion sizes", "balance with grounding foods", "avoid excessive consumption"],
+      "dietary_flags": ["carnivore"],
+      "cuisine_affinities": ["universal", "Highland-Communities", "Traveling-Caravans", "Festival-Feasts"],
+      "technique_affinities": ["grill", "poach", "pan-sear", "roast", "skewer", "terrine"],
+      "pairing_synergies": ["hearthleaf_herb", "frostmint", "stonecarrot", "void_citrus", "crystal_honey", "sunbloom_saffron", "moonturnip"],
+      "pairing_antagonists": ["overly_heavy_fats", "heavy_smoke", "overpowering_spices"],
+      "substitutions": {
+        "soft": ["chicken breast", "pheasant"],
+        "hard": ["quail", "partridge"]
+      },
+      "flavor_profile": {
+        "sweet": 2,
+        "sour": 0,
+        "salty": 1,
+        "bitter": 0,
+        "umami": 6,
+        "fat": 2,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 2,
+        "floral": 0,
+        "earthy": 1,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["pale", "lean", "finely grained", "faint iridescence", "feather's sheen", "firm but tender"],
+      "aroma_notes": [
+        {"note": "crisp mountain air", "intensity": 4},
+        {"note": "clean savory", "intensity": 6},
+        {"note": "wild herbs", "intensity": 3}
+      ],
+      "nutritional_profile": {
+        "kcal": 165,
+        "protein_g": 31.0,
+        "fat_g": 3.6,
+        "carb_g": 0,
+        "fiber_g": 0,
+        "micros": {
+          "iron_mg": 1.2,
+          "zinc_mg": 2.2,
+          "vitamin_b6_mg": 0.8,
+          "niacin_mg": 12.5,
+          "wind_essence_mg": 10
+        },
+        "hydration_percent": 70,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 20,
+        "half_life_min": 90
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Lung Vitality",
+          "magnitude": 2,
+          "duration_min": 180,
+          "description": "Invigorates the lungs and steadies the breath, prized by singers, heralds, and mountaineers"
+        },
+        {
+          "effect": "+Journey Stamina",
+          "magnitude": 1,
+          "duration_min": 240,
+          "description": "Ensures stamina for long journeys when eaten before travel"
+        },
+        {
+          "effect": "Sky Longing",
+          "magnitude": -1,
+          "duration_min": 60,
+          "description": "Overindulgence causes restlessness or craving for high places"
+        }
+      ],
+      "lore_hook": "Born from feathers shed by wind-spirits at the dawn of the world, riding jetstream currents high above the clouds",
+      "detailed_description": "Skyfowl are migratory birds said to ride the jetstream currents high above the clouds, gliding for weeks without landing. Their breast meat is pale, lean, and finely grained, with a faint iridescence that catches the light like a feather's sheen. Raw, it smells faintly of crisp mountain air; when cooked, it releases a clean, savory aroma reminiscent of roast chicken with a hint of wild herbs.",
+      "cultural_significance": "Skyfowl are revered as gifts from the sky, consumed at weddings or departure feasts to bless new journeys. Some cultures forbid eating them, believing they carry prayers between mortals and the heavens. Others see them as symbols of safe journeys, served at solstice feasts and traveling caravan meals.",
+      "harvesting_notes": "Skyfowl are difficult to catch, usually trapped during migration descents or raised in high-elevation aviaries. The migratory birds ride jetstream currents high above the clouds, gliding for weeks without landing, making them challenging to harvest.",
+      "preparation_lore": "Traditional grilling quickly over high flame for smoky edge, poaching in moonmilk or amber mead for light, tender cuts, pan-searing with butter and herbs for festival feasts. The legendary 'Cloudlight Terrine' features layers of poached skyfowl, moonturnip slices, and crystal honey jelly, plated to resemble drifting clouds.",
+      "serving_traditions": "Roasted breast strips with root vegetables, a staple of traveling caravans. Whole skyfowl basted with saffron and honey, served at solstice feasts as symbols of safe journeys. Skewered breast chunks grilled over coals and sold in spice-scented markets as street food.",
+      "seasonal_notes": "Available year-round but most flavorful during migration seasons when the birds are at peak condition. The faint iridescence and clean mountain air aroma are most pronounced in freshly harvested breast meat.",
+      "storage_wisdom": "Fresh breast keeps only 2-3 days; salted or dried strips can last for months. The pale, lean texture and faint iridescence are preserved best when wrapped in parchment and kept chilled. The wind essence diminishes with improper storage.",
+      "pairing_philosophy": "Skyfowl's clean, delicate flavor can be overwhelmed by overly heavy fats or smoke. It shines when paired with complementary elements like hearthleaf herb or frostmint, where its mild, savory nature can provide a perfect canvas for subtle flavors without masking its natural brightness.",
+      "chef_notes": "Eat Skyfowl, and the wind itself will lift you. To taste the sky is to taste freedom. The faint iridescence is not just visual — it carries the bird's connection to the jetstream currents and should be preserved in presentation.",
+      "safety_lore": "Overindulgence can cause restlessness and craving for high places due to the wind essence content. Those sensitive to elevated energy should moderate consumption. The 'sky longing' effect can be intense for those unaccustomed to skyfowl's invigorating properties.",
+      "economic_context": "1-2 silver per breast, considered a luxury in lowland markets. No special trade restrictions, but the wind-spirit connection and journey blessing properties make it valuable in traveling communities and for ceremonial feasts.",
+      "quoted_wisdom": [
+        "\"Eat Skyfowl, and the wind itself will lift you.\" — Highland proverb",
+        "\"To taste the sky is to taste freedom.\" — Traveling Bard Seloren"
+      ],
+      "ingredient_complexity_score": 1.7
+    },
+    {
+      "id": "ashen_boar_ribs_01",
+      "name": "Ashen Boar Ribs",
+      "scientific_name": "Sus vulcanis",
+      "nickname": "The Fire-Rooted Feast",
+      "category": "protein",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "silver",
+        "unit": "rack",
+        "min": 2,
+        "max": 3,
+        "volatility": 0.3
+      },
+      "yield_per_unit": 0.70,
+      "shelf_life": {
+        "days": 7,
+        "storage_temp_c": 2,
+        "method": "chilled, wrapped in cloth"
+      },
+      "perishability": "medium",
+      "hazards": ["feverish feeling if overindulged", "overbold behavior", "quick to anger", "high fat content"],
+      "detox_protocols": ["moderate portion sizes", "balance with cooling foods", "avoid excessive consumption"],
+      "dietary_flags": ["carnivore"],
+      "cuisine_affinities": ["universal", "Highland-Clans", "Volcanic-Villages", "Warrior-Culture"],
+      "technique_affinities": ["slow-smoke", "braise", "grill", "lacquer", "roast", "skewer"],
+      "pairing_synergies": ["crimsonleaf_cabbage", "dragons_tongue_pepper", "void_vinegar", "starpetal_thyme", "crystal_honey", "sunbloom_saffron"],
+      "pairing_antagonists": ["overly_delicate_herbs", "frostmint", "light_vegetables"],
+      "substitutions": {
+        "soft": ["pork ribs", "wild boar"],
+        "hard": ["beef ribs", "bison ribs"]
+      },
+      "flavor_profile": {
+        "sweet": 4,
+        "sour": 0,
+        "salty": 1,
+        "bitter": 0,
+        "umami": 8,
+        "fat": 9,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 4,
+        "floral": 0,
+        "earthy": 3,
+        "smoky": 9,
+        "funky": 2,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["long", "dark cuts", "marbled with smoky fat", "deep red hue", "fire-touched earth", "charcoal-black hide"],
+      "aroma_notes": [
+        {"note": "scorched wood", "intensity": 7},
+        {"note": "smoke", "intensity": 8},
+        {"note": "iron", "intensity": 5},
+        {"note": "sweetness in fat", "intensity": 4}
+      ],
+      "nutritional_profile": {
+        "kcal": 320,
+        "protein_g": 28.0,
+        "fat_g": 22.0,
+        "carb_g": 0,
+        "fiber_g": 0,
+        "micros": {
+          "iron_mg": 3.2,
+          "zinc_mg": 5.1,
+          "vitamin_b12_mcg": 2.8,
+          "selenium_mcg": 28.0,
+          "volcanic_essence_mg": 12
+        },
+        "hydration_percent": 55,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 60,
+        "half_life_min": 240
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Courage",
+          "magnitude": 2,
+          "duration_min": 180,
+          "description": "Stirs the blood and warms the spirit, granting courage in the face of hardship"
+        },
+        {
+          "effect": "+Battle Fury",
+          "magnitude": 1,
+          "duration_min": 120,
+          "description": "Fills lungs with smoke and hearts with fire, prized by warriors before battle"
+        },
+        {
+          "effect": "Volcanic Rage",
+          "magnitude": -1,
+          "duration_min": 90,
+          "description": "Overindulgence causes feverish feeling, overbold behavior, and quickness to anger"
+        }
+      ],
+      "lore_hook": "Born when a wild sow rooted too close to a volcano's heart, her brood forever changed by the fire beneath the earth",
+      "detailed_description": "Ashen Boars roam the volcanic plains where the soil is rich with ash and minerals. Their hides are charcoal-black, and their flesh bears the deep red hue of fire-touched earth. The ribs in particular are prized: long, dark cuts marbled with smoky fat that carries the aroma of scorched wood even before cooking. When roasted, the meat releases a heady fragrance of smoke, iron, and sweetness, as though it were born of both forest and flame.",
+      "cultural_significance": "Ashen Boars are revered as creatures forever changed by the fire beneath the earth. Among highland clans, sharing ribs is a pact of loyalty, while in volcanic villages, boar feasts mark the end of the harvest season. Some warriors eat Ashen Boar before battle, believing it fills their lungs with smoke and their hearts with fire.",
+      "harvesting_notes": "Dangerous — Ashen Boars are fierce, tusked beasts that charge without fear. Only the bravest hunters bring back rib racks. The boars roam the volcanic plains where the soil is rich with ash and minerals, their flesh carrying the deep red hue of fire-touched earth.",
+      "preparation_lore": "Traditional slow-smoking over fruitwood or volcanic rock embers, braising in spiced mead for tenderness, grilling and lacquering with crystal honey glaze for balance of fire and sweet. The legendary 'Inferno Crown' features ribs slow-braised, arranged upright around a glowing emberstone, served blazing at the table.",
+      "serving_traditions": "Hunters' stews thick with ash-boar rib bones simmered all night as daily fare. Grand racks of ribs smoked for days and basted in saffron-honey, centerpiece of volcanic feasts. Charred rib skewers dripping with spice rubs, sold hot in open-air markets as street food.",
+      "seasonal_notes": "Available year-round but most flavorful in late autumn when the volcanic plains are at their most mineral-rich. The smoky fat and deep red hue are most pronounced in boars that have grazed the ash-rich soil during the harvest season.",
+      "storage_wisdom": "Fresh ribs last a week chilled; smoking or salting preserves them for months. The long, dark cuts and marbled smoky fat are preserved best when wrapped in cloth and kept chilled. The volcanic essence diminishes with improper storage.",
+      "pairing_philosophy": "Ashen Boar's bold, smoky nature can smother overly delicate herbs or frostmint. It shines when paired with robust elements like crimsonleaf cabbage or dragon's tongue pepper, where its smoky richness and metallic notes can provide substantial backbone while complementing the fiery character.",
+      "chef_notes": "Meat that carries the fire of the mountain will put the same fire in your chest. Ashen Boar ribs are not a meal — they are a trial of strength, both in cooking and in eating. The smoky fat is not just flavor — it carries the boar's connection to the volcanic plains and should be preserved in cooking.",
+      "safety_lore": "Overindulgence can cause feverish feeling, overbold behavior, and quickness to anger due to the volcanic essence content. Those sensitive to fiery proteins should moderate consumption. The 'volcanic rage' effect can be intense for those unaccustomed to ashen boar's courage-inspiring properties.",
+      "economic_context": "High — 2-3 silver for a single rack, more in cities where volcanic game is rare. No special trade restrictions, but the dangerous harvesting requirements and warrior culture significance make it a premium ingredient. The pact of loyalty aspect makes it valuable in ceremonial and battle contexts.",
+      "quoted_wisdom": [
+        "\"Meat that carries the fire of the mountain will put the same fire in your chest.\" — Vulcanic Hunter's Saying",
+        "\"Ashen Boar ribs are not a meal — they are a trial of strength, both in cooking and in eating.\" — Chef Halric Dorn"
+      ],
+      "ingredient_complexity_score": 1.8
+    },
+    {
+      "id": "moonmilk_01",
+      "name": "Moonmilk",
+      "scientific_name": "Lac lunae",
+      "nickname": "The Silver Draught",
+      "category": "dairy",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "flask",
+        "min": 5,
+        "max": 8,
+        "volatility": 0.4
+      },
+      "yield_per_unit": 0.95,
+      "shelf_life": {
+        "days": 4,
+        "storage_temp_c": 4,
+        "method": "chilled, protected from sunlight"
+      },
+      "perishability": "high",
+      "hazards": ["drowsiness if overindulged", "lingering sleepiness", "sunlight sensitivity"],
+      "detox_protocols": ["moderate consumption", "avoid excessive amounts", "balance with energizing foods"],
+      "dietary_flags": ["vegetarian"],
+      "cuisine_affinities": ["universal", "Healer-Culture", "Nightwatcher-Communities", "Sacred-Rites"],
+      "technique_affinities": ["whip", "custard", "sauce", "soup", "soufflé", "warm-drink"],
+      "pairing_synergies": ["starpetal_thyme", "sunbloom_saffron", "frostmint", "fireplum", "crystal_honey"],
+      "pairing_antagonists": ["overly_smoky_meats", "strong_brines", "heavy_spices"],
+      "substitutions": {
+        "soft": ["milk", "cream"],
+        "hard": ["coconut milk", "almond milk"]
+      },
+      "flavor_profile": {
+        "sweet": 5,
+        "sour": 0,
+        "salty": 0,
+        "bitter": 0,
+        "umami": 2,
+        "fat": 6,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 7,
+        "metallic": 1,
+        "floral": 0,
+        "earthy": 1,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["silvery-white", "smooth", "slightly viscous", "soft creaminess", "faint glow", "shimmers"],
+      "aroma_notes": [
+        {"note": "calm cooling", "intensity": 6},
+        {"note": "herbal undertones", "intensity": 4},
+        {"note": "mineral sparkle", "intensity": 3}
+      ],
+      "nutritional_profile": {
+        "kcal": 150,
+        "protein_g": 8.0,
+        "fat_g": 8.0,
+        "carb_g": 12.0,
+        "fiber_g": 0,
+        "micros": {
+          "calcium_mg": 300,
+          "vitamin_d_mcg": 2.0,
+          "vitamin_b12_mcg": 1.1,
+          "phosphorus_mg": 200,
+          "lunar_essence_mg": 8
+        },
+        "hydration_percent": 87,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 30,
+        "half_life_min": 180
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Calm",
+          "magnitude": 2,
+          "duration_min": 240,
+          "description": "Calms the nerves and steadies the heart, popular with healers and nightwatchers"
+        },
+        {
+          "effect": "+Restful Dreams",
+          "magnitude": 1,
+          "duration_min": 480,
+          "description": "Brings vivid but restful dreams when consumed before sleep"
+        },
+        {
+          "effect": "Lunar Drowsiness",
+          "magnitude": -1,
+          "duration_min": 360,
+          "description": "Overindulgence causes drowsiness that lingers into the next day"
+        }
+      ],
+      "lore_hook": "First formed when the Moon wept into pastures, and grazing beasts drank her tears",
+      "detailed_description": "Moonmilk is a silvery-white dairy liquid collected from nocturnal grazing beasts that feed on meadow herbs under moonlight. It glows faintly in the dark, as though it has caught fragments of starlight within. Its texture is smooth and slightly viscous, coating the tongue with a soft creaminess. When poured, it shimmers in the cup, giving off a calm, cooling aroma.",
+      "cultural_significance": "Moonmilk is considered sacred in many cultures: priests serve it during rites of peace, while travelers drink it to ward off nightmares. Guild cooks sometimes call it 'the milk of serenity.' It is collected only during moonlit hours and loses potency if milked at dawn.",
+      "harvesting_notes": "Collected only during moonlit hours from nocturnal grazing beasts that feed on meadow herbs under moonlight. The silvery-white liquid glows faintly in the dark, as though it has caught fragments of starlight within.",
+      "preparation_lore": "Traditional warm drink at night as a calming draught, whipped into custards and creams lending desserts a soft glow, used in sauces and soups to mellow sharp flavors. The legendary 'Lunar Soufflé' is a rising, glowing dessert that shines faintly as it leaves the oven.",
+      "serving_traditions": "Served as a warm drink before bed, easing sleep as daily fare. Used in glowing moonmilk custards and sweet breads during solstice feasts. Sold chilled in glass jars at night markets, glowing faintly to attract buyers as street food.",
+      "seasonal_notes": "Available year-round but most potent during full moon phases when the lunar essence is strongest. The faint glow and silvery shimmer are most pronounced in milk collected during clear, moonlit nights.",
+      "storage_wisdom": "Keeps 3-4 days chilled; curdles swiftly if left in sunlight. The silvery-white color and faint glow are preserved best when protected from sunlight and kept chilled. The lunar essence diminishes with improper storage.",
+      "pairing_philosophy": "Moonmilk's delicate sweetness and cooling nature can be overwhelmed by overly smoky meats or strong brines. It shines when paired with complementary elements like starpetal thyme or sunbloom saffron, where its gentle creaminess and herbal undertones can provide a perfect canvas for subtle flavors.",
+      "chef_notes": "A cup of Moonmilk cools the soul's fire. Drink, and dream with the moon. The faint glow is not just visual — it carries the milk's connection to the lunar essence and should be preserved in presentation.",
+      "safety_lore": "Overindulgence can cause drowsiness that lingers into the next day due to the lunar essence content. Those sensitive to calming effects should moderate consumption. The 'lunar drowsiness' effect can be intense for those unaccustomed to moonmilk's sedative properties.",
+      "economic_context": "5-8 copper per flask; in cities, glowing bottles may sell for 1 silver. No special trade restrictions, but the sacred status and lunar harvesting requirements make it valuable in healer communities and for ceremonial purposes.",
+      "quoted_wisdom": [
+        "\"A cup of Moonmilk cools the soul's fire.\" — Old Healer's Saying",
+        "\"Drink, and dream with the moon.\" — Village Blessing"
+      ],
+      "ingredient_complexity_score": 1.6
+    },
+    {
+      "id": "deepsea_brine_01",
+      "name": "Deepsea Brine",
+      "scientific_name": "Sal abyssalis",
+      "nickname": "The Ocean's Heart",
+      "category": "seasoning",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "silver",
+        "unit": "flask",
+        "min": 2,
+        "max": 4,
+        "volatility": 0.5
+      },
+      "yield_per_unit": 0.90,
+      "shelf_life": {
+        "days": 365,
+        "storage_temp_c": 15,
+        "method": "sealed in stone or glass, away from wood"
+      },
+      "perishability": "low",
+      "hazards": ["dizziness if overindulged", "bloating", "salt-fever", "feverish dreams of drowning"],
+      "detox_protocols": ["use sparingly", "balance with fresh water", "avoid excessive consumption"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Coastal-Villages", "Guild-Kitchens", "Funerary-Rites"],
+      "technique_affinities": ["season", "cure", "brine", "reduce", "crystal", "foam"],
+      "pairing_synergies": ["river_eel", "cloud_ox_beef", "glowfungus_caps", "stonecarrot"],
+      "pairing_antagonists": ["delicate_fruits", "sweet_herbs", "light_vegetables"],
+      "substitutions": {
+        "soft": ["sea salt", "brine"],
+        "hard": ["rock salt", "kosher salt"]
+      },
+      "flavor_profile": {
+        "sweet": 0,
+        "sour": 0,
+        "salty": 10,
+        "bitter": 0,
+        "umami": 6,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 5,
+        "floral": 0,
+        "earthy": 0,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["dark", "slate-blue liquid", "glimmers with crystalline flecks", "tingling sensation", "bracing"],
+      "aroma_notes": [
+        {"note": "intensely saline", "intensity": 9},
+        {"note": "metallic", "intensity": 5},
+        {"note": "mineral-rich", "intensity": 7}
+      ],
+      "nutritional_profile": {
+        "kcal": 0,
+        "protein_g": 0,
+        "fat_g": 0,
+        "carb_g": 0,
+        "fiber_g": 0,
+        "micros": {
+          "sodium_mg": 35000,
+          "magnesium_mg": 1200,
+          "potassium_mg": 400,
+          "iodine_mcg": 150,
+          "abyssal_essence_mg": 20
+        },
+        "hydration_percent": 0,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 15,
+        "half_life_min": 120
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Endurance",
+          "magnitude": 2,
+          "duration_min": 180,
+          "description": "Fortifies the body with endurance, as though drawing strength from the ocean depths"
+        },
+        {
+          "effect": "+Appetite",
+          "magnitude": 1,
+          "duration_min": 90,
+          "description": "Sharpens thirst and appetite alike"
+        },
+        {
+          "effect": "Salt-Fever",
+          "magnitude": -1,
+          "duration_min": 240,
+          "description": "Overindulgence causes dizziness, bloating, or feverish dreams of drowning"
+        }
+      ],
+      "lore_hook": "The blood of Leviathans, infused into the ocean floor when they sleep",
+      "detailed_description": "Deepsea Brine is drawn from abyssal vents far below the ocean's surface, where seawater is infused with minerals under immense pressure. When brought to the surface and carefully cooled, it settles into a dark, slate-blue liquid that glimmers with tiny crystalline flecks. Its taste is intensely saline, metallic, and bracing, leaving a tingling sensation on the tongue.",
+      "cultural_significance": "Deepsea Brine is revered as the blood of Leviathans, infused into the ocean floor when they sleep. In coastal villages, it is used in funerary rites — bodies washed in brine are believed to journey safely into the afterlife. Guild kitchens treat it as both spice and medicine, a 'liquid salt' that brings longevity to dishes and diners.",
+      "harvesting_notes": "Collected with ceramic vessels from abyssal vents far below the ocean's surface; mishandling can scald or taint the brine. The seawater is infused with minerals under immense pressure, creating the dark, slate-blue liquid that glimmers with tiny crystalline flecks.",
+      "preparation_lore": "Traditional use sparingly to season stews, stocks, and sauces, curing into meats and fish to impart deep ocean tang, reducing into brine crystals for finishing salts. The legendary 'Abyssal Foam' features aerated brine reduction served atop shellfish, leaving a salty sparkle on the lips.",
+      "serving_traditions": "Mixed with fresh water to brine fish or poultry as daily fare. Crusted onto roasted meats, creating a shimmering mineral glaze at festival tables. Deepsea brine-pickled eggs, sold glowing faintly blue under lantern light as street food.",
+      "seasonal_notes": "Available year-round but most potent during storm seasons when the abyssal vents are most active. The crystalline flecks and mineral richness are most pronounced in brine collected during turbulent ocean conditions.",
+      "storage_wisdom": "Must be kept sealed in stone or glass; contact with wood causes spoilage. The dark, slate-blue color and crystalline flecks are preserved best when stored away from wood and kept at stable temperature. The abyssal essence diminishes with improper storage.",
+      "pairing_philosophy": "Deepsea Brine's intense salinity and mineral richness can drown out delicate fruits or sweet herbs. It shines when paired with robust elements like river eel or cloud ox beef, where its bold, metallic nature can provide substantial backbone while complementing the umami notes.",
+      "chef_notes": "A sip of the abyss will steady your bones — or drown your dreams. Deepsea brine is not seasoning; it is the ocean itself, captured. The crystalline flecks are not just visual — they carry the brine's connection to the abyssal depths and should be preserved in presentation.",
+      "safety_lore": "Overindulgence can cause dizziness, bloating, and 'salt-fever' with feverish dreams of drowning due to the abyssal essence content. Those sensitive to high sodium should moderate consumption. The 'salt-fever' effect can be intense for those unaccustomed to deepsea brine's fortifying properties.",
+      "economic_context": "Rare and costly — 2-4 silver per flask, with festivals driving it as high as 1 gold. No special trade restrictions, but the dangerous harvesting requirements and funerary rite significance make it a premium ingredient. The longevity properties make it valuable in ceremonial and medicinal contexts.",
+      "quoted_wisdom": [
+        "\"A sip of the abyss will steady your bones — or drown your dreams.\" — Sailor's Proverb",
+        "\"Deepsea brine is not seasoning; it is the ocean itself, captured.\" — Master Briner Kethar"
+      ],
+      "ingredient_complexity_score": 1.9
+    },
+    {
+      "id": "amber_mead_01",
+      "name": "Amber Mead",
+      "scientific_name": "Mulsum aurorae",
+      "nickname": "The Hearth's Cup",
+      "category": "beverage",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "flask",
+        "min": 5,
+        "max": 10,
+        "volatility": 0.3
+      },
+      "yield_per_unit": 0.95,
+      "shelf_life": {
+        "days": 1095,
+        "storage_temp_c": 12,
+        "method": "sealed in oak casks or bottles"
+      },
+      "perishability": "low",
+      "hazards": ["boisterousness if overindulged", "lingering fogginess", "alcohol effects"],
+      "detox_protocols": ["moderate consumption", "balance with food", "avoid excessive amounts"],
+      "dietary_flags": ["vegetarian"],
+      "cuisine_affinities": ["universal", "Highland-Clans", "Rural-Taverns", "Temple-Offerings"],
+      "technique_affinities": ["warm", "reduce", "glaze", "blend", "custard", "lacquer"],
+      "pairing_synergies": ["ashen_boar_ribs", "stonecarrot", "sunbloom_saffron", "crystal_honey", "frostmint"],
+      "pairing_antagonists": ["bitter_herbs", "void_vinegar", "sour_flavors"],
+      "substitutions": {
+        "soft": ["mead", "honey wine"],
+        "hard": ["sherry", "port"]
+      },
+      "flavor_profile": {
+        "sweet": 7,
+        "sour": 0,
+        "salty": 0,
+        "bitter": 0,
+        "umami": 1,
+        "fat": 0,
+        "heat": 3,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 0,
+        "floral": 6,
+        "earthy": 2,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["golden-hued", "thick yet smooth", "resinous undertone", "warm glow", "clings to tongue"],
+      "aroma_notes": [
+        {"note": "wildflowers", "intensity": 6},
+        {"note": "pine", "intensity": 4},
+        {"note": "gentle heat", "intensity": 5}
+      ],
+      "nutritional_profile": {
+        "kcal": 180,
+        "protein_g": 0.1,
+        "fat_g": 0,
+        "carb_g": 35.0,
+        "fiber_g": 0,
+        "micros": {
+          "alcohol_percent": 12.0,
+          "sugar_g": 28.0,
+          "antioxidants_mg": 15,
+          "hearth_essence_mg": 6
+        },
+        "hydration_percent": 70,
+        "abv_percent": 12
+      },
+      "intoxication_index": 2,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 45,
+        "half_life_min": 180
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Warmth",
+          "magnitude": 2,
+          "duration_min": 120,
+          "description": "Warming and calming qualities, easing tension and bolstering courage"
+        },
+        {
+          "effect": "+Conviviality",
+          "magnitude": 1,
+          "duration_min": 90,
+          "description": "In moderation, inspires conviviality and social bonding"
+        },
+        {
+          "effect": "Mead Fogginess",
+          "magnitude": -1,
+          "duration_min": 480,
+          "description": "Overindulgence causes boisterousness and lingering fogginess the next morning"
+        }
+      ],
+      "lore_hook": "First brewed by bee-spirits who gifted it to humankind as a drink of peace",
+      "detailed_description": "Amber Mead is a golden-hued drink brewed from fermented honey and mountain herbs, its surface catching the light with a warm glow. Its body is thick yet smooth, with a resinous undertone that clings to the tongue. When poured, it releases the fragrance of wildflowers and pine, followed by a gentle heat that spreads through the chest.",
+      "cultural_significance": "Amber Mead is revered as a gift from bee-spirits to humankind as a drink of peace. Highland clans use it in oath-making, sipping together from the same cup to seal bonds. Some temples pour it as an offering to fire gods, believing its warmth kindles divine favor.",
+      "harvesting_notes": "Requires carefully aged honey, pure spring water, and herbs gathered under dawn's light. The golden-hued drink is brewed from fermented honey and mountain herbs, its surface catching the light with a warm glow.",
+      "preparation_lore": "Traditional serving warm with frostmint for winter draught, reducing into glazes for boar, fowl, or root vegetables, blending into custards and cakes to add sweetness and depth. The legendary 'Golden Lacquer' features Amber Mead reduced and brushed onto roast skyfowl, forming a sweet, glossy skin.",
+      "serving_traditions": "A mug of warm mead taken at the end of laboring days as daily fare. Mead poured from great flagons at solstice feasts, often spiced with saffron or peppers. Honey-mead candies, boiled until glassy and sold on sticks as street food.",
+      "seasonal_notes": "Available year-round but most flavorful in autumn when the honey is at its peak richness. The golden hue and warm glow are most pronounced in mead brewed during the harvest season.",
+      "storage_wisdom": "Keeps for years if sealed in oak casks; bottled mead improves with age. The thick, smooth body and resinous undertone are preserved best when stored in oak casks or bottles. The hearth essence develops with proper aging.",
+      "pairing_philosophy": "Amber Mead's sweet, resinous nature can clash with bitter herbs or void vinegar. It shines when paired with complementary elements like ashen boar ribs or stonecarrots, where its warming sweetness and floral notes can provide a perfect balance to rich, savory flavors.",
+      "chef_notes": "Mead warms not only the belly, but the bonds between friends. In amber's glow lies both laughter and folly — drink wisely. The warm glow is not just visual — it carries the mead's connection to the hearth and should be preserved in presentation.",
+      "safety_lore": "Overindulgence can cause boisterousness and lingering fogginess due to the alcohol content and hearth essence. Those sensitive to alcohol should moderate consumption. The 'mead fogginess' effect can be intense for those unaccustomed to amber mead's warming properties.",
+      "economic_context": "Common in rural taverns (5-10 copper per flask); aged or spiced varieties may cost 1-2 silver. No special trade restrictions, but the oath-making significance and temple offering properties make it valuable in ceremonial and social contexts.",
+      "quoted_wisdom": [
+        "\"Mead warms not only the belly, but the bonds between friends.\" — Hearthlord's Saying",
+        "\"In amber's glow lies both laughter and folly — drink wisely.\" — Old Brewer's Proverb"
+      ],
+      "ingredient_complexity_score": 1.4
+    },
+    {
+      "id": "void_vinegar_01",
+      "name": "Void Vinegar",
+      "scientific_name": "Acetum nigrum",
+      "nickname": "The Black Draught",
+      "category": "seasoning",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "silver",
+        "unit": "vial",
+        "min": 1,
+        "max": 3,
+        "volatility": 0.4
+      },
+      "yield_per_unit": 0.85,
+      "shelf_life": {
+        "days": 730,
+        "storage_temp_c": 15,
+        "method": "blackened glass or ceramic, away from light"
+      },
+      "perishability": "low",
+      "hazards": ["dizziness if overused", "metallic taste lingering for hours", "vivid dreams of falling through darkness"],
+      "detox_protocols": ["use sparingly", "balance with other flavors", "avoid excessive consumption"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Guild-Kitchens", "Alchemist-Culture", "Night-Markets"],
+      "technique_affinities": ["marinate", "reduce", "glaze", "pickle", "spiral", "frame"],
+      "pairing_synergies": ["river_eel", "ashen_boar_ribs", "crimsonleaf_cabbage", "fireplum", "moonturnip", "glowfungus_caps"],
+      "pairing_antagonists": ["delicate_dairy", "moonmilk", "soft_cheeses", "amber_mead"],
+      "substitutions": {
+        "soft": ["balsamic vinegar", "black vinegar"],
+        "hard": ["red wine vinegar", "apple cider vinegar"]
+      },
+      "flavor_profile": {
+        "sweet": 0,
+        "sour": 9,
+        "salty": 0,
+        "bitter": 0,
+        "umami": 3,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 7,
+        "floral": 0,
+        "earthy": 0,
+        "smoky": 4,
+        "funky": 2,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["dark as spilled ink", "catches almost no light", "sharp tang", "metallic edge", "cold iron vapor"],
+      "aroma_notes": [
+        {"note": "cold iron", "intensity": 6},
+        {"note": "sour fruit", "intensity": 5},
+        {"note": "unsettling persistence", "intensity": 7}
+      ],
+      "nutritional_profile": {
+        "kcal": 0,
+        "protein_g": 0,
+        "fat_g": 0,
+        "carb_g": 0,
+        "fiber_g": 0,
+        "micros": {
+          "acetic_acid_percent": 6.0,
+          "iron_mg": 0.5,
+          "antioxidants_mg": 8,
+          "void_essence_mg": 15
+        },
+        "hydration_percent": 0,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 20,
+        "half_life_min": 180
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Mental Sharpness",
+          "magnitude": 2,
+          "duration_min": 120,
+          "description": "Sharpens the mind and steels the tongue"
+        },
+        {
+          "effect": "+Courage",
+          "magnitude": 1,
+          "duration_min": 90,
+          "description": "Symbolizes courage in the face of nothingness, used in ritual meals before great undertakings"
+        },
+        {
+          "effect": "Void Dreams",
+          "magnitude": -1,
+          "duration_min": 480,
+          "description": "Heavy consumption leads to vivid dreams of falling endlessly through darkness"
+        }
+      ],
+      "lore_hook": "First brewed by alchemists who trapped time in glass, or drawn from tears shed by the stars themselves",
+      "detailed_description": "Void Vinegar is a liquid as dark as spilled ink, its surface catching almost no light. Brewed in sealed stasis domes, where time itself slows, the vinegar develops a sharp tang laced with a faint metallic edge. When opened, it releases a vapor like cold iron and sour fruit, clinging to the air with unsettling persistence.",
+      "cultural_significance": "Void Vinegar is revered as a creation of alchemists who trapped time in glass, or drawn from tears shed by the stars themselves. In guild kitchens, it is used in ritual meals before great undertakings, symbolizing courage in the face of nothingness. Superstitious cooks refuse to spill it, believing that a drop on the floor invites shadows into the home.",
+      "harvesting_notes": "Requires sealed stasis domes where time itself slows; exposure to uncontrolled air spoils the batch instantly. The liquid is as dark as spilled ink, its surface catching almost no light, developing a sharp tang laced with a faint metallic edge.",
+      "preparation_lore": "Traditional use sparingly in marinades to cut through fatty meats, reducing into jet-black glazes for striking presentation, pickling agent for moonturnips and glowfungus caps producing luminous preserves. The legendary 'Shadow Reduction' features a syrupy vinegar sauce plated in spirals, used to frame golden saffron dishes.",
+      "serving_traditions": "A drop added to rich stews brings brightness, though most households use it rarely as daily fare. Black-glazed ribs or fowl, served as symbols of resilience against the void at festival tables. Void-vinegar pickled eggs, glowing faintly under lanterns, a delicacy of night markets as street food.",
+      "seasonal_notes": "Available year-round but most potent during the dark months when the void essence is strongest. The jet-black color and metallic edge are most pronounced in vinegar brewed during the longest nights.",
+      "storage_wisdom": "Must be kept in blackened glass or ceramic; light spoils its balance. The dark, ink-like color and sharp tang are preserved best when stored away from light in blackened containers. The void essence diminishes with improper storage.",
+      "pairing_philosophy": "Void Vinegar's intense sharpness and metallic nature can curdle delicate dairy instantly. It shines when paired with robust elements like river eel or ashen boar ribs, where its sharp tang and smoky notes can provide substantial backbone while cutting through rich flavors.",
+      "chef_notes": "A drop of the void will wake the dullest dish. Respect the black draught, for it looks back at you when you taste it. The jet-black color is not just visual — it carries the vinegar's connection to the void and should be preserved in presentation.",
+      "safety_lore": "Overuse can cause dizziness and metallic taste that lingers for hours due to the void essence content. Those sensitive to intense flavors should moderate consumption. The 'void dreams' effect can be intense for those unaccustomed to void vinegar's mind-sharpening properties.",
+      "economic_context": "Costly and rare — 1-3 silver per small vial; double in regions without access to dome-breweries. No special trade restrictions, but the stasis dome requirements and alchemist significance make it a premium ingredient. The ritual significance makes it valuable in ceremonial and guild contexts.",
+      "quoted_wisdom": [
+        "\"A drop of the void will wake the dullest dish.\" — Master Sauceron Istra Val",
+        "\"Respect the black draught, for it looks back at you when you taste it.\" — Old Brewer's Warning"
+      ],
+      "ingredient_complexity_score": 1.8
+    },
+    {
+      "id": "starfruit_of_aether_01",
+      "name": "Starfruit of Aether",
+      "scientific_name": "Carambola astralis",
+      "nickname": "The Constellation's Gift",
+      "category": "fruit",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "silver",
+        "unit": "fruit",
+        "min": 1,
+        "max": 3,
+        "volatility": 0.5
+      },
+      "yield_per_unit": 0.80,
+      "shelf_life": {
+        "days": 14,
+        "storage_temp_c": 18,
+        "method": "room temperature, avoid refrigeration"
+      },
+      "perishability": "medium",
+      "hazards": ["sleeplessness if overindulged", "mild disorientation", "thoughts wandering the heavens"],
+      "detox_protocols": ["moderate consumption", "balance with grounding foods", "avoid excessive amounts"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Scholar-Culture", "Guild-Kitchens", "Star-Festivals"],
+      "technique_affinities": ["slice", "juice", "caramelize", "skewer", "sorbet", "arrange"],
+      "pairing_synergies": ["moonmilk", "frostmint", "crystal_honey", "amber_mead", "roasted_poultry", "void_citrus"],
+      "pairing_antagonists": ["heavy_smoke_flavors", "overpowering_spices"],
+      "substitutions": {
+        "soft": ["starfruit", "pear"],
+        "hard": ["apple", "quince"]
+      },
+      "flavor_profile": {
+        "sweet": 8,
+        "sour": 3,
+        "salty": 0,
+        "bitter": 0,
+        "umami": 0,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 0,
+        "floral": 0,
+        "earthy": 0,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["radiant golden", "waxy skin", "shimmering faintly", "crisp", "juicy", "shifting constellations"],
+      "aroma_notes": [
+        {"note": "sweet citrus", "intensity": 6},
+        {"note": "honey", "intensity": 4},
+        {"note": "sparkling tingle", "intensity": 5}
+      ],
+      "nutritional_profile": {
+        "kcal": 31,
+        "protein_g": 1.0,
+        "fat_g": 0.3,
+        "carb_g": 6.7,
+        "fiber_g": 2.8,
+        "micros": {
+          "vitamin_c_mg": 34.4,
+          "vitamin_a_mcg": 66,
+          "folate_mcg": 12,
+          "potassium_mg": 133,
+          "aether_essence_mg": 10
+        },
+        "hydration_percent": 91,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 30,
+        "half_life_min": 120
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Clarity",
+          "magnitude": 2,
+          "duration_min": 180,
+          "description": "Brings clarity of thought and bursts of inspiration, as if gazing into the cosmos itself"
+        },
+        {
+          "effect": "+Inspiration",
+          "magnitude": 1,
+          "duration_min": 120,
+          "description": "Many diners report fleeting visions of stars or dreams of distant skies"
+        },
+        {
+          "effect": "Heavenly Wandering",
+          "magnitude": -1,
+          "duration_min": 240,
+          "description": "Overindulgence causes sleeplessness or mild disorientation, as if thoughts are wandering the heavens"
+        }
+      ],
+      "lore_hook": "Fell from the heavens during a meteor shower, the seeds scattering like stars across fertile fields",
+      "detailed_description": "Starfruit of Aether is a radiant golden fruit, its waxy skin shimmering faintly as though lit from within. When sliced, its cross-section forms a perfect star, but unlike its mundane cousin, the flesh reveals tiny shifting constellations that glimmer as though suspended in the night sky. The fruit is crisp and juicy, with a sweet aroma carrying hints of citrus and honey.",
+      "cultural_significance": "Starfruit of Aether is revered as a gift that fell from the heavens during a meteor shower. In some cultures, it is served to scholars and seers to encourage insight. Couples eat it on midsummer nights to ensure their love 'shines as eternal as the constellations.' Guild kitchens prize the fruit not only for its flavor but for its beauty — no feast is complete without its golden light.",
+      "harvesting_notes": "Best plucked at twilight, when its glow is brightest. The radiant golden fruit has waxy skin that shimmers faintly as though lit from within, revealing tiny shifting constellations that glimmer as though suspended in the night sky when sliced.",
+      "preparation_lore": "Traditional eating fresh in slices to admire its shifting starlit patterns, juicing into cocktails and festival punches for celestial glow, caramelizing into tarts where constellations twinkle faintly through the glaze. The legendary 'Aether Sorbet' features starfruit blended with void citrus, served under glass domes to resemble the night sky.",
+      "serving_traditions": "Fresh slices eaten at dawn, believed to bring luck for the day as daily fare. Starfruit constellations arranged on celestial platters, eaten as the stars rise at festival tables. Starfruit skewers drizzled with crystal honey, glowing faintly in the market night as street food.",
+      "seasonal_notes": "Available year-round but most radiant during star festivals and meteor shower seasons. The golden glow and shifting constellations are most pronounced in fruits harvested during celestial events.",
+      "storage_wisdom": "Keeps for 1-2 weeks; refrigeration dims its light, so it is best eaten fresh. The radiant golden color and shimmering skin are preserved best when stored at room temperature. The aether essence diminishes with improper storage.",
+      "pairing_philosophy": "Starfruit of Aether's bright sweetness and celestial nature can be dulled by heavy smoke flavors. It shines when paired with complementary elements like moonmilk or crystal honey, where its sweet, citrusy nature and sparkling tingle can provide a perfect balance to creamy or floral flavors.",
+      "chef_notes": "Eat the stars, and you will dream beyond the world. Aether fruit reminds us that even in our hands, the heavens may rest. The shifting constellations are not just visual — they carry the fruit's connection to the cosmos and should be preserved in presentation.",
+      "safety_lore": "Overindulgence can cause sleeplessness and mild disorientation due to the aether essence content. Those sensitive to elevated energy should moderate consumption. The 'heavenly wandering' effect can be intense for those unaccustomed to starfruit's clarity-inspiring properties.",
+      "economic_context": "Rare and costly — 1-3 silver per fruit, more during star festivals. No special trade restrictions, but the celestial origin and scholar significance make it a premium ingredient. The love blessing properties make it valuable in ceremonial and romantic contexts.",
+      "quoted_wisdom": [
+        "\"Eat the stars, and you will dream beyond the world.\" — Old Scholar's Saying",
+        "\"Aether fruit reminds us that even in our hands, the heavens may rest.\" — Chef Lyrren Vale"
+      ],
+      "ingredient_complexity_score": 1.7
+    },
+    {
+      "id": "fireplum_01",
+      "name": "Fireplum",
+      "scientific_name": "Prunus ignis",
+      "nickname": "The Ember's Jewel",
+      "category": "fruit",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "copper",
+        "unit": "handful",
+        "min": 5,
+        "max": 7,
+        "volatility": 0.3
+      },
+      "yield_per_unit": 0.75,
+      "shelf_life": {
+        "days": 14,
+        "storage_temp_c": 4,
+        "method": "chilled, avoid bruising"
+      },
+      "perishability": "medium",
+      "hazards": ["burning sensation in stomach if overindulged", "feverish dreams of dancing flames", "flushed skin"],
+      "detox_protocols": ["moderate consumption", "balance with cooling foods", "avoid excessive amounts"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Highland-Hunters", "Newlywed-Culture", "Solstice-Feasts"],
+      "technique_affinities": ["simmer", "bake", "dry", "candy", "chutney", "torte"],
+      "pairing_synergies": ["ashen_boar_ribs", "cloud_ox_beef", "moonturnip", "amber_mead", "crystal_honey", "dragons_tongue_pepper"],
+      "pairing_antagonists": ["bitter_herbs", "frostmint", "cooling_foods"],
+      "substitutions": {
+        "soft": ["plum", "cherry"],
+        "hard": ["apricot", "peach"]
+      },
+      "flavor_profile": {
+        "sweet": 4,
+        "sour": 6,
+        "salty": 0,
+        "bitter": 0,
+        "umami": 0,
+        "fat": 0,
+        "heat": 5,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 0,
+        "floral": 0,
+        "earthy": 0,
+        "smoky": 3,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["small", "deep-red", "shimmering garnet skin", "golden-orange flesh", "faint heat", "dark ridged pit"],
+      "aroma_notes": [
+        {"note": "smoke", "intensity": 4},
+        {"note": "tart cherry", "intensity": 6},
+        {"note": "spiced wine", "intensity": 5}
+      ],
+      "nutritional_profile": {
+        "kcal": 46,
+        "protein_g": 0.7,
+        "fat_g": 0.3,
+        "carb_g": 11.4,
+        "fiber_g": 1.4,
+        "micros": {
+          "vitamin_c_mg": 9.5,
+          "vitamin_a_mcg": 17,
+          "potassium_mg": 157,
+          "antioxidants_mg": 12,
+          "ember_essence_mg": 8
+        },
+        "hydration_percent": 87,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 25,
+        "half_life_min": 90
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Blood Stirring",
+          "magnitude": 2,
+          "duration_min": 120,
+          "description": "Stirs the blood and enlivens the spirit, leaving diners flushed and cheerful"
+        },
+        {
+          "effect": "+Mountain Warmth",
+          "magnitude": 1,
+          "duration_min": 180,
+          "description": "Keeps hearts warm against mountain cold, prized by highland hunters"
+        },
+        {
+          "effect": "Ember Dreams",
+          "magnitude": -1,
+          "duration_min": 240,
+          "description": "Overindulgence causes burning sensation in stomach or feverish dreams of dancing flames"
+        }
+      ],
+      "lore_hook": "First Fireplum tree sprouted from the ashes of a hearth where a fire god once slept",
+      "detailed_description": "Fireplums are small, deep-red stone fruits with skins that shimmer like polished garnet. Their flesh is golden-orange and exudes a faint heat when bitten into, as though embers were hidden beneath the skin. The pit at the center is dark and ridged, sometimes warm to the touch. Their aroma carries notes of smoke, tart cherry, and spiced wine.",
+      "cultural_significance": "Fireplums are revered as fruits that sprouted from the ashes of a hearth where a fire god once slept. In some regions, newlyweds share a Fireplum to ignite passion and luck. Highland hunters carry dried Fireplums as trail rations, believing the fruit keeps their hearts warm against the mountain cold.",
+      "harvesting_notes": "Gathered at high summer when skins glow deepest red. The small, deep-red stone fruits have skins that shimmer like polished garnet, with golden-orange flesh that exudes a faint heat when bitten into, as though embers were hidden beneath the skin.",
+      "preparation_lore": "Traditional simmering into sauces for meats and roasts, baking into pies and tarts for sweet-heat desserts, drying into chewy, spicy-sour snacks. The legendary 'Inferno Torte' features layered cake with fireplum preserves and dragon's tongue pepper ganache, both sweet and searing.",
+      "serving_traditions": "Fireplum chutneys served with bread or cheese as daily fare. Spiced fireplum wine poured at solstice feasts, glowing faintly in torchlight. Skewers of candied fireplums sold hot from braziers, juices sizzling on the coals as street food.",
+      "seasonal_notes": "Available year-round but most flavorful in high summer when the skins glow deepest red. The ember-like warmth and garnet shimmer are most pronounced in fruits harvested during the hottest months.",
+      "storage_wisdom": "Keeps fresh for 1-2 weeks; drying preserves warmth for months. The deep-red color and golden-orange flesh are preserved best when stored chilled and handled gently. The ember essence diminishes with improper storage.",
+      "pairing_philosophy": "Fireplum's ember-like warmth and tart juiciness can clash with bitter herbs or frostmint. It shines when paired with complementary elements like ashen boar ribs or cloud ox beef, where its smoky tartness and gentle heat can provide a perfect balance to rich, savory flavors.",
+      "chef_notes": "A Fireplum in winter is a coal in the hearth. The fruit that burns twice — once on the tongue, and once in the memory. The faint heat is not just flavor — it carries the plum's connection to the fire god's hearth and should be preserved in cooking.",
+      "safety_lore": "Overindulgence can cause burning sensation in stomach and feverish dreams of dancing flames due to the ember essence content. Those sensitive to spicy foods should moderate consumption. The 'ember dreams' effect can be intense for those unaccustomed to fireplum's blood-stirring properties.",
+      "economic_context": "5-7 copper per handful; festival candied Fireplums can cost 1 silver a stick. No special trade restrictions, but the fire god connection and passion blessing properties make it valuable in ceremonial and romantic contexts.",
+      "quoted_wisdom": [
+        "\"A Fireplum in winter is a coal in the hearth.\" — Old Farmer's Proverb",
+        "\"The fruit that burns twice — once on the tongue, and once in the memory.\" — Guild Chef Terros Vale"
+      ],
+      "ingredient_complexity_score": 1.5
+    },
+    {
+      "id": "crystal_honey_01",
+      "name": "Crystal Honey",
+      "scientific_name": "Mel crystallum",
+      "nickname": "The Glass of the Hive",
+      "category": "sweetener",
+      "origin_plane": "earth",
+      "rarity_culinary": 1,
+      "acquisition_cycle": "daily",
+      "legal_status": "unrestricted",
+      "cost_range": {
+        "currency": "silver",
+        "unit": "shard",
+        "min": 2,
+        "max": 5,
+        "volatility": 0.6
+      },
+      "yield_per_unit": 0.90,
+      "shelf_life": {
+        "days": 3650,
+        "storage_temp_c": 15,
+        "method": "sealed from moisture"
+      },
+      "perishability": "very_low",
+      "hazards": ["restlessness if overindulged", "jaw-aching sweetness", "overstimulation"],
+      "detox_protocols": ["moderate consumption", "balance with other flavors", "avoid excessive amounts"],
+      "dietary_flags": ["vegan", "vegetarian"],
+      "cuisine_affinities": ["universal", "Temple-Offerings", "Guild-Kitchens", "Cavern-Communities"],
+      "technique_affinities": ["shave", "melt", "dissolve", "sculpt", "glaze", "crackle"],
+      "pairing_synergies": ["sunbloom_saffron", "frostmint", "fireplum", "skyfowl", "moonmilk", "amber_mead"],
+      "pairing_antagonists": ["overly_bitter_roots", "heavy_brines", "overpowering_flavors"],
+      "substitutions": {
+        "soft": ["honey", "agave"],
+        "hard": ["maple syrup", "golden syrup"]
+      },
+      "flavor_profile": {
+        "sweet": 10,
+        "sour": 0,
+        "salty": 0,
+        "bitter": 0,
+        "umami": 0,
+        "fat": 0,
+        "heat": 0,
+        "astringent": 0,
+        "cooling": 0,
+        "metallic": 0,
+        "floral": 4,
+        "earthy": 0,
+        "smoky": 0,
+        "funky": 0,
+        "ozone_ion": 0,
+        "numbing": 0
+      },
+      "texture_profile": ["clear", "glasslike sheets", "shards", "catches light", "crystalline crunch", "golden syrup when warmed"],
+      "aroma_notes": [
+        {"note": "sweet floral", "intensity": 7},
+        {"note": "mineral undertones", "intensity": 3},
+        {"note": "clean finish", "intensity": 5}
+      ],
+      "nutritional_profile": {
+        "kcal": 304,
+        "protein_g": 0.3,
+        "fat_g": 0,
+        "carb_g": 82.4,
+        "fiber_g": 0.2,
+        "micros": {
+          "sugar_g": 82.0,
+          "antioxidants_mg": 25,
+          "minerals_mg": 8,
+          "crystal_essence_mg": 12
+        },
+        "hydration_percent": 17,
+        "abv_percent": 0
+      },
+      "intoxication_index": 1,
+      "tolerance_curve": {
+        "type": "linear",
+        "peak_time_min": 15,
+        "half_life_min": 60
+      },
+      "culinary_effects": [
+        {
+          "effect": "+Brightness",
+          "magnitude": 2,
+          "duration_min": 120,
+          "description": "Brightens the mind and lightens the spirit, leaving diners refreshed and alert"
+        },
+        {
+          "effect": "+Light Dreams",
+          "magnitude": 1,
+          "duration_min": 480,
+          "description": "Taken before sleep, sometimes brings dreams of light-filled halls"
+        },
+        {
+          "effect": "Sweet Overstimulation",
+          "magnitude": -1,
+          "duration_min": 180,
+          "description": "Overindulgence causes restlessness and jaw-aching sweetness"
+        }
+      ],
+      "lore_hook": "Gemwing bees were born from the tears of the Sun, their hives filled with condensed light",
+      "detailed_description": "Crystal Honey is a rare delicacy harvested from crystalline hives built by gemwing bees in caverns or cliffs where light refracts through quartz. Unlike ordinary honey, it sets into clear, glasslike sheets or shards, catching light like ambered glass. When warmed, it softens into a viscous, golden syrup, releasing a sweet, floral fragrance with faint mineral undertones.",
+      "cultural_significance": "Crystal Honey is revered as a creation of gemwing bees born from the tears of the Sun, their hives filled with condensed light. It is offered in temples as a symbol of purity and clarity, and guild kitchens treat it as a treasure, used only in dishes meant to awe. In some regions, shards are given as tokens of affection, their transparency said to represent honesty of heart.",
+      "harvesting_notes": "Extracted carefully by cracking crystalline combs; gemwing bees fiercely defend their hives. The rare delicacy is harvested from crystalline hives built by gemwing bees in caverns or cliffs where light refracts through quartz, setting into clear, glasslike sheets or shards.",
+      "preparation_lore": "Traditional shaving into slivers and sprinkling over desserts, melting into glazes for meats and pastries, dissolving into teas and meads for brightness. The legendary 'Shattered Glass Tart' features pastry topped with shards of crystal honey that crackle under the bite.",
+      "serving_traditions": "Stirred into porridge or spread thin over bread, where it glitters in the morning sun as daily fare. Crystal honey sculptures, carved into edible centerpieces at festival tables. Honey shards on sticks, sold as glowing candy as street food.",
+      "seasonal_notes": "Available year-round but most radiant during the brightest months when the gemwing bees are most active. The crystalline clarity and light-catching properties are most pronounced in honey harvested during peak sunlight periods.",
+      "storage_wisdom": "Keeps indefinitely if sealed from moisture. The clear, glasslike sheets and shards are preserved best when stored away from moisture in sealed containers. The crystal essence remains stable with proper storage.",
+      "pairing_philosophy": "Crystal Honey's intense sweetness and crystalline clarity can be muddied by overly bitter roots or heavy brines. It shines when paired with complementary elements like sunbloom saffron or frostmint, where its delicate floral notes and clean mineral finish can provide a perfect balance to subtle flavors.",
+      "chef_notes": "A shard of Crystal Honey sweetens more than the tongue — it sweetens the soul. Hold it to the light, and you'll see the hive's song captured within. The crystalline crunch is not just texture — it carries the honey's connection to the gemwing bees and should be preserved in presentation.",
+      "safety_lore": "Overindulgence can cause restlessness and jaw-aching sweetness due to the crystal essence content. Those sensitive to intense sweetness should moderate consumption. The 'sweet overstimulation' effect can be intense for those unaccustomed to crystal honey's mind-brightening properties.",
+      "economic_context": "Extremely costly — 2-5 silver per shard, rare festival pieces can reach gold prices. No special trade restrictions, but the gemwing bee rarity and temple significance make it a premium ingredient. The affection token properties make it valuable in ceremonial and romantic contexts.",
+      "quoted_wisdom": [
+        "\"A shard of Crystal Honey sweetens more than the tongue — it sweetens the soul.\" — Highpriestess Veyra",
+        "\"Hold it to the light, and you'll see the hive's song captured within.\" — Cavern Harvester's Saying"
+      ],
+      "ingredient_complexity_score": 1.9
+    }
+  ]
+}
